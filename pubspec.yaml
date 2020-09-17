@@ -1,13 +1,14 @@
 name: carbon
-description: IBM Carbon Design System
+description: IBM Carbon Design System for Flutter
 version: 0.0.1
-author:
-homepage:
+homepage: https://github.com/NourEldinShobier/carbon-flutter
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  stylex: ^1.1.0
+  pmvvm: ^0.4.0
   flutter:
     sdk: flutter
 
