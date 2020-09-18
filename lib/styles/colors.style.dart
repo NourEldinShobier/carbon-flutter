@@ -107,7 +107,3 @@ final carbonColors = StyleX({
   'carbon-yellow-20': '#fdd13a',
   'carbon-yellow-30': '#f1c21b',
 });
-
-/* final g100 = StyleX({
-'g-100-'': null',
-})', */

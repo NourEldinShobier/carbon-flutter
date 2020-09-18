@@ -1,9 +1,9 @@
 import 'package:stylex/stylex.dart';
 
-final textStyle = StyleX({
-  'font-family-primary': 'IBMPlexSans-Regular',
-  'font-family-primary-light': 'IBMPlexSans-Light',
-  'font-family-primary-medium': 'IBMPlexSans-Medium',
-  'font-family-primary-semibold': 'IBMPlexSans-SemiBold',
-  'font-family-primary-bold': 'IBMPlexSans-Bold',
+final carbonText = StyleX({
+  'carbon-font-family': 'IBMPlexSans-Regular',
+  'carbon-font-family-light': 'IBMPlexSans-Light',
+  'carbon-font-family-medium': 'IBMPlexSans-Medium',
+  'carbon-font-family-semibold': 'IBMPlexSans-SemiBold',
+  'carbon-font-family-bold': 'IBMPlexSans-Bold',
 });
