@@ -1,13 +1,28 @@
+import 'package:carbon/carbon.dart';
 import 'package:flutter/material.dart';
+import 'package:stylex/stylex.dart';
+
+export './text.style.dart';
+export './text.params.dart';
 
 class CText extends StatelessWidget {
-  const CText({Key key, @required this.props, this.style}) : super(key: key);
+  const CText({Key key, @required this.props}) : super(key: key);
 
   final Map<String, dynamic> props;
-  final Map<String, dynamic> style;
 
   @override
   Widget build(BuildContext context) {
+    final carbon = context.style;
+
+    final style = props['style'] as TextStyle;
+    final type = props['textType'] as TextType;
+
+    if (type != null) {
+      final finalStyle = TextUtils.buildTextStyle(type: type, style: carbon);
+      if (style != null) finalStyle.merge(style);
+      props['style'] = finalStyle;
+    }
+
     return Text(
       props['value'] ?? 'none',
       textAlign: props['textAlign'] ?? null,
@@ -19,17 +34,9 @@ class CText extends StatelessWidget {
       semanticsLabel: props['semanticsLabel'] ?? null,
       textWidthBasis: props['textWidthBasis'] ?? null,
       textHeightBehavior: props['textHeightBehavior'] ?? null,
-      style: TextStyle(
-        fontSize: style['fontSize'] ?? null,
-        height: style['height'] ?? null,
-        color: style['color'] ?? null,
-        backgroundColor: style['backgroundColor'] ?? null,
-        fontWeight: style['fontWeight'] ?? null,
-        fontStyle: style['fontStyle'] ?? null,
-        textBaseline: style['textBaseline'] ?? null,
-        locale: style['locale'] ?? null,
-        debugLabel: style['debugLabel'] ?? null,
-      ),
+      strutStyle: props['strutStyle'] ?? null,
+      softWrap: props['softWrap'] ?? null,
+      style: props['style'] ?? null,
     );
   }
 }

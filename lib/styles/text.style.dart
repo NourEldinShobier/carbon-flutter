@@ -1,6 +1,6 @@
 import 'package:stylex/stylex.dart';
 
-final carbonText = StyleX({
+final carbonFonts = StyleX({
   'carbon-font-family': 'IBMPlexSans-Regular',
   'carbon-font-family-light': 'IBMPlexSans-Light',
   'carbon-font-family-medium': 'IBMPlexSans-Medium',
