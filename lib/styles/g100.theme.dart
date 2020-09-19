@@ -13,6 +13,34 @@ final _materialTheme = ThemeData(
       color: carbonColors.get<Color>('carbon-gray-10'),
       fontFamily: carbonFonts.get<String>('carbon-font-family'),
     ),
+    bodyText2: TextStyle(
+      color: carbonColors.get<Color>('carbon-gray-10'),
+      fontFamily: carbonFonts.get<String>('carbon-font-family'),
+    ),
+    headline1: TextStyle(
+      color: carbonColors.get<Color>('carbon-gray-10'),
+      fontFamily: carbonFonts.get<String>('carbon-font-family'),
+    ),
+    headline2: TextStyle(
+      color: carbonColors.get<Color>('carbon-gray-10'),
+      fontFamily: carbonFonts.get<String>('carbon-font-family'),
+    ),
+    headline3: TextStyle(
+      color: carbonColors.get<Color>('carbon-gray-10'),
+      fontFamily: carbonFonts.get<String>('carbon-font-family'),
+    ),
+    headline4: TextStyle(
+      color: carbonColors.get<Color>('carbon-gray-10'),
+      fontFamily: carbonFonts.get<String>('carbon-font-family'),
+    ),
+    headline5: TextStyle(
+      color: carbonColors.get<Color>('carbon-gray-10'),
+      fontFamily: carbonFonts.get<String>('carbon-font-family'),
+    ),
+    headline6: TextStyle(
+      color: carbonColors.get<Color>('carbon-gray-10'),
+      fontFamily: carbonFonts.get<String>('carbon-font-family'),
+    ),
   ),
 );
 
