@@ -6,7 +6,6 @@ enum CWidgetSize {
 
 enum CWidgetState {
   enabled,
-  hover,
   active,
   focus,
   disabled,

@@ -1,1 +1,1 @@
-export './enums.model.dart';
+export 'params.model.dart';
