@@ -1,10 +1,9 @@
 import 'package:carbon/carbon.dart';
-
 import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
-class TextUtils {
-  static TextStyle buildTextStyle({TextType type, StyleX style}) {
+mixin TextUtils {
+  TextStyle buildTextStyle({TextType type, StyleX style}) {
     final styleName = enumToString(type);
 
     final fontFamily = style.get<String>('text-$styleName-font-family');

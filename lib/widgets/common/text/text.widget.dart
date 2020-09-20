@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
 export './text.style.dart';
-export './text.params.dart';
 
-class CText extends StatelessWidget {
+class CText extends StatelessWidget with TextUtils {
   const CText({Key key, @required this.props}) : super(key: key);
 
   final Map<String, dynamic> props;
@@ -18,7 +17,7 @@ class CText extends StatelessWidget {
     final type = props['textType'] as TextType;
 
     if (type != null) {
-      final finalStyle = TextUtils.buildTextStyle(type: type, style: carbon);
+      final finalStyle = buildTextStyle(type: type, style: carbon);
       if (style != null) finalStyle.merge(style);
       props['style'] = finalStyle;
     }

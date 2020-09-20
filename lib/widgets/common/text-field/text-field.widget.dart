@@ -38,6 +38,7 @@ class _CTextFieldState extends State<CTextField> {
 
   Widget build(BuildContext context) {
     final carbon = context.style;
+    // add disabled,
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
