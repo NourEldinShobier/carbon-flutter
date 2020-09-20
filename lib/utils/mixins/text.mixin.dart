@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
 mixin TextUtils {
-  TextStyle buildTextStyle({TextType type, StyleX style}) {
+  TextStyle buildTextStyle({CTextType type, StyleX style}) {
     final styleName = enumToString(type);
 
     final fontFamily = style.get<String>('text-$styleName-font-family');

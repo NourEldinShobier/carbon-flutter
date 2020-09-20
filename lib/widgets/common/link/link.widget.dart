@@ -2,25 +2,28 @@ import 'package:carbon/carbon.dart';
 import 'package:flutter/material.dart';
 
 class CLink extends StatelessWidget {
-  const CLink({Key key, @required this.props}) : super(key: key);
+  const CLink({
+    Key key,
+    @required this.url,
+    @required this.onTap,
+    this.caption,
+    this.style,
+  }) : super(key: key);
 
-  final Map<String, dynamic> props;
+  final String caption;
+  final String url;
+  final void Function(String url) onTap;
+
+  final TextStyle style;
 
   @override
   Widget build(BuildContext context) {
-    final url = props['url'] as String;
-    final onTap = props['onTap'] as void Function(String url);
-
     return GestureDetector(
-      onTap: () {
-        onTap(url);
-      },
+      onTap: () => onTap(url),
       child: CText(
-        props: {
-          'value': props['caption'],
-          'textType': TextType.link,
-          'style': props['style'],
-        },
+        data: caption ?? url,
+        textType: CTextType.link,
+        style: style,
       ),
     );
   }

@@ -1,7 +1,5 @@
 /// Widget
 
-enum CWidgetSize { large, medium, small }
-
 enum CWidgetState { enabled, focus, disabled }
 
 enum CWidgetStatus { primary, success, info, warning, danger }
@@ -10,9 +8,11 @@ enum CPositioning { left, right, none }
 
 enum CVerticalPositioning { top, bottom }
 
+enum CValidationResultType { success, warning, error }
+
 /// Text
 
-enum TextType {
+enum CTextType {
   h1,
   h2,
   h3,

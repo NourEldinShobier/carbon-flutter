@@ -3,10 +3,10 @@ import 'package:carbon/carbon.dart';
 import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
-export 'text-field.styles.dart';
+export './text-field.styles.dart';
 
 class CTextField extends StatefulWidget {
-  const CTextField({Key key, this.props = const {}}) : super(key: key);
+  const CTextField({Key key, @required this.props}) : super(key: key);
 
   final Map<String, dynamic> props;
 
@@ -39,13 +39,14 @@ class _CTextFieldState extends State<CTextField> {
   Widget build(BuildContext context) {
     final carbon = context.style;
     // add disabled,
+    // if you will use keepfocus, you need to copy focus node
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         if (widget.props['labelText'] != null) ...[
-          CText(
+          /* CText(
             props: {
               'value': widget.props['labelText'],
               'required': widget.props['required'],
@@ -55,7 +56,7 @@ class _CTextFieldState extends State<CTextField> {
               'font-family': carbon.get('textfield-label-fontfamily'),
               'text-color': carbon.get('textfield-label-color'),
             },
-          ),
+          ), */
           SizedBox(height: 8)
         ],
         SizedBox(
@@ -133,9 +134,6 @@ class _XTextFieldErrorIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      'assets/svg/error.svg',
-      height: 16,
-    );
+    return SvgPicture.asset('assets/svg/error.svg', height: 16);
   }
 }
