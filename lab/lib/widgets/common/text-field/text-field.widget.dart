@@ -1,4 +1,4 @@
-import 'package:carbon/carbon.dart';
+import 'package:lab/carbon.dart';
 
 import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
