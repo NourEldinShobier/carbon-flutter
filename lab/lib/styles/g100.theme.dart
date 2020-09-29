@@ -49,4 +49,5 @@ final g100 = StyleX({
 })
   ..inject(carbonColors)
   ..inject(carbonFonts)
-  ..inject(textG100);
+  ..inject(textG100)
+  ..inject(textFieldG100);

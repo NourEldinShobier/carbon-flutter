@@ -1,4 +1,4 @@
-import 'package:carbon/carbon.dart';
+import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
@@ -22,11 +22,13 @@ class CText extends StatelessWidget with TextUtils {
     this.semanticsLabel,
     this.textWidthBasis,
     this.textHeightBehavior,
+    this.isRequired = false,
   }) : super(key: key);
 
   final CTextType textType;
 
   final String data;
+  final bool isRequired;
   final InlineSpan textSpan;
   final TextStyle style;
   final StrutStyle strutStyle;
@@ -50,22 +52,46 @@ class CText extends StatelessWidget with TextUtils {
     if (textType != null) {
       finalStyle = buildTextStyle(type: textType, style: carbon);
       if (style != null) finalStyle.merge(style);
+    } else {
+      finalStyle = style;
     }
 
-    return Text(
-      data,
-      style: finalStyle,
-      strutStyle: strutStyle,
-      textAlign: textAlign,
-      textDirection: textDirection,
-      locale: locale,
-      softWrap: softWrap,
-      overflow: overflow,
-      textScaleFactor: textScaleFactor,
-      maxLines: maxLines,
-      semanticsLabel: semanticsLabel,
-      textWidthBasis: textWidthBasis,
-      textHeightBehavior: textHeightBehavior,
-    );
+    if (!isRequired)
+      return Text(
+        data,
+        style: finalStyle,
+        strutStyle: strutStyle,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        locale: locale,
+        softWrap: softWrap,
+        overflow: overflow,
+        textScaleFactor: textScaleFactor,
+        maxLines: maxLines,
+        semanticsLabel: semanticsLabel,
+        textWidthBasis: textWidthBasis,
+        textHeightBehavior: textHeightBehavior,
+      );
+    else
+      return Row(
+        children: [
+          Text(
+            data,
+            style: finalStyle,
+            strutStyle: strutStyle,
+            textAlign: textAlign,
+            textDirection: textDirection,
+            locale: locale,
+            softWrap: softWrap,
+            overflow: overflow,
+            textScaleFactor: textScaleFactor,
+            maxLines: maxLines,
+            semanticsLabel: semanticsLabel,
+            textWidthBasis: textWidthBasis,
+            textHeightBehavior: textHeightBehavior,
+          ),
+          Text(' *', style: TextStyle(color: carbon.get('carbon-red-60'))),
+        ],
+      );
   }
 }

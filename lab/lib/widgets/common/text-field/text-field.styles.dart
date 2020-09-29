@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:stylex/stylex.dart';
 
 final _textField = StyleX({
-  'textfield-label-font-size': 12.0,
+  'textfield-label-font-size': 14.0,
   'textfield-label-font-family': 'carbon-font-family',
+  'textfield-text-font-size': 14.0,
+  'textfield-text-font-family': 'carbon-font-family',
   'textfield-hint-font-size': 14.0,
   'textfield-hint-font-family': 'carbon-font-family',
-  'textfield-message-font-size': 12.0,
-  'textfield-message-font-family': 'carbon-font-family',
+  'textfield-description-font-size': 14.0,
+  'textfield-description-font-family': 'carbon-font-family',
 });
 
 final textFieldG100 = StyleX({
@@ -20,7 +22,6 @@ final textFieldG100 = StyleX({
   'textfield-primary-enabled-label-color': 'carbon-gray-30',
   'textfield-primary-focus-label-color': 'carbon-gray-30',
   'textfield-primary-disabled-label-color': 'carbon-gray-70',
-
   // hint
   'textfield-primary-enabled-hint-color': 'carbon-gray-60',
   'textfield-primary-focus-hint-color': 'carbon-gray-60',
@@ -31,10 +32,10 @@ final textFieldG100 = StyleX({
   'textfield-primary-focus-text-color': 'carbon-gray-10',
   'textfield-primary-disabled-text-color': 'carbon-gray-70',
 
-  // message
-  'textfield-primary-enabled-message-color': 'carbon-gray-30',
-  'textfield-primary-focus-message-color': 'carbon-gray-30',
-  'textfield-primary-disabled-message-color': 'carbon-gray-70',
+  // description
+  'textfield-primary-enabled-description-color': 'carbon-gray-30',
+  'textfield-primary-focus-description-color': 'carbon-gray-30',
+  'textfield-primary-disabled-description-color': 'carbon-gray-70',
 
   // background-color
   'textfield-primary-enabled-background-color': 'carbon-gray-90',
