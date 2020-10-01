@@ -2,7 +2,6 @@ import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stylex/stylex.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 export './text-field.styles.dart';
 
