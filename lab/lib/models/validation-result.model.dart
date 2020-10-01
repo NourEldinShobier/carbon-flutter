@@ -2,15 +2,9 @@ import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
 
 class CValidationResult {
-  CValidationResult({
-    @required this.resultType,
-    @required this.message,
-    this.highlight = false,
-    this.icon,
-  });
+  CValidationResult({@required this.type, @required this.message, this.icon});
 
-  final bool highlight;
   final String message;
   final Widget icon;
-  final CValidationResultType resultType;
+  final CValidationResultType type;
 }

@@ -10,7 +10,7 @@ enum CPositioning { left, right, none }
 
 enum CVerticalPositioning { top, bottom }
 
-enum CValidationResultType { success, warning, error, none }
+enum CValidationResultType { success, warning, error }
 
 /// Text
 

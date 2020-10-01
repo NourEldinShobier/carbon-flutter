@@ -1,9 +1,8 @@
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lab/carbon.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stylex/stylex.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 export './text-field.styles.dart';
 
@@ -31,8 +30,6 @@ class CTextField extends StatefulWidget {
     this.autofocus = false,
     this.autocorrect = true,
     this.enableSuggestions = true,
-    this.maxLines = 1,
-    this.minLines,
     this.textCapitalization = TextCapitalization.none,
     this.textDirection,
     this.toolbarOptions,
@@ -59,8 +56,6 @@ class CTextField extends StatefulWidget {
   final bool autofocus;
   final bool autocorrect;
   final bool enableSuggestions;
-  final int maxLines;
-  final int minLines;
   final Widget prefixIcon;
   final Widget suffixIcon;
   final TextCapitalization textCapitalization;
@@ -77,7 +72,7 @@ class CTextField extends StatefulWidget {
   final void Function() onEditingComplete;
   final void Function(String) onChanged;
   final void Function(String) onSubmitted;
-  final CValidationResultType Function(String value) validator;
+  final CValidationResult Function(String value) validator;
 
   @override
   _CTextFieldState createState() => _CTextFieldState();
@@ -87,88 +82,91 @@ class _CTextFieldState extends State<CTextField> {
   var _status = CWidgetStatus.primary;
   var _state = CWidgetState.enabled;
 
-  FocusNode focusNode;
+  var _focused = false;
 
-  // update _status and sate on didupdate
-  // flutter focusnode remove focus if enabled is false or dont assign focusnode to textfield
-  // or may be the absorberwont allow focus
-  // but what if it was focused the disabled (via text changed or on submint...etc)
+  FocusNode _focusNode;
+  CValidationResult _validationResult;
+  String _value;
 
   void focusNodeListener() {
-    setState(() {
-      var focused = this.focusNode.hasFocus;
-      _state = focused ? CWidgetState.focus : CWidgetState.enabled;
-    });
-    // TODO: in this set state you should update status and state
-    // TODO: update state whe enabled changes
+    if (_focused != _focusNode.hasFocus) {
+      setState(() => _focused = this._focusNode.hasFocus);
+    }
   }
 
   @override
   void initState() {
     if (widget.focusNode != null) {
-      this.focusNode = widget.focusNode;
+      this._focusNode = widget.focusNode;
     } else {
-      this.focusNode = FocusNode();
+      this._focusNode = FocusNode();
     }
-    this.focusNode.addListener(focusNodeListener);
+    this._focusNode.addListener(focusNodeListener);
     super.initState();
   }
 
   @override
   void didUpdateWidget(CTextField oldWidget) {
-    if (!widget.enabled) {
-      _state = CWidgetState.disabled;
-      focusNode.unfocus();
-    } else {
-      _state = CWidgetState.enabled;
-    }
+    if (widget.readOnly) _focusNode.unfocus();
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    this.focusNode.addListener(focusNodeListener);
+    this._focusNode.addListener(focusNodeListener);
     super.dispose();
   }
 
+  /// validator is responsible for determining the [_status] of the widget.
+
   void validator(String text) {
-    /* if (widget.validator == null) return null;
-
-    final status = enumToString(_status);
-
-    String error = widget.props['validator'](text);
     CWidgetStatus st;
+    _validationResult = widget.validator(text);
 
-    if (error == null)
+    if (_validationResult == null) {
       st = CWidgetStatus.primary;
-    else
-      st = CWidgetStatus.danger;
-
-    if (st != status) {
-      setState(() => status = st);
+    } else {
+      if (_validationResult.type == CValidationResultType.success) {
+        st = CWidgetStatus.success;
+      } else if (_validationResult.type == CValidationResultType.warning) {
+        st = CWidgetStatus.warning;
+      } else if (_validationResult.type == CValidationResultType.error) {
+        st = CWidgetStatus.danger;
+      }
     }
 
-    return error; */
+    if (_status != st) setState(() => _status = st);
   }
 
   Widget build(BuildContext context) {
     final carbon = context.style;
+
+    /// NOTE: this line doesn't make the widget build twice when [onChange] is
+    /// called, because the [validator] calls [setState] when [st != _state].
+
+    if (widget.validator != null && _value != null) validator(_value);
+
+    /// determine the [_state] of the widget.
+
+    if (!widget.enabled) {
+      _focusNode.unfocus();
+      _state = CWidgetState.disabled;
+      _validationResult = null;
+    } else if (widget.enabled && _focused) {
+      _state = CWidgetState.focus;
+    } else if (widget.enabled && _validationResult != null) {
+      _state = CWidgetState.focus;
+    } else {
+      _state = CWidgetState.enabled;
+    }
 
     final status = enumToString(_status);
     final state = enumToString(_state);
 
     final style = 'textfield-$status-$state';
 
-    // add absorber based on enabled
-    // when enabled = false, 1) remove focus, 2) keep focus is disabled
-    // add disabled, and detect disabled (state)
-    // if read only true, focus node?
-    // if you will use keepfocus, you need to copy focus node
-    // add ions (trailing, leading)
-    // custom toolbar
-
     return IgnorePointer(
-      ignoring: !widget.enabled,
+      ignoring: !widget.enabled || widget.readOnly,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -186,10 +184,10 @@ class _CTextFieldState extends State<CTextField> {
             const SizedBox(height: 8)
           ],
           SizedBox(
-            height: 40,
+            height: 44,
             child: TextField(
               controller: widget.controller,
-              focusNode: focusNode,
+              focusNode: _focusNode,
               keyboardType: widget.keyboardType,
               textCapitalization: widget.textCapitalization,
               textAlignVertical: TextAlignVertical.center,
@@ -202,9 +200,8 @@ class _CTextFieldState extends State<CTextField> {
               obscureText: widget.obscureText,
               autocorrect: widget.autocorrect,
               enableSuggestions: widget.enableSuggestions,
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
               onChanged: (String value) {
+                _value = value;
                 if (widget.validator != null) validator(value);
                 widget.onChanged(value);
               },
@@ -224,7 +221,11 @@ class _CTextFieldState extends State<CTextField> {
               ),
               decoration: InputDecoration(
                 filled: true,
-                contentPadding: padding(left: 16, right: 16, bottom: 16),
+                contentPadding: padding(
+                  left: 14,
+                  bottom:
+                      widget.enabled ? _focusNode.hasFocus ? 13.5 : 14.5 : 14,
+                ),
                 fillColor: carbon.get('$style-background-color'),
                 hintText: widget.hint,
                 hintStyle: TextStyle(
@@ -232,12 +233,22 @@ class _CTextFieldState extends State<CTextField> {
                   fontSize: carbon.get('textfield-hint-font-size'),
                   fontFamily: carbon.get('textfield-hint-font-family'),
                 ),
-                prefixIconConstraints:
-                    BoxConstraints(minWidth: 40, maxWidth: 40),
-                suffixIconConstraints:
-                    BoxConstraints(minWidth: 40, maxWidth: 40),
+                prefixIconConstraints: BoxConstraints(
+                  minWidth: 46,
+                  maxWidth: 46,
+                ), // 44 + 2 (width of border)
+                suffixIconConstraints: BoxConstraints(
+                  minWidth: 46,
+                  maxWidth: 46,
+                ), // 44 + 2 (width of border)
                 prefixIcon: widget.prefixIcon,
-                suffixIcon: widget.suffixIcon,
+                suffixIcon: widget.enabled
+                    ? _validationResult == null
+                        ? widget.suffixIcon
+                        : _validationResult.icon == null
+                            ? widget.suffixIcon
+                            : _validationResult.icon
+                    : widget.suffixIcon,
                 border: carbon.get('$style-border'),
                 enabledBorder: carbon.get('$style-border'),
                 focusedBorder: carbon.get('$style-border'),
@@ -247,7 +258,9 @@ class _CTextFieldState extends State<CTextField> {
           if (widget.description != null) ...[
             const SizedBox(height: 8),
             CText(
-              data: widget.description,
+              data: _validationResult == null
+                  ? widget.description
+                  : _validationResult.message,
               style: TextStyle(
                 fontSize: carbon.get('textfield-description-font-size'),
                 fontFamily: carbon.get('textfield-description-font-family'),
@@ -258,14 +271,5 @@ class _CTextFieldState extends State<CTextField> {
         ],
       ),
     );
-  }
-}
-
-class _XTextFieldErrorIcon extends StatelessWidget {
-  const _XTextFieldErrorIcon({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SvgPicture.asset('assets/svg/error.svg', height: 16);
   }
 }
