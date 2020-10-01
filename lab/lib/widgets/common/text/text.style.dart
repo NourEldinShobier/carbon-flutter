@@ -1,3 +1,4 @@
+import 'package:lab/carbon.dart';
 import 'package:stylex/stylex.dart';
 
 final _text = StyleX({
@@ -23,11 +24,11 @@ final _text = StyleX({
 final textG100 = StyleX({
   // text colors
 
-  'text-hint-color': 'carbon-gray-60',
-  'text-label-color': 'carbon-gray-30',
-  'text-subtitle-color': 'carbon-gray-10',
-  'text-link-color': 'carbon-blue-40',
-  'text-control-color': 'carbon-blue-40',
-  'text-disabled-color': 'carbon-gray-70',
+  'text-hint-color': CColors.gray60,
+  'text-label-color': CColors.gray30,
+  'text-subtitle-color': CColors.gray10,
+  'text-link-color': CColors.blue40,
+  'text-control-color': CColors.blue40,
+  'text-disabled-color': CColors.gray70,
 })
   ..inject(_text);

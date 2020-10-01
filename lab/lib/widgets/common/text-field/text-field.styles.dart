@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lab/carbon.dart';
 import 'package:stylex/stylex.dart';
 
 final _textField = StyleX({
@@ -14,43 +15,43 @@ final _textField = StyleX({
 
 final textFieldG100 = StyleX({
   // cursor-color
-  'textfield-cursor-color': '#FFFFFF',
+  'textfield-cursor-color': CColors.white0,
 
   /// primary ///
 
   // label
-  'textfield-primary-enabled-label-color': 'carbon-gray-30',
-  'textfield-primary-focus-label-color': 'carbon-gray-30',
-  'textfield-primary-disabled-label-color': 'carbon-gray-70',
+  'textfield-primary-enabled-label-color': CColors.gray30,
+  'textfield-primary-focus-label-color': CColors.gray30,
+  'textfield-primary-disabled-label-color': CColors.gray70,
 
   // hint
-  'textfield-primary-enabled-hint-color': 'carbon-gray-60',
-  'textfield-primary-focus-hint-color': 'carbon-gray-60',
-  'textfield-primary-disabled-hint-color': 'carbon-gray-70',
+  'textfield-primary-enabled-hint-color': CColors.gray60,
+  'textfield-primary-focus-hint-color': CColors.gray60,
+  'textfield-primary-disabled-hint-color': CColors.gray70,
 
   // text
-  'textfield-primary-enabled-text-color': 'carbon-gray-10',
-  'textfield-primary-focus-text-color': 'carbon-gray-10',
-  'textfield-primary-disabled-text-color': 'carbon-gray-70',
+  'textfield-primary-enabled-text-color': CColors.gray10,
+  'textfield-primary-focus-text-color': CColors.gray10,
+  'textfield-primary-disabled-text-color': CColors.gray70,
 
   // description
-  'textfield-primary-enabled-description-color': 'carbon-gray-30',
-  'textfield-primary-focus-description-color': 'carbon-gray-30',
-  'textfield-primary-disabled-description-color': 'carbon-gray-70',
+  'textfield-primary-enabled-description-color': CColors.gray30,
+  'textfield-primary-focus-description-color': CColors.gray30,
+  'textfield-primary-disabled-description-color': CColors.gray70,
 
   // background-color
-  'textfield-primary-enabled-background-color': 'carbon-gray-90',
-  'textfield-primary-focus-background-color': 'carbon-gray-90',
-  'textfield-primary-disabled-background-color': 'carbon-gray-90',
+  'textfield-primary-enabled-background-color': CColors.gray90,
+  'textfield-primary-focus-background-color': CColors.gray90,
+  'textfield-primary-disabled-background-color': CColors.gray90,
 
   // border
   'textfield-primary-enabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: const BorderSide(color: Color(0xFF6F6F6F), width: 1),
+    borderSide: BorderSide(color: CColors.gray60, width: 1),
   ),
   'textfield-primary-focus-border': OutlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: BorderSide(color: Colors.white, width: 2),
+    borderSide: BorderSide(color: CColors.white0, width: 2),
   ),
   'textfield-primary-disabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
@@ -60,38 +61,38 @@ final textFieldG100 = StyleX({
   /// success ///
 
   // label
-  'textfield-success-enabled-label-color': 'carbon-gray-30',
-  'textfield-success-focus-label-color': 'carbon-gray-30',
-  'textfield-success-disabled-label-color': 'carbon-gray-70',
+  'textfield-success-enabled-label-color': CColors.gray30,
+  'textfield-success-focus-label-color': CColors.gray30,
+  'textfield-success-disabled-label-color': CColors.gray70,
 
   // hint
-  'textfield-success-enabled-hint-color': 'carbon-gray-60',
-  'textfield-success-focus-hint-color': 'carbon-gray-60',
-  'textfield-success-disabled-hint-color': 'carbon-gray-70',
+  'textfield-success-enabled-hint-color': CColors.gray60,
+  'textfield-success-focus-hint-color': CColors.gray60,
+  'textfield-success-disabled-hint-color': CColors.gray70,
 
   // text
-  'textfield-success-enabled-text-color': 'carbon-gray-10',
-  'textfield-success-focus-text-color': 'carbon-gray-10',
-  'textfield-success-disabled-text-color': 'carbon-gray-70',
+  'textfield-success-enabled-text-color': CColors.gray10,
+  'textfield-success-focus-text-color': CColors.gray10,
+  'textfield-success-disabled-text-color': CColors.gray70,
 
   // description
-  'textfield-success-enabled-description-color': 'carbon-gray-30',
-  'textfield-success-focus-description-color': 'carbon-green-30',
-  'textfield-success-disabled-description-color': 'carbon-gray-70',
+  'textfield-success-enabled-description-color': CColors.gray30,
+  'textfield-success-focus-description-color': CColors.green30,
+  'textfield-success-disabled-description-color': CColors.gray70,
 
   // background-color
-  'textfield-success-enabled-background-color': 'carbon-gray-90',
-  'textfield-success-focus-background-color': 'carbon-gray-90',
-  'textfield-success-disabled-background-color': 'carbon-gray-90',
+  'textfield-success-enabled-background-color': CColors.gray90,
+  'textfield-success-focus-background-color': CColors.gray90,
+  'textfield-success-disabled-background-color': CColors.gray90,
 
   // border
   'textfield-success-enabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: const BorderSide(color: Color(0xFF6F6F6F), width: 1),
+    borderSide: BorderSide(color: CColors.gray60, width: 1),
   ),
   'textfield-success-focus-border': OutlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: BorderSide(color: Color(0xFF42BE65), width: 2),
+    borderSide: BorderSide(color: CColors.green40, width: 2),
   ),
   'textfield-success-disabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
@@ -101,38 +102,38 @@ final textFieldG100 = StyleX({
   /// warning ///
 
   // label
-  'textfield-warning-enabled-label-color': 'carbon-gray-30',
-  'textfield-warning-focus-label-color': 'carbon-gray-30',
-  'textfield-warning-disabled-label-color': 'carbon-gray-70',
+  'textfield-warning-enabled-label-color': CColors.gray30,
+  'textfield-warning-focus-label-color': CColors.gray30,
+  'textfield-warning-disabled-label-color': CColors.gray70,
 
   // hint
-  'textfield-warning-enabled-hint-color': 'carbon-gray-60',
-  'textfield-warning-focus-hint-color': 'carbon-gray-60',
-  'textfield-warning-disabled-hint-color': 'carbon-gray-70',
+  'textfield-warning-enabled-hint-color': CColors.gray60,
+  'textfield-warning-focus-hint-color': CColors.gray60,
+  'textfield-warning-disabled-hint-color': CColors.gray70,
 
   // text
-  'textfield-warning-enabled-text-color': 'carbon-gray-10',
-  'textfield-warning-focus-text-color': 'carbon-gray-10',
-  'textfield-warning-disabled-text-color': 'carbon-gray-70',
+  'textfield-warning-enabled-text-color': CColors.gray10,
+  'textfield-warning-focus-text-color': CColors.gray10,
+  'textfield-warning-disabled-text-color': CColors.gray70,
 
   // description
-  'textfield-warning-enabled-description-color': 'carbon-gray-30',
-  'textfield-warning-focus-description-color': 'carbon-yellow-30',
-  'textfield-warning-disabled-description-color': 'carbon-gray-70',
+  'textfield-warning-enabled-description-color': CColors.gray30,
+  'textfield-warning-focus-description-color': CColors.yellow30,
+  'textfield-warning-disabled-description-color': CColors.gray70,
 
   // background-color
-  'textfield-warning-enabled-background-color': 'carbon-gray-90',
-  'textfield-warning-focus-background-color': 'carbon-gray-90',
-  'textfield-warning-disabled-background-color': 'carbon-gray-90',
+  'textfield-warning-enabled-background-color': CColors.gray90,
+  'textfield-warning-focus-background-color': CColors.gray90,
+  'textfield-warning-disabled-background-color': CColors.gray90,
 
   // border
   'textfield-warning-enabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: const BorderSide(color: Color(0xFF6F6F6F), width: 1),
+    borderSide: BorderSide(color: CColors.gray60, width: 1),
   ),
   'textfield-warning-focus-border': OutlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: BorderSide(color: Color(0xFFFDD13A), width: 2),
+    borderSide: BorderSide(color: CColors.yellow20, width: 2),
   ),
   'textfield-warning-disabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
@@ -142,38 +143,38 @@ final textFieldG100 = StyleX({
   /// danger ///
 
   // label
-  'textfield-danger-enabled-label-color': 'carbon-gray-30',
-  'textfield-danger-focus-label-color': 'carbon-gray-30',
-  'textfield-danger-disabled-label-color': 'carbon-gray-70',
+  'textfield-danger-enabled-label-color': CColors.gray30,
+  'textfield-danger-focus-label-color': CColors.gray30,
+  'textfield-danger-disabled-label-color': CColors.gray70,
 
   // hint
-  'textfield-danger-enabled-hint-color': 'carbon-gray-60',
-  'textfield-danger-focus-hint-color': 'carbon-gray-60',
-  'textfield-danger-disabled-hint-color': 'carbon-gray-70',
+  'textfield-danger-enabled-hint-color': CColors.gray60,
+  'textfield-danger-focus-hint-color': CColors.gray60,
+  'textfield-danger-disabled-hint-color': CColors.gray70,
 
   // text
-  'textfield-danger-enabled-text-color': 'carbon-gray-10',
-  'textfield-danger-focus-text-color': 'carbon-gray-10',
-  'textfield-danger-disabled-text-color': 'carbon-gray-70',
+  'textfield-danger-enabled-text-color': CColors.gray10,
+  'textfield-danger-focus-text-color': CColors.gray10,
+  'textfield-danger-disabled-text-color': CColors.gray70,
 
   // description
-  'textfield-danger-enabled-description-color': 'carbon-gray-30',
-  'textfield-danger-focus-description-color': 'carbon-red-40',
-  'textfield-danger-disabled-description-color': 'carbon-gray-70',
+  'textfield-danger-enabled-description-color': CColors.gray30,
+  'textfield-danger-focus-description-color': CColors.red40,
+  'textfield-danger-disabled-description-color': CColors.gray70,
 
   // background-color
-  'textfield-danger-enabled-background-color': 'carbon-gray-90',
-  'textfield-danger-focus-background-color': 'carbon-gray-90',
-  'textfield-danger-disabled-background-color': 'carbon-gray-90',
+  'textfield-danger-enabled-background-color': CColors.gray90,
+  'textfield-danger-focus-background-color': CColors.gray90,
+  'textfield-danger-disabled-background-color': CColors.gray90,
 
   // border
   'textfield-danger-enabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: const BorderSide(color: Color(0xFF6F6F6F), width: 1),
+    borderSide: BorderSide(color: CColors.gray60, width: 1),
   ),
   'textfield-danger-focus-border': OutlineInputBorder(
     borderRadius: BorderRadius.circular(0),
-    borderSide: BorderSide(color: Color(0xFFFA4D56), width: 2),
+    borderSide: BorderSide(color: CColors.red50, width: 2),
   ),
   'textfield-danger-disabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),

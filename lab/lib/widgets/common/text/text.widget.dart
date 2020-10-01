@@ -90,7 +90,7 @@ class CText extends StatelessWidget with TextUtils {
             textWidthBasis: textWidthBasis,
             textHeightBehavior: textHeightBehavior,
           ),
-          Text(' *', style: TextStyle(color: carbon.get('carbon-red-60'))),
+          Text(' *', style: TextStyle(color: CColors.red60)),
         ],
       );
   }

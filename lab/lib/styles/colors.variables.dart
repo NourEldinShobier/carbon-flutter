@@ -46,6 +46,7 @@ class CColors {
   static final Color gray100 = carbonColors.get('carbon-gray-100');
   static final Color green10 = carbonColors.get('carbon-green-10');
   static final Color green20 = carbonColors.get('carbon-green-20');
+  static final Color green30 = carbonColors.get('carbon-green-30');
   static final Color green40 = carbonColors.get('carbon-green-40');
   static final Color green50 = carbonColors.get('carbon-green-50');
   static final Color green60 = carbonColors.get('carbon-green-60');
