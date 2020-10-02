@@ -240,14 +240,28 @@ class _CTextFieldState extends State<CTextField> {
                   minWidth: 46,
                   maxWidth: 46,
                 ), // 44 + 2 (width of border)
-                prefixIcon: widget.prefixIcon,
+                prefixIcon: widget.enabled
+                    ? widget.prefixIcon
+                    : ColorFiltered(
+                        colorFilter: ColorFilter.mode(
+                          carbon.get('textfield-disabled-icon-color'),
+                          BlendMode.color,
+                        ),
+                        child: widget.prefixIcon,
+                      ),
                 suffixIcon: widget.enabled
                     ? _validationResult == null
                         ? widget.suffixIcon
                         : _validationResult.icon == null
                             ? widget.suffixIcon
                             : _validationResult.icon
-                    : widget.suffixIcon,
+                    : ColorFiltered(
+                        colorFilter: ColorFilter.mode(
+                          carbon.get('textfield-disabled-icon-color'),
+                          BlendMode.color,
+                        ),
+                        child: widget.suffixIcon,
+                      ),
                 border: carbon.get('$style-border'),
                 enabledBorder: carbon.get('$style-border'),
                 focusedBorder: carbon.get('$style-border'),

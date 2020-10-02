@@ -17,6 +17,8 @@ final textFieldG100 = StyleX({
   // cursor-color
   'textfield-cursor-color': CColors.white0,
 
+  'textfield-disabled-icon-color': CColors.gray70,
+
   /// primary ///
 
   // label
