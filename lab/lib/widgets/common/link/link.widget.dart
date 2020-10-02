@@ -8,8 +8,9 @@ class CLink extends StatelessWidget {
     @required this.onTap,
     this.caption,
     this.style,
-  }) : super(key: key);
-
+  })  : assert(url != null, '[CLink]: A non-null url must be provided.'),
+        assert(onTap != null, '[CLink]: onTap event must be handled.'),
+        super(key: key);
   final String caption;
   final String url;
   final void Function(String url) onTap;
