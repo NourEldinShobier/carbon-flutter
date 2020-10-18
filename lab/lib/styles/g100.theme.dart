@@ -47,6 +47,8 @@ final _materialTheme = ThemeData(
 final g100 = StyleX({
   'material-theme': _materialTheme,
 })
+  ..inject(animation)
   ..inject(carbonFonts)
   ..inject(textG100)
-  ..inject(textFieldG100);
+  ..inject(textFieldG100)
+  ..inject(buttonG100);

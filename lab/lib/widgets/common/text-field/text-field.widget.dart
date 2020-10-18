@@ -78,7 +78,7 @@ class CTextField extends StatefulWidget {
 }
 
 class _CTextFieldState extends State<CTextField> {
-  var _status = CWidgetStatus.primary;
+  var _status = CValidationResultType.primary;
   var _state = CWidgetState.enabled;
 
   var _focused = false;
@@ -119,18 +119,19 @@ class _CTextFieldState extends State<CTextField> {
   /// validator is responsible for determining the [_status] of the widget.
 
   void validator(String text) {
-    CWidgetStatus st;
+    CValidationResultType st;
     _validationResult = widget.validator(text);
 
-    if (_validationResult == null) {
-      st = CWidgetStatus.primary;
+    if (_validationResult == null ||
+        _validationResult.type == CValidationResultType.primary) {
+      st = CValidationResultType.primary;
     } else {
       if (_validationResult.type == CValidationResultType.success) {
-        st = CWidgetStatus.success;
+        st = CValidationResultType.success;
       } else if (_validationResult.type == CValidationResultType.warning) {
-        st = CWidgetStatus.warning;
+        st = CValidationResultType.warning;
       } else if (_validationResult.type == CValidationResultType.error) {
-        st = CWidgetStatus.danger;
+        st = CValidationResultType.error;
       }
     }
 

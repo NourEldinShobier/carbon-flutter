@@ -30,6 +30,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+      // FIXME: problem in merge style in text, it overrides default dont, fix materialtheme
+  // you can make icon color feature for instances of CCICONs only >> same problem will be applied
+  // to textfield cuz colorfilter wont work
+    */
     return Scaffold(
       body: Center(
         child: SizedBox(
@@ -38,31 +43,14 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CTextField(
-                label: 'Course',
-                isRequired: true,
-                /*  enabled: false,
-                readOnly: true, */
-                hint: 'Enter course name...',
-                description: 'Hello World',
-                validator: (value) {
-                  if (value == 'Nour')
-                    return CValidationResult(
-                      type: CValidationResultType.error,
-                      message: 'This is a valid user name.',
-                      icon: SvgPicture.asset(
-                        'assets/svg/checkmark--filled.svg',
-                        height: 18,
-                        color: Color(0xFF42BE65),
-                      ),
-                    );
-                  else
-                    return null;
-                },
-              ),
-              const SizedBox(height: 16),
-              CTextField(
-                hint: 'Enter course name...',
+              CButton(
+                onTap: () {},
+                type: CButtonType.primary,
+                label: 'Primary button',
+                icon: SvgPicture.asset(
+                  'assets/svg/warning--alt--filled.svg',
+                  height: 16,
+                ),
               ),
             ],
           ),

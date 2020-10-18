@@ -4,13 +4,13 @@ enum CWidgetSize { large, medium, small }
 
 enum CWidgetState { enabled, focus, disabled }
 
-enum CWidgetStatus { primary, success, info, warning, danger }
-
 enum CPositioning { left, right, none }
 
 enum CVerticalPositioning { top, bottom }
 
-enum CValidationResultType { success, warning, error }
+enum CValidationResultType { primary, success, warning, error }
+
+enum CButtonType { primary, secondary, danger, tertiary, ghost }
 
 /// Text
 

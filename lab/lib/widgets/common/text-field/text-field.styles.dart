@@ -14,9 +14,6 @@ final _textField = StyleX({
 });
 
 final textFieldG100 = StyleX({
-  // cursor-color
-  'textfield-cursor-color': CColors.white0,
-
   'textfield-disabled-icon-color': CColors.gray70,
 
   /// primary ///
@@ -142,47 +139,45 @@ final textFieldG100 = StyleX({
     borderSide: const BorderSide(color: Colors.transparent, width: 0),
   ),
 
-  /// danger ///
+  /// error ///
 
   // label
-  'textfield-danger-enabled-label-color': CColors.gray30,
-  'textfield-danger-focus-label-color': CColors.gray30,
-  'textfield-danger-disabled-label-color': CColors.gray70,
+  'textfield-error-enabled-label-color': CColors.gray30,
+  'textfield-error-focus-label-color': CColors.gray30,
+  'textfield-error-disabled-label-color': CColors.gray70,
 
   // hint
-  'textfield-danger-enabled-hint-color': CColors.gray60,
-  'textfield-danger-focus-hint-color': CColors.gray60,
-  'textfield-danger-disabled-hint-color': CColors.gray70,
+  'textfield-error-enabled-hint-color': CColors.gray60,
+  'textfield-error-focus-hint-color': CColors.gray60,
+  'textfield-error-disabled-hint-color': CColors.gray70,
 
   // text
-  'textfield-danger-enabled-text-color': CColors.gray10,
-  'textfield-danger-focus-text-color': CColors.gray10,
-  'textfield-danger-disabled-text-color': CColors.gray70,
+  'textfield-error-enabled-text-color': CColors.gray10,
+  'textfield-error-focus-text-color': CColors.gray10,
+  'textfield-error-disabled-text-color': CColors.gray70,
 
   // description
-  'textfield-danger-enabled-description-color': CColors.gray30,
-  'textfield-danger-focus-description-color': CColors.red40,
-  'textfield-danger-disabled-description-color': CColors.gray70,
+  'textfield-error-enabled-description-color': CColors.gray30,
+  'textfield-error-focus-description-color': CColors.red40,
+  'textfield-error-disabled-description-color': CColors.gray70,
 
   // background-color
-  'textfield-danger-enabled-background-color': CColors.gray90,
-  'textfield-danger-focus-background-color': CColors.gray90,
-  'textfield-danger-disabled-background-color': CColors.gray90,
+  'textfield-error-enabled-background-color': CColors.gray90,
+  'textfield-error-focus-background-color': CColors.gray90,
+  'textfield-error-disabled-background-color': CColors.gray90,
 
   // border
-  'textfield-danger-enabled-border': UnderlineInputBorder(
+  'textfield-error-enabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
     borderSide: BorderSide(color: CColors.gray60, width: 1),
   ),
-  'textfield-danger-focus-border': OutlineInputBorder(
+  'textfield-error-focus-border': OutlineInputBorder(
     borderRadius: BorderRadius.circular(0),
     borderSide: BorderSide(color: CColors.red50, width: 2),
   ),
-  'textfield-danger-disabled-border': UnderlineInputBorder(
+  'textfield-error-disabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
     borderSide: const BorderSide(color: Colors.transparent, width: 0),
   ),
 })
   ..inject(_textField);
-
-// success, warning, danger
