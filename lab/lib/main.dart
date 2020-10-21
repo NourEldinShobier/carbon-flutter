@@ -46,21 +46,30 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Padding(
             padding: const EdgeInsets.only(top: 80),
             child: CForm(
-              type: CFormType.modal,
+              type: CFormType.group,
               label: 'Add',
               title: 'Student',
               titleSize: 24,
               description:
                   'Enter the student information, then click save. Enter the student information, then click save.Enter the student information, then click save.',
               content: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CTextField(label: 'Name', isRequired: true),
                   const SizedBox(height: 16),
                   CTextField(label: 'E-mail', isRequired: true),
                   const SizedBox(height: 16),
                   CTextField(label: 'Adress', enabled: false),
+                  const SizedBox(height: 16),
+                  CCheckbox(
+                    value: true,
+                    caption: 'Checkbox item',
+                    captionSize: 16,
+                    onChange: (v) {
+                      print(v);
+                    },
+                  )
                   /* CButton(
                     onTap: () {},
                     label: 'Primary button',

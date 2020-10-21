@@ -53,4 +53,5 @@ final g100 = StyleX({
   ..inject(textFieldG100)
   ..inject(buttonG100)
   ..inject(formG100)
-  ..inject(tileG100);
+  ..inject(tileG100)
+  ..inject(checkboxG100);
