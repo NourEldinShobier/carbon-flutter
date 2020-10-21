@@ -16,6 +16,16 @@ final _textField = StyleX({
 final textFieldG100 = StyleX({
   'textfield-disabled-icon-color': CColors.gray70,
 
+  // background-color
+  'textfield-enabled-background-color': CColors.gray90,
+  'textfield-focus-background-color': CColors.gray90,
+  'textfield-disabled-background-color': CColors.gray90,
+
+  // modalform-background-color
+  'textfield-modalform-enabled-background-color': CColors.gray80,
+  'textfield-modalform-focus-background-color': CColors.gray80,
+  'textfield-modalform-disabled-background-color': CColors.gray80,
+
   /// primary ///
 
   // label
@@ -37,11 +47,6 @@ final textFieldG100 = StyleX({
   'textfield-primary-enabled-description-color': CColors.gray30,
   'textfield-primary-focus-description-color': CColors.gray30,
   'textfield-primary-disabled-description-color': CColors.gray70,
-
-  // background-color
-  'textfield-primary-enabled-background-color': CColors.gray90,
-  'textfield-primary-focus-background-color': CColors.gray90,
-  'textfield-primary-disabled-background-color': CColors.gray90,
 
   // border
   'textfield-primary-enabled-border': UnderlineInputBorder(
@@ -79,11 +84,6 @@ final textFieldG100 = StyleX({
   'textfield-success-focus-description-color': CColors.green30,
   'textfield-success-disabled-description-color': CColors.gray70,
 
-  // background-color
-  'textfield-success-enabled-background-color': CColors.gray90,
-  'textfield-success-focus-background-color': CColors.gray90,
-  'textfield-success-disabled-background-color': CColors.gray90,
-
   // border
   'textfield-success-enabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
@@ -120,11 +120,6 @@ final textFieldG100 = StyleX({
   'textfield-warning-focus-description-color': CColors.yellow30,
   'textfield-warning-disabled-description-color': CColors.gray70,
 
-  // background-color
-  'textfield-warning-enabled-background-color': CColors.gray90,
-  'textfield-warning-focus-background-color': CColors.gray90,
-  'textfield-warning-disabled-background-color': CColors.gray90,
-
   // border
   'textfield-warning-enabled-border': UnderlineInputBorder(
     borderRadius: BorderRadius.circular(0),
@@ -160,11 +155,6 @@ final textFieldG100 = StyleX({
   'textfield-error-enabled-description-color': CColors.gray30,
   'textfield-error-focus-description-color': CColors.red40,
   'textfield-error-disabled-description-color': CColors.gray70,
-
-  // background-color
-  'textfield-error-enabled-background-color': CColors.gray90,
-  'textfield-error-focus-background-color': CColors.gray90,
-  'textfield-error-disabled-background-color': CColors.gray90,
 
   // border
   'textfield-error-enabled-border': UnderlineInputBorder(

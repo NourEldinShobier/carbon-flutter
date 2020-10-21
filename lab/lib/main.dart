@@ -38,20 +38,17 @@ class _MyHomePageState extends State<MyHomePage> {
   // to textfield cuz colorfilter wont work
   // handle textfield left and write icons, and when disabled color change if implement interface
     */
-
-    // add form var for textfield to change background color
-    // textfield-background-color is duplicate 4 times
-    // see how carbon handles modal form, background color of text field and
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: 400,
+          width: 380,
           child: Padding(
             padding: const EdgeInsets.only(top: 80),
             child: CForm(
-              type: CFormType.group,
+              type: CFormType.modal,
               label: 'Add',
               title: 'Student',
+              titleSize: 24,
               description:
                   'Enter the student information, then click save. Enter the student information, then click save.Enter the student information, then click save.',
               content: Column(
@@ -61,6 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   CTextField(label: 'Name', isRequired: true),
                   const SizedBox(height: 16),
                   CTextField(label: 'E-mail', isRequired: true),
+                  const SizedBox(height: 16),
+                  CTextField(label: 'Adress', enabled: false),
                   /* CButton(
                     onTap: () {},
                     label: 'Primary button',

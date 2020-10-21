@@ -164,6 +164,16 @@ class _CTextFieldState extends State<CTextField> {
     final state = enumToString(_state);
 
     final style = 'textfield-$status-$state';
+    final cform = context.cform;
+
+    var cformType = '';
+
+    if (cform != null) {
+      if (cform.widget.type == CFormType.modal)
+        cformType = 'modalform-';
+      else
+        cformType = '';
+    }
 
     return IgnorePointer(
       ignoring: !widget.enabled || widget.readOnly,
@@ -223,10 +233,15 @@ class _CTextFieldState extends State<CTextField> {
                 filled: true,
                 contentPadding: padding(
                   left: 14,
-                  bottom:
-                      widget.enabled ? _focusNode.hasFocus ? 13.5 : 14.5 : 14,
+                  bottom: widget.enabled
+                      ? _focusNode.hasFocus
+                          ? 13.5
+                          : 14.5
+                      : 14,
                 ),
-                fillColor: carbon.get('$style-background-color'),
+                fillColor: carbon.get(
+                  'textfield-$cformType$state-background-color',
+                ),
                 hintText: widget.hint,
                 hintStyle: TextStyle(
                   color: carbon.get('$style-hint-color'),
