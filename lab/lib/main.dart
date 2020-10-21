@@ -64,8 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   const SizedBox(height: 16),
                   CCheckbox(
                     value: true,
-                    caption: 'Checkbox item',
-                    captionSize: 16,
+                    label: 'Checkbox item',
+                    labelSize: 16,
                     onChange: (v) {
                       print(v);
                     },

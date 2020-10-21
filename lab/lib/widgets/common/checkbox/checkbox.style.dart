@@ -24,8 +24,8 @@ final checkboxG100 = StyleX({
   'checkbox-focus-checkmark-color': CColors.gray100,
   'checkbox-disabled-checkmark-color': CColors.gray50,
 
-  // caption-color
-  'checkbox-enabled-caption-color': CColors.gray10,
-  'checkbox-focus-caption-color': CColors.gray10,
-  'checkbox-disabled-caption-color': CColors.gray70,
+  // label-color
+  'checkbox-enabled-label-color': CColors.gray10,
+  'checkbox-focus-label-color': CColors.gray10,
+  'checkbox-disabled-label-color': CColors.gray70,
 });

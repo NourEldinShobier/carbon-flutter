@@ -11,14 +11,14 @@ class CCheckbox extends StatefulWidget {
     @required this.onChange,
     this.enabled = true,
     this.value = false,
-    this.caption,
-    this.captionSize = 14,
+    this.label,
+    this.labelSize = 14,
   }) : super(key: key);
 
   final bool enabled;
   final bool value;
-  final String caption;
-  final double captionSize;
+  final String label;
+  final double labelSize;
   final void Function(bool value) onChange;
 
   @override
@@ -117,11 +117,14 @@ class _CCheckboxState extends State<CCheckbox> {
                 ),
               ],
             ),
-            if (widget.caption != null) ...[
+            if (widget.label != null) ...[
               const SizedBox(width: 10),
               CText(
-                data: widget.caption,
-                style: TextStyle(fontSize: widget.captionSize),
+                data: widget.label,
+                style: TextStyle(
+                  fontSize: widget.labelSize,
+                  color: carbon.get('$style-label-color'),
+                ),
               ),
             ],
           ],
