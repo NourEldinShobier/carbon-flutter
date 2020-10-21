@@ -7,7 +7,7 @@ final _materialTheme = ThemeData(
   scaffoldBackgroundColor: CColors.gray100,
   primaryColor: CColors.blue60,
   accentColor: CColors.gray10,
-  disabledColor: CColors.gray80, // to define & test
+  disabledColor: CColors.gray80,
   textTheme: TextTheme(
     bodyText1: TextStyle(
       color: CColors.gray10,
@@ -51,4 +51,5 @@ final g100 = StyleX({
   ..inject(carbonFonts)
   ..inject(textG100)
   ..inject(textFieldG100)
-  ..inject(buttonG100);
+  ..inject(buttonG100)
+  ..inject(formG100);

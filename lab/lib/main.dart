@@ -33,26 +33,53 @@ class _MyHomePageState extends State<MyHomePage> {
     /*
       // FIXME: problem in merge style in text, it overrides default dont, fix materialtheme
   // you can make icon color feature for instances of CCICONs only >> same problem will be applied
+  // make inerface for carbon icons, so that developers can implemnet it same features for custom icons 
+  // for textfield, button, ... all widgets
   // to textfield cuz colorfilter wont work
+  // handle textfield left and write icons, and when disabled color change if implement interface
     */
+
+    // add form var for textfield to change background color
+    // textfield-background-color is duplicate 4 times
+    // see how carbon handles modal form, background color of text field and
     return Scaffold(
       body: Center(
         child: SizedBox(
           width: 400,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CButton(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 80),
+            child: CForm(
+              type: CFormType.group,
+              label: 'Add',
+              title: 'Student',
+              description:
+                  'Enter the student information, then click save. Enter the student information, then click save.Enter the student information, then click save.',
+              content: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CTextField(label: 'Name', isRequired: true),
+                  const SizedBox(height: 16),
+                  CTextField(label: 'E-mail', isRequired: true),
+                  /* CButton(
+                    onTap: () {},
+                    label: 'Primary button',
+                    icon: SvgPicture.asset(
+                      'assets/svg/warning--alt--filled.svg',
+                      height: 16,
+                    ),
+                  ), */
+                ],
+              ),
+              actions: CButton(
                 onTap: () {},
-                type: CButtonType.primary,
                 label: 'Primary button',
                 icon: SvgPicture.asset(
                   'assets/svg/warning--alt--filled.svg',
                   height: 16,
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
