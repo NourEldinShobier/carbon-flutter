@@ -37,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // for textfield, button, ... all widgets
   // to textfield cuz colorfilter wont work
   // handle textfield left and write icons, and when disabled color change if implement interface
+  // textfield style is full of duplicated (refactor to reduce hashtable)
     */
     return Scaffold(
       body: Center(

@@ -15,7 +15,6 @@ final _form = StyleX({
     right: 0,
     bottom: 24,
   ),
-  //
 });
 
 final formG100 = StyleX({
