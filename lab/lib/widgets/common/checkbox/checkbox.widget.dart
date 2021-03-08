@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lab/carbon.dart';
-import 'package:stylex/stylex.dart';
 
-export './checkbox.style.dart';
+import 'checkbox.style.dart';
 
 class CCheckbox extends StatefulWidget {
   CCheckbox({
@@ -44,7 +43,8 @@ class _CCheckboxState extends State<CCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    final carbon = context.style;
+    const colors = cCheckBoxColors;
+    const layout = cCheckBoxLayout;
 
     /// determine the [_state] of the widget.
 
@@ -79,13 +79,12 @@ class _CCheckboxState extends State<CCheckbox> {
                 AnimatedContainer(
                   height: 20,
                   width: 20,
-                  duration:
-                      carbon.get('checkbox-border-color-animation-duration'),
-                  curve: carbon.get('checkbox-border-color-animation-curve'),
+                  duration: layout['checkbox-border-color-animation-duration'],
+                  curve: layout['checkbox-border-color-animation-curve'],
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(
-                      color: carbon.get('$style-border-color'),
+                      color: colors['$style-border-color'],
                       width: _focused ? 2 : 1,
                     ),
                   ),
@@ -95,23 +94,18 @@ class _CCheckboxState extends State<CCheckbox> {
                   width: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: _value
-                        ? carbon.get('$style-fill-color')
-                        : Colors.transparent,
+                    color: _value ? colors['$style-fill-color'] : Colors.transparent,
                   ),
                 ),
                 AnimatedContainer(
                   height: 20,
                   width: 20,
                   alignment: Alignment.center,
-                  duration:
-                      carbon.get('checkbox-fill-color-animation-duration'),
-                  curve: carbon.get('checkbox-fill-color-animation-curve'),
+                  duration: layout['checkbox-fill-color-animation-duration'],
+                  curve: layout['checkbox-fill-color-animation-curve'],
                   child: SvgPicture.asset(
                     'assets/svg/checkmark.svg',
-                    color: _value
-                        ? carbon.get('$style-checkmark-color')
-                        : Colors.transparent,
+                    color: _value ? colors['$style-checkmark-color'] : Colors.transparent,
                     height: 8,
                   ),
                 ),
@@ -123,7 +117,7 @@ class _CCheckboxState extends State<CCheckbox> {
                 data: widget.label,
                 style: TextStyle(
                   fontSize: widget.labelSize,
-                  color: carbon.get('$style-label-color'),
+                  color: colors['$style-label-color'],
                 ),
               ),
             ],

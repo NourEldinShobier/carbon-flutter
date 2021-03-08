@@ -1,14 +1,17 @@
 import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
-import 'package:stylex/stylex.dart';
 
 mixin TextUtils {
-  TextStyle buildTextStyle({CTextType type, StyleX style}) {
+  TextStyle buildTextStyle({
+    @required CTextType type,
+    @required Map<String, dynamic> colors,
+    @required Map<String, dynamic> layout,
+  }) {
     final styleName = enumToString(type);
 
-    final fontFamily = style.get<String>('text-$styleName-font-family');
-    final fontSize = style.get<double>('text-$styleName-font-size');
-    final color = style.get<Color>('text-$styleName-color');
+    final fontFamily = layout['text-$styleName-font-family'] as String;
+    final fontSize = layout['text-$styleName-font-size'] as double;
+    final color = colors['text-$styleName-color'] as Color;
 
     return TextStyle(fontFamily: fontFamily, fontSize: fontSize, color: color);
   }

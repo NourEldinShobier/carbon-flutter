@@ -1,27 +1,23 @@
+import 'dart:ui';
+
 import 'package:lab/carbon.dart';
-import 'package:stylex/stylex.dart';
 
-final _text = StyleX({
-  /// text font family
-
-  'text-h1-font-family': 'carbon-font-family',
-  'text-h2-font-family': 'carbon-font-family',
-  'text-h3-font-family': 'carbon-font-family',
-  'text-h4-font-family': 'carbon-font-family',
-  'text-h5-font-family': 'carbon-font-family',
-  'text-h6-font-family': 'carbon-font-family',
-
-  /// text sizes
-
+const Map<String, dynamic> cTextLayout = {
+  'text-h1-font-family': CFonts.primaryRegular,
+  'text-h2-font-family': CFonts.primaryRegular,
+  'text-h3-font-family': CFonts.primaryRegular,
+  'text-h4-font-family': CFonts.primaryRegular,
+  'text-h5-font-family': CFonts.primaryRegular,
+  'text-h6-font-family': CFonts.primaryRegular,
   'text-h1-font-size': 36,
   'text-h2-font-size': 24,
   'text-h3-font-size': 18,
   'text-h4-font-size': 16,
   'text-h5-font-size': 14,
   'text-h6-font-size': 12,
-});
+};
 
-final textG100 = StyleX({
+const Map<String, Color> cTextG100 = {
   // text colors
 
   'text-hint-color': CColors.gray60,
@@ -30,5 +26,4 @@ final textG100 = StyleX({
   'text-link-color': CColors.blue40,
   'text-control-color': CColors.blue40,
   'text-disabled-color': CColors.gray70,
-})
-  ..inject(_text);
+};

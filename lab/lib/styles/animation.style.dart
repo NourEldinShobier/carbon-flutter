@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stylex/stylex.dart';
 
-final animation = StyleX({
-  'minor-animation-duration': Duration(milliseconds: 150),
-  'minor-animation-curve': Curves.easeInOut,
-  'major-animation-duration': Duration(milliseconds: 250),
-  'major-animation-curve': Curves.easeInOut,
-});
+abstract class CAnimations {
+  static const minorAnimationDuration = Duration(milliseconds: 150);
+  static const minorAnimationCurve = Curves.easeInOut;
+  static const majorAnimationDuration = Duration(milliseconds: 250);
+  static const majorAnimationCurve = Curves.easeInOut;
+}

@@ -1,10 +1,5 @@
 export './colors.style.dart';
-export './colors.variables.dart';
 export './text.style.dart';
 export './animation.style.dart';
 
-import './g100.theme.dart';
-
-class CarbonThemes {
-  static final gray100 = g100;
-}
+export 'themes.style.dart';

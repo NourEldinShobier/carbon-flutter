@@ -7,7 +7,6 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return CarbonApp(
@@ -39,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // handle textfield left and write icons, and when disabled color change if implement interface
   // textfield style is full of duplicated (refactor to reduce hashtable)
   // - mention that carbon flutter is not an official libaray
-  abstract class IDisable {
+  abstract class IDisable { or make ICWidget
      Color disableColor;
   }
     */

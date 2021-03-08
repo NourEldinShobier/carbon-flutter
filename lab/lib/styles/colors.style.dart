@@ -1,109 +1,109 @@
-import 'package:stylex/stylex.dart';
+import 'dart:ui';
 
-final carbonColors = StyleX({
-  'carbon-black-100': '#000000',
-  'carbon-blue-10': '#edf5ff',
-  'carbon-blue-20': '#d0e2ff',
-  'carbon-blue-30': '#a6c8ff',
-  'carbon-blue-40': '#78a9ff',
-  'carbon-blue-50': '#4589ff',
-  'carbon-blue-60': '#0f62fe',
-  'carbon-blue-70': '#0043ce',
-  'carbon-blue-80': '#002d9c',
-  'carbon-blue-90': '#001d6c',
-  'carbon-blue-100': '#001141',
-  'carbon-cool-gray-10': '#f2f4f8',
-  'carbon-cool-gray-20': '#dde1e6',
-  'carbon-cool-gray-30': '#c1c7cd',
-  'carbon-cool-gray-40': '#a2a9b0',
-  'carbon-cool-gray-50': '#878d96',
-  'carbon-cool-gray-60': '#697077',
-  'carbon-cool-gray-70': '#4d5358',
-  'carbon-cool-gray-80': '#343a3f',
-  'carbon-cool-gray-90': '#21272a',
-  'carbon-cool-gray-100': '#121619',
-  'carbon-cyan-10': '#e5f6ff',
-  'carbon-cyan-20': '#bae6ff',
-  'carbon-cyan-30': '#82cfff',
-  'carbon-cyan-40': '#33b1ff',
-  'carbon-cyan-50': '#1192e8',
-  'carbon-cyan-60': '#0072c3',
-  'carbon-cyan-70': '#00539a',
-  'carbon-cyan-80': '#003a6d',
-  'carbon-cyan-90': '#012749',
-  'carbon-cyan-100': '#061727',
-  'carbon-gray-10': '#f4f4f4',
-  'carbon-gray-20': '#e0e0e0',
-  'carbon-gray-30': '#c6c6c6',
-  'carbon-gray-40': '#a8a8a8',
-  'carbon-gray-50': '#8d8d8d',
-  'carbon-gray-60': '#6f6f6f',
-  'carbon-gray-70': '#525252',
-  'carbon-gray-80': '#393939',
-  'carbon-gray-90': '#262626',
-  'carbon-gray-100': '#161616',
-  'carbon-green-10': '#defbe6',
-  'carbon-green-20': '#a7f0ba',
-  'carbon-green-30': '#6fdc8c',
-  'carbon-green-40': '#42be65',
-  'carbon-green-50': '#24a148',
-  'carbon-green-60': '#198038',
-  'carbon-green-70': '#0e6027',
-  'carbon-green-80': '#044317',
-  'carbon-green-90': '#022d0d',
-  'carbon-green-100': '#071908',
-  'carbon-magenta-10': '#fff0f7',
-  'carbon-magenta-20': '#ffd6e8',
-  'carbon-magenta-30': '#ffafd2',
-  'carbon-magenta-40': '#ff7eb6',
-  'carbon-magenta-50': '#ee5396',
-  'carbon-magenta-60': '#d12771',
-  'carbon-magenta-70': '#9f1853',
-  'carbon-magenta-80': '#740937',
-  'carbon-magenta-90': '#510224',
-  'carbon-magenta-100': '#2a0a18',
-  'carbon-orange-40': '#ff832b',
-  'carbon-purple-10': '#f6f2ff',
-  'carbon-purple-20': '#e8daff',
-  'carbon-purple-30': '#d4bbff',
-  'carbon-purple-40': '#be95ff',
-  'carbon-purple-50': '#a56eff',
-  'carbon-purple-60': '#8a3ffc',
-  'carbon-purple-70': '#6929c4',
-  'carbon-purple-80': '#491d8b',
-  'carbon-purple-90': '#31135e',
-  'carbon-purple-100': '#1c0f30',
-  'carbon-red-10': '#fff1f1',
-  'carbon-red-20': '#ffd7d9',
-  'carbon-red-30': '#ffb3b8',
-  'carbon-red-40': '#ff8389',
-  'carbon-red-50': '#fa4d56',
-  'carbon-red-60': '#da1e28',
-  'carbon-red-70': '#a2191f',
-  'carbon-red-80': '#750e13',
-  'carbon-red-90': '#520408',
-  'carbon-red-100': '#2d0709',
-  'carbon-teal-10': '#d9fbfb',
-  'carbon-teal-20': '#9ef0f0',
-  'carbon-teal-30': '#3ddbd9',
-  'carbon-teal-40': '#08bdba',
-  'carbon-teal-50': '#009d9a',
-  'carbon-teal-60': '#007d79',
-  'carbon-teal-70': '#005d5d',
-  'carbon-teal-80': '#004144',
-  'carbon-teal-90': '#022b30',
-  'carbon-teal-100': '#081a1c',
-  'carbon-warm-gray-10': '#f7f3f2',
-  'carbon-warm-gray-20': '#e5e0df',
-  'carbon-warm-gray-30': '#cac5c4',
-  'carbon-warm-gray-40': '#ada8a8',
-  'carbon-warm-gray-50': '#8f8b8b',
-  'carbon-warm-gray-60': '#736f6f',
-  'carbon-warm-gray-70': '#565151',
-  'carbon-warm-gray-80': '#3c3838',
-  'carbon-warm-gray-90': '#272525',
-  'carbon-warm-gray-100': '#171414',
-  'carbon-white-0': '#ffffff',
-  'carbon-yellow-20': '#fdd13a',
-  'carbon-yellow-30': '#f1c21b',
-});
+abstract class CColors {
+  static const white0 = Color(0xffffffff);
+  static const black100 = Color(0xff000000);
+  static const blue10 = Color(0xffedf5ff);
+  static const blue20 = Color(0xffd0e2ff);
+  static const blue30 = Color(0xffa6c8ff);
+  static const blue40 = Color(0xff78a9ff);
+  static const blue50 = Color(0xff4589ff);
+  static const blue60 = Color(0xff0f62fe);
+  static const blue70 = Color(0xff0043ce);
+  static const blue80 = Color(0xff002d9c);
+  static const blue90 = Color(0xff001d6c);
+  static const blue100 = Color(0xff001141);
+  static const coolGray10 = Color(0xfff2f4f8);
+  static const coolGray20 = Color(0xffdde1e6);
+  static const coolGray30 = Color(0xffc1c7cd);
+  static const coolGray40 = Color(0xffa2a9b0);
+  static const coolGray50 = Color(0xff878d96);
+  static const coolGray60 = Color(0xff697077);
+  static const coolGray70 = Color(0xff4d5358);
+  static const coolGray80 = Color(0xff343a3f);
+  static const coolGray90 = Color(0xff21272a);
+  static const coolGray100 = Color(0xff121619);
+  static const cyan10 = Color(0xffe5f6ff);
+  static const cyan20 = Color(0xffbae6ff);
+  static const cyan30 = Color(0xff82cfff);
+  static const cyan40 = Color(0xff33b1ff);
+  static const cyan50 = Color(0xff1192e8);
+  static const cyan60 = Color(0xff0072c3);
+  static const cyan70 = Color(0xff00539a);
+  static const cyan80 = Color(0xff003a6d);
+  static const cyan90 = Color(0xff012749);
+  static const cyan100 = Color(0xff061727);
+  static const gray10 = Color(0xfff4f4f4);
+  static const gray20 = Color(0xffe0e0e0);
+  static const gray30 = Color(0xffc6c6c6);
+  static const gray40 = Color(0xffa8a8a8);
+  static const gray50 = Color(0xff8d8d8d);
+  static const gray60 = Color(0xff6f6f6f);
+  static const gray70 = Color(0xff525252);
+  static const gray80 = Color(0xff393939);
+  static const gray90 = Color(0xff262626);
+  static const gray100 = Color(0xff161616);
+  static const green10 = Color(0xffdefbe6);
+  static const green20 = Color(0xffa7f0ba);
+  static const green30 = Color(0xff6fdc8c);
+  static const green40 = Color(0xff42be65);
+  static const green50 = Color(0xff24a148);
+  static const green60 = Color(0xff198038);
+  static const green70 = Color(0xff0e6027);
+  static const green80 = Color(0xff044317);
+  static const green90 = Color(0xff022d0d);
+  static const green100 = Color(0xff071908);
+  static const magenta10 = Color(0xfffff0f7);
+  static const magenta20 = Color(0xffffd6e8);
+  static const magenta30 = Color(0xffffafd2);
+  static const magenta40 = Color(0xffff7eb6);
+  static const magenta50 = Color(0xffee5396);
+  static const magenta60 = Color(0xffd12771);
+  static const magenta70 = Color(0xff9f1853);
+  static const magenta80 = Color(0xff740937);
+  static const magenta90 = Color(0xff510224);
+  static const magenta100 = Color(0xff2a0a18);
+  static const orange40 = Color(0xffff832b);
+  static const purple10 = Color(0xfff6f2ff);
+  static const purple20 = Color(0xffe8daff);
+  static const purple30 = Color(0xffd4bbff);
+  static const purple40 = Color(0xffbe95ff);
+  static const purple50 = Color(0xffa56eff);
+  static const purple60 = Color(0xff8a3ffc);
+  static const purple70 = Color(0xff6929c4);
+  static const purple80 = Color(0xff491d8b);
+  static const purple90 = Color(0xff31135e);
+  static const purple100 = Color(0xff1c0f30);
+  static const red10 = Color(0xfffff1f1);
+  static const red20 = Color(0xffffd7d9);
+  static const red30 = Color(0xffffb3b8);
+  static const red40 = Color(0xffff8389);
+  static const red50 = Color(0xfffa4d56);
+  static const red60 = Color(0xffda1e28);
+  static const red70 = Color(0xffa2191f);
+  static const red80 = Color(0xff750e13);
+  static const red90 = Color(0xff520408);
+  static const red100 = Color(0xff2d0709);
+  static const teal10 = Color(0xffd9fbfb);
+  static const teal20 = Color(0xff9ef0f0);
+  static const teal30 = Color(0xff3ddbd9);
+  static const teal40 = Color(0xff08bdba);
+  static const teal50 = Color(0xff009d9a);
+  static const teal60 = Color(0xff007d79);
+  static const teal70 = Color(0xff005d5d);
+  static const teal80 = Color(0xff004144);
+  static const teal90 = Color(0xff022b30);
+  static const teal100 = Color(0xff081a1c);
+  static const warmGray10 = Color(0xfff7f3f2);
+  static const warmGray20 = Color(0xffe5e0df);
+  static const warmGray30 = Color(0xffcac5c4);
+  static const warmGray40 = Color(0xffada8a8);
+  static const warmGray50 = Color(0xff8f8b8b);
+  static const warmGray60 = Color(0xff736f6f);
+  static const warmGray70 = Color(0xff565151);
+  static const warmGray80 = Color(0xff3c3838);
+  static const warmGray90 = Color(0xff272525);
+  static const warmGray100 = Color(0xff171414);
+  static const yellow30 = Color(0xfff1c21b);
+  static const yellow20 = Color(0xfffdd13a);
+}

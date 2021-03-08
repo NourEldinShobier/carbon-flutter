@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
-import 'package:stylex/stylex.dart';
 
-export './tile.style.dart';
+import 'tile.style.dart';
 
 class CTile extends StatelessWidget {
   const CTile({
@@ -27,11 +26,12 @@ class CTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final carbon = context.style;
+    const colors = cTileG100;
+    const layout = cTileLayout;
 
     return Container(
-      color: carbon.get('tile-background-color'),
-      padding: carbon.get('tile-padding'),
+      color: colors['tile-background-color'],
+      padding: layout['tile-padding'],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class CTile extends StatelessWidget {
               data: label,
               style: TextStyle(
                 fontSize: labelSize,
-                color: carbon.get('tile-label-color'),
+                color: colors['tile-label-color'],
               ),
             ),
             const SizedBox(height: 4),
@@ -52,13 +52,10 @@ class CTile extends StatelessWidget {
               data: title,
               style: TextStyle(
                 fontSize: titleSize,
-                color: carbon.get('tile-title-color'),
+                color: colors['tile-title-color'],
               ),
             ),
-            if (description != null)
-              const SizedBox(height: 11)
-            else
-              const SizedBox(height: 16),
+            if (description != null) const SizedBox(height: 11) else const SizedBox(height: 16),
           ],
           if (description != null) ...[
             CText(

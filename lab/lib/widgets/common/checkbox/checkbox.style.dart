@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
-import 'package:stylex/stylex.dart';
 
-final checkboxG100 = StyleX({
+const Map<String, dynamic> cCheckBoxLayout = {
   'checkbox-border-color-animation-duration': Duration(milliseconds: 65),
   'checkbox-border-color-animation-curve': Curves.linear,
-
   'checkbox-fill-color-animation-duration': Duration(milliseconds: 100),
   'checkbox-fill-color-animation-curve': Curves.linear,
+};
 
+const Map<String, Color> cCheckBoxColors = {
   // border-color
   'checkbox-enabled-border-color': CColors.white0,
   'checkbox-focus-border-color': CColors.white0,
@@ -28,4 +28,4 @@ final checkboxG100 = StyleX({
   'checkbox-enabled-label-color': CColors.gray10,
   'checkbox-focus-label-color': CColors.gray10,
   'checkbox-disabled-label-color': CColors.gray70,
-});
+};

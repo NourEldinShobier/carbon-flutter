@@ -1,9 +1,8 @@
 import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:stylex/stylex.dart';
 
-export './text-field.styles.dart';
+import 'text-field.styles.dart';
 
 class CTextField extends StatefulWidget {
   const CTextField({
@@ -122,8 +121,7 @@ class _CTextFieldState extends State<CTextField> {
     CValidationResultType st;
     _validationResult = widget.validator(text);
 
-    if (_validationResult == null ||
-        _validationResult.type == CValidationResultType.primary) {
+    if (_validationResult == null || _validationResult.type == CValidationResultType.primary) {
       st = CValidationResultType.primary;
     } else {
       if (_validationResult.type == CValidationResultType.success) {
@@ -139,7 +137,8 @@ class _CTextFieldState extends State<CTextField> {
   }
 
   Widget build(BuildContext context) {
-    final carbon = context.style;
+    final layout = cTextFieldLayout;
+    const colors = cTextFieldG100;
 
     /// NOTE: this line doesn't make the widget build twice when [onChange] is
     /// called, because the [validator] calls [setState] when [st != _state].
@@ -186,9 +185,9 @@ class _CTextFieldState extends State<CTextField> {
               data: widget.label,
               isRequired: widget.isRequired,
               style: TextStyle(
-                fontSize: carbon.get('textfield-label-font-size'),
-                fontFamily: carbon.get('textfield-label-font-family'),
-                color: carbon.get('$style-label-color'),
+                fontSize: layout['textfield-label-font-size'],
+                fontFamily: layout['textfield-label-font-family'],
+                color: colors['$style-label-color'],
               ),
             ),
             const SizedBox(height: 8)
@@ -218,20 +217,20 @@ class _CTextFieldState extends State<CTextField> {
               onEditingComplete: widget.onEditingComplete,
               onSubmitted: widget.onSubmitted,
               inputFormatters: widget.inputFormatters,
-              cursorColor: carbon.get('textfield-cursor-color'),
+              cursorColor: colors['textfield-cursor-color'],
               keyboardAppearance: widget.keyboardAppearance,
               onTap: widget.onTap,
               scrollController: widget.scrollController,
               scrollPhysics: widget.scrollPhysics,
               autofillHints: widget.autofillHints,
               style: TextStyle(
-                color: carbon.get('$style-text-color'),
-                fontSize: carbon.get('textfield-text-font-size'),
-                fontFamily: carbon.get('textfield-text-font-family'),
+                fontSize: layout['textfield-text-font-size'],
+                fontFamily: layout['textfield-text-font-family'],
+                color: colors['$style-text-color'],
               ),
               decoration: InputDecoration(
                 filled: true,
-                contentPadding: padding(
+                contentPadding: EdgeInsets.only(
                   left: 14,
                   bottom: widget.enabled
                       ? _focusNode.hasFocus
@@ -239,14 +238,12 @@ class _CTextFieldState extends State<CTextField> {
                           : 14.5
                       : 14,
                 ),
-                fillColor: carbon.get(
-                  'textfield-$cformType$state-background-color',
-                ),
+                fillColor: colors['textfield-$cformType$state-background-color'],
                 hintText: widget.hint,
                 hintStyle: TextStyle(
-                  color: carbon.get('$style-hint-color'),
-                  fontSize: carbon.get('textfield-hint-font-size'),
-                  fontFamily: carbon.get('textfield-hint-font-family'),
+                  fontSize: layout['textfield-hint-font-size'],
+                  fontFamily: layout['textfield-hint-font-family'],
+                  color: colors['$style-hint-color'],
                 ),
                 prefixIconConstraints: BoxConstraints(
                   minWidth: 46,
@@ -260,7 +257,7 @@ class _CTextFieldState extends State<CTextField> {
                     ? widget.prefixIcon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
-                          carbon.get('textfield-disabled-icon-color'),
+                          colors['textfield-disabled-icon-color'],
                           BlendMode.color,
                         ),
                         child: widget.prefixIcon,
@@ -273,27 +270,25 @@ class _CTextFieldState extends State<CTextField> {
                             : _validationResult.icon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
-                          carbon.get('textfield-disabled-icon-color'),
+                          colors['textfield-disabled-icon-color'],
                           BlendMode.color,
                         ),
                         child: widget.suffixIcon,
                       ),
-                border: carbon.get('$style-border'),
-                enabledBorder: carbon.get('$style-border'),
-                focusedBorder: carbon.get('$style-border'),
+                border: layout['$style-border'],
+                enabledBorder: layout['$style-border'],
+                focusedBorder: layout['$style-border'],
               ),
             ),
           ),
           if (widget.description != null) ...[
             const SizedBox(height: 8),
             CText(
-              data: _validationResult == null
-                  ? widget.description
-                  : _validationResult.message,
+              data: _validationResult == null ? widget.description : _validationResult.message,
               style: TextStyle(
-                fontSize: carbon.get('textfield-description-font-size'),
-                fontFamily: carbon.get('textfield-description-font-family'),
-                color: carbon.get('$style-description-color'),
+                fontSize: layout['textfield-description-font-size'],
+                fontFamily: layout['textfield-description-font-family'],
+                color: colors['$style-description-color'],
               ),
             ),
           ],

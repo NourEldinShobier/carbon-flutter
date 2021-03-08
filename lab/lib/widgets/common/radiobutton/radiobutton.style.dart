@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
-import 'package:stylex/stylex.dart';
 
-final radiobuttonG100 = StyleX({
+const Map<String, dynamic> cRadioButtonLayout = {
   'radiobutton-border-color-animation-duration': Duration(milliseconds: 65),
   'radiobutton-border-color-animation-curve': Curves.linear,
-
   'radiobutton-fill-color-animation-duration': Duration(milliseconds: 100),
   'radiobutton-fill-color-animation-curve': Curves.linear,
+};
 
+const Map<String, Color> cRadioButtonG100 = {
   // border-color
   'radiobutton-enabled-border-color': CColors.white0,
   'radiobutton-focus-border-color': CColors.white0,
@@ -28,4 +28,4 @@ final radiobuttonG100 = StyleX({
   'radiobutton-enabled-label-color': CColors.gray10,
   'radiobutton-focus-label-color': CColors.gray10,
   'radiobutton-disabled-label-color': CColors.gray70,
-});
+};

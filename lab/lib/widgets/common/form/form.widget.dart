@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
-import 'package:stylex/stylex.dart';
 
-export './form.style.dart';
+import 'form.style.dart';
 
 class CForm extends StatefulWidget {
   CForm({
@@ -39,7 +38,8 @@ class CForm extends StatefulWidget {
 class CFormState extends State<CForm> {
   @override
   Widget build(BuildContext context) {
-    final carbon = context.style;
+    const layout = cFormLayout;
+    const colors = cFormG100;
 
     final formType = enumToString(widget.type);
     final style = 'form-$formType';
@@ -51,8 +51,8 @@ class CFormState extends State<CForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            color: carbon.get('$style-background-color'),
-            padding: carbon.get('$style-padding'),
+            color: colors['$style-background-color'],
+            padding: layout['$style-padding'],
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +62,7 @@ class CFormState extends State<CForm> {
                     data: widget.label,
                     style: TextStyle(
                       fontSize: widget.labelSize,
-                      color: carbon.get('$style-label-color'),
+                      color: colors['$style-label-color'],
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -73,7 +73,7 @@ class CFormState extends State<CForm> {
                     data: widget.title,
                     style: TextStyle(
                       fontSize: widget.titleSize,
-                      color: carbon.get('$style-title-color'),
+                      color: colors['$style-title-color'],
                     ),
                   ),
                   if (widget.description != null)
@@ -102,8 +102,7 @@ class CFormState extends State<CForm> {
 }
 
 class _InteritedCForm extends InheritedWidget {
-  const _InteritedCForm({Key key, this.state, Widget child})
-      : super(key: key, child: child);
+  const _InteritedCForm({Key key, this.state, Widget child}) : super(key: key, child: child);
 
   final CFormState state;
 

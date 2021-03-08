@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stylex/stylex.dart';
+import 'package:pmvvm/pmvvm.dart';
 
 class CarbonApp extends StatelessWidget {
   const CarbonApp({
@@ -32,7 +32,7 @@ class CarbonApp extends StatelessWidget {
     this.actions,
   }) : super(key: key);
 
-  final StyleX theme;
+  final Map<String, dynamic> theme;
 
   final GlobalKey<NavigatorState> navigatorKey;
   final Widget home;
@@ -62,8 +62,8 @@ class CarbonApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StyleStore(
-      style: theme,
+    return Provider.value(
+      value: theme,
       child: MaterialApp(
         navigatorKey: navigatorKey,
         home: home,
@@ -77,7 +77,7 @@ class CarbonApp extends StatelessWidget {
         title: title,
         onGenerateTitle: onGenerateTitle,
         color: color,
-        theme: theme.get<ThemeData>('material-theme'),
+        theme: theme['material-theme'] as ThemeData,
         locale: locale,
         localizationsDelegates: localizationsDelegates,
         localeListResolutionCallback: localeListResolutionCallback,

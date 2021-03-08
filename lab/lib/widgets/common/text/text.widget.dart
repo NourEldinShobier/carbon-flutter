@@ -1,8 +1,7 @@
 import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
-import 'package:stylex/stylex.dart';
 
-export './text.style.dart';
+import 'text.style.dart';
 
 class CText extends StatelessWidget with TextUtils {
   const CText({
@@ -45,12 +44,13 @@ class CText extends StatelessWidget with TextUtils {
 
   @override
   Widget build(BuildContext context) {
-    final carbon = context.style;
+    const layout = cTextLayout;
+    const colors = cTextG100;
 
     TextStyle finalStyle;
 
     if (textType != null) {
-      finalStyle = buildTextStyle(type: textType, style: carbon);
+      finalStyle = buildTextStyle(type: textType, layout: layout, colors: colors);
       if (style != null) finalStyle.merge(style);
     } else {
       finalStyle = style;
