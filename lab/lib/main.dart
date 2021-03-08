@@ -38,6 +38,10 @@ class _MyHomePageState extends State<MyHomePage> {
   // to textfield cuz colorfilter wont work
   // handle textfield left and write icons, and when disabled color change if implement interface
   // textfield style is full of duplicated (refactor to reduce hashtable)
+  // - mention that carbon flutter is not an official libaray
+  abstract class IDisable {
+     Color disableColor;
+  }
     */
     return Scaffold(
       body: Center(
