@@ -5,8 +5,8 @@ import 'text.style.dart';
 
 class CText extends StatelessWidget with TextUtils {
   const CText({
-    Key key,
-    @required this.data,
+    Key? key,
+    required this.data,
     this.textType,
     this.textSpan,
     this.style,
@@ -24,30 +24,30 @@ class CText extends StatelessWidget with TextUtils {
     this.isRequired = false,
   }) : super(key: key);
 
-  final CTextType textType;
+  final CTextType? textType;
 
-  final String data;
+  final String? data;
   final bool isRequired;
-  final InlineSpan textSpan;
-  final TextStyle style;
-  final StrutStyle strutStyle;
-  final TextAlign textAlign;
-  final TextDirection textDirection;
-  final Locale locale;
-  final bool softWrap;
-  final TextOverflow overflow;
-  final double textScaleFactor;
-  final int maxLines;
-  final String semanticsLabel;
-  final TextWidthBasis textWidthBasis;
-  final TextHeightBehavior textHeightBehavior;
+  final InlineSpan? textSpan;
+  final TextStyle? style;
+  final StrutStyle? strutStyle;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final Locale? locale;
+  final bool? softWrap;
+  final TextOverflow? overflow;
+  final double? textScaleFactor;
+  final int? maxLines;
+  final String? semanticsLabel;
+  final TextWidthBasis? textWidthBasis;
+  final TextHeightBehavior? textHeightBehavior;
 
   @override
   Widget build(BuildContext context) {
     const layout = cTextLayout;
     const colors = cTextG100;
 
-    TextStyle finalStyle;
+    TextStyle? finalStyle;
 
     if (textType != null) {
       finalStyle = buildTextStyle(type: textType, layout: layout, colors: colors);
@@ -58,7 +58,7 @@ class CText extends StatelessWidget with TextUtils {
 
     if (!isRequired)
       return Text(
-        data,
+        data!,
         style: finalStyle,
         strutStyle: strutStyle,
         textAlign: textAlign,
@@ -76,7 +76,7 @@ class CText extends StatelessWidget with TextUtils {
       return Row(
         children: [
           Text(
-            data,
+            data!,
             style: finalStyle,
             strutStyle: strutStyle,
             textAlign: textAlign,

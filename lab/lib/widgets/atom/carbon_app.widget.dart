@@ -3,9 +3,9 @@ import 'package:pmvvm/pmvvm.dart';
 
 class CarbonApp extends StatelessWidget {
   const CarbonApp({
-    Key key,
-    @required this.theme,
-    @required this.title,
+    Key? key,
+    required this.theme,
+    required this.title,
     this.navigatorKey,
     this.home,
     this.routes = const <String, WidgetBuilder>{},
@@ -34,22 +34,22 @@ class CarbonApp extends StatelessWidget {
 
   final Map<String, dynamic> theme;
 
-  final GlobalKey<NavigatorState> navigatorKey;
-  final Widget home;
+  final GlobalKey<NavigatorState>? navigatorKey;
+  final Widget? home;
   final Map<String, WidgetBuilder> routes;
-  final String initialRoute;
-  final RouteFactory onGenerateRoute;
-  final InitialRouteListFactory onGenerateInitialRoutes;
-  final RouteFactory onUnknownRoute;
+  final String? initialRoute;
+  final RouteFactory? onGenerateRoute;
+  final InitialRouteListFactory? onGenerateInitialRoutes;
+  final RouteFactory? onUnknownRoute;
   final List<NavigatorObserver> navigatorObservers;
-  final TransitionBuilder builder;
+  final TransitionBuilder? builder;
   final String title;
-  final GenerateAppTitle onGenerateTitle;
-  final Color color;
-  final Locale locale;
-  final Iterable<LocalizationsDelegate<dynamic>> localizationsDelegates;
-  final LocaleListResolutionCallback localeListResolutionCallback;
-  final LocaleResolutionCallback localeResolutionCallback;
+  final GenerateAppTitle? onGenerateTitle;
+  final Color? color;
+  final Locale? locale;
+  final Iterable<LocalizationsDelegate<dynamic>>? localizationsDelegates;
+  final LocaleListResolutionCallback? localeListResolutionCallback;
+  final LocaleResolutionCallback? localeResolutionCallback;
   final Iterable<Locale> supportedLocales;
   final bool debugShowMaterialGrid;
   final bool showPerformanceOverlay;
@@ -57,8 +57,8 @@ class CarbonApp extends StatelessWidget {
   final bool checkerboardOffscreenLayers;
   final bool showSemanticsDebugger;
   final bool debugShowCheckedModeBanner;
-  final Map<LogicalKeySet, Intent> shortcuts;
-  final Map<Type, Action<Intent>> actions;
+  final Map<LogicalKeySet, Intent>? shortcuts;
+  final Map<Type, Action<Intent>>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +77,7 @@ class CarbonApp extends StatelessWidget {
         title: title,
         onGenerateTitle: onGenerateTitle,
         color: color,
-        theme: theme['material-theme'] as ThemeData,
+        theme: theme['material-theme'] as ThemeData?,
         locale: locale,
         localizationsDelegates: localizationsDelegates,
         localeListResolutionCallback: localeListResolutionCallback,

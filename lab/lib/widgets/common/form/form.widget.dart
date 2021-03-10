@@ -5,7 +5,7 @@ import 'form.style.dart';
 
 class CForm extends StatefulWidget {
   CForm({
-    Key key,
+    Key? key,
     this.title,
     this.description,
     this.label,
@@ -18,20 +18,20 @@ class CForm extends StatefulWidget {
   }) : super(key: key);
 
   final CFormType type;
-  final String label;
-  final String title;
-  final String description;
+  final String? label;
+  final String? title;
+  final String? description;
   final double labelSize;
   final double titleSize;
   final double descriptionSize;
 
-  final Widget content;
-  final Widget actions;
+  final Widget? content;
+  final Widget? actions;
 
   CFormState createState() => CFormState();
 
-  static CFormState of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<_InteritedCForm>().state;
+  static CFormState? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<_InteritedCForm>()!.state;
   }
 }
 
@@ -90,11 +90,11 @@ class CFormState extends State<CForm> {
                   ),
                   const SizedBox(height: 20),
                 ],
-                if (widget.content != null) widget.content,
+                if (widget.content != null) widget.content!,
               ],
             ),
           ),
-          if (widget.actions != null) widget.actions,
+          if (widget.actions != null) widget.actions!,
         ],
       ),
     );
@@ -102,9 +102,9 @@ class CFormState extends State<CForm> {
 }
 
 class _InteritedCForm extends InheritedWidget {
-  const _InteritedCForm({Key key, this.state, Widget child}) : super(key: key, child: child);
+  const _InteritedCForm({Key? key, this.state, required Widget child}) : super(key: key, child: child);
 
-  final CFormState state;
+  final CFormState? state;
 
   @override
   bool updateShouldNotify(oldWidget) => true;

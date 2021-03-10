@@ -6,8 +6,8 @@ import 'checkbox.style.dart';
 
 class CCheckbox extends StatefulWidget {
   CCheckbox({
-    Key key,
-    @required this.onChange,
+    Key? key,
+    required this.onChange,
     this.enabled = true,
     this.value = false,
     this.label,
@@ -16,7 +16,7 @@ class CCheckbox extends StatefulWidget {
 
   final bool enabled;
   final bool value;
-  final String label;
+  final String? label;
   final double labelSize;
   final void Function(bool value) onChange;
 
@@ -84,7 +84,7 @@ class _CCheckboxState extends State<CCheckbox> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(
-                      color: colors['$style-border-color'],
+                      color: colors['$style-border-color']!,
                       width: _focused ? 2 : 1,
                     ),
                   ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'radiobutton.style.dart';
 
 class CRadioButton extends StatefulWidget {
-  CRadioButton({Key key}) : super(key: key);
+  CRadioButton({Key? key}) : super(key: key);
 
   @override
   _CRadioButtonState createState() => _CRadioButtonState();

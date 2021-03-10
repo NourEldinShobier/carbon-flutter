@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -29,19 +29,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    /*
-      // FIXME: problem in merge style in text, it overrides default dont, fix materialtheme
-  // you can make icon color feature for instances of CCICONs only >> same problem will be applied
-  // make inerface for carbon icons, so that developers can implemnet it same features for custom icons 
-  // for textfield, button, ... all widgets
-  // to textfield cuz colorfilter wont work
-  // handle textfield left and write icons, and when disabled color change if implement interface
-  // textfield style is full of duplicated (refactor to reduce hashtable)
-  // - mention that carbon flutter is not an official libaray
-  abstract class IDisable { or make ICWidget
-     Color disableColor;
-  }
-    */
     return Scaffold(
       body: Center(
         child: SizedBox(

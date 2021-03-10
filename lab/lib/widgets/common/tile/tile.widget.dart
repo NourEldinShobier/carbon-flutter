@@ -5,7 +5,7 @@ import 'tile.style.dart';
 
 class CTile extends StatelessWidget {
   const CTile({
-    Key key,
+    Key? key,
     this.title,
     this.description,
     this.label,
@@ -15,14 +15,14 @@ class CTile extends StatelessWidget {
     this.content,
   }) : super(key: key);
 
-  final String label;
-  final String title;
-  final String description;
+  final String? label;
+  final String? title;
+  final String? description;
   final double labelSize;
   final double titleSize;
   final double descriptionSize;
 
-  final Widget content;
+  final Widget? content;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class CTile extends StatelessWidget {
             ),
             const SizedBox(height: 20),
           ],
-          if (content != null) content,
+          if (content != null) content!,
         ],
       ),
     );

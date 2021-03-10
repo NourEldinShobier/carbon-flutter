@@ -5,9 +5,9 @@ import 'button.style.dart';
 
 class CButton extends StatefulWidget {
   CButton({
-    Key key,
-    @required this.label,
-    @required this.onTap,
+    Key? key,
+    required this.label,
+    required this.onTap,
     this.type = CButtonType.primary,
     this.enabled = true,
     this.icon,
@@ -28,7 +28,7 @@ class CButton extends StatefulWidget {
   final bool hasIconOnly;
   final String label;
   final double labelSize;
-  final Widget icon;
+  final Widget? icon;
   final void Function() onTap;
 
   @override
@@ -113,7 +113,7 @@ class _CButtonState extends State<CButton> {
                 child: DefaultTextStyle(
                   style: TextStyle(color: colors['$style-content-color']),
                   child: widget.hasIconOnly
-                      ? widget.icon
+                      ? widget.icon!
                       : widget.type == CButtonType.ghost
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +123,7 @@ class _CButtonState extends State<CButton> {
                                   data: widget.label,
                                   style: TextStyle(fontSize: widget.labelSize),
                                 ),
-                                if (widget.icon != null) ...[const SizedBox(width: 8), widget.icon],
+                                if (widget.icon != null) ...[const SizedBox(width: 8), widget.icon!],
                               ],
                             )
                           : Row(
@@ -135,7 +135,7 @@ class _CButtonState extends State<CButton> {
                                   style: TextStyle(fontSize: widget.labelSize),
                                 ),
                                 const Expanded(child: const SizedBox()),
-                                if (widget.icon != null) widget.icon,
+                                if (widget.icon != null) widget.icon!,
                               ],
                             ),
                 ),

@@ -6,7 +6,7 @@ import 'text_field.styles.dart';
 
 class CTextField extends StatefulWidget {
   const CTextField({
-    Key key,
+    Key? key,
     this.validator,
     this.label,
     this.hint,
@@ -39,56 +39,56 @@ class CTextField extends StatefulWidget {
     this.isRequired = false,
   }) : super(key: key);
 
-  final String label;
-  final String hint;
-  final String description;
+  final String? label;
+  final String? hint;
+  final String? description;
   final String obscuringCharacter;
-  final TextEditingController controller;
-  final TextInputType keyboardType;
-  final FocusNode focusNode;
+  final TextEditingController? controller;
+  final TextInputType? keyboardType;
+  final FocusNode? focusNode;
   final bool isRequired;
   final bool obscureText;
   final bool enabled;
   final bool readOnly;
-  final bool showCursor;
+  final bool? showCursor;
   final bool autofocus;
   final bool autocorrect;
   final bool enableSuggestions;
-  final Widget prefixIcon;
-  final Widget suffixIcon;
+  final Widget? prefixIcon;
+  final Widget? suffixIcon;
   final TextCapitalization textCapitalization;
-  final TextDirection textDirection;
-  final ToolbarOptions toolbarOptions;
-  final Brightness keyboardAppearance;
-  final ScrollController scrollController;
-  final ScrollPhysics scrollPhysics;
+  final TextDirection? textDirection;
+  final ToolbarOptions? toolbarOptions;
+  final Brightness? keyboardAppearance;
+  final ScrollController? scrollController;
+  final ScrollPhysics? scrollPhysics;
 
-  final Iterable<String> autofillHints;
-  final List<TextInputFormatter> inputFormatters;
+  final Iterable<String>? autofillHints;
+  final List<TextInputFormatter>? inputFormatters;
 
-  final void Function() onTap;
-  final void Function() onEditingComplete;
-  final void Function(String) onChanged;
-  final void Function(String) onSubmitted;
-  final CValidationResult Function(String value) validator;
+  final void Function()? onTap;
+  final void Function()? onEditingComplete;
+  final void Function(String)? onChanged;
+  final void Function(String)? onSubmitted;
+  final CValidationResult Function(String? value)? validator;
 
   @override
   _CTextFieldState createState() => _CTextFieldState();
 }
 
 class _CTextFieldState extends State<CTextField> {
-  var _status = CValidationResultType.primary;
+  CValidationResultType? _status = CValidationResultType.primary;
   var _state = CWidgetState.enabled;
 
   var _focused = false;
 
-  FocusNode _focusNode;
-  CValidationResult _validationResult;
-  String _value;
+  FocusNode? _focusNode;
+  CValidationResult? _validationResult;
+  String? _value;
 
   void focusNodeListener() {
-    if (_focused != _focusNode.hasFocus) {
-      setState(() => _focused = this._focusNode.hasFocus);
+    if (_focused != _focusNode!.hasFocus) {
+      setState(() => _focused = this._focusNode!.hasFocus);
     }
   }
 
@@ -99,36 +99,36 @@ class _CTextFieldState extends State<CTextField> {
     } else {
       this._focusNode = FocusNode();
     }
-    this._focusNode.addListener(focusNodeListener);
+    this._focusNode!.addListener(focusNodeListener);
     super.initState();
   }
 
   @override
   void didUpdateWidget(CTextField oldWidget) {
-    if (widget.readOnly) _focusNode.unfocus();
+    if (widget.readOnly) _focusNode!.unfocus();
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    this._focusNode.addListener(focusNodeListener);
+    this._focusNode!.addListener(focusNodeListener);
     super.dispose();
   }
 
   /// validator is responsible for determining the [_status] of the widget.
 
-  void validator(String text) {
-    CValidationResultType st;
-    _validationResult = widget.validator(text);
+  void validator(String? text) {
+    CValidationResultType? st;
+    _validationResult = widget.validator!(text);
 
-    if (_validationResult == null || _validationResult.type == CValidationResultType.primary) {
+    if (_validationResult == null || _validationResult!.type == CValidationResultType.primary) {
       st = CValidationResultType.primary;
     } else {
-      if (_validationResult.type == CValidationResultType.success) {
+      if (_validationResult!.type == CValidationResultType.success) {
         st = CValidationResultType.success;
-      } else if (_validationResult.type == CValidationResultType.warning) {
+      } else if (_validationResult!.type == CValidationResultType.warning) {
         st = CValidationResultType.warning;
-      } else if (_validationResult.type == CValidationResultType.error) {
+      } else if (_validationResult!.type == CValidationResultType.error) {
         st = CValidationResultType.error;
       }
     }
@@ -148,7 +148,7 @@ class _CTextFieldState extends State<CTextField> {
     /// determine the [_state] of the widget.
 
     if (!widget.enabled) {
-      _focusNode.unfocus();
+      _focusNode!.unfocus();
       _state = CWidgetState.disabled;
       _validationResult = null;
     } else if (widget.enabled && _focused) {
@@ -212,7 +212,7 @@ class _CTextFieldState extends State<CTextField> {
               onChanged: (String value) {
                 _value = value;
                 if (widget.validator != null) validator(value);
-                widget.onChanged(value);
+                widget.onChanged!(value);
               },
               onEditingComplete: widget.onEditingComplete,
               onSubmitted: widget.onSubmitted,
@@ -233,7 +233,7 @@ class _CTextFieldState extends State<CTextField> {
                 contentPadding: EdgeInsets.only(
                   left: 14,
                   bottom: widget.enabled
-                      ? _focusNode.hasFocus
+                      ? _focusNode!.hasFocus
                           ? 13.5
                           : 14.5
                       : 14,
@@ -257,7 +257,7 @@ class _CTextFieldState extends State<CTextField> {
                     ? widget.prefixIcon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
-                          colors['textfield-disabled-icon-color'],
+                          colors['textfield-disabled-icon-color']!,
                           BlendMode.color,
                         ),
                         child: widget.prefixIcon,
@@ -265,12 +265,12 @@ class _CTextFieldState extends State<CTextField> {
                 suffixIcon: widget.enabled
                     ? _validationResult == null
                         ? widget.suffixIcon
-                        : _validationResult.icon == null
+                        : _validationResult!.icon == null
                             ? widget.suffixIcon
-                            : _validationResult.icon
+                            : _validationResult!.icon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
-                          colors['textfield-disabled-icon-color'],
+                          colors['textfield-disabled-icon-color']!,
                           BlendMode.color,
                         ),
                         child: widget.suffixIcon,
@@ -284,7 +284,7 @@ class _CTextFieldState extends State<CTextField> {
           if (widget.description != null) ...[
             const SizedBox(height: 8),
             CText(
-              data: _validationResult == null ? widget.description : _validationResult.message,
+              data: _validationResult == null ? widget.description : _validationResult!.message,
               style: TextStyle(
                 fontSize: layout['textfield-description-font-size'],
                 fontFamily: layout['textfield-description-font-family'],
