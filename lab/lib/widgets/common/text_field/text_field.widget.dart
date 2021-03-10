@@ -2,7 +2,7 @@ import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'text-field.styles.dart';
+import 'text_field.styles.dart';
 
 class CTextField extends StatefulWidget {
   const CTextField({
