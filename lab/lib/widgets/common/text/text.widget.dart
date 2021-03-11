@@ -50,48 +50,32 @@ class CText extends StatelessWidget with TextUtils {
     TextStyle? finalStyle;
 
     if (textType != null) {
-      finalStyle = buildTextStyle(type: textType, layout: layout, colors: colors);
+      finalStyle = buildTextStyle(type: textType!, layout: layout, colors: colors);
       if (style != null) finalStyle.merge(style);
     } else {
       finalStyle = style;
     }
 
-    if (!isRequired)
-      return Text(
-        data!,
-        style: finalStyle,
-        strutStyle: strutStyle,
-        textAlign: textAlign,
-        textDirection: textDirection,
-        locale: locale,
-        softWrap: softWrap,
-        overflow: overflow,
-        textScaleFactor: textScaleFactor,
-        maxLines: maxLines,
-        semanticsLabel: semanticsLabel,
-        textWidthBasis: textWidthBasis,
-        textHeightBehavior: textHeightBehavior,
-      );
-    else
-      return Row(
-        children: [
-          Text(
-            data!,
-            style: finalStyle,
-            strutStyle: strutStyle,
-            textAlign: textAlign,
-            textDirection: textDirection,
-            locale: locale,
-            softWrap: softWrap,
-            overflow: overflow,
-            textScaleFactor: textScaleFactor,
-            maxLines: maxLines,
-            semanticsLabel: semanticsLabel,
-            textWidthBasis: textWidthBasis,
-            textHeightBehavior: textHeightBehavior,
-          ),
-          Text(' *', style: TextStyle(color: CColors.red60)),
-        ],
-      );
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          data!,
+          style: finalStyle,
+          strutStyle: strutStyle,
+          textAlign: textAlign,
+          textDirection: textDirection,
+          locale: locale,
+          softWrap: softWrap,
+          overflow: overflow,
+          textScaleFactor: textScaleFactor,
+          maxLines: maxLines,
+          semanticsLabel: semanticsLabel,
+          textWidthBasis: textWidthBasis,
+          textHeightBehavior: textHeightBehavior,
+        ),
+        if (isRequired) Text(' *', style: TextStyle(color: CColors.red60)),
+      ],
+    );
   }
 }

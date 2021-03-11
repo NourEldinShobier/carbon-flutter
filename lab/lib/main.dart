@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
               actions: CButton(
                 onTap: () {},
                 label: 'Primary button',
-                icon: SvgPicture.asset(
+                icon: CSVGIcon.asset(
                   'assets/svg/warning--alt--filled.svg',
                   height: 16,
                 ),

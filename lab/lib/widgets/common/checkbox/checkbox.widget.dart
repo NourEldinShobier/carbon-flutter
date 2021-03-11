@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lab/carbon.dart';
 
 import 'checkbox.style.dart';
 
-class CCheckbox extends StatefulWidget {
+class CCheckbox extends StatefulWidget implements CWidget {
+  final bool _enable;
+
   CCheckbox({
     Key? key,
+    bool enable = true,
     required this.onChange,
-    this.enabled = true,
     this.value = false,
     this.label,
     this.labelSize = 14,
-  }) : super(key: key);
+  })  : _enable = enable,
+        super(key: key);
 
-  final bool enabled;
   final bool value;
   final String? label;
   final double labelSize;
   final void Function(bool value) onChange;
+
+  @override
+  bool get enable => _enable;
 
   @override
   _CCheckboxState createState() => _CCheckboxState();
@@ -48,9 +52,9 @@ class _CCheckboxState extends State<CCheckbox> {
 
     /// determine the [_state] of the widget.
 
-    if (!widget.enabled) {
+    if (!widget.enable) {
       _state = CWidgetState.disabled;
-    } else if (widget.enabled && _focused) {
+    } else if (widget.enable && _focused) {
       _state = CWidgetState.focus;
     } else {
       _state = CWidgetState.enabled;
@@ -60,7 +64,7 @@ class _CCheckboxState extends State<CCheckbox> {
     final style = 'checkbox-$state';
 
     return IgnorePointer(
-      ignoring: !widget.enabled,
+      ignoring: !widget.enable,
       child: GestureDetector(
         onTapDown: (_) => setState(() => _focused = true),
         onTapUp: (_) => setState(() {
@@ -103,7 +107,7 @@ class _CCheckboxState extends State<CCheckbox> {
                   alignment: Alignment.center,
                   duration: layout['checkbox-fill-color-animation-duration'],
                   curve: layout['checkbox-fill-color-animation-curve'],
-                  child: SvgPicture.asset(
+                  child: CSVGIcon.asset(
                     'assets/svg/checkmark.svg',
                     color: _value ? colors['$style-checkmark-color'] : Colors.transparent,
                     height: 8,
