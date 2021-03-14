@@ -3,9 +3,12 @@ import 'package:lab/carbon.dart';
 
 import 'form.style.dart';
 
-class CForm extends StatefulWidget {
+class CForm extends StatefulWidget implements CWidget {
+  final bool _enable;
+
   CForm({
     Key? key,
+    bool enable = true,
     this.title,
     this.description,
     this.label,
@@ -15,7 +18,8 @@ class CForm extends StatefulWidget {
     this.type = CFormType.modal,
     this.content,
     this.actions,
-  }) : super(key: key);
+  })  : _enable = enable,
+        super(key: key);
 
   final CFormType type;
   final String? label;
@@ -28,6 +32,10 @@ class CForm extends StatefulWidget {
   final Widget? content;
   final Widget? actions;
 
+  @override
+  bool get enable => _enable;
+
+  @override
   CFormState createState() => CFormState();
 
   static CFormState? of(BuildContext context) {
@@ -102,7 +110,8 @@ class CFormState extends State<CForm> {
 }
 
 class _InteritedCForm extends InheritedWidget {
-  const _InteritedCForm({Key? key, this.state, required Widget child}) : super(key: key, child: child);
+  const _InteritedCForm({Key? key, this.state, required Widget child})
+      : super(key: key, child: child);
 
   final CFormState? state;
 

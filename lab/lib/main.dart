@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MyApp());

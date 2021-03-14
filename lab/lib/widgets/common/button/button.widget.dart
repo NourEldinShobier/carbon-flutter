@@ -3,13 +3,15 @@ import 'package:lab/carbon.dart';
 
 import 'button.style.dart';
 
-class CButton extends StatefulWidget {
+class CButton extends StatefulWidget implements CWidget {
+  final _enable;
+
   CButton({
     Key? key,
+    bool enable = true,
     required this.label,
     required this.onTap,
     this.type = CButtonType.primary,
-    this.enabled = true,
     this.icon,
     this.hasIconOnly = false,
     this.fluid = false,
@@ -17,19 +19,22 @@ class CButton extends StatefulWidget {
     this.width = 178,
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
     this.labelSize = 14,
-  }) : super(key: key);
+  })  : _enable = enable,
+        super(key: key);
 
   final CButtonType type;
   final EdgeInsetsGeometry padding;
   final double height;
   final double width;
-  final bool enabled;
   final bool fluid;
   final bool hasIconOnly;
   final String label;
   final double labelSize;
   final Widget? icon;
   final void Function() onTap;
+
+  @override
+  bool get enable => _enable;
 
   @override
   _CButtonState createState() => _CButtonState();
@@ -39,106 +44,100 @@ class _CButtonState extends State<CButton> {
   var _state = CWidgetState.enabled;
   var _focused = false;
 
+  double? calculateWidth() {
+    if (widget.hasIconOnly) {
+      return widget.height;
+    }
+
+    return widget.fluid ? null : widget.width;
+  }
+
   @override
   Widget build(BuildContext context) {
     const colors = cButtonColors;
     final layout = cButtonLayout;
 
+    final width = calculateWidth();
+
+    String cwidget = '', type = '', state = '', style = '';
+
     /// determine the [_state] of the widget.
 
-    if (!widget.enabled) {
+    if (!widget.enable) {
       _state = CWidgetState.disabled;
-    } else if (widget.enabled && _focused) {
+    } else if (widget.enable && _focused) {
       _state = CWidgetState.focus;
     } else {
       _state = CWidgetState.enabled;
     }
 
-    final status = enumToString(widget.type);
-    final state = enumToString(_state);
+    cwidget = 'button';
+    type = enumToString(widget.type);
+    state = enumToString(_state);
 
-    final style = 'button-$status-$state';
+    style = '$cwidget-$type-$state';
 
     return IgnorePointer(
-      ignoring: !widget.enabled,
+      ignoring: !widget.enable,
       child: GestureDetector(
         onTap: widget.onTap,
-        onTapDown: (widget.onTap != null) ? (_) => setState(() => _focused = true) : null,
-        onTapUp: (widget.onTap != null) ? (_) => setState(() => _focused = false) : null,
-        onTapCancel: (widget.onTap != null) ? () => setState(() => _focused = false) : null,
+        onTapDown: (_) => setState(() => _focused = true),
+        onTapUp: (_) => setState(() => _focused = false),
+        onTapCancel: () => setState(() => _focused = false),
         child: Stack(
           children: [
             AnimatedContainer(
+              width: width,
               height: widget.height,
-              width: widget.hasIconOnly
-                  ? widget.height
-                  : widget.fluid
-                      ? null
-                      : widget.width,
               duration: layout['button-background-color-animation-duration'],
               curve: layout['button-background-color-animation-curve'],
               decoration: BoxDecoration(color: colors['$style-background-color']),
             ),
             AnimatedContainer(
+              width: width,
               height: widget.height,
-              width: widget.hasIconOnly
-                  ? widget.height
-                  : widget.fluid
-                      ? null
-                      : widget.width,
-              duration: layout['button-$status-first-border-animation-duration'],
-              curve: layout['button-$status-first-border-animation-curve'],
+              duration: layout['button-$type-first-border-animation-duration'],
+              curve: layout['button-$type-first-border-animation-curve'],
               decoration: BoxDecoration(border: layout['$style-first-border']),
             ),
             AnimatedContainer(
+              width: width,
               height: widget.height,
-              width: widget.hasIconOnly
-                  ? widget.height
-                  : widget.fluid
-                      ? null
-                      : widget.width,
-              duration: layout['button-$status-second-border-animation-duration'],
-              curve: layout['button-$status-second-border-animation-curve'],
+              duration: layout['button-$type-second-border-animation-duration'],
+              curve: layout['button-$type-second-border-animation-curve'],
               decoration: BoxDecoration(border: layout['$style-second-border']),
             ),
             SizedBox(
+              width: width,
               height: widget.height,
-              width: widget.hasIconOnly
-                  ? widget.height
-                  : widget.fluid
-                      ? null
-                      : widget.width,
               child: Padding(
                 padding: widget.padding,
-                child: DefaultTextStyle(
-                  style: TextStyle(color: colors['$style-content-color']),
-                  child: widget.hasIconOnly
-                      ? widget.icon!
-                      : widget.type == CButtonType.ghost
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CText(
-                                  data: widget.label,
-                                  style: TextStyle(fontSize: widget.labelSize),
-                                ),
-                                if (widget.icon != null) ...[const SizedBox(width: 8), widget.icon!],
-                              ],
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CText(
-                                  data: widget.label,
-                                  style: TextStyle(fontSize: widget.labelSize),
-                                ),
-                                const Expanded(child: const SizedBox()),
-                                if (widget.icon != null) widget.icon!,
-                              ],
-                            ),
-                ),
+                child: (() {
+                  if (widget.hasIconOnly) return widget.icon;
+
+                  return Row(
+                    mainAxisAlignment: widget.type == CButtonType.ghost
+                        ? MainAxisAlignment.center
+                        : MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      CText(
+                        data: widget.label,
+                        style: TextStyle(
+                          fontSize: widget.labelSize,
+                          color: colors['$style-content-color'],
+                        ),
+                      ),
+                      if (widget.icon != null && widget.type == CButtonType.ghost) ...[
+                        const SizedBox(width: 8),
+                        widget.icon!
+                      ] else if (widget.icon != null) ...[
+                        const Expanded(child: const SizedBox()),
+                        widget.icon!
+                      ],
+                    ],
+                  );
+                }()),
               ),
             ),
           ],
