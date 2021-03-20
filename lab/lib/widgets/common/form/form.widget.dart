@@ -44,66 +44,82 @@ class CForm extends StatefulWidget implements CWidget {
 }
 
 class CFormState extends State<CForm> {
+  var _state = CWidgetState.enabled;
+
   @override
   Widget build(BuildContext context) {
     const layout = cFormLayout;
     const colors = cFormG100;
 
-    final formType = enumToString(widget.type);
-    final style = 'form-$formType';
+    var cwidget = '', type = '', state = '', selector = '';
 
-    return _InteritedCForm(
-      state: this,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: colors['$style-background-color'],
-            padding: layout['$style-padding'],
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (widget.label != null) ...[
-                  CText(
-                    data: widget.label,
-                    style: TextStyle(
-                      fontSize: widget.labelSize,
-                      color: colors['$style-label-color'],
+    /// determine the [_state] of the widget.
+
+    if (!widget.enable) {
+      _state = CWidgetState.disabled;
+    } else {
+      _state = CWidgetState.enabled;
+    }
+
+    cwidget = 'form';
+    type = enumToString(widget.type);
+    state = enumToString(_state);
+
+    selector = '$cwidget-$type-$state';
+
+    return IgnorePointer(
+      ignoring: !widget.enable,
+      child: _InteritedCForm(
+        state: this,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              color: colors['$selector-background-color'],
+              padding: layout['form-$type-padding'],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (widget.label != null) ...[
+                    CText(
+                      data: widget.label,
+                      style: TextStyle(
+                        fontSize: widget.labelSize,
+                        color: colors['$selector-label-color'],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                ],
-                if (widget.title != null) ...[
-                  if (widget.label == null) const SizedBox(height: 8),
-                  CText(
-                    data: widget.title,
-                    style: TextStyle(
-                      fontSize: widget.titleSize,
-                      color: colors['$style-title-color'],
+                    const SizedBox(height: 4),
+                  ],
+                  if (widget.title != null) ...[
+                    if (widget.label == null) const SizedBox(height: 8),
+                    CText(
+                      data: widget.title,
+                      style: TextStyle(
+                        fontSize: widget.titleSize,
+                        color: colors['$selector-title-color'],
+                      ),
                     ),
-                  ),
-                  if (widget.description != null)
-                    const SizedBox(height: 11)
-                  else
-                    const SizedBox(height: 16),
-                ],
-                if (widget.description != null) ...[
-                  CText(
-                    data: widget.description,
-                    style: TextStyle(
-                      fontSize: widget.descriptionSize,
+                    SizedBox(height: widget.description != null ? 11 : 16),
+                  ],
+                  if (widget.description != null) ...[
+                    CText(
+                      data: widget.description,
+                      style: TextStyle(
+                        fontSize: widget.descriptionSize,
+                        color: colors['$selector-description-color'],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 20),
+                    const SizedBox(height: 20),
+                  ],
+                  if (widget.content != null) widget.content!,
                 ],
-                if (widget.content != null) widget.content!,
-              ],
+              ),
             ),
-          ),
-          if (widget.actions != null) widget.actions!,
-        ],
+            if (widget.actions != null) widget.actions!,
+          ],
+        ),
       ),
     );
   }

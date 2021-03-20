@@ -1,8 +1,5 @@
-import 'package:lab/carbon.dart';
-import 'package:flutter/material.dart';
-
 extension StringExtension on String {
-  CText h1({TextStyle? style}) {
+/*   CText h1({TextStyle? style}) {
     return CText(data: this, textType: CTextType.h1, style: style);
   }
 
@@ -24,9 +21,9 @@ extension StringExtension on String {
 
   CText h6({TextStyle? style}) {
     return CText(data: this, textType: CTextType.h6, style: style);
-  }
+  } */
 
-  CLink link(
+  /* CLink link(
     void Function(String url) onTap, {
     String? caption,
     TextStyle? style,
@@ -37,5 +34,5 @@ extension StringExtension on String {
       caption: caption,
       style: style,
     );
-  }
+  } */
 }

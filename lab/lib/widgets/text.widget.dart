@@ -1,13 +1,10 @@
 import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
 
-import 'text.style.dart';
-
-class CText extends StatelessWidget with TextUtils {
+class CText extends StatelessWidget {
   const CText({
     Key? key,
     required this.data,
-    this.textType,
     this.textSpan,
     this.style,
     this.strutStyle,
@@ -23,8 +20,6 @@ class CText extends StatelessWidget with TextUtils {
     this.textHeightBehavior,
     this.isRequired = false,
   }) : super(key: key);
-
-  final CTextType? textType;
 
   final String? data;
   final bool isRequired;
@@ -44,37 +39,28 @@ class CText extends StatelessWidget with TextUtils {
 
   @override
   Widget build(BuildContext context) {
-    const layout = cTextLayout;
-    const colors = cTextG100;
-
-    TextStyle? finalStyle;
-
-    if (textType != null) {
-      finalStyle = buildTextStyle(type: textType!, layout: layout, colors: colors);
-      if (style != null) finalStyle.merge(style);
-    } else {
-      finalStyle = style;
-    }
-
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          data!,
-          style: finalStyle,
-          strutStyle: strutStyle,
-          textAlign: textAlign,
-          textDirection: textDirection,
-          locale: locale,
-          softWrap: softWrap,
-          overflow: overflow,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          semanticsLabel: semanticsLabel,
-          textWidthBasis: textWidthBasis,
-          textHeightBehavior: textHeightBehavior,
+        Flexible(
+          child: Text(
+            data!,
+            style: style,
+            strutStyle: strutStyle,
+            textAlign: textAlign,
+            textDirection: textDirection,
+            locale: locale,
+            softWrap: softWrap,
+            overflow: overflow,
+            textScaleFactor: textScaleFactor,
+            maxLines: maxLines,
+            semanticsLabel: semanticsLabel,
+            textWidthBasis: textWidthBasis,
+            textHeightBehavior: textHeightBehavior,
+          ),
         ),
-        if (isRequired) Text(' *', style: TextStyle(color: CColors.red60)),
+        if (isRequired)
+          Flexible(child: Text(' *', style: TextStyle(color: CColors.red60))),
       ],
     );
   }

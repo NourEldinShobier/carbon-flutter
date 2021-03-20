@@ -50,6 +50,8 @@ class _CCheckboxState extends State<CCheckbox> {
     const colors = cCheckBoxColors;
     const layout = cCheckBoxLayout;
 
+    var cwidget = '', state = '', selector = '';
+
     /// determine the [_state] of the widget.
 
     if (!widget.enable) {
@@ -60,8 +62,9 @@ class _CCheckboxState extends State<CCheckbox> {
       _state = CWidgetState.enabled;
     }
 
-    final state = enumToString(_state);
-    final style = 'checkbox-$state';
+    cwidget = 'checkbox';
+    state = enumToString(_state);
+    selector = '$cwidget-$state';
 
     return IgnorePointer(
       ignoring: !widget.enable,
@@ -88,7 +91,7 @@ class _CCheckboxState extends State<CCheckbox> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(
-                      color: colors['$style-border-color']!,
+                      color: colors['$selector-border-color']!,
                       width: _focused ? 2 : 1,
                     ),
                   ),
@@ -98,7 +101,9 @@ class _CCheckboxState extends State<CCheckbox> {
                   width: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: _value ? colors['$style-fill-color'] : Colors.transparent,
+                    color: _value
+                        ? colors['$selector-fill-color']
+                        : Colors.transparent,
                   ),
                 ),
                 AnimatedContainer(
@@ -109,7 +114,9 @@ class _CCheckboxState extends State<CCheckbox> {
                   curve: layout['checkbox-fill-color-animation-curve'],
                   child: CSVGIcon.asset(
                     'assets/svg/checkmark.svg',
-                    color: _value ? colors['$style-checkmark-color'] : Colors.transparent,
+                    color: _value
+                        ? colors['$selector-checkmark-color']
+                        : Colors.transparent,
                     height: 8,
                   ),
                 ),
@@ -121,7 +128,7 @@ class _CCheckboxState extends State<CCheckbox> {
                 data: widget.label,
                 style: TextStyle(
                   fontSize: widget.labelSize,
-                  color: colors['$style-label-color'],
+                  color: colors['$selector-label-color'],
                 ),
               ),
             ],

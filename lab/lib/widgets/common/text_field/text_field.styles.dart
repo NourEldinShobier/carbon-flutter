@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
 
 final Map<String, dynamic> cTextFieldLayout = {
-  'textfield-label-font-size': 15.0,
+  'textfield-label-font-size': 14.0,
   'textfield-label-font-family': CFonts.primaryRegular,
-  'textfield-text-font-size': 16.0,
+  'textfield-text-font-size': 15.0,
   'textfield-text-font-family': CFonts.primaryRegular,
-  'textfield-hint-font-size': 16.0,
+  'textfield-hint-font-size': 15.0,
   'textfield-hint-font-family': CFonts.primaryRegular,
-  'textfield-description-font-size': 15.0,
+  'textfield-description-font-size': 14.0,
   'textfield-description-font-family': CFonts.primaryRegular,
 
   /// primary ///
@@ -92,8 +92,8 @@ const Map<String, Color> cTextFieldG100 = {
   /// primary ///
 
   // label
-  'textfield-primary-enabled-label-color': CColors.gray30,
-  'textfield-primary-focus-label-color': CColors.gray30,
+  'textfield-primary-enabled-label-color': CColors.gray20,
+  'textfield-primary-focus-label-color': CColors.gray20,
   'textfield-primary-disabled-label-color': CColors.gray70,
 
   // hint

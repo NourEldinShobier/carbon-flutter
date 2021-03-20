@@ -1,6 +1,6 @@
-export './common/text/text.widget.dart';
+export './text.widget.dart';
 export './common/link/link.widget.dart';
-export 'common/text_field/text_field.widget.dart';
+export './common/text_field/text_field.widget.dart';
 export './common/button/button.widget.dart';
 export './common/form/form.widget.dart';
 export './common/tile/tile.widget.dart';

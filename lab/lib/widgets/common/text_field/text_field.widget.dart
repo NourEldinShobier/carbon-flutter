@@ -4,9 +4,12 @@ import 'package:flutter/services.dart';
 
 import 'text_field.styles.dart';
 
-class CTextField extends StatefulWidget {
+class CTextField extends StatefulWidget implements CWidget {
+  final bool _enable;
+
   const CTextField({
     Key? key,
+    bool enable = true,
     this.validator,
     this.label,
     this.hint,
@@ -15,7 +18,6 @@ class CTextField extends StatefulWidget {
     this.keyboardType,
     this.focusNode,
     this.obscureText = false,
-    this.enabled = true,
     this.suffixIcon,
     this.prefixIcon,
     this.onTap,
@@ -37,7 +39,8 @@ class CTextField extends StatefulWidget {
     this.autofillHints,
     this.inputFormatters,
     this.isRequired = false,
-  }) : super(key: key);
+  })  : _enable = enable,
+        super(key: key);
 
   final String? label;
   final String? hint;
@@ -48,7 +51,6 @@ class CTextField extends StatefulWidget {
   final FocusNode? focusNode;
   final bool isRequired;
   final bool obscureText;
-  final bool enabled;
   final bool readOnly;
   final bool? showCursor;
   final bool autofocus;
@@ -73,6 +75,9 @@ class CTextField extends StatefulWidget {
   final CValidationResult Function(String? value)? validator;
 
   @override
+  bool get enable => _enable;
+
+  @override
   _CTextFieldState createState() => _CTextFieldState();
 }
 
@@ -82,36 +87,36 @@ class _CTextFieldState extends State<CTextField> {
 
   var _focused = false;
 
-  FocusNode? _focusNode;
+  late FocusNode _focusNode;
   CValidationResult? _validationResult;
   String? _value;
 
   void focusNodeListener() {
-    if (_focused != _focusNode!.hasFocus) {
-      setState(() => _focused = this._focusNode!.hasFocus);
+    if (_focused != _focusNode.hasFocus) {
+      setState(() => _focused = this._focusNode.hasFocus);
     }
   }
 
   @override
   void initState() {
     if (widget.focusNode != null) {
-      this._focusNode = widget.focusNode;
+      this._focusNode = widget.focusNode!;
     } else {
       this._focusNode = FocusNode();
     }
-    this._focusNode!.addListener(focusNodeListener);
+    this._focusNode.addListener(focusNodeListener);
     super.initState();
   }
 
   @override
   void didUpdateWidget(CTextField oldWidget) {
-    if (widget.readOnly) _focusNode!.unfocus();
+    if (widget.readOnly) _focusNode.unfocus();
     super.didUpdateWidget(oldWidget);
   }
 
   @override
   void dispose() {
-    this._focusNode!.addListener(focusNodeListener);
+    this._focusNode.addListener(focusNodeListener);
     super.dispose();
   }
 
@@ -121,7 +126,8 @@ class _CTextFieldState extends State<CTextField> {
     CValidationResultType? st;
     _validationResult = widget.validator!(text);
 
-    if (_validationResult == null || _validationResult!.type == CValidationResultType.primary) {
+    if (_validationResult == null ||
+        _validationResult!.type == CValidationResultType.primary) {
       st = CValidationResultType.primary;
     } else {
       if (_validationResult!.type == CValidationResultType.success) {
@@ -140,6 +146,10 @@ class _CTextFieldState extends State<CTextField> {
     final layout = cTextFieldLayout;
     const colors = cTextFieldG100;
 
+    final cform = context.cform;
+
+    var cwidget = '', type = '', state = '', selector = '', cformType = '';
+
     /// NOTE: this line doesn't make the widget build twice when [onChange] is
     /// called, because the [validator] calls [setState] when [st != _state].
 
@@ -147,35 +157,30 @@ class _CTextFieldState extends State<CTextField> {
 
     /// determine the [_state] of the widget.
 
-    if (!widget.enabled) {
-      _focusNode!.unfocus();
+    if (!widget.enable) {
+      _focusNode.unfocus();
       _state = CWidgetState.disabled;
       _validationResult = null;
-    } else if (widget.enabled && _focused) {
+    } else if (widget.enable && _focused) {
       _state = CWidgetState.focus;
-    } else if (widget.enabled && _validationResult != null) {
+    } else if (widget.enable && _validationResult != null) {
       _state = CWidgetState.focus;
     } else {
       _state = CWidgetState.enabled;
     }
 
-    final status = enumToString(_status);
-    final state = enumToString(_state);
+    cwidget = 'textfield';
+    type = enumToString(_status);
+    state = enumToString(_state);
 
-    final style = 'textfield-$status-$state';
-    final cform = context.cform;
-
-    var cformType = '';
+    selector = '$cwidget-$type-$state';
 
     if (cform != null) {
-      if (cform.widget.type == CFormType.modal)
-        cformType = 'modalform-';
-      else
-        cformType = '';
+      cformType = cform.widget.type == CFormType.modal ? 'modalform-' : '';
     }
 
     return IgnorePointer(
-      ignoring: !widget.enabled || widget.readOnly,
+      ignoring: !widget.enable || widget.readOnly,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -187,13 +192,13 @@ class _CTextFieldState extends State<CTextField> {
               style: TextStyle(
                 fontSize: layout['textfield-label-font-size'],
                 fontFamily: layout['textfield-label-font-family'],
-                color: colors['$style-label-color'],
+                color: colors['$selector-label-color'],
               ),
             ),
             const SizedBox(height: 8)
           ],
           SizedBox(
-            height: 44,
+            height: 40,
             child: TextField(
               controller: widget.controller,
               focusNode: _focusNode,
@@ -226,24 +231,26 @@ class _CTextFieldState extends State<CTextField> {
               style: TextStyle(
                 fontSize: layout['textfield-text-font-size'],
                 fontFamily: layout['textfield-text-font-family'],
-                color: colors['$style-text-color'],
+                color: colors['$selector-text-color'],
               ),
               decoration: InputDecoration(
                 filled: true,
                 contentPadding: EdgeInsets.only(
                   left: 14,
-                  bottom: widget.enabled
-                      ? _focusNode!.hasFocus
-                          ? 13.5
-                          : 14.5
-                      : 14,
+                  top: widget.enable && _focusNode.hasFocus ? 8 : 8,
+                  bottom: widget.enable
+                      ? _focusNode.hasFocus
+                          ? 12.5
+                          : 15
+                      : 15,
                 ),
-                fillColor: colors['textfield-$cformType$state-background-color'],
+                fillColor:
+                    colors['textfield-$cformType$state-background-color'],
                 hintText: widget.hint,
                 hintStyle: TextStyle(
                   fontSize: layout['textfield-hint-font-size'],
                   fontFamily: layout['textfield-hint-font-family'],
-                  color: colors['$style-hint-color'],
+                  color: colors['$selector-hint-color'],
                 ),
                 prefixIconConstraints: BoxConstraints(
                   minWidth: 46,
@@ -253,7 +260,7 @@ class _CTextFieldState extends State<CTextField> {
                   minWidth: 46,
                   maxWidth: 46,
                 ), // 44 + 2 (width of border)
-                prefixIcon: widget.enabled
+                prefixIcon: widget.enable
                     ? widget.prefixIcon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
@@ -262,7 +269,7 @@ class _CTextFieldState extends State<CTextField> {
                         ),
                         child: widget.prefixIcon,
                       ),
-                suffixIcon: widget.enabled
+                suffixIcon: widget.enable
                     ? _validationResult == null
                         ? widget.suffixIcon
                         : _validationResult!.icon == null
@@ -275,20 +282,22 @@ class _CTextFieldState extends State<CTextField> {
                         ),
                         child: widget.suffixIcon,
                       ),
-                border: layout['$style-border'],
-                enabledBorder: layout['$style-border'],
-                focusedBorder: layout['$style-border'],
+                border: layout['$selector-border'],
+                enabledBorder: layout['$selector-border'],
+                focusedBorder: layout['$selector-border'],
               ),
             ),
           ),
           if (widget.description != null) ...[
             const SizedBox(height: 8),
             CText(
-              data: _validationResult == null ? widget.description : _validationResult!.message,
+              data: _validationResult == null
+                  ? widget.description
+                  : _validationResult!.message,
               style: TextStyle(
                 fontSize: layout['textfield-description-font-size'],
                 fontFamily: layout['textfield-description-font-family'],
-                color: colors['$style-description-color'],
+                color: colors['$selector-description-color'],
               ),
             ),
           ],

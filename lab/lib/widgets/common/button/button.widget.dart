@@ -59,7 +59,7 @@ class _CButtonState extends State<CButton> {
 
     final width = calculateWidth();
 
-    String cwidget = '', type = '', state = '', style = '';
+    var cwidget = '', type = '', state = '', selector = '';
 
     /// determine the [_state] of the widget.
 
@@ -75,7 +75,7 @@ class _CButtonState extends State<CButton> {
     type = enumToString(widget.type);
     state = enumToString(_state);
 
-    style = '$cwidget-$type-$state';
+    selector = '$cwidget-$type-$state';
 
     return IgnorePointer(
       ignoring: !widget.enable,
@@ -91,21 +91,24 @@ class _CButtonState extends State<CButton> {
               height: widget.height,
               duration: layout['button-background-color-animation-duration'],
               curve: layout['button-background-color-animation-curve'],
-              decoration: BoxDecoration(color: colors['$style-background-color']),
+              decoration:
+                  BoxDecoration(color: colors['$selector-background-color']),
             ),
             AnimatedContainer(
               width: width,
               height: widget.height,
               duration: layout['button-$type-first-border-animation-duration'],
               curve: layout['button-$type-first-border-animation-curve'],
-              decoration: BoxDecoration(border: layout['$style-first-border']),
+              decoration:
+                  BoxDecoration(border: layout['$selector-first-border']),
             ),
             AnimatedContainer(
               width: width,
               height: widget.height,
               duration: layout['button-$type-second-border-animation-duration'],
               curve: layout['button-$type-second-border-animation-curve'],
-              decoration: BoxDecoration(border: layout['$style-second-border']),
+              decoration:
+                  BoxDecoration(border: layout['$selector-second-border']),
             ),
             SizedBox(
               width: width,
@@ -116,19 +119,18 @@ class _CButtonState extends State<CButton> {
                   if (widget.hasIconOnly) return widget.icon;
 
                   return Row(
-                    mainAxisAlignment: widget.type == CButtonType.ghost
-                        ? MainAxisAlignment.center
-                        : MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       CText(
                         data: widget.label,
                         style: TextStyle(
                           fontSize: widget.labelSize,
-                          color: colors['$style-content-color'],
+                          color: colors['$selector-content-color'],
                         ),
                       ),
-                      if (widget.icon != null && widget.type == CButtonType.ghost) ...[
+                      if (widget.icon != null &&
+                          widget.type == CButtonType.ghost) ...[
                         const SizedBox(width: 8),
                         widget.icon!
                       ] else if (widget.icon != null) ...[
