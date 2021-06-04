@@ -1,0 +1,1 @@
+enum CFormType { group, modal }
