@@ -1,6 +1,6 @@
 # lab
 
-A new Flutter project.
+Carbon lab
 
 ## Getting Started
 
