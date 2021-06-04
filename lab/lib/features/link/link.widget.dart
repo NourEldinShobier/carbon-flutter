@@ -30,10 +30,10 @@ class CLink extends StatefulWidget implements CWidget {
 }
 
 class _CLinkState extends State<CLink> {
+  final colors = cLinkColors;
+
   @override
   Widget build(BuildContext context) {
-    const colors = cLinkColors;
-
     var _state = CWidgetState.enabled;
     var cwidget = '', state = '', selector = '';
 

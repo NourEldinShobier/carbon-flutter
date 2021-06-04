@@ -44,6 +44,9 @@ class CButton extends StatefulWidget implements CWidget {
 }
 
 class _CButtonState extends State<CButton> {
+  final colors = cButtonColors;
+  final layout = cButtonLayout;
+
   var _state = CWidgetState.enabled;
   var _focused = false;
 
@@ -57,9 +60,6 @@ class _CButtonState extends State<CButton> {
 
   @override
   Widget build(BuildContext context) {
-    const colors = cButtonColors;
-    final layout = cButtonLayout;
-
     final width = calculateWidth();
 
     var cwidget = '', type = '', state = '', selector = '';

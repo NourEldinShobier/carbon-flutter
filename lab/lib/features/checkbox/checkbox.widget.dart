@@ -31,6 +31,9 @@ class CCheckbox extends StatefulWidget implements CWidget {
 }
 
 class _CCheckboxState extends State<CCheckbox> {
+  final colors = cCheckBoxColors;
+  final layout = cCheckBoxLayout;
+
   var _state = CWidgetState.enabled;
   var _value = false;
   var _focused = false;
@@ -49,9 +52,6 @@ class _CCheckboxState extends State<CCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    const colors = cCheckBoxColors;
-    const layout = cCheckBoxLayout;
-
     var cwidget = '', state = '', selector = '';
 
     /// determine the [_state] of the widget.

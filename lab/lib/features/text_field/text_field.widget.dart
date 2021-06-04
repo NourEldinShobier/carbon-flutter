@@ -85,7 +85,10 @@ class CTextField extends StatefulWidget implements CWidget {
 }
 
 class _CTextFieldState extends State<CTextField> {
-  CValidationResultType? _status = CValidationResultType.primary;
+  final layout = cTextFieldLayout;
+  final colors = cTextFieldG100;
+
+  var _status = CValidationResultType.primary;
   var _state = CWidgetState.enabled;
 
   var _focused = false;
@@ -126,7 +129,7 @@ class _CTextFieldState extends State<CTextField> {
   /// validator is responsible for determining the [_status] of the widget.
 
   void validator(String? text) {
-    CValidationResultType? st;
+    var st = CValidationResultType.primary;
     _validationResult = widget.validator!(text);
 
     if (_validationResult == null ||
@@ -146,9 +149,6 @@ class _CTextFieldState extends State<CTextField> {
   }
 
   Widget build(BuildContext context) {
-    final layout = cTextFieldLayout;
-    const colors = cTextFieldG100;
-
     final cform = context.cform;
 
     var cwidget = '', type = '', state = '', selector = '', cformType = '';

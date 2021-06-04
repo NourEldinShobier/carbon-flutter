@@ -10,11 +10,11 @@ class CRadioButton extends StatefulWidget {
 }
 
 class _CRadioButtonState extends State<CRadioButton> {
+  final layout = cRadioButtonLayout;
+  final style = cRadioButtonG100;
+
   @override
   Widget build(BuildContext context) {
-    const layout = cRadioButtonLayout;
-    const style = cRadioButtonG100;
-
     // TODO: implement Cwidget, add ignore pointer
     return Container();
   }

@@ -47,13 +47,13 @@ class CForm extends StatefulWidget implements CWidget {
 }
 
 class CFormState extends State<CForm> {
+  final layout = cFormLayout;
+  final colors = cFormG100;
+
   var _state = CWidgetState.enabled;
 
   @override
   Widget build(BuildContext context) {
-    const layout = cFormLayout;
-    const colors = cFormG100;
-
     var cwidget = '', type = '', state = '', selector = '';
 
     /// determine the [_state] of the widget.
