@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
+import 'package:lab/shared/index.dart';
+import 'package:lab/features/text/index.dart';
 
 import 'tile.style.dart';
 

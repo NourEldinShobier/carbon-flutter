@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
 
+import 'package:lab/features/text/index.dart';
+import 'package:lab/shared/index.dart';
+
+import 'form.enum.dart';
 import 'form.style.dart';
 
 class CForm extends StatefulWidget implements CWidget {

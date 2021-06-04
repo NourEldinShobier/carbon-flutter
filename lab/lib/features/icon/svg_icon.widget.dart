@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lab/carbon.dart';
+import 'package:lab/shared/index.dart';
 
 class CSVGIcon extends StatelessWidget implements CWidget {
   final bool _enable;

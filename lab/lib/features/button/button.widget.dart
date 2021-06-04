@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
+
+import 'package:lab/shared/index.dart';
+import 'package:lab/features/text/index.dart';
 
 import 'button.enum.dart';
 import 'button.style.dart';

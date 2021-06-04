@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
+import 'package:lab/shared/index.dart';
 
 const Map<String, dynamic> cTileLayout = {
   'tile-padding': const EdgeInsets.all(16),

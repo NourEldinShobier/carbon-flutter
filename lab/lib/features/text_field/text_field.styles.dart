@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
+import 'package:lab/shared/index.dart';
 
 final Map<String, dynamic> cTextFieldLayout = {
   'textfield-label-font-size': 14.0,

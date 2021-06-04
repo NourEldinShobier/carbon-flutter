@@ -1,5 +1,5 @@
-import 'package:lab/carbon.dart';
 import 'package:flutter/material.dart';
+import 'package:lab/shared/index.dart';
 
 class CText extends StatelessWidget {
   const CText({

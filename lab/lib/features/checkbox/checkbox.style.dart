@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
+import 'package:lab/shared/index.dart';
 
 const Map<String, dynamic> cCheckBoxLayout = {
   'checkbox-border-color-animation-duration': Duration(milliseconds: 65),

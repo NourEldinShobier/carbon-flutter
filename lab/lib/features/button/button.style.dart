@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
+import 'package:lab/shared/index.dart';
 
 final Map<String, dynamic> cButtonLayout = {
   'button-background-color-animation-duration': Duration(milliseconds: 65),
@@ -8,13 +8,19 @@ final Map<String, dynamic> cButtonLayout = {
   /// primary ///
 
   // borders
-  'button-primary-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
-  'button-primary-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-  'button-primary-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+  'button-primary-enabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-primary-focus-first-border':
+      Border.all(color: CColors.gray100, width: 4),
+  'button-primary-disabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
 
-  'button-primary-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-  'button-primary-focus-second-border': Border.all(color: Colors.white, width: 2),
-  'button-primary-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+  'button-primary-enabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-primary-focus-second-border':
+      Border.all(color: Colors.white, width: 2),
+  'button-primary-disabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
 
   'button-primary-first-border-animation-duration': Duration(milliseconds: 0),
   'button-primary-first-border-animation-curve': Curves.easeInOut,
@@ -25,30 +31,43 @@ final Map<String, dynamic> cButtonLayout = {
   /// secondary ///
 
   // borders
-  'button-secondary-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
-  'button-secondary-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-  'button-secondary-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+  'button-secondary-enabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-secondary-focus-first-border':
+      Border.all(color: CColors.gray100, width: 4),
+  'button-secondary-disabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
 
-  'button-secondary-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-  'button-secondary-focus-second-border': Border.all(color: Colors.white, width: 2),
-  'button-secondary-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+  'button-secondary-enabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-secondary-focus-second-border':
+      Border.all(color: Colors.white, width: 2),
+  'button-secondary-disabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
 
   'button-secondary-first-border-animation-duration': Duration(milliseconds: 0),
   'button-secondary-first-border-animation-curve': Curves.easeInOut,
 
-  'button-secondary-second-border-animation-duration': Duration(milliseconds: 0),
+  'button-secondary-second-border-animation-duration':
+      Duration(milliseconds: 0),
   'button-secondary-second-border-animation-curve': Curves.easeInOut,
 
   /// danger ///
 
   // borders
-  'button-danger-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
-  'button-danger-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-  'button-danger-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+  'button-danger-enabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-danger-focus-first-border':
+      Border.all(color: CColors.gray100, width: 4),
+  'button-danger-disabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
 
-  'button-danger-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-  'button-danger-focus-second-border': Border.all(color: Colors.white, width: 2),
-  'button-danger-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+  'button-danger-enabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-danger-focus-second-border':
+      Border.all(color: Colors.white, width: 2),
+  'button-danger-disabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
 
   'button-danger-first-border-animation-duration': Duration(milliseconds: 0),
   'button-danger-first-border-animation-curve': Curves.easeInOut,
@@ -59,13 +78,19 @@ final Map<String, dynamic> cButtonLayout = {
   /// tertiary ///
 
   // borders
-  'button-tertiary-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
-  'button-tertiary-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-  'button-tertiary-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+  'button-tertiary-enabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-tertiary-focus-first-border':
+      Border.all(color: CColors.gray100, width: 4),
+  'button-tertiary-disabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
 
-  'button-tertiary-enabled-second-border': Border.all(color: Colors.white, width: 1),
-  'button-tertiary-focus-second-border': Border.all(color: Colors.white, width: 2),
-  'button-tertiary-disabled-second-border': Border.all(color: CColors.gray70, width: 1),
+  'button-tertiary-enabled-second-border':
+      Border.all(color: Colors.white, width: 1),
+  'button-tertiary-focus-second-border':
+      Border.all(color: Colors.white, width: 2),
+  'button-tertiary-disabled-second-border':
+      Border.all(color: CColors.gray70, width: 1),
 
   'button-tertiary-first-border-animation-duration': Duration(milliseconds: 80),
   'button-tertiary-first-border-animation-curve': Curves.easeInOut,
@@ -76,13 +101,19 @@ final Map<String, dynamic> cButtonLayout = {
   /// ghost ///
 
   // borders
-  'button-ghost-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
-  'button-ghost-focus-first-border': Border.all(color: Colors.transparent, width: 0),
-  'button-ghost-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+  'button-ghost-enabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-ghost-focus-first-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-ghost-disabled-first-border':
+      Border.all(color: Colors.transparent, width: 0),
 
-  'button-ghost-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-  'button-ghost-focus-second-border': Border.all(color: Colors.transparent, width: 0),
-  'button-ghost-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+  'button-ghost-enabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-ghost-focus-second-border':
+      Border.all(color: Colors.transparent, width: 0),
+  'button-ghost-disabled-second-border':
+      Border.all(color: Colors.transparent, width: 0),
 
   'button-ghost-first-border-animation-duration': Duration(milliseconds: 80),
   'button-ghost-first-border-animation-curve': Curves.easeInOut,

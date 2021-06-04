@@ -14,9 +14,7 @@ Unofficial implementation of Carbon Design System using Flutter framework
 
 - [x] CCheckbox
 
-- [x] CRadioButton
-
-- [x] CIcon
+- [x] CSVGIcon
 
 - [x] CLink
 
