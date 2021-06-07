@@ -38,60 +38,34 @@ class _MyHomePageState extends State<MyHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CButton(
-                  onTap: () {},
-                  label: 'Button',
-                  type: CButtonType.primary,
-                  hasIconOnly: true,
-                  icon: CSVGIcon.asset(
-                    'assets/svg/warning--alt--filled.svg',
-                    height: 16,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                CButton(
-                  onTap: () {},
-                  label: 'Button',
-                  type: CButtonType.secondary,
-                  hasIconOnly: true,
-                  icon: CSVGIcon.asset(
-                    'assets/svg/warning--alt--filled.svg',
-                    height: 16,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                CButton(
-                  onTap: () {},
-                  label: 'Button',
-                  type: CButtonType.danger,
-                  hasIconOnly: true,
-                  icon: CSVGIcon.asset(
-                    'assets/svg/warning--alt--filled.svg',
-                    height: 16,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                CButton(
-                  onTap: () {},
-                  label: 'Button',
-                  type: CButtonType.tertiary,
-                  hasIconOnly: true,
-                  icon: CSVGIcon.asset(
-                    'assets/svg/warning--alt--filled.svg',
-                    height: 16,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                CButton(
-                  onTap: () {},
-                  label: 'Button',
-                  type: CButtonType.ghost,
-                  hasIconOnly: true,
-                  icon: CSVGIcon.asset(
-                    'assets/svg/warning--alt--filled.svg',
-                    height: 16,
-                  ),
-                ),
+                CBreadcrumb(
+                  children: [
+                    CBreadcrumbItem(
+                      onTap: () {},
+                      child: Text('Terminal'),
+                    ),
+                    CBreadcrumbItem(
+                      onTap: () {},
+                      child: Text('Students'),
+                    ),
+                    CBreadcrumbItem(
+                      onTap: () {},
+                      child: Text('Data'),
+                    ),
+                    CBreadcrumbItem(
+                      onTap: () {},
+                      child: Text('Terminal'),
+                    ),
+                    CBreadcrumbItem(
+                      onTap: () {},
+                      child: Text('Students'),
+                    ),
+                    CBreadcrumbItem(
+                      onTap: () {},
+                      child: Text('Data'),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
