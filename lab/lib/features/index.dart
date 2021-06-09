@@ -8,6 +8,6 @@ export 'layout/index.dart';
 export 'text/index.dart';
 export 'carbon_app/index.dart';
 export 'breadcrumb/index.dart';
-export 'overflow_menu/index.dart';
+export 'toggle/index.dart';
 
 export 'icon/index.dart';

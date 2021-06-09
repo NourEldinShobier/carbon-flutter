@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
+import 'package:lab/features/overflow_menu/overflow_menu.widget.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CarbonApp(
-      theme: CarbonThemes.gray100,
-      title: 'Carbon Lab',
+    return MaterialApp(
+      title: 'Flutter Demo',
       home: MyHomePage(),
     );
   }
@@ -24,51 +22,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void incrementCounter() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          width: 380,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 80),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CBreadcrumb(
-                  children: [
-                    CBreadcrumbItem(
-                      onTap: () {},
-                      child: Text('Terminal'),
-                    ),
-                    CBreadcrumbItem(
-                      onTap: () {},
-                      child: Text('Students'),
-                    ),
-                    CBreadcrumbItem(
-                      onTap: () {},
-                      child: Text('Data'),
-                    ),
-                    CBreadcrumbItem(
-                      onTap: () {},
-                      child: Text('Terminal'),
-                    ),
-                    CBreadcrumbItem(
-                      onTap: () {},
-                      child: Text('Students'),
-                    ),
-                    CBreadcrumbItem(
-                      onTap: () {},
-                      child: Text('Data'),
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
+      backgroundColor: CColors.gray100,
+      body: Container(
+        alignment: Alignment.bottomCenter,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: 80),
+            CToggle(onToggle: (v) {}),
+          ],
         ),
       ),
     );
