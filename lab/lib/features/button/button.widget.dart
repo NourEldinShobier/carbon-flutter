@@ -44,8 +44,8 @@ class CButton extends StatefulWidget implements CWidget {
 }
 
 class _CButtonState extends State<CButton> {
-  final colors = cButtonColors;
-  final layout = cButtonLayout;
+  final colors = CButtonStyle.colors;
+  final layouts = CButtonStyle.layouts;
 
   var _state = CWidgetState.enabled;
   var _focused = false;
@@ -92,26 +92,27 @@ class _CButtonState extends State<CButton> {
             AnimatedContainer(
               width: width,
               height: widget.height,
-              duration: layout['button-background-color-animation-duration'],
-              curve: layout['button-background-color-animation-curve'],
+              duration: layouts['button-background-color-animation-duration'],
+              curve: layouts['button-background-color-animation-curve'],
               decoration:
                   BoxDecoration(color: colors['$selector-background-color']),
             ),
             AnimatedContainer(
               width: width,
               height: widget.height,
-              duration: layout['button-$type-first-border-animation-duration'],
-              curve: layout['button-$type-first-border-animation-curve'],
+              duration: layouts['button-$type-first-border-animation-duration'],
+              curve: layouts['button-$type-first-border-animation-curve'],
               decoration:
-                  BoxDecoration(border: layout['$selector-first-border']),
+                  BoxDecoration(border: layouts['$selector-first-border']),
             ),
             AnimatedContainer(
               width: width,
               height: widget.height,
-              duration: layout['button-$type-second-border-animation-duration'],
-              curve: layout['button-$type-second-border-animation-curve'],
+              duration:
+                  layouts['button-$type-second-border-animation-duration'],
+              curve: layouts['button-$type-second-border-animation-curve'],
               decoration:
-                  BoxDecoration(border: layout['$selector-second-border']),
+                  BoxDecoration(border: layouts['$selector-second-border']),
             ),
             SizedBox(
               width: width,

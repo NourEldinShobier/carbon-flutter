@@ -34,8 +34,8 @@ class CTile extends StatelessWidget implements CWidget {
 
   @override
   Widget build(BuildContext context) {
-    const colors = cTileG100;
-    const layout = cTileLayout;
+    const colors = CTileStyle.colors;
+    const layouts = CTileStyle.layouts;
 
     var cwidget = '', state = '', selector = '';
 
@@ -47,7 +47,7 @@ class CTile extends StatelessWidget implements CWidget {
       ignoring: !enable,
       child: Container(
         color: colors['$selector-background-color'],
-        padding: layout['tile-padding'],
+        padding: layouts['tile-padding'],
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,

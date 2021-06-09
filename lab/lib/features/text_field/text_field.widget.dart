@@ -85,8 +85,8 @@ class CTextField extends StatefulWidget implements CWidget {
 }
 
 class _CTextFieldState extends State<CTextField> {
-  final layout = cTextFieldLayout;
-  final colors = cTextFieldG100;
+  final layouts = CTextfieldStyle.layouts;
+  final colors = CTextfieldStyle.colors;
 
   var _status = CValidationResultType.primary;
   var _state = CWidgetState.enabled;
@@ -193,8 +193,8 @@ class _CTextFieldState extends State<CTextField> {
               data: widget.label,
               isRequired: widget.isRequired,
               style: TextStyle(
-                fontSize: layout['textfield-label-font-size'],
-                fontFamily: layout['textfield-label-font-family'],
+                fontSize: layouts['textfield-label-font-size'],
+                fontFamily: layouts['textfield-label-font-family'],
                 color: colors['$selector-label-color'],
               ),
             ),
@@ -232,8 +232,8 @@ class _CTextFieldState extends State<CTextField> {
               scrollPhysics: widget.scrollPhysics,
               autofillHints: widget.autofillHints,
               style: TextStyle(
-                fontSize: layout['textfield-text-font-size'],
-                fontFamily: layout['textfield-text-font-family'],
+                fontSize: layouts['textfield-text-font-size'],
+                fontFamily: layouts['textfield-text-font-family'],
                 color: colors['$selector-text-color'],
               ),
               decoration: InputDecoration(
@@ -251,8 +251,8 @@ class _CTextFieldState extends State<CTextField> {
                     colors['textfield-$cformType$state-background-color'],
                 hintText: widget.hint,
                 hintStyle: TextStyle(
-                  fontSize: layout['textfield-hint-font-size'],
-                  fontFamily: layout['textfield-hint-font-family'],
+                  fontSize: layouts['textfield-hint-font-size'],
+                  fontFamily: layouts['textfield-hint-font-family'],
                   color: colors['$selector-hint-color'],
                 ),
                 prefixIconConstraints: BoxConstraints(
@@ -285,9 +285,9 @@ class _CTextFieldState extends State<CTextField> {
                         ),
                         child: widget.suffixIcon,
                       ),
-                border: layout['$selector-border'],
-                enabledBorder: layout['$selector-border'],
-                focusedBorder: layout['$selector-border'],
+                border: layouts['$selector-border'],
+                enabledBorder: layouts['$selector-border'],
+                focusedBorder: layouts['$selector-border'],
               ),
             ),
           ),
@@ -298,8 +298,8 @@ class _CTextFieldState extends State<CTextField> {
                   ? widget.description
                   : _validationResult!.message,
               style: TextStyle(
-                fontSize: layout['textfield-description-font-size'],
-                fontFamily: layout['textfield-description-font-family'],
+                fontSize: layouts['textfield-description-font-size'],
+                fontFamily: layouts['textfield-description-font-family'],
                 color: colors['$selector-description-color'],
               ),
             ),

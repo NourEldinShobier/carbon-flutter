@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lab/shared/index.dart';
 
-const Map<String, dynamic> cTileLayout = {
-  'tile-padding': const EdgeInsets.all(16),
-};
+abstract class CTileStyle {
+  static const Map<String, dynamic> layouts = {
+    'tile-padding': const EdgeInsets.all(16),
+  };
 
-const Map<String, Color> cTileG100 = {
-  'tile-enabled-background-color': CColors.gray90,
-  'tile-enabled-label-color': CColors.gray30,
-  'tile-enabled-title-color': CColors.gray10,
-  'tile-enabled-description-color': CColors.gray30,
-  //
-  'tile-disabled-background-color': CColors.gray90,
-  'tile-disabled-label-color': CColors.gray70,
-  'tile-disabled-title-color': CColors.gray70,
-  'tile-disabled-description-color': CColors.gray70,
-};
+  static const Map<String, Color> colors = {
+    'tile-enabled-background-color': CColors.gray90,
+    'tile-enabled-label-color': CColors.gray30,
+    'tile-enabled-title-color': CColors.gray10,
+    'tile-enabled-description-color': CColors.gray30,
+    //
+    'tile-disabled-background-color': CColors.gray90,
+    'tile-disabled-label-color': CColors.gray70,
+    'tile-disabled-title-color': CColors.gray70,
+    'tile-disabled-description-color': CColors.gray70,
+  };
+}

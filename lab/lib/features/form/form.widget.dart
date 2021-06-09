@@ -47,8 +47,8 @@ class CForm extends StatefulWidget implements CWidget {
 }
 
 class CFormState extends State<CForm> {
-  final layout = cFormLayout;
-  final colors = cFormG100;
+  final layouts = CFormStyle.layouts;
+  final colors = CFormStyle.colors;
 
   var _state = CWidgetState.enabled;
 
@@ -80,7 +80,7 @@ class CFormState extends State<CForm> {
           children: [
             Container(
               color: colors['$selector-background-color'],
-              padding: layout['form-$type-padding'],
+              padding: layouts['form-$type-padding'],
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

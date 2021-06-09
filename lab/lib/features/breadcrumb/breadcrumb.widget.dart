@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lab/shared/index.dart';
 
 import 'breadcrumb.style.dart';
-import 'breadcrumbItem.widget.dart';
+import 'breadcrumb_Item.widget.dart';
 
 class CBreadcrumb extends StatelessWidget {
   const CBreadcrumb({
@@ -25,7 +25,7 @@ class CBreadcrumb extends StatelessWidget {
   /// Divider font size
   final double dividerSize;
 
-  final _colors = cBreadcrumbColors;
+  final _colors = CBreadcrumbStyle.colors;
 
   List<Widget> _displayAllBreadcrumbs() {
     final items = [
@@ -52,10 +52,14 @@ class CBreadcrumb extends StatelessWidget {
     final lastItem = children.removeLast();
     final secondLastItem = children.removeLast();
 
+    // ---
+
     // TODO: activate after adding overflow menu
     final remainingItems = children;
 
     final overflowItem = CBreadcrumbItem(child: Text('...'), onTap: () {});
+
+    // ----
 
     final divider = Text(
       '/',

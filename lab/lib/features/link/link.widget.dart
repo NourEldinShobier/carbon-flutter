@@ -30,7 +30,7 @@ class CLink extends StatefulWidget implements CWidget {
 }
 
 class _CLinkState extends State<CLink> {
-  final colors = cLinkColors;
+  final colors = CLinkStyle.colors;
 
   @override
   Widget build(BuildContext context) {

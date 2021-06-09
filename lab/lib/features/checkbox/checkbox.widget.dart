@@ -31,8 +31,8 @@ class CCheckbox extends StatefulWidget implements CWidget {
 }
 
 class _CCheckboxState extends State<CCheckbox> {
-  final colors = cCheckBoxColors;
-  final layout = cCheckBoxLayout;
+  final colors = CCheckboxStyle.colors;
+  final layouts = CCheckboxStyle.layouts;
 
   var _state = CWidgetState.enabled;
   var _value = false;
@@ -88,8 +88,8 @@ class _CCheckboxState extends State<CCheckbox> {
                 AnimatedContainer(
                   height: 20,
                   width: 20,
-                  duration: layout['checkbox-border-color-animation-duration'],
-                  curve: layout['checkbox-border-color-animation-curve'],
+                  duration: layouts['checkbox-border-color-animation-duration'],
+                  curve: layouts['checkbox-border-color-animation-curve'],
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(
@@ -112,8 +112,8 @@ class _CCheckboxState extends State<CCheckbox> {
                   height: 20,
                   width: 20,
                   alignment: Alignment.center,
-                  duration: layout['checkbox-fill-color-animation-duration'],
-                  curve: layout['checkbox-fill-color-animation-curve'],
+                  duration: layouts['checkbox-fill-color-animation-duration'],
+                  curve: layouts['checkbox-fill-color-animation-curve'],
                   child: CSVGIcon.asset(
                     'assets/svg/checkmark.svg',
                     color: _value

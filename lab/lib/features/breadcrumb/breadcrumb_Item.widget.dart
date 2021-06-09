@@ -24,8 +24,8 @@ class CBreadcrumbItem extends StatefulWidget {
 }
 
 class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
-  final _colors = cBreadcrumbColors;
-  final _layout = cBreadcrumbLayout;
+  final _colors = CBreadcrumbStyle.colors;
+  final _layouts = CBreadcrumbStyle.layouts;
 
   var _state = CWidgetState.enabled;
   var _focused = false;
@@ -54,18 +54,18 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
         decoration: BoxDecoration(
           color: _colors['$selector-background-color'],
           borderRadius: BorderRadius.circular(
-            _layout['breadcrumb-item-border-radius'],
+            _layouts['breadcrumb-item-border-radius'],
           ),
         ),
         margin: EdgeInsets.symmetric(
-          horizontal: _layout['breadcrumb-item-spacing'],
+          horizontal: _layouts['breadcrumb-item-spacing'],
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: _layout['breadcrumb-item-spacing'],
-          vertical: _layout['breadcrumb-item-spacing'],
+          horizontal: _layouts['breadcrumb-item-spacing'],
+          vertical: _layouts['breadcrumb-item-spacing'],
         ),
-        duration: _layout['breadcrumb-animation-duration'],
-        curve: _layout['breadcrumb-animation-curve'],
+        duration: _layouts['breadcrumb-animation-duration'],
+        curve: _layouts['breadcrumb-animation-curve'],
         child: DefaultTextStyle(
           style: TextStyle(
             color: widget.isCurrentPage
