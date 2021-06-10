@@ -2,7 +2,7 @@
 
 Unofficial implementation of Carbon Design System using Flutter framework
 
-![gre](md-assets/9c15d6a61d13788755f1561eb07dc252effdddf8.png)
+![gre](md-assets/cover.png)
 
 ### Finished widgets
 
@@ -26,11 +26,11 @@ Unofficial implementation of Carbon Design System using Flutter framework
 
 ### Form
 
-![rf](md-assets/6722394311907b9425ce843040c7ac9688e24d95.png)
+![rf](md-assets/forms.png)
 
 ### Button
 
-![f](md-assets/92d6e745e7f8b2d8198dd52a57470c51f68c35b7.png)
+![f](md-assets/buttons.png)
 
 
 ### Toggle
