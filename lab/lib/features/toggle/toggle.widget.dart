@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lab/carbon.dart';
+import 'package:lab/features/icon/index.dart';
+import 'package:lab/features/outline/index.dart';
+
 import 'package:lab/shared/index.dart';
 
 import 'toggle.style.dart';
@@ -44,6 +46,7 @@ class _CToggleState extends State<CToggle> {
   final colors = CToggleStyle.colors;
   final layouts = CToggleStyle.layouts;
 
+  var _outlined = false;
   var _state = CWidgetState.enabled;
   var _value = false;
 
@@ -102,37 +105,51 @@ class _CToggleState extends State<CToggle> {
               child: GestureDetector(
                 onTapUp: (_) => setState(() {
                   _value = !_value;
+                  _outlined = !_outlined;
+
+                  Future.delayed(
+                    const Duration(milliseconds: 750),
+                    () => setState(() => _outlined = !_outlined),
+                  );
+
                   widget.onToggle(_value);
                 }),
-                child: AnimatedContainer(
-                  width: size.width,
-                  height: size.height,
-                  alignment:
-                      _value ? Alignment.centerRight : Alignment.centerLeft,
-                  padding: const EdgeInsets.all(3),
-                  duration: layouts['toggle-animation-duration'],
-                  curve: layouts['toggle-animation-curve'],
-                  decoration: BoxDecoration(
-                    color: colors['$selector-$status-fill-color'],
-                    borderRadius: BorderRadius.circular(1000),
-                  ),
+                child: COutlineWidget(
+                  animationDuration: 400,
+                  borderRadius: BorderRadius.circular(1000),
+                  outlineWidth: 2,
+                  outlined: _outlined,
                   child: AnimatedContainer(
-                    height: size.height - 6,
-                    width: size.height - 6,
-                    alignment: Alignment.center,
+                    width: size.width,
+                    height: size.height,
+                    alignment:
+                        _value ? Alignment.centerRight : Alignment.centerLeft,
+                    padding: const EdgeInsets.all(3),
                     duration: layouts['toggle-animation-duration'],
                     curve: layouts['toggle-animation-curve'],
                     decoration: BoxDecoration(
-                      color: colors['$selector-indicator-color'],
+                      color: colors['$selector-$status-fill-color'],
                       borderRadius: BorderRadius.circular(1000),
                     ),
-                    child: widget.size == CWidgetSize.sm
-                        ? CSVGIcon.asset(
-                            'assets/svg/toggle-checkmark.svg',
-                            color: colors['$selector-$status-checkmark-color'],
-                            width: 6,
-                          )
-                        : null,
+                    child: AnimatedContainer(
+                      height: size.height - 6,
+                      width: size.height - 6,
+                      alignment: Alignment.center,
+                      duration: layouts['toggle-animation-duration'],
+                      curve: layouts['toggle-animation-curve'],
+                      decoration: BoxDecoration(
+                        color: colors['$selector-indicator-color'],
+                        borderRadius: BorderRadius.circular(1000),
+                      ),
+                      child: widget.size == CWidgetSize.sm
+                          ? CSVGIcon.asset(
+                              'assets/svg/toggle-checkmark.svg',
+                              color:
+                                  colors['$selector-$status-checkmark-color'],
+                              width: 6,
+                            )
+                          : null,
+                    ),
                   ),
                 ),
               ),
