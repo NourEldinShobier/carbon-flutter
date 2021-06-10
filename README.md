@@ -32,6 +32,11 @@ Unofficial implementation of Carbon Design System using Flutter framework
 
 ![f](md-assets/92d6e745e7f8b2d8198dd52a57470c51f68c35b7.png)
 
+
+### Toggle
+
+![f](md-assets/toggle.png)
+
 # Setup project
 
 Clone the repo:
