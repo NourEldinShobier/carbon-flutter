@@ -88,6 +88,9 @@ class _CTextFieldState extends State<CTextField> {
   final layouts = CTextfieldStyle.layouts;
   final colors = CTextfieldStyle.colors;
 
+  /// styles helpers
+  late String type, state, selector, cformType;
+
   var _status = CValidationResultType.primary;
   var _state = CWidgetState.enabled;
 
@@ -148,10 +151,8 @@ class _CTextFieldState extends State<CTextField> {
     if (_status != st) setState(() => _status = st);
   }
 
-  Widget build(BuildContext context) {
+  void _evaluateStateVariables() {
     final cform = context.cform;
-
-    var cwidget = '', type = '', state = '', selector = '', cformType = '';
 
     /// NOTE: this line doesn't make the widget build twice when [onChange] is
     /// called, because the [validator] calls [setState] when [st != _state].
@@ -172,15 +173,18 @@ class _CTextFieldState extends State<CTextField> {
       _state = CWidgetState.enabled;
     }
 
-    cwidget = 'textfield';
     type = enumToString(_status);
     state = enumToString(_state);
 
-    selector = '$cwidget-$type-$state';
+    selector = 'textfield-$type-$state';
 
     if (cform != null) {
       cformType = cform.widget.type == CFormType.modal ? 'modalform-' : '';
     }
+  }
+
+  Widget build(BuildContext context) {
+    _evaluateStateVariables();
 
     return IgnorePointer(
       ignoring: !widget.enable || widget.readOnly,

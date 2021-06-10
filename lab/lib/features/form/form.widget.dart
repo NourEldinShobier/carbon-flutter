@@ -50,12 +50,12 @@ class CFormState extends State<CForm> {
   final layouts = CFormStyle.layouts;
   final colors = CFormStyle.colors;
 
+  /// styles helpers
+  late String type, state, selector;
+
   var _state = CWidgetState.enabled;
 
-  @override
-  Widget build(BuildContext context) {
-    var cwidget = '', type = '', state = '', selector = '';
-
+  void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
     if (!widget.enable) {
@@ -64,11 +64,15 @@ class CFormState extends State<CForm> {
       _state = CWidgetState.enabled;
     }
 
-    cwidget = 'form';
     type = enumToString(widget.type);
     state = enumToString(_state);
 
-    selector = '$cwidget-$type-$state';
+    selector = 'form-$type-$state';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _evaluateStateVariables();
 
     return IgnorePointer(
       ignoring: !widget.enable,

@@ -34,6 +34,9 @@ class _CCheckboxState extends State<CCheckbox> {
   final colors = CCheckboxStyle.colors;
   final layouts = CCheckboxStyle.layouts;
 
+  /// styles helpers
+  late String state, selector;
+
   var _state = CWidgetState.enabled;
   var _value = false;
   var _focused = false;
@@ -50,10 +53,7 @@ class _CCheckboxState extends State<CCheckbox> {
     super.didChangeDependencies();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    var cwidget = '', state = '', selector = '';
-
+  void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
     if (!widget.enable) {
@@ -64,9 +64,13 @@ class _CCheckboxState extends State<CCheckbox> {
       _state = CWidgetState.enabled;
     }
 
-    cwidget = 'checkbox';
     state = enumToString(_state);
-    selector = '$cwidget-$state';
+    selector = 'checkbox-$state';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _evaluateStateVariables();
 
     return IgnorePointer(
       ignoring: !widget.enable,

@@ -32,10 +32,11 @@ class CLink extends StatefulWidget implements CWidget {
 class _CLinkState extends State<CLink> {
   final colors = CLinkStyle.colors;
 
-  @override
-  Widget build(BuildContext context) {
+  /// styles helpers
+  late String state, selector;
+
+  void _evaluateStateVariables() {
     var _state = CWidgetState.enabled;
-    var cwidget = '', state = '', selector = '';
 
     // determine the [_state] of the widget.
 
@@ -45,10 +46,14 @@ class _CLinkState extends State<CLink> {
       _state = CWidgetState.enabled;
     }
 
-    cwidget = 'link';
     state = enumToString(_state);
 
-    selector = '$cwidget-$state';
+    selector = 'link-$state';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _evaluateStateVariables();
 
     return IgnorePointer(
       ignoring: !widget.enable,

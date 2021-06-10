@@ -46,6 +46,11 @@ class _CToggleState extends State<CToggle> {
   final colors = CToggleStyle.colors;
   final layouts = CToggleStyle.layouts;
 
+  /// styles helpers
+  late String state, status, selector;
+
+  late Size _size;
+
   var _outlined = false;
   var _state = CWidgetState.enabled;
   var _value = false;
@@ -53,20 +58,21 @@ class _CToggleState extends State<CToggle> {
   @override
   void initState() {
     _value = widget.value;
+
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
+    final widgetSize = enumToString(widget.size);
+
     _value = widget.value;
+    _size = layouts['toggle-$widgetSize-size'];
+
     super.didChangeDependencies();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final Size size = layouts['toggle-${enumToString(widget.size)}-size'];
-    var state = '', status = '', selector = '';
-
+  void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
     if (!widget.enable) {
@@ -78,6 +84,11 @@ class _CToggleState extends State<CToggle> {
     status = _value ? 'checked' : 'unchecked';
     state = enumToString(_state);
     selector = 'toggle-$state';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _evaluateStateVariables();
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -120,8 +131,8 @@ class _CToggleState extends State<CToggle> {
                   outlineWidth: 2,
                   outlined: _outlined,
                   child: AnimatedContainer(
-                    width: size.width,
-                    height: size.height,
+                    width: _size.width,
+                    height: _size.height,
                     alignment:
                         _value ? Alignment.centerRight : Alignment.centerLeft,
                     padding: const EdgeInsets.all(3),
@@ -132,8 +143,8 @@ class _CToggleState extends State<CToggle> {
                       borderRadius: BorderRadius.circular(1000),
                     ),
                     child: AnimatedContainer(
-                      height: size.height - 6,
-                      width: size.height - 6,
+                      height: _size.height - 6,
+                      width: _size.height - 6,
                       alignment: Alignment.center,
                       duration: layouts['toggle-animation-duration'],
                       curve: layouts['toggle-animation-curve'],

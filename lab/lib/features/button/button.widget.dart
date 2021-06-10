@@ -47,10 +47,13 @@ class _CButtonState extends State<CButton> {
   final colors = CButtonStyle.colors;
   final layouts = CButtonStyle.layouts;
 
+  /// styles helpers
+  late String type, state, selector;
+
   var _state = CWidgetState.enabled;
   var _focused = false;
 
-  double? calculateWidth() {
+  double? _calculateWidth() {
     if (widget.hasIconOnly) {
       return widget.height;
     }
@@ -58,12 +61,7 @@ class _CButtonState extends State<CButton> {
     return widget.fluid ? null : widget.width;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    final width = calculateWidth();
-
-    var cwidget = '', type = '', state = '', selector = '';
-
+  void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
     if (!widget.enable) {
@@ -74,11 +72,17 @@ class _CButtonState extends State<CButton> {
       _state = CWidgetState.enabled;
     }
 
-    cwidget = 'button';
     type = enumToString(widget.type);
     state = enumToString(_state);
 
-    selector = '$cwidget-$type-$state';
+    selector = 'button-$type-$state';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    _evaluateStateVariables();
+
+    final width = _calculateWidth();
 
     return IgnorePointer(
       ignoring: !widget.enable,

@@ -37,11 +37,10 @@ class CTile extends StatelessWidget implements CWidget {
     const colors = CTileStyle.colors;
     const layouts = CTileStyle.layouts;
 
-    var cwidget = '', state = '', selector = '';
+    var state = '', selector = '';
 
-    cwidget = 'tile';
     state = enable ? 'enabled' : 'disabled';
-    selector = '$cwidget-$state';
+    selector = 'tile-$state';
 
     return IgnorePointer(
       ignoring: !enable,
