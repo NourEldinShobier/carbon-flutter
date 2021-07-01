@@ -10,5 +10,6 @@ export 'carbon_app/index.dart';
 export 'breadcrumb/index.dart';
 export 'toggle/index.dart';
 export 'outline/index.dart';
+export 'notification/index.dart';
 
 export 'icon/index.dart';

@@ -27,6 +27,7 @@ flutter:
   assets:
     - assets/
     - assets/svg/
+    - assets/svg/notification/
 
   fonts:
     - family: IBMPlexSans-Light

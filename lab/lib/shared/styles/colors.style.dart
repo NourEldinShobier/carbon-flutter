@@ -1,6 +1,9 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 abstract class CColors {
+  static const transparent = Colors.transparent;
   static const white0 = Color(0xffffffff);
   static const black100 = Color(0xff000000);
   static const blue10 = Color(0xffedf5ff);
