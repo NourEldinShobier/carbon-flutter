@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lab/carbon.dart';
 import 'package:lab/features/notification/notification.enum.dart';
 
-class NotificationExample extends StatelessWidget {
-  const NotificationExample({Key? key}) : super(key: key);
+class CNotificationExample extends StatelessWidget {
+  const CNotificationExample({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -224,17 +224,6 @@ class NotificationExample extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _ToastNotification extends StatelessWidget {
-  const _ToastNotification({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: null,
     );
   }
 }
