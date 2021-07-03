@@ -24,6 +24,9 @@ Unofficial implementation of Carbon Design System using Flutter framework
 
 - [x] Notification
 
+- [x] Tile
+
+
 # Screenshots
 
 ### Textfield
@@ -49,20 +52,19 @@ Unofficial implementation of Carbon Design System using Flutter framework
 
 # Setup project
 
-Clone the repo:
+1. clone the repo, in the same directory of your project. Example:
 
-```shell
-git clone https://github.com/NourEldinShobier/carbon-flutter
+```
+carbon --> (the cloned repo)
+your_project
 ```
 
-Change directory to lab:
+2. import the repo (package) locally into your project:
 
-```shell
-cd lab
+```
+dependencies:
+  carbon:
+    path: ../carbon
 ```
 
-Get flutter dependencies
-
-```shell
-flutter pub get
-```
+3. Everytime there is an update, all you need is to pull it

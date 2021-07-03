@@ -4,12 +4,13 @@ version: 0.0.1
 homepage: https://github.com/NourEldinShobier/carbon-flutter
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
 
 dependencies:
-  flutter_svg: ^0.19.0
-  stylex: ^1.1.0
-  pmvvm: ^0.4.0
+  vector_math: ^2.1.0
+  flutter_svg: ^0.22.0
+  pmvvm: ^2.2.0
   flutter:
     sdk: flutter
 
@@ -17,12 +18,16 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
 
+# The following section is specific to Flutter.
 flutter:
 
   assets:
     - assets/
     - assets/svg/
+    - assets/svg/notification/
 
   fonts:
     - family: IBMPlexSans-Light
