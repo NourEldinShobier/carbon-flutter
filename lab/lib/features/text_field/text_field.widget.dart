@@ -75,7 +75,7 @@ class CTextField extends StatefulWidget implements CWidget {
   final void Function()? onEditingComplete;
   final void Function(String)? onChanged;
   final void Function(String)? onSubmitted;
-  final CValidationResult Function(String? value)? validator;
+  final CValidationResult? Function(String? value)? validator;
 
   @override
   bool get enable => _enable;
@@ -91,13 +91,13 @@ class _CTextFieldState extends State<CTextField> {
   /// styles helpers
   late String type, state, selector, cformType;
 
-  var _status = CValidationResultType.primary;
   var _state = CWidgetState.enabled;
 
   var _focused = false;
 
   late FocusNode _focusNode;
   CValidationResult? _validationResult;
+  CValidationResultType? _status;
   String? _value;
 
   void focusNodeListener() {
@@ -132,12 +132,11 @@ class _CTextFieldState extends State<CTextField> {
   /// validator is responsible for determining the [_status] of the widget.
 
   void validator(String? text) {
-    var st = CValidationResultType.primary;
+    CValidationResultType? st;
     _validationResult = widget.validator!(text);
 
-    if (_validationResult == null ||
-        _validationResult!.type == CValidationResultType.primary) {
-      st = CValidationResultType.primary;
+    if (_validationResult == null) {
+      st = null;
     } else {
       if (_validationResult!.type == CValidationResultType.success) {
         st = CValidationResultType.success;
@@ -173,13 +172,15 @@ class _CTextFieldState extends State<CTextField> {
       _state = CWidgetState.enabled;
     }
 
-    type = enumToString(_status);
+    type = enumToString(_status ?? 'primary');
     state = enumToString(_state);
 
     selector = 'textfield-$type-$state';
 
     if (cform != null) {
       cformType = cform.widget.type == CFormType.modal ? 'modalform-' : '';
+    } else {
+      cformType = '';
     }
   }
 
@@ -224,7 +225,7 @@ class _CTextFieldState extends State<CTextField> {
               onChanged: (String value) {
                 _value = value;
                 if (widget.validator != null) validator(value);
-                widget.onChanged!(value);
+                widget.onChanged?.call(value);
               },
               onEditingComplete: widget.onEditingComplete,
               onSubmitted: widget.onSubmitted,
@@ -251,8 +252,7 @@ class _CTextFieldState extends State<CTextField> {
                           : 15
                       : 15,
                 ),
-                fillColor:
-                    colors['textfield-$cformType$state-background-color'],
+                fillColor: colors['textfield-$cformType$state-background-color'],
                 hintText: widget.hint,
                 hintStyle: TextStyle(
                   fontSize: layouts['textfield-hint-font-size'],
@@ -298,9 +298,7 @@ class _CTextFieldState extends State<CTextField> {
           if (widget.description != null) ...[
             const SizedBox(height: 8),
             CText(
-              data: _validationResult == null
-                  ? widget.description
-                  : _validationResult!.message,
+              data: _validationResult == null ? widget.description : _validationResult!.message,
               style: TextStyle(
                 fontSize: layouts['textfield-description-font-size'],
                 fontFamily: layouts['textfield-description-font-family'],

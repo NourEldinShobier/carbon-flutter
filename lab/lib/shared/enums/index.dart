@@ -8,4 +8,4 @@ enum CPositioning { left, right, none }
 
 enum CVerticalPositioning { top, bottom }
 
-enum CValidationResultType { primary, success, warning, error }
+enum CValidationResultType { success, warning, error }
