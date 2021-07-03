@@ -42,7 +42,7 @@ class CForm extends StatefulWidget implements CWidget {
   CFormState createState() => CFormState();
 
   static CFormState? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<_InteritedCForm>()!.state;
+    return context.dependOnInheritedWidgetOfExactType<_InteritedCForm>()?.state;
   }
 }
 
@@ -133,8 +133,7 @@ class CFormState extends State<CForm> {
 }
 
 class _InteritedCForm extends InheritedWidget {
-  const _InteritedCForm({Key? key, this.state, required Widget child})
-      : super(key: key, child: child);
+  const _InteritedCForm({Key? key, this.state, required Widget child}) : super(key: key, child: child);
 
   final CFormState? state;
 
