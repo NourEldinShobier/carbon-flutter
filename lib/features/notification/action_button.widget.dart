@@ -28,36 +28,38 @@ class _CNotificationActionButtonState extends State<CNotificationActionButton> {
   final _colors = CNotificationActionButtonStyle.colors;
   final _layouts = CNotificationActionButtonStyle.layouts;
 
-  var _state = CWidgetState.enabled;
+  /// styles helpers
+  String _cwidget = 'action-button';
+  String _state = enumToString(CWidgetState.enabled);
+  String _contrast = '';
+
+  void _evaluateStateVariables() {
+    _contrast = context.fetch<String>();
+  }
 
   @override
   Widget build(BuildContext context) {
-    /// styles helpers
-    late String cwidget, state, contrast;
-
-    cwidget = 'action-button';
-    contrast = context.fetch<String>();
-    state = enumToString(_state);
+    _evaluateStateVariables();
 
     return GestureDetector(
       onTap: widget.onTap,
-      onTapDown: (_) => setState(() => _state = CWidgetState.focus),
-      onTapUp: (_) => setState(() => _state = CWidgetState.enabled),
-      onTapCancel: () => setState(() => _state = CWidgetState.enabled),
+      onTapDown: (_) => setState(() => _state = enumToString(CWidgetState.focus)),
+      onTapUp: (_) => setState(() => _state = enumToString(CWidgetState.enabled)),
+      onTapCancel: () => setState(() => _state = enumToString(CWidgetState.enabled)),
       child: DefaultTextStyle(
         style: TextStyle(
-          color: _colors['$cwidget-$contrast-text-color'],
+          color: _colors['$_cwidget-$_contrast-text-color'],
           fontFamily: CFonts.primaryRegular,
         ),
         child: AnimatedContainer(
-          duration: _layouts['$cwidget-background-color-animation-duration'],
-          curve: _layouts['$cwidget-background-color-animation-curve'],
+          duration: _layouts['$_cwidget-background-color-animation-duration'],
+          curve: _layouts['$_cwidget-background-color-animation-curve'],
           height: widget.height,
           width: widget.width,
           alignment: Alignment.center,
           padding: widget.padding,
           decoration: BoxDecoration(
-            color: _colors['$cwidget-$state-$contrast-background-color'],
+            color: _colors['$_cwidget-$_state-$_contrast-background-color'],
           ),
           child: widget.child,
         ),

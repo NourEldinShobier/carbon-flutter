@@ -43,17 +43,18 @@ class CToggle extends StatefulWidget implements CWidget {
 }
 
 class _CToggleState extends State<CToggle> {
-  final colors = CToggleStyle.colors;
-  final layouts = CToggleStyle.layouts;
+  final _colors = CToggleStyle.colors;
+  final _layouts = CToggleStyle.layouts;
 
   /// styles helpers
-  late String state, status, selector;
+  String _cwidget = 'toggle';
+  String _state = enumToString(CWidgetState.enabled);
+  String _status = '';
+
+  bool _outlined = false;
+  bool _value = false;
 
   late Size _size;
-
-  var _outlined = false;
-  var _state = CWidgetState.enabled;
-  var _value = false;
 
   @override
   void initState() {
@@ -67,7 +68,7 @@ class _CToggleState extends State<CToggle> {
     final widgetSize = enumToString(widget.size);
 
     _value = widget.value;
-    _size = layouts['toggle-$widgetSize-size'];
+    _size = _layouts['toggle-$widgetSize-size'];
 
     super.didChangeDependencies();
   }
@@ -76,14 +77,12 @@ class _CToggleState extends State<CToggle> {
     /// determine the [_state] of the widget.
 
     if (!widget.enable) {
-      _state = CWidgetState.disabled;
+      _state = enumToString(CWidgetState.disabled);
     } else {
-      _state = CWidgetState.enabled;
+      _state = enumToString(CWidgetState.enabled);
     }
 
-    status = _value ? 'checked' : 'unchecked';
-    state = enumToString(_state);
-    selector = 'toggle-$state';
+    _status = _value ? 'checked' : 'unchecked';
   }
 
   @override
@@ -101,7 +100,7 @@ class _CToggleState extends State<CToggle> {
             style: TextStyle(
               fontSize: 12,
               fontFamily: CFonts.primaryRegular,
-              color: colors['$selector-label-color'],
+              color: _colors['$_cwidget-$_state-label-color'],
             ),
           ),
           const SizedBox(height: 16),
@@ -135,26 +134,26 @@ class _CToggleState extends State<CToggle> {
                     height: _size.height,
                     alignment: _value ? Alignment.centerRight : Alignment.centerLeft,
                     padding: const EdgeInsets.all(3),
-                    duration: layouts['toggle-animation-duration'],
-                    curve: layouts['toggle-animation-curve'],
+                    duration: _layouts['$_cwidget-animation-duration'],
+                    curve: _layouts['$_cwidget-animation-curve'],
                     decoration: BoxDecoration(
-                      color: colors['$selector-$status-fill-color'],
+                      color: _colors['$_cwidget-$_state-$_status-fill-color'],
                       borderRadius: BorderRadius.circular(1000),
                     ),
                     child: AnimatedContainer(
                       height: _size.height - 6,
                       width: _size.height - 6,
                       alignment: Alignment.center,
-                      duration: layouts['toggle-animation-duration'],
-                      curve: layouts['toggle-animation-curve'],
+                      duration: _layouts['$_cwidget-animation-duration'],
+                      curve: _layouts['$_cwidget-animation-curve'],
                       decoration: BoxDecoration(
-                        color: colors['$selector-indicator-color'],
+                        color: _colors['$_cwidget-$_state-indicator-color'],
                         borderRadius: BorderRadius.circular(1000),
                       ),
                       child: widget.size == CWidgetSize.sm
                           ? CSVGIcon.asset(
                               'assets/svg/toggle-checkmark.svg',
-                              color: colors['$selector-$status-checkmark-color'],
+                              color: _colors['$_cwidget-$_state-$_status-checkmark-color'],
                               width: 6,
                             )
                           : null,
@@ -170,7 +169,7 @@ class _CToggleState extends State<CToggle> {
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: CFonts.primaryRegular,
-                  color: colors['$selector-label-color'],
+                  color: _colors['$_cwidget-$_state-label-color'],
                 ),
               ),
             ]

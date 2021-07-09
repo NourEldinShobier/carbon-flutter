@@ -32,21 +32,20 @@ class CTile extends StatelessWidget implements CWidget {
   @override
   bool get enable => _enable;
 
+  final _colors = CTileStyle.colors;
+  final _layouts = CTileStyle.layouts;
+
   @override
   Widget build(BuildContext context) {
-    const colors = CTileStyle.colors;
-    const layouts = CTileStyle.layouts;
-
-    var state = '', selector = '';
-
-    state = enable ? 'enabled' : 'disabled';
-    selector = 'tile-$state';
+    /// styles helpers
+    String cwidget = 'tile';
+    String state = enable ? 'enabled' : 'disabled';
 
     return IgnorePointer(
       ignoring: !enable,
       child: Container(
-        color: colors['$selector-background-color'],
-        padding: layouts['tile-padding'],
+        color: _colors['$cwidget-$state-background-color'],
+        padding: _layouts['$cwidget-padding'],
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -57,7 +56,7 @@ class CTile extends StatelessWidget implements CWidget {
                 data: label,
                 style: TextStyle(
                   fontSize: labelSize,
-                  color: colors['$selector-label-color'],
+                  color: _colors['$cwidget-$state-label-color'],
                 ),
               ),
               const SizedBox(height: 4),
@@ -68,7 +67,7 @@ class CTile extends StatelessWidget implements CWidget {
                 data: title,
                 style: TextStyle(
                   fontSize: titleSize,
-                  color: colors['$selector-title-color'],
+                  color: _colors['$cwidget-$state-title-color'],
                 ),
               ),
               if (description != null) const SizedBox(height: 11) else const SizedBox(height: 16),
@@ -78,7 +77,7 @@ class CTile extends StatelessWidget implements CWidget {
                 data: description,
                 style: TextStyle(
                   fontSize: descriptionSize,
-                  color: colors['$selector-description-color'],
+                  color: _colors['$cwidget-$state-description-color'],
                 ),
               ),
               const SizedBox(height: 20),

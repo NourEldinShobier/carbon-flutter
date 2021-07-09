@@ -27,23 +27,25 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
   final _colors = CBreadcrumbStyle.colors;
   final _layouts = CBreadcrumbStyle.layouts;
 
-  var _state = CWidgetState.enabled;
-  var _focused = false;
+  /// styles helpers
+  String _cwidget = 'breadcrumb-item';
+  String _state = enumToString(CWidgetState.enabled);
 
-  @override
-  Widget build(BuildContext context) {
-    var state = '', selector = '';
+  bool _focused = false;
 
+  void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
     if (_focused) {
-      _state = CWidgetState.focus;
+      _state = enumToString(CWidgetState.focus);
     } else {
-      _state = CWidgetState.enabled;
+      _state = enumToString(CWidgetState.enabled);
     }
+  }
 
-    state = enumToString(_state);
-    selector = 'breadcrumb-item-$state';
+  @override
+  Widget build(BuildContext context) {
+    _evaluateStateVariables();
 
     return GestureDetector(
       onTap: widget.onTap,
@@ -52,23 +54,23 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
       onTapCancel: () => setState(() => _focused = false),
       child: AnimatedContainer(
         decoration: BoxDecoration(
-          color: _colors['$selector-background-color'],
+          color: _colors['$_cwidget-$_state-background-color'],
           borderRadius: BorderRadius.circular(
-            _layouts['breadcrumb-item-border-radius'],
+            _layouts['$_cwidget-border-radius'],
           ),
         ),
         margin: EdgeInsets.symmetric(
-          horizontal: _layouts['breadcrumb-item-spacing'],
+          horizontal: _layouts['$_cwidget-spacing'],
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: _layouts['breadcrumb-item-spacing'],
-          vertical: _layouts['breadcrumb-item-spacing'],
+          horizontal: _layouts['$_cwidget-spacing'],
+          vertical: _layouts['$_cwidget-spacing'],
         ),
-        duration: _layouts['breadcrumb-animation-duration'],
-        curve: _layouts['breadcrumb-animation-curve'],
+        duration: _layouts['$_cwidget-animation-duration'],
+        curve: _layouts['$_cwidget-animation-curve'],
         child: DefaultTextStyle(
           style: TextStyle(
-            color: widget.isCurrentPage ? _colors['breadcrumb-item-current-color'] : _colors['breadcrumb-item-color'],
+            color: widget.isCurrentPage ? _colors['$_cwidget-current-color'] : _colors['$_cwidget-color'],
           ),
           child: widget.child,
         ),

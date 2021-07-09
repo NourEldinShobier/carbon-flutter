@@ -97,12 +97,9 @@ class CNotification extends StatelessWidget {
 
   Widget _buildInlineNotification() {
     /// styles helpers
-    late String cwidget, notificationKind, contrast;
-
-    cwidget = 'notification';
-
-    notificationKind = enumToString(kind);
-    contrast = lowContrast ? 'lowcontrast' : 'highcontrast';
+    String cwidget = 'notification';
+    String notificationKind = enumToString(kind);
+    String contrast = lowContrast ? 'lowcontrast' : 'highcontrast';
 
     if (timeout != null) _startTimer();
 
@@ -209,12 +206,9 @@ class CNotification extends StatelessWidget {
 
   Widget _buildToastNotification() {
     /// styles helpers
-    late String cwidget, notificationKind, contrast;
-
-    cwidget = 'notification';
-
-    notificationKind = enumToString(kind);
-    contrast = lowContrast ? 'lowcontrast' : 'highcontrast';
+    String cwidget = 'notification';
+    String notificationKind = enumToString(kind);
+    String contrast = lowContrast ? 'lowcontrast' : 'highcontrast';
 
     if (timeout != null) _startTimer();
 

@@ -30,25 +30,20 @@ class CLink extends StatefulWidget implements CWidget {
 }
 
 class _CLinkState extends State<CLink> {
-  final colors = CLinkStyle.colors;
+  final _colors = CLinkStyle.colors;
 
   /// styles helpers
-  late String state, selector;
+  String _cwidget = 'link';
+  String _state = enumToString(CWidgetState.enabled);
 
   void _evaluateStateVariables() {
-    var _state = CWidgetState.enabled;
-
     // determine the [_state] of the widget.
 
     if (!widget.enable) {
-      _state = CWidgetState.disabled;
+      _state = enumToString(CWidgetState.disabled);
     } else {
-      _state = CWidgetState.enabled;
+      _state = enumToString(CWidgetState.enabled);
     }
-
-    state = enumToString(_state);
-
-    selector = 'link-$state';
   }
 
   @override
@@ -62,7 +57,7 @@ class _CLinkState extends State<CLink> {
         child: CText(
           data: widget.caption ?? widget.url,
           style: TextStyle(
-            color: colors['$selector-text-color'],
+            color: _colors['$_cwidget-$_state-text-color'],
             fontSize: widget.fontSize,
           ),
         ),
