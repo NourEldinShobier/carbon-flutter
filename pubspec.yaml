@@ -48,21 +48,6 @@ flutter:
 
     # icons
 
-    - family: CIcons16
+    - family: CIcons
       fonts:
-        - asset: assets/carbon_icons/icons16.ttf
-    - family: CIcons20
-      fonts:
-        - asset: assets/carbon_icons/icons20.ttf
-    - family: CIcons24
-      fonts:
-        - asset: assets/carbon_icons/icons24.ttf
-    - family: CIcons32
-      fonts:
-        - asset: assets/carbon_icons/icons32.ttf
-    - family: CIconsWatsonHealth32
-      fonts:
-        - asset: assets/carbon_icons/icons32_watson_health.ttf
-    - family: CIconsQ32
-      fonts:
-        - asset: assets/carbon_icons/icons32_q.ttf
+        - asset: assets/carbon_icons/icons.ttf
