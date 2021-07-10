@@ -6,6 +6,9 @@ import 'package:carbon/shared/index.dart';
 
 import 'toggle.style.dart';
 
+/// A toggle is used to quickly switch between two possible states.
+///
+/// They are commonly used for “on/off” switches.
 class CToggle extends StatefulWidget implements CWidget {
   CToggle({
     Key? key,
@@ -18,19 +21,22 @@ class CToggle extends StatefulWidget implements CWidget {
   })  : _enable = enable,
         super(key: key);
 
-  /// Initial toggle value
+  /// Whether the toggle is checked or not. Default is [true]
   final bool value;
 
-  /// Toggle label
+  /// The `labelText` of this toggle
   final String? labelText;
 
-  /// Set toggle size: md | sm
+  /// The `size` of this toggle. It can only be `md` or `sm`
   final CWidgetSize size;
 
-  /// A callback when toggle value change
+  /// Called when the value of the toggle change.
+  ///
+  /// This callback passes a new value, but doesn't update its state
+  /// internally.
   final void Function(bool value) onToggle;
 
-  /// [true] if you want to display toggle status: On | Off
+  /// Whether the toggle should display its status (`On` | `Off`) or not
   final bool showStatusLabel;
 
   final bool _enable;
