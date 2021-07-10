@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/outline/index.dart';
+import 'package:carbon/features/enable/index.dart';
 
 import 'package:carbon/shared/index.dart';
 
@@ -12,14 +13,13 @@ import 'toggle.style.dart';
 class CToggle extends StatefulWidget implements CWidget {
   CToggle({
     Key? key,
-    bool enable = true,
+    this.enable = true,
     this.value = true,
     this.showStatusLabel = true,
     this.labelText,
     this.size = CWidgetSize.md,
     required this.onToggle,
-  })  : _enable = enable,
-        super(key: key);
+  }) : super(key: key);
 
   /// Whether the toggle is checked or not. Default is [true]
   final bool value;
@@ -39,10 +39,8 @@ class CToggle extends StatefulWidget implements CWidget {
   /// Whether the toggle should display its status (`On` | `Off`) or not
   final bool showStatusLabel;
 
-  final bool _enable;
-
-  @override
-  bool get enable => _enable;
+  /// Whether the toggle is enabled or not
+  final bool enable;
 
   @override
   _CToggleState createState() => _CToggleState();
@@ -79,10 +77,14 @@ class _CToggleState extends State<CToggle> {
     super.didChangeDependencies();
   }
 
+  bool get _enable {
+    return context.inheritedEnable ? widget.enable : false;
+  }
+
   void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
-    if (!widget.enable) {
+    if (!_enable) {
       _state = enumToString(CWidgetState.disabled);
     } else {
       _state = enumToString(CWidgetState.enabled);
@@ -117,7 +119,7 @@ class _CToggleState extends State<CToggle> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IgnorePointer(
-              ignoring: !widget.enable,
+              ignoring: !_enable,
               child: GestureDetector(
                 onTapUp: (_) => setState(() {
                   _value = !_value;
