@@ -24,6 +24,7 @@ class CSVGIcon extends StatelessWidget implements CWidget {
           height: height,
           width: width,
           color: enable ? color : disableColor,
+          package: 'carbon',
         ),
         _enable = enable,
         super(key: key);
