@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'enable.extension.dart';
+
 class CEnable extends StatelessWidget {
   const CEnable({
     Key? key,
@@ -14,10 +16,14 @@ class CEnable extends StatelessWidget {
     return context.dependOnInheritedWidgetOfExactType<_InheritedCEnable>()?.value;
   }
 
+  bool _isEnabled(BuildContext context) {
+    return context.inheritedEnable ? value : false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return _InheritedCEnable(
-      value: value,
+      value: _isEnabled(context),
       child: child,
     );
   }

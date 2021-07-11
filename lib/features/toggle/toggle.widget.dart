@@ -77,14 +77,14 @@ class _CToggleState extends State<CToggle> {
     super.didChangeDependencies();
   }
 
-  bool get _enable {
+  bool _isEnabled() {
     return context.inheritedEnable ? widget.enable : false;
   }
 
   void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
-    if (!_enable) {
+    if (!_isEnabled()) {
       _state = enumToString(CWidgetState.disabled);
     } else {
       _state = enumToString(CWidgetState.enabled);
@@ -119,7 +119,7 @@ class _CToggleState extends State<CToggle> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IgnorePointer(
-              ignoring: !_enable,
+              ignoring: !_isEnabled(),
               child: GestureDetector(
                 onTapUp: (_) => setState(() {
                   _value = !_value;
