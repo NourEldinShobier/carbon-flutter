@@ -31,6 +31,12 @@ flutter:
     - assets/svg/notification/
 
   fonts:
+    - family: IBMPlexSans-Thin
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-Thin.ttf
+    - family: IBMPlexSans-ExtraLight
+      fonts:
+        - asset: assets/fonts/IBMPlexSans-ExtraLight.ttf
     - family: IBMPlexSans-Light
       fonts:
         - asset: assets/fonts/IBMPlexSans-Light.ttf
