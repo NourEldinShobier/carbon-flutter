@@ -1,3 +1,4 @@
+import 'package:carbon/features/text/index.dart';
 import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 
@@ -35,7 +36,7 @@ class CBreadcrumb extends StatelessWidget {
           '/',
           style: TextStyle(
             color: _colors['breadcrumb-slash-color'],
-            fontFamily: CFonts.primaryRegular,
+            fontWeight: FontWeight.w400,
             fontSize: dividerSize,
           ),
         ),
@@ -57,12 +58,12 @@ class CBreadcrumb extends StatelessWidget {
     // TODO: activate after adding overflow menu
     final remainingItems = children;
 
-    final overflowItem = CBreadcrumbItem(child: Text('...'), onTap: () {});
+    final overflowItem = CBreadcrumbItem(child: CText(data: '...'), onTap: () {});
 
     // ----
 
-    final divider = Text(
-      '/',
+    final divider = CText(
+      data: '/',
       style: TextStyle(
         color: _colors['breadcrumb-slash-color'],
         fontFamily: CFonts.primaryRegular,

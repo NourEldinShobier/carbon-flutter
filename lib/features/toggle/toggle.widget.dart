@@ -1,3 +1,4 @@
+import 'package:carbon/features/text/index.dart';
 import 'package:flutter/material.dart';
 import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/outline/index.dart';
@@ -21,7 +22,7 @@ class CToggle extends StatefulWidget implements CWidget {
     required this.onToggle,
   }) : super(key: key);
 
-  /// Whether the toggle is checked or not. Default is [true]
+  /// Whether the toggle is checked or not. Default is `true`
   final bool value;
 
   /// The `labelText` of this toggle
@@ -103,8 +104,8 @@ class _CToggleState extends State<CToggle> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.labelText != null) ...[
-          Text(
-            widget.labelText!,
+          CText(
+            data: widget.labelText!,
             style: TextStyle(
               fontSize: 12,
               fontFamily: CFonts.primaryRegular,
@@ -172,8 +173,8 @@ class _CToggleState extends State<CToggle> {
             ),
             if (widget.showStatusLabel) ...[
               const SizedBox(width: 8),
-              Text(
-                _value ? 'On' : 'Off',
+              CText(
+                data: _value ? 'On' : 'Off',
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: CFonts.primaryRegular,

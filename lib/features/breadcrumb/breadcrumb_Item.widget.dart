@@ -66,8 +66,8 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
           horizontal: _layouts['$_cwidget-spacing'],
           vertical: _layouts['$_cwidget-spacing'],
         ),
-        duration: _layouts['$_cwidget-animation-duration'],
-        curve: _layouts['$_cwidget-animation-curve'],
+        duration: _layouts['breadcrumb-animation-duration'],
+        curve: _layouts['breadcrumb-animation-curve'],
         child: DefaultTextStyle(
           style: TextStyle(
             color: widget.isCurrentPage ? _colors['$_cwidget-current-color'] : _colors['$_cwidget-color'],

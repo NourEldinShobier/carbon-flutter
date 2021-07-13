@@ -154,6 +154,7 @@ class CNotification extends StatelessWidget {
                       style: TextStyle(
                         color: _colors['$cwidget-$contrast-text-color'],
                         fontFamily: CFonts.primarySemibold,
+                        package: 'carbon',
                       ),
                       child: title,
                     ),
@@ -162,6 +163,7 @@ class CNotification extends StatelessWidget {
                       style: TextStyle(
                         color: _colors['$cwidget-$contrast-text-color'],
                         fontFamily: CFonts.primaryRegular,
+                        package: 'carbon',
                       ),
                       child: subtitle,
                     ),
@@ -250,6 +252,7 @@ class CNotification extends StatelessWidget {
                         style: TextStyle(
                           color: _colors['$cwidget-$contrast-text-color'],
                           fontFamily: CFonts.primarySemibold,
+                          package: 'carbon',
                         ),
                         child: title,
                       ),
@@ -259,6 +262,7 @@ class CNotification extends StatelessWidget {
                         style: TextStyle(
                           color: _colors['$cwidget-$contrast-text-color'],
                           fontFamily: CFonts.primaryRegular,
+                          package: 'carbon',
                         ),
                         child: subtitle,
                       ),
@@ -269,6 +273,7 @@ class CNotification extends StatelessWidget {
                         style: TextStyle(
                           color: _colors['$cwidget-$contrast-text-color'],
                           fontFamily: CFonts.primaryRegular,
+                          package: 'carbon',
                         ),
                         child: caption!,
                       ),

@@ -50,6 +50,7 @@ class _CNotificationActionButtonState extends State<CNotificationActionButton> {
         style: TextStyle(
           color: _colors['$_cwidget-$_contrast-text-color'],
           fontFamily: CFonts.primaryRegular,
+          package: 'carbon',
         ),
         child: AnimatedContainer(
           duration: _layouts['$_cwidget-background-color-animation-duration'],

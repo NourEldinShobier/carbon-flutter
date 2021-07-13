@@ -14,10 +14,9 @@ class CToggleExamplePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              'Large Toggles',
+            CText(
+              data: 'Large Toggles',
               style: TextStyle(
-                fontFamily: CFonts.primaryLight,
                 color: CColors.gray10,
                 fontSize: 32,
               ),
@@ -25,10 +24,9 @@ class CToggleExamplePage extends StatelessWidget {
             const SizedBox(height: 24),
             _LargeToggles(),
             const SizedBox(height: 24),
-            Text(
-              'Small Toggles',
+            CText(
+              data: 'Small Toggles',
               style: TextStyle(
-                fontFamily: CFonts.primaryLight,
                 color: CColors.gray10,
                 fontSize: 32,
               ),
@@ -36,10 +34,9 @@ class CToggleExamplePage extends StatelessWidget {
             const SizedBox(height: 24),
             _SmallToggles(),
             const SizedBox(height: 24),
-            Text(
-              'Labelled Toggles',
+            CText(
+              data: 'Labelled Toggles',
               style: TextStyle(
-                fontFamily: CFonts.primaryLight,
                 color: CColors.gray10,
                 fontSize: 32,
               ),
