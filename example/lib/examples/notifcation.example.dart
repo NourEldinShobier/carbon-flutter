@@ -18,10 +18,7 @@ class CNotificationExample extends StatelessWidget {
               const SizedBox(height: 48),
               CText(
                 data: 'Toast notification',
-                style: TextStyle(
-                  color: CColors.gray10,
-                  fontSize: 32,
-                ),
+                style: TextStyle(fontSize: 32),
               ),
               const SizedBox(height: 24),
               Row(
@@ -109,10 +106,7 @@ class CNotificationExample extends StatelessWidget {
               const SizedBox(height: 24),
               CText(
                 data: 'Inline notification',
-                style: TextStyle(
-                  color: CColors.gray10,
-                  fontSize: 32,
-                ),
+                style: TextStyle(fontSize: 32),
               ),
               const SizedBox(height: 24),
               SizedBox(
