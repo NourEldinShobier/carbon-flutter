@@ -20,10 +20,10 @@ abstract class CNotificationStyle {
   };
 
   static const Map<String, dynamic> layouts = {
-    'notification-inline-lowcontrast-border-width': [1, 1, 1, 3],
-    'notification-inline-highcontrast-border-width': [0, 0, 0, 3],
-    'notification-toast-border-width': [0, 0, 0, 3],
-    'notification-padding': [14.5, 0, 14, 14],
+    'notification-inline-lowcontrast-border-width': <double>[1, 1, 1, 3],
+    'notification-inline-highcontrast-border-width': <double>[0, 0, 0, 3],
+    'notification-toast-border-width': <double>[0, 0, 0, 3],
+    'notification-padding': <double>[14.5, 0, 14, 14],
   };
 
   static const Map<String, Color> colors = {
