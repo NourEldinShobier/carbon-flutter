@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'breadcrumb.style.dart';
-import 'breadcrumb_Item.widget.dart';
+import 'breadcrumb_item.widget.dart';
 
 class CBreadcrumb extends StatelessWidget {
   const CBreadcrumb({

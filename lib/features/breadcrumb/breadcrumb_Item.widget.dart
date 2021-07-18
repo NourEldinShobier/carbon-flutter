@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 
-import 'breadcrumb.style.dart';
+import 'breadcrumb_item.style.dart';
 
 class CBreadcrumbItem extends StatefulWidget {
   CBreadcrumbItem({
@@ -24,8 +24,8 @@ class CBreadcrumbItem extends StatefulWidget {
 }
 
 class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
-  final _colors = CBreadcrumbStyle.colors;
-  final _layouts = CBreadcrumbStyle.layouts;
+  final _colors = CBreadcrumbItemStyle.colors;
+  final _layouts = CBreadcrumbItemStyle.layouts;
 
   /// styles helpers
   String _cwidget = 'breadcrumb-item';
@@ -66,8 +66,8 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
           horizontal: _layouts['$_cwidget-spacing'],
           vertical: _layouts['$_cwidget-spacing'],
         ),
-        duration: _layouts['breadcrumb-animation-duration'],
-        curve: _layouts['breadcrumb-animation-curve'],
+        duration: _layouts['$_cwidget-animation-duration'],
+        curve: _layouts['$_cwidget-animation-curve'],
         child: DefaultTextStyle(
           style: TextStyle(
             color: widget.isCurrentPage ? _colors['$_cwidget-current-color'] : _colors['$_cwidget-color'],
