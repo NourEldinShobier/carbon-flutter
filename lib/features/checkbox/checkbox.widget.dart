@@ -117,6 +117,7 @@ class _CCheckboxState extends State<CCheckbox> {
                     'assets/svg/checkmark.svg',
                     color: _value ? _colors['$_cwidget-$_state-checkmark-color'] : Colors.transparent,
                     height: 8,
+                    package: 'carbon',
                   ),
                 ),
               ],

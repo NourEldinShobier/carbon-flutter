@@ -19,12 +19,13 @@ class CSVGIcon extends StatelessWidget implements CWidget {
     this.height,
     this.color,
     this.disableColor,
+    String? package,
   })  : svgPicture = SvgPicture.asset(
           src,
           height: height,
           width: width,
           color: enable ? color : disableColor,
-          package: 'carbon',
+          package: package,
         ),
         _enable = enable,
         super(key: key);

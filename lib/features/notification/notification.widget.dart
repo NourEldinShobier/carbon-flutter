@@ -140,7 +140,10 @@ class CNotification extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(14),
-              child: CSVGIcon.asset(_assets['$cwidget-$contrast-$notificationKind-icon']!),
+              child: CSVGIcon.asset(
+                _assets['$cwidget-$contrast-$notificationKind-icon']!,
+                package: 'carbon',
+              ),
             ),
             Expanded(
               child: Padding(
@@ -197,6 +200,7 @@ class CNotification extends StatelessWidget {
                 padding: EdgeInsets.all(14),
                 child: CSVGIcon.asset(
                   _assets['$cwidget-$contrast-close-icon']!,
+                  package: 'carbon',
                   height: 20,
                 ),
               ),
@@ -234,7 +238,10 @@ class CNotification extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(14),
-              child: CSVGIcon.asset(_assets['$cwidget-$contrast-$notificationKind-icon']!),
+              child: CSVGIcon.asset(
+                _assets['$cwidget-$contrast-$notificationKind-icon']!,
+                package: 'carbon',
+              ),
             ),
             Expanded(
               child: Padding(
@@ -291,6 +298,7 @@ class CNotification extends StatelessWidget {
                 padding: EdgeInsets.all(14),
                 child: CSVGIcon.asset(
                   _assets['$cwidget-$contrast-close-icon']!,
+                  package: 'carbon',
                   height: 20,
                 ),
               ),

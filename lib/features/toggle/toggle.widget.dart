@@ -163,6 +163,7 @@ class _CToggleState extends State<CToggle> {
                           ? CSVGIcon.asset(
                               'assets/svg/toggle-checkmark.svg',
                               color: _colors['$_cwidget-$_state-$_status-checkmark-color'],
+                              package: 'carbon',
                               width: 6,
                             )
                           : null,

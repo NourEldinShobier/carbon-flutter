@@ -10,7 +10,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarbonApp(
       title: 'Flutter Demo',
-      home: CNotificationExample(),
+      home: Scaffold(
+        body: CNotificationExample(),
+      ),
     );
   }
 }
