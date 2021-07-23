@@ -1,5 +1,5 @@
-import 'package:carbon/features/text/index.dart';
 import 'package:flutter/material.dart';
+import 'package:carbon/features/text/index.dart';
 import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/outline/index.dart';
 import 'package:carbon/features/enable/index.dart';
