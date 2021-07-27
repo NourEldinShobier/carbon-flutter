@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:carbon/shared/index.dart';
+import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/features/text/index.dart';
 
 import 'tile.style.dart';
 
-class CTile extends StatelessWidget implements CWidget {
-  final bool _enable;
-
+class CTile extends StatelessWidget {
   const CTile({
     Key? key,
-    bool enable = true,
+    this.enable = true,
     this.title,
     this.description,
     this.label,
@@ -17,8 +15,9 @@ class CTile extends StatelessWidget implements CWidget {
     this.titleSize = 20,
     this.descriptionSize = 14,
     this.content,
-  })  : _enable = enable,
-        super(key: key);
+  }) : super(key: key);
+
+  final bool enable;
 
   final String? label;
   final String? title;
@@ -29,20 +28,21 @@ class CTile extends StatelessWidget implements CWidget {
 
   final Widget? content;
 
-  @override
-  bool get enable => _enable;
-
   final _colors = CTileStyle.colors;
   final _layouts = CTileStyle.layouts;
+
+  bool _isEnabled(BuildContext context) {
+    return context.inheritedEnable ? enable : false;
+  }
 
   @override
   Widget build(BuildContext context) {
     /// styles helpers
     String cwidget = 'tile';
-    String state = enable ? 'enabled' : 'disabled';
+    String state = _isEnabled(context) ? 'enabled' : 'disabled';
 
     return IgnorePointer(
-      ignoring: !enable,
+      ignoring: !_isEnabled(context),
       child: Container(
         color: _colors['$cwidget-$state-background-color'],
         padding: _layouts['$cwidget-padding'],

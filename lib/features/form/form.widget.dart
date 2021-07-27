@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/features/text/index.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'form.enum.dart';
 import 'form.style.dart';
 
-class CForm extends StatefulWidget implements CWidget {
-  final bool _enable;
-
+class CForm extends StatefulWidget {
   CForm({
     Key? key,
-    bool enable = true,
+    this.enable = true,
     this.title,
     this.description,
     this.label,
@@ -21,9 +19,9 @@ class CForm extends StatefulWidget implements CWidget {
     this.type = CFormType.modal,
     this.content,
     this.actions,
-  })  : _enable = enable,
-        super(key: key);
+  }) : super(key: key);
 
+  final bool enable;
   final CFormType type;
   final String? label;
   final String? title;
@@ -34,9 +32,6 @@ class CForm extends StatefulWidget implements CWidget {
 
   final Widget? content;
   final Widget? actions;
-
-  @override
-  bool get enable => _enable;
 
   @override
   CFormState createState() => CFormState();
@@ -55,10 +50,14 @@ class CFormState extends State<CForm> {
 
   var _state = CWidgetState.enabled;
 
+  bool _isEnabled() {
+    return context.inheritedEnable ? widget.enable : false;
+  }
+
   void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
-    if (!widget.enable) {
+    if (!_isEnabled()) {
       _state = CWidgetState.disabled;
     } else {
       _state = CWidgetState.enabled;
@@ -74,58 +73,61 @@ class CFormState extends State<CForm> {
   Widget build(BuildContext context) {
     _evaluateStateVariables();
 
-    return IgnorePointer(
-      ignoring: !widget.enable,
-      child: _InteritedCForm(
-        state: this,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              color: colors['$selector-background-color'],
-              padding: layouts['form-$type-padding'],
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (widget.label != null) ...[
-                    CText(
-                      data: widget.label,
-                      style: TextStyle(
-                        fontSize: widget.labelSize,
-                        color: colors['$selector-label-color'],
+    return CEnable(
+      value: _isEnabled(),
+      child: IgnorePointer(
+        ignoring: !_isEnabled(),
+        child: _InteritedCForm(
+          state: this,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                color: colors['$selector-background-color'],
+                padding: layouts['form-$type-padding'],
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (widget.label != null) ...[
+                      CText(
+                        data: widget.label,
+                        style: TextStyle(
+                          fontSize: widget.labelSize,
+                          color: colors['$selector-label-color'],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                  ],
-                  if (widget.title != null) ...[
-                    if (widget.label == null) const SizedBox(height: 8),
-                    CText(
-                      data: widget.title,
-                      style: TextStyle(
-                        fontSize: widget.titleSize,
-                        color: colors['$selector-title-color'],
+                      const SizedBox(height: 4),
+                    ],
+                    if (widget.title != null) ...[
+                      if (widget.label == null) const SizedBox(height: 8),
+                      CText(
+                        data: widget.title,
+                        style: TextStyle(
+                          fontSize: widget.titleSize,
+                          color: colors['$selector-title-color'],
+                        ),
                       ),
-                    ),
-                    SizedBox(height: widget.description != null ? 11 : 16),
-                  ],
-                  if (widget.description != null) ...[
-                    CText(
-                      data: widget.description,
-                      style: TextStyle(
-                        fontSize: widget.descriptionSize,
-                        color: colors['$selector-description-color'],
+                      SizedBox(height: widget.description != null ? 11 : 16),
+                    ],
+                    if (widget.description != null) ...[
+                      CText(
+                        data: widget.description,
+                        style: TextStyle(
+                          fontSize: widget.descriptionSize,
+                          color: colors['$selector-description-color'],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
+                      const SizedBox(height: 20),
+                    ],
+                    if (widget.content != null) widget.content!,
                   ],
-                  if (widget.content != null) widget.content!,
-                ],
+                ),
               ),
-            ),
-            if (widget.actions != null) widget.actions!,
-          ],
+              if (widget.actions != null) widget.actions!,
+            ],
+          ),
         ),
       ),
     );

@@ -2,29 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/text/index.dart';
+import 'package:carbon/features/enable/index.dart';
 
 import 'checkbox.style.dart';
 
-class CCheckbox extends StatefulWidget implements CWidget {
-  final bool _enable;
-
+class CCheckbox extends StatefulWidget {
   CCheckbox({
     Key? key,
-    bool enable = true,
+    this.enable = true,
     required this.onChange,
     this.value = false,
     this.label,
     this.labelSize = 14,
-  })  : _enable = enable,
-        super(key: key);
+  }) : super(key: key);
 
+  final bool enable;
   final bool value;
   final String? label;
   final double labelSize;
   final void Function(bool value) onChange;
-
-  @override
-  bool get enable => _enable;
 
   @override
   _CCheckboxState createState() => _CCheckboxState();
@@ -53,12 +49,16 @@ class _CCheckboxState extends State<CCheckbox> {
     super.didChangeDependencies();
   }
 
+  bool _isEnabled() {
+    return context.inheritedEnable ? widget.enable : false;
+  }
+
   void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
-    if (!widget.enable) {
+    if (!_isEnabled()) {
       _state = enumToString(CWidgetState.disabled);
-    } else if (widget.enable && _focused) {
+    } else if (_isEnabled() && _focused) {
       _state = enumToString(CWidgetState.focus);
     } else {
       _state = enumToString(CWidgetState.enabled);
@@ -70,7 +70,7 @@ class _CCheckboxState extends State<CCheckbox> {
     _evaluateStateVariables();
 
     return IgnorePointer(
-      ignoring: !widget.enable,
+      ignoring: !_isEnabled(),
       child: GestureDetector(
         onTapDown: (_) => setState(() => _focused = true),
         onTapUp: (_) => setState(() {

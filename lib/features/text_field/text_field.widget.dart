@@ -4,15 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/form/index.dart';
 import 'package:carbon/features/text/index.dart';
+import 'package:carbon/features/enable/index.dart';
 
 import 'text_field.styles.dart';
 
-class CTextField extends StatefulWidget implements CWidget {
-  final bool _enable;
-
+class CTextField extends StatefulWidget {
   const CTextField({
     Key? key,
-    bool enable = true,
+    this.enable = true,
     this.validator,
     this.label,
     this.hint,
@@ -42,8 +41,9 @@ class CTextField extends StatefulWidget implements CWidget {
     this.autofillHints,
     this.inputFormatters,
     this.isRequired = false,
-  })  : _enable = enable,
-        super(key: key);
+  }) : super(key: key);
+
+  final bool enable;
 
   final String? label;
   final String? hint;
@@ -78,9 +78,6 @@ class CTextField extends StatefulWidget implements CWidget {
   final CValidationResult? Function(String? value)? validator;
 
   @override
-  bool get enable => _enable;
-
-  @override
   _CTextFieldState createState() => _CTextFieldState();
 }
 
@@ -100,7 +97,7 @@ class _CTextFieldState extends State<CTextField> {
   CValidationResultType? _status;
   String? _value;
 
-  void focusNodeListener() {
+  void _focusNodeListener() {
     if (_focused != _focusNode.hasFocus) {
       setState(() => _focused = this._focusNode.hasFocus);
     }
@@ -113,7 +110,7 @@ class _CTextFieldState extends State<CTextField> {
     } else {
       this._focusNode = FocusNode();
     }
-    this._focusNode.addListener(focusNodeListener);
+    this._focusNode.addListener(_focusNodeListener);
     super.initState();
   }
 
@@ -125,13 +122,17 @@ class _CTextFieldState extends State<CTextField> {
 
   @override
   void dispose() {
-    this._focusNode.addListener(focusNodeListener);
+    this._focusNode.addListener(_focusNodeListener);
     super.dispose();
+  }
+
+  bool _isEnabled() {
+    return context.inheritedEnable ? widget.enable : false;
   }
 
   /// validator is responsible for determining the [_status] of the widget.
 
-  void validator(String? text) {
+  void _validator(String? text) {
     CValidationResultType? st;
     _validationResult = widget.validator!(text);
 
@@ -156,7 +157,7 @@ class _CTextFieldState extends State<CTextField> {
     /// NOTE: this line doesn't make the widget build twice when [onChange] is
     /// called, because the [validator] calls [setState] when [st != _state].
 
-    if (widget.validator != null && _value != null) validator(_value);
+    if (widget.validator != null && _value != null) _validator(_value);
 
     /// determine the [_state] of the widget.
 
@@ -185,10 +186,12 @@ class _CTextFieldState extends State<CTextField> {
   }
 
   Widget build(BuildContext context) {
+    final isEnabled = _isEnabled();
+
     _evaluateStateVariables();
 
     return IgnorePointer(
-      ignoring: !widget.enable || widget.readOnly,
+      ignoring: !isEnabled || widget.readOnly,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -224,7 +227,7 @@ class _CTextFieldState extends State<CTextField> {
               enableSuggestions: widget.enableSuggestions,
               onChanged: (String value) {
                 _value = value;
-                if (widget.validator != null) validator(value);
+                if (widget.validator != null) _validator(value);
                 widget.onChanged?.call(value);
               },
               onEditingComplete: widget.onEditingComplete,
@@ -245,8 +248,8 @@ class _CTextFieldState extends State<CTextField> {
                 filled: true,
                 contentPadding: EdgeInsets.only(
                   left: 14,
-                  top: widget.enable && _focusNode.hasFocus ? 8 : 8,
-                  bottom: widget.enable
+                  top: isEnabled && _focusNode.hasFocus ? 8 : 8,
+                  bottom: isEnabled
                       ? _focusNode.hasFocus
                           ? 12.5
                           : 15
@@ -267,7 +270,7 @@ class _CTextFieldState extends State<CTextField> {
                   minWidth: 46,
                   maxWidth: 46,
                 ), // 44 + 2 (width of border)
-                prefixIcon: widget.enable
+                prefixIcon: isEnabled
                     ? widget.prefixIcon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
@@ -276,7 +279,7 @@ class _CTextFieldState extends State<CTextField> {
                         ),
                         child: widget.prefixIcon,
                       ),
-                suffixIcon: widget.enable
+                suffixIcon: isEnabled
                     ? _validationResult == null
                         ? widget.suffixIcon
                         : _validationResult!.icon == null

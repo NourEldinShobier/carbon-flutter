@@ -11,7 +11,7 @@ import 'toggle.style.dart';
 /// A toggle is used to quickly switch between two possible states.
 ///
 /// They are commonly used for “on/off” switches.
-class CToggle extends StatefulWidget implements CWidget {
+class CToggle extends StatefulWidget {
   CToggle({
     Key? key,
     this.enable = true,

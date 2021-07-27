@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/text/index.dart';
+import 'package:carbon/features/enable/index.dart';
 
 import 'button.enum.dart';
 import 'button.style.dart';
 
-class CButton extends StatefulWidget implements CWidget {
-  final _enable;
-
+class CButton extends StatefulWidget {
   CButton({
     Key? key,
-    bool enable = true,
+    this.enable = true,
     required this.label,
     required this.onTap,
     this.type = CButtonType.primary,
@@ -22,9 +21,9 @@ class CButton extends StatefulWidget implements CWidget {
     this.width = 178,
     this.padding = const EdgeInsets.symmetric(horizontal: 16),
     this.labelSize = 14,
-  })  : _enable = enable,
-        super(key: key);
+  }) : super(key: key);
 
+  final bool enable;
   final CButtonType type;
   final EdgeInsetsGeometry padding;
   final double height;
@@ -35,9 +34,6 @@ class CButton extends StatefulWidget implements CWidget {
   final double labelSize;
   final Widget? icon;
   final void Function() onTap;
-
-  @override
-  bool get enable => _enable;
 
   @override
   _CButtonState createState() => _CButtonState();
@@ -53,6 +49,10 @@ class _CButtonState extends State<CButton> {
   var _state = CWidgetState.enabled;
   var _focused = false;
 
+  bool _isEnabled() {
+    return context.inheritedEnable ? widget.enable : false;
+  }
+
   double? _calculateWidth() {
     if (widget.hasIconOnly) {
       return widget.height;
@@ -64,9 +64,9 @@ class _CButtonState extends State<CButton> {
   void _evaluateStateVariables() {
     /// determine the [_state] of the widget.
 
-    if (!widget.enable) {
+    if (!_isEnabled()) {
       _state = CWidgetState.disabled;
-    } else if (widget.enable && _focused) {
+    } else if (_isEnabled() && _focused) {
       _state = CWidgetState.focus;
     } else {
       _state = CWidgetState.enabled;
@@ -85,7 +85,7 @@ class _CButtonState extends State<CButton> {
     final width = _calculateWidth();
 
     return IgnorePointer(
-      ignoring: !widget.enable,
+      ignoring: !_isEnabled(),
       child: GestureDetector(
         onTap: widget.onTap,
         onTapDown: (_) => setState(() => _focused = true),

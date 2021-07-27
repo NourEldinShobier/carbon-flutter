@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:carbon/features/text/index.dart';
 import 'package:carbon/shared/index.dart';
+import 'package:carbon/features/enable/index.dart';
 
 import 'link.style.dart';
 
-class CLink extends StatefulWidget implements CWidget {
-  final bool _enable;
-
+class CLink extends StatefulWidget {
   const CLink({
     Key? key,
-    bool enable = true,
+    this.enable = true,
     required this.url,
     required this.onTap,
     this.fontSize = 14,
     this.caption,
-  })  : _enable = enable,
-        super(key: key);
+  }) : super(key: key);
 
   final String? caption;
   final String url;
   final double fontSize;
+  final bool enable;
   final void Function(String url) onTap;
-
-  @override
-  bool get enable => _enable;
 
   @override
   _CLinkState createState() => _CLinkState();
@@ -39,11 +35,15 @@ class _CLinkState extends State<CLink> {
   void _evaluateStateVariables() {
     // determine the [_state] of the widget.
 
-    if (!widget.enable) {
+    if (!_isEnabled()) {
       _state = enumToString(CWidgetState.disabled);
     } else {
       _state = enumToString(CWidgetState.enabled);
     }
+  }
+
+  bool _isEnabled() {
+    return context.inheritedEnable ? widget.enable : false;
   }
 
   @override
@@ -51,7 +51,7 @@ class _CLinkState extends State<CLink> {
     _evaluateStateVariables();
 
     return IgnorePointer(
-      ignoring: !widget.enable,
+      ignoring: !_isEnabled(),
       child: GestureDetector(
         onTap: () => widget.onTap(widget.url),
         child: CText(
