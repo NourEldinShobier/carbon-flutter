@@ -2,37 +2,37 @@ import 'dart:io';
 
 import 'dart:typed_data';
 
-abstract class CSvgIconProps {
-  const CSvgIconProps();
+abstract class CSvgIconSource {
+  const CSvgIconSource();
 }
 
-class CSvgAssetIconProps extends CSvgIconProps {
-  const CSvgAssetIconProps(this.src, this.package);
+class CSvgAssetIconSource extends CSvgIconSource {
+  const CSvgAssetIconSource(this.src, this.package);
   final String src;
   final String? package;
 }
 
-class CSvgNetworkIconProps extends CSvgIconProps {
-  const CSvgNetworkIconProps(this.src, this.headers);
+class CSvgNetworkIconSource extends CSvgIconSource {
+  const CSvgNetworkIconSource(this.src, this.headers);
 
   final String src;
   final Map<String, String>? headers;
 }
 
-class CSvgFileIconProps extends CSvgIconProps {
-  const CSvgFileIconProps(this.file);
+class CSvgFileIconSource extends CSvgIconSource {
+  const CSvgFileIconSource(this.file);
 
   final File file;
 }
 
-class CSvgMemoryIconProps extends CSvgIconProps {
-  const CSvgMemoryIconProps(this.bytes);
+class CSvgMemoryIconSource extends CSvgIconSource {
+  const CSvgMemoryIconSource(this.bytes);
 
   final Uint8List bytes;
 }
 
-class CSvgStringIconProps extends CSvgIconProps {
-  const CSvgStringIconProps(this.bytes);
+class CSvgStringIconSource extends CSvgIconSource {
+  const CSvgStringIconSource(this.bytes);
 
   final String bytes;
 }
