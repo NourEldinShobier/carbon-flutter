@@ -1,1 +1,1 @@
-enum CFormType { group, modal }
+enum CFormType { group, blank }

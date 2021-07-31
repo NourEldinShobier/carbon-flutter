@@ -179,7 +179,7 @@ class _CTextFieldState extends State<CTextField> {
     selector = 'textfield-$type-$state';
 
     if (cform != null) {
-      cformType = cform.widget.type == CFormType.modal ? 'modalform-' : '';
+      cformType = cform.type == CFormType.blank ? 'blankform-' : '';
     } else {
       cformType = '';
     }

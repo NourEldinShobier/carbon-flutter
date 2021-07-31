@@ -85,10 +85,10 @@ abstract class CTextfieldStyle {
     'textfield-focus-background-color': CColors.gray90,
     'textfield-disabled-background-color': CColors.gray90,
 
-    // modalform-background-color
-    'textfield-modalform-enabled-background-color': CColors.gray80,
-    'textfield-modalform-focus-background-color': CColors.gray80,
-    'textfield-modalform-disabled-background-color': CColors.gray80,
+    // blankform-background-color
+    'textfield-blankform-enabled-background-color': CColors.gray80,
+    'textfield-blankform-focus-background-color': CColors.gray80,
+    'textfield-blankform-disabled-background-color': CColors.gray80,
 
     /// primary ///
 
