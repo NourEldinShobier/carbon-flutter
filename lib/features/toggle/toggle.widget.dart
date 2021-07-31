@@ -6,6 +6,7 @@ import 'package:carbon/features/enable/index.dart';
 
 import 'package:carbon/shared/index.dart';
 
+import 'toggle.enum.dart';
 import 'toggle.style.dart';
 
 /// A toggle is used to quickly switch between two possible states.
@@ -18,7 +19,7 @@ class CToggle extends StatefulWidget {
     this.value = true,
     this.showStatusLabel = true,
     this.labelText,
-    this.size = CWidgetSize.md,
+    this.size = CToggleSize.md,
     required this.onToggle,
   }) : super(key: key);
 
@@ -28,8 +29,8 @@ class CToggle extends StatefulWidget {
   /// The `labelText` of this toggle
   final String? labelText;
 
-  /// The `size` of this toggle. It can only be `md` or `sm`
-  final CWidgetSize size;
+  /// The `size` of this toggle. It can be `md` or `sm`
+  final CToggleSize size;
 
   /// Called when the value of the toggle change.
   ///
@@ -159,7 +160,7 @@ class _CToggleState extends State<CToggle> {
                         color: _colors['$_cwidget-$_state-indicator-color'],
                         borderRadius: BorderRadius.circular(1000),
                       ),
-                      child: widget.size == CWidgetSize.sm
+                      child: widget.size == CToggleSize.sm
                           ? CSVGIcon.asset(
                               'assets/svg/toggle-checkmark.svg',
                               color: _colors['$_cwidget-$_state-$_status-checkmark-color'],

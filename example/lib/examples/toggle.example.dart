@@ -67,19 +67,19 @@ class _SmallToggles extends StatelessWidget {
           children: [
             CToggle(
               onToggle: (v) {},
-              size: CWidgetSize.sm,
+              size: CToggleSize.sm,
             ),
             const SizedBox(height: 8),
             CToggle(
               onToggle: (v) {},
               value: false,
-              size: CWidgetSize.sm,
+              size: CToggleSize.sm,
             ),
             const SizedBox(height: 8),
             CToggle(
               onToggle: (v) {},
               showStatusLabel: false,
-              size: CWidgetSize.sm,
+              size: CToggleSize.sm,
             ),
             const SizedBox(height: 8),
           ],
@@ -93,21 +93,21 @@ class _SmallToggles extends StatelessWidget {
             CToggle(
               onToggle: (v) {},
               enable: false,
-              size: CWidgetSize.sm,
+              size: CToggleSize.sm,
             ),
             const SizedBox(height: 8),
             CToggle(
               onToggle: (v) {},
               value: false,
               enable: false,
-              size: CWidgetSize.sm,
+              size: CToggleSize.sm,
             ),
             const SizedBox(height: 8),
             CToggle(
               onToggle: (v) {},
               enable: false,
               showStatusLabel: false,
-              size: CWidgetSize.sm,
+              size: CToggleSize.sm,
             ),
           ],
         )
@@ -193,7 +193,7 @@ class _LabelledToggles extends StatelessWidget {
         const SizedBox(height: 16),
         CToggle(
           onToggle: (v) {},
-          size: CWidgetSize.sm,
+          size: CToggleSize.sm,
           labelText: 'Label text',
         ),
       ],

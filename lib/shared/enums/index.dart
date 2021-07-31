@@ -1,7 +1,5 @@
 /// Widget
 
-enum CWidgetSize { sm, md, lg, xl }
-
 enum CWidgetState { enabled, focus, disabled }
 
 enum CPositioning { left, right, none }
