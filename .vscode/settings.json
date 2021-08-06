@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "toggle",
         "enable",
-        "csvgicon"
+        "csvgicon",
+        "button"
     ]
 }

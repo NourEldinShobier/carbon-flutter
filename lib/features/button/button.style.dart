@@ -3,6 +3,16 @@ import 'package:carbon/shared/index.dart';
 
 abstract class CButtonStyle {
   static final Map<String, dynamic> layouts = {
+    'button-regular-dimensions': Size(48, 48),
+    'button-md-dimensions': Size(40, 40),
+    'button-sm-dimensions': Size(32, 32),
+
+    'button-regular-padding': 16.0,
+    'button-md-padding': 16.0,
+    'button-sm-padding': 13.0,
+
+    //
+
     'button-background-color-animation-duration': Duration(milliseconds: 65),
     'button-background-color-animation-curve': Curves.easeInOut,
 
