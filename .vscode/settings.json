@@ -3,6 +3,7 @@
         "toggle",
         "enable",
         "csvgicon",
-        "button"
+        "button",
+        "notification"
     ]
 }

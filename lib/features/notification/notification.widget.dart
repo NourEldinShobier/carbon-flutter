@@ -5,6 +5,10 @@ import 'package:pmvvm/pmvvm.dart';
 import 'action_button.widget.dart';
 import 'notification.enum.dart';
 
+/// Notifications are messages that communicate information to the user.
+///
+/// The two main variants of notifications are toast notifications and
+/// inline notifications.
 class CNotification extends StatelessWidget {
   const CNotification.toast({
     Key? key,
@@ -19,7 +23,7 @@ class CNotification extends StatelessWidget {
     this.timeout,
   })  : assert((timeout == null && onClose == null) || (timeout != null && onClose != null)),
         assert((hideCloseButton && onCloseButtonTap == null) || (!hideCloseButton && onCloseButtonTap != null)),
-        type = CNotificationType.toast,
+        _type = CNotificationType.toast,
         actions = null,
         super(key: key);
 
@@ -36,42 +40,47 @@ class CNotification extends StatelessWidget {
     this.actions,
   })  : assert((timeout == null && onClose == null) || (timeout != null && onClose != null)),
         assert((hideCloseButton && onCloseButtonTap == null) || (!hideCloseButton && onCloseButtonTap != null)),
-        type = CNotificationType.inline,
+        _type = CNotificationType.inline,
         caption = null,
         super(key: key);
 
-  /// Specify the title.
+  /// The title to display.
   final Widget title;
 
-  /// Specify the sub-title
+  /// The subtitle to display.
   final Widget subtitle;
 
-  /// Specify the caption.
+  /// An optional caption to display.
   final Widget? caption;
 
-  /// Specify the close button should be disabled, or not.
+  /// Whether the close button should be disabled, or not.
   final bool hideCloseButton;
 
-  /// Specify what state the [Notification] represents.
+  /// The state that the [CNotification] represents. It can be `error`,
+  /// `info`, `success`, or `warning`.
   final CNotificationKind kind;
 
-  /// Toast or Inline.
-  final CNotificationType type;
-
-  /// Specify whether you are using the low contrast variant of the [Notification].
+  /// Whether you are using the low contrast variant of the [CNotification].
   final bool lowContrast;
 
-  /// Provide a function that is called when the close button is tapped
+  /// Called when the close button is tapped.
   final VoidCallback? onCloseButtonTap;
 
-  /// Provide a function that is called when [Notification] is closed
+  /// Called after the given [timeout] duration has passed.
   final VoidCallback? onClose;
 
-  /// Specify an optional duration (milliseconds) the [Notification] should be closed in.
+  /// An optional duration (milliseconds) to determine the amount of time
+  /// the [CNotification] should be displayed.
+  ///
+  /// When the duration is finished, [onClose] is called.
   final int? timeout;
 
-  /// Pass in the actions that will be rendered within the [Notification].
+  /// A list of [CNotificationActionButton] to display in a row when
+  /// the [CNotification] is `inline`.
   final List<CNotificationActionButton>? actions;
+
+  /// Whether [CNotification] is `toast` or `inline`.
+  final CNotificationType _type;
 
   final _colors = CNotificationStyle.colors;
   final _layouts = CNotificationStyle.layouts;
@@ -310,7 +319,7 @@ class CNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (type == CNotificationType.inline)
+    if (_type == CNotificationType.inline)
       return _buildInlineNotification();
     else
       return _buildToastNotification();
