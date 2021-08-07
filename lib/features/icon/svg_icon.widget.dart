@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carbon/features/enable/index.dart';
 
+import 'icon.enum.dart';
 import 'models/index.dart';
 
 class CSVGIcon extends StatelessWidget {
@@ -27,7 +28,8 @@ class CSVGIcon extends StatelessWidget {
     this.colorBlendMode = BlendMode.srcIn,
     this.semanticsLabel,
     this.clipBehavior = Clip.hardEdge,
-  })  : _source = CSvgAssetIconSource(src, package),
+  })  : _type = CSvgIconType.asset,
+        _source = CSvgAssetIconSource(src, package),
         super(key: key);
 
   CSVGIcon.network(
@@ -49,7 +51,8 @@ class CSVGIcon extends StatelessWidget {
     this.colorBlendMode = BlendMode.srcIn,
     this.semanticsLabel,
     this.clipBehavior = Clip.hardEdge,
-  })  : _source = CSvgNetworkIconSource(src, headers),
+  })  : _type = CSvgIconType.network,
+        _source = CSvgNetworkIconSource(src, headers),
         super(key: key);
 
   CSVGIcon.file(
@@ -70,7 +73,8 @@ class CSVGIcon extends StatelessWidget {
     this.colorBlendMode = BlendMode.srcIn,
     this.semanticsLabel,
     this.clipBehavior = Clip.hardEdge,
-  })  : _source = CSvgFileIconSource(file),
+  })  : _type = CSvgIconType.file,
+        _source = CSvgFileIconSource(file),
         super(key: key);
 
   CSVGIcon.memory(
@@ -91,7 +95,8 @@ class CSVGIcon extends StatelessWidget {
     this.colorBlendMode = BlendMode.srcIn,
     this.semanticsLabel,
     this.clipBehavior = Clip.hardEdge,
-  })  : _source = CSvgMemoryIconSource(bytes),
+  })  : _type = CSvgIconType.memory,
+        _source = CSvgMemoryIconSource(bytes),
         super(key: key);
 
   CSVGIcon.string(
@@ -112,7 +117,8 @@ class CSVGIcon extends StatelessWidget {
     this.colorBlendMode = BlendMode.srcIn,
     this.semanticsLabel,
     this.clipBehavior = Clip.hardEdge,
-  })  : _source = CSvgStringIconSource(bytes),
+  })  : _type = CSvgIconType.string,
+        _source = CSvgStringIconSource(bytes),
         super(key: key);
 
   final bool enable;
@@ -133,6 +139,7 @@ class CSVGIcon extends StatelessWidget {
   final Clip clipBehavior;
 
   final CSvgIconSource _source;
+  final CSvgIconType _type;
 
   bool _isEnabled(BuildContext context) {
     return context.inheritedEnable ? enable : false;
@@ -140,7 +147,7 @@ class CSVGIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_source == CSvgAssetIconSource) {
+    if (_type == CSvgIconType.asset) {
       final source = _source as CSvgAssetIconSource;
 
       return SvgPicture.asset(
@@ -161,7 +168,7 @@ class CSVGIcon extends StatelessWidget {
         semanticsLabel: semanticsLabel,
         clipBehavior: clipBehavior,
       );
-    } else if (_source == CSvgNetworkIconSource) {
+    } else if (_type == CSvgIconType.network) {
       final source = _source as CSvgNetworkIconSource;
 
       return SvgPicture.network(
@@ -182,7 +189,7 @@ class CSVGIcon extends StatelessWidget {
         semanticsLabel: semanticsLabel,
         clipBehavior: clipBehavior,
       );
-    } else if (_source == CSvgFileIconSource) {
+    } else if (_type == CSvgIconType.file) {
       final source = _source as CSvgFileIconSource;
 
       return SvgPicture.file(
@@ -202,7 +209,7 @@ class CSVGIcon extends StatelessWidget {
         semanticsLabel: semanticsLabel,
         clipBehavior: clipBehavior,
       );
-    } else if (_source == CSvgMemoryIconSource) {
+    } else if (_type == CSvgIconType.memory) {
       final source = _source as CSvgMemoryIconSource;
 
       return SvgPicture.memory(
@@ -222,7 +229,7 @@ class CSVGIcon extends StatelessWidget {
         semanticsLabel: semanticsLabel,
         clipBehavior: clipBehavior,
       );
-    } else if (_source == CSvgStringIconSource) {
+    } else if (_type == CSvgIconType.string) {
       final source = _source as CSvgStringIconSource;
 
       return SvgPicture.string(
