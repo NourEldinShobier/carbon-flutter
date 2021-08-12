@@ -7,7 +7,7 @@ class CButtonBaseProps {
   final bool enable;
   final CButtonKind kind;
   final CButtonSize size;
-  final void Function() onTap;
+  final VoidCallback onTap;
 
   CButtonBaseProps({
     required this.enable,
@@ -31,7 +31,7 @@ class CButtonDefaultProps extends CButtonBaseProps {
     required bool enable,
     required CButtonKind kind,
     required CButtonSize size,
-    required void Function() onTap,
+    required VoidCallback onTap,
   }) : super(enable: enable, kind: kind, size: size, onTap: onTap);
 }
 
@@ -49,6 +49,6 @@ class CButtonIconOnlyProps extends CButtonBaseProps {
     required bool enable,
     required CButtonKind kind,
     required CButtonSize size,
-    required void Function() onTap,
+    required VoidCallback onTap,
   }) : super(enable: enable, kind: kind, size: size, onTap: onTap);
 }

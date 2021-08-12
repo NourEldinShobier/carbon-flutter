@@ -14,7 +14,7 @@ class CButton extends StatefulWidget {
   CButton({
     Key? key,
     required String label,
-    required void Function() onTap,
+    required VoidCallback onTap,
     double labelSize = 14,
     bool enable = true,
     bool expand = false,
@@ -38,7 +38,7 @@ class CButton extends StatefulWidget {
     Key? key,
     bool enable = true,
     required Widget icon,
-    required void Function() onTap,
+    required VoidCallback onTap,
     required String iconDescription,
     CButtonKind kind = CButtonKind.primary,
     CButtonSize size = CButtonSize.regular,
