@@ -6,10 +6,12 @@ class CEnable extends StatelessWidget {
   const CEnable({
     Key? key,
     this.value = true,
+    this.inheritFromParent = true,
     required this.child,
   }) : super(key: key);
 
   final bool value;
+  final bool inheritFromParent;
   final Widget child;
 
   static bool? of(BuildContext context) {
@@ -17,7 +19,11 @@ class CEnable extends StatelessWidget {
   }
 
   bool _isEnabled(BuildContext context) {
-    return context.inheritedEnable ? value : false;
+    if (inheritFromParent) {
+      return context.inheritedEnable ? value : false;
+    }
+
+    return value;
   }
 
   @override
