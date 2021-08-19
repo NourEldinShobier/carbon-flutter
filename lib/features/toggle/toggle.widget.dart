@@ -15,21 +15,24 @@ import 'toggle.style.dart';
 class CToggle extends StatefulWidget {
   CToggle({
     Key? key,
+    required this.onToggle,
     this.enable = true,
     this.value = true,
     this.showStatusLabel = true,
     this.labelText,
     this.size = CToggleSize.md,
-    required this.onToggle,
   }) : super(key: key);
 
-  /// Whether the toggle is checked or not. Default is `true`
+  /// Whether the toggle is enabled or not
+  final bool enable;
+
+  /// Whether the initial value of the toggle is checked or not.
   final bool value;
 
   /// The `labelText` of this toggle
   final String? labelText;
 
-  /// The `size` of this toggle. It can be `md` or `sm`
+  /// The size of this toggle. It can be `md` or `sm`
   final CToggleSize size;
 
   /// Called when the value of the toggle change.
@@ -40,9 +43,6 @@ class CToggle extends StatefulWidget {
 
   /// Whether the toggle should display its status (`On` | `Off`) or not
   final bool showStatusLabel;
-
-  /// Whether the toggle is enabled or not
-  final bool enable;
 
   @override
   _CToggleState createState() => _CToggleState();
