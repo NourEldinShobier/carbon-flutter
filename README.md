@@ -1,8 +1,17 @@
 # Flutter Carbon
 
-Unofficial implementation of Carbon Design System using Flutter framework
+![cover](md-assets/cover.png)
 
-![gre](md-assets/cover.png)
+‌Carbon is IBM’s **open-source** design system for products and experiences. With the IBM Design Language as its foundation, the system consists of working code, design tools and resources, human interface guidelines, and a vibrant community of contributors.
+
+‌
+The goals of the design system include improving UI consistency and quality, making the design and development process more efficient and focused, establishing a shared vocabulary between designer and developer, and providing clear, discoverable guidance around design and development best practices.
+
+### Carbon Flutter 💎
+
+**Flutter Carbon** is an unofficial implementation of Carbon Design System using Flutter framework. It provides Flutter developers a collection of widgets to build apps and user interfaces. Adopting the package enables developers to use consistent styles and behavior in prototype and production work.
+
+> ⚠️ **WARNING:** The project is still under development and not ready for production.
 
 ### Finished widgets
 
@@ -32,23 +41,23 @@ Unofficial implementation of Carbon Design System using Flutter framework
 
 ### Textfield
 
-![f](md-assets/textfield.png)
+![screenshot](md-assets/textfield.png)
 
 ### Form
 
-![rf](md-assets/forms.png)
+![screenshot](md-assets/forms.png)
 
 ### Button
 
-![f](md-assets/buttons.png)
+![screenshot](md-assets/buttons.png)
 
 ### Toggle
 
-![f](md-assets/toggle.png)
+![screenshot](md-assets/toggle.png)
 
 ### Notification
 
-![f](md-assets/notification.png)
+![screenshot](md-assets/notification.png)
 
 # Installation
 
