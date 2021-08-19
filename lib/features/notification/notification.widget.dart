@@ -92,6 +92,9 @@ class CNotification extends StatelessWidget {
     });
   }
 
+  /// The method is used when the [_type] is [CNotificationType.inline]
+  /// and it's called by [_buildInlineNotification]
+
   List<Widget> _buildActions() {
     final result = <Widget>[];
 
