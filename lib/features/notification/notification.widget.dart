@@ -209,7 +209,6 @@ class CNotification extends StatelessWidget {
                 onTap: onCloseButtonTap!,
                 width: 48,
                 height: 48,
-                padding: EdgeInsets.all(14),
                 child: CSVGIcon.asset(
                   _assets['$cwidget-$contrast-close-icon']!,
                   package: 'carbon',
@@ -307,7 +306,6 @@ class CNotification extends StatelessWidget {
                 onTap: onCloseButtonTap!,
                 width: 48,
                 height: 48,
-                padding: EdgeInsets.all(14),
                 child: CSVGIcon.asset(
                   _assets['$cwidget-$contrast-close-icon']!,
                   package: 'carbon',

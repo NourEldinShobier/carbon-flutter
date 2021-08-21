@@ -4,21 +4,30 @@ import 'package:pmvvm/pmvvm.dart';
 
 import 'action_button.style.dart';
 
+/// A ghost button action for inline notifications that is adjacent
+/// to the title and body content.
 class CNotificationActionButton extends StatefulWidget {
   const CNotificationActionButton({
     Key? key,
     required this.child,
-    this.padding = const EdgeInsets.symmetric(vertical: 3, horizontal: 16),
     required this.onTap,
     this.width,
     this.height,
   }) : super(key: key);
 
+  /// The content of the action button.
   final Widget child;
-  final double? width;
-  final double? height;
-  final EdgeInsetsGeometry padding;
+
+  /// Called when the action button is tapped.
   final VoidCallback onTap;
+
+  /// The width of the action button. If it's null, the action button will
+  /// size itself to the [child].
+  final double? width;
+
+  /// The height of the action button. If it's null, the action button will
+  /// size itself to the [child].
+  final double? height;
 
   @override
   _CNotificationActionButtonState createState() => _CNotificationActionButtonState();
@@ -58,7 +67,7 @@ class _CNotificationActionButtonState extends State<CNotificationActionButton> {
           height: widget.height,
           width: widget.width,
           alignment: Alignment.center,
-          padding: widget.padding,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
             color: _colors['$_cwidget-$_state-$_contrast-background-color'],
           ),
