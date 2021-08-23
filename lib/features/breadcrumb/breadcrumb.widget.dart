@@ -1,3 +1,4 @@
+import 'package:carbon/features/overflow_menu/index.dart';
 import 'package:carbon/features/text/index.dart';
 import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
@@ -6,11 +7,11 @@ import 'breadcrumb.style.dart';
 import 'breadcrumb_item.widget.dart';
 
 class CBreadcrumb extends StatelessWidget {
-  const CBreadcrumb({
+  CBreadcrumb({
     Key? key,
     required this.children,
     this.noTrailingSlash = true,
-    this.overflowLimit = 4,
+    this.breadcrumbsLimit = 4,
     this.dividerSize = 14,
   }) : super(key: key);
 
@@ -20,13 +21,16 @@ class CBreadcrumb extends StatelessWidget {
   /// Optional prop to omit the trailing slash for the breadcrumbs
   final bool noTrailingSlash;
 
-  /// Truncate the breadcrumbs when [children] length exceeds [overflowLimit]
-  final int overflowLimit;
+  /// Truncate the breadcrumbs when [children] length exceeds [breadcrumbsLimit]
+  final int breadcrumbsLimit;
 
   /// Divider font size
   final double dividerSize;
 
   final _colors = CBreadcrumbStyle.colors;
+  final _menuKey = GlobalKey();
+
+  late final COverflowMenu _menu;
 
   List<Widget> _displayAllBreadcrumbs() {
     final items = [
@@ -52,15 +56,17 @@ class CBreadcrumb extends StatelessWidget {
     final firstItem = children.removeAt(0);
     final lastItem = children.removeLast();
     final secondLastItem = children.removeLast();
-
-    // ---
-
-    // TODO: activate after adding overflow menu
     final remainingItems = children;
 
-    final overflowItem = CBreadcrumbItem(child: CText(data: '...'), onTap: () {});
+    _buildMenuItems(remainingItems);
 
-    // ----
+    final overflowItem = CBreadcrumbItem(
+      key: _menuKey,
+      child: CText(data: '...'),
+      onTap: () {
+        _menu.open();
+      },
+    );
 
     final divider = CText(
       data: '/',
@@ -78,13 +84,32 @@ class CBreadcrumb extends StatelessWidget {
     return items;
   }
 
+  void _buildMenuItems(List<CBreadcrumbItem> items) {
+    _menu = COverflowMenu(
+      key: _menuKey,
+      showArrow: true,
+      size: COverflowMenuSize.sm,
+      items: items.map(
+        (item) {
+          return COverflowMenuItem(
+            child: item.child,
+            onTap: () {
+              item.onTap();
+              _menu.close();
+            },
+          );
+        },
+      ).toList(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
-      children: children.length < overflowLimit ? _displayAllBreadcrumbs() : _displayOverflowedBreadcrumbs(),
+      children: children.length < breadcrumbsLimit ? _displayAllBreadcrumbs() : _displayOverflowedBreadcrumbs(),
     );
   }
 }
