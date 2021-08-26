@@ -87,8 +87,8 @@ class CBreadcrumb extends StatelessWidget {
   void _buildMenuItems(List<CBreadcrumbItem> items) {
     _menu = COverflowMenu(
       key: _menuKey,
-      showArrow: true,
       size: COverflowMenuSize.sm,
+      barrierDismissible: true,
       items: items.map(
         (item) {
           return COverflowMenuItem(
