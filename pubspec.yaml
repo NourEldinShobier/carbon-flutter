@@ -10,7 +10,7 @@ environment:
 dependencies:
   vector_math: ^2.1.0
   flutter_svg: ^0.22.0
-  pmvvm: ^2.2.0
+  pmvvm: ^2.2.3
   flutter:
     sdk: flutter
 
@@ -24,7 +24,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   assets:
     - assets/
     - assets/svg/

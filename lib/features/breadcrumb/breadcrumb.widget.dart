@@ -88,7 +88,6 @@ class CBreadcrumb extends StatelessWidget {
     _menu = COverflowMenu(
       key: _menuKey,
       size: COverflowMenuSize.sm,
-      barrierDismissible: true,
       items: items.map(
         (item) {
           return COverflowMenuItem(

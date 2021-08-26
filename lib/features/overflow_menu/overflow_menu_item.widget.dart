@@ -84,7 +84,7 @@ class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMix
             height: dimensions.height,
             width: dimensions.width,
             alignment: Alignment.centerLeft,
-            padding: EdgeInsets.symmetric(horizontal: _layouts['$_cwidget-$_size-padding']),
+            padding: _layouts['$_cwidget-$_size-padding'],
             decoration: BoxDecoration(
               color: _colors['$_cwidget-$_kind-$_state-background-color'],
               border: Border(

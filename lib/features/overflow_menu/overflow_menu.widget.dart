@@ -7,18 +7,17 @@ import 'package:flutter/material.dart';
 import 'overflow_menu.enum.dart';
 import 'overflow_menu.props.dart';
 import 'overflow_menu.style.dart';
-import 'overflow_menu_item.style.dart';
 import 'overflow_menu_item.widget.dart';
 
 class COverflowMenu {
   COverflowMenu({
-    required GlobalKey key, // TODO: test without global key
+    required GlobalKey key,
     required List<COverflowMenuItem> items,
     VoidCallback? onClose,
     VoidCallback? onOpen,
     Offset menuOffset = Offset.zero,
     COverflowMenuSize size = COverflowMenuSize.md,
-  }) : _props = COverflowMenuProps(
+  }) : props = COverflowMenuProps(
           key: key,
           items: items,
           menuOffset: menuOffset,
@@ -26,10 +25,10 @@ class COverflowMenu {
           onOpen: onOpen,
           size: size,
         ) {
-    _size = enumToString(_props.size);
+    _size = enumToString(props.size);
   }
 
-  final COverflowMenuProps _props;
+  final COverflowMenuProps props;
 
   /// View variables
 
@@ -44,27 +43,26 @@ class COverflowMenu {
 
   /// Styles variables
 
-  final _menuLayouts = COverflowMenuStyle.layouts;
-  final _menuColors = COverflowMenuStyle.colors;
-  final _menuItemLayouts = COverflowMenuItemStyle.layouts;
+  final _colors = COverflowMenuStyle.colors;
+  final _layouts = COverflowMenuStyle.layouts;
 
   /// styles helpers
 
   String _cwidget = 'overflowmenu';
   String _size = '';
 
-  Size get _menuItemSize {
-    return _menuItemLayouts['overflowmenu-item-$_size-dimensions'];
-  }
+  Size get _menuItemDimensions => _layouts['$_cwidget-item-$_size-dimensions'];
 
-  double get _menuWidth => _menuItemSize.width;
+  double get _menuWidth => _menuItemDimensions.width;
 
-  double get _menuHeight => _menuItemSize.height * _props.items.length;
+  double get _menuHeight => _menuItemDimensions.height * props.items.length;
+
+  bool get _isBottom => _direction == COverflowMenuDirection.bottom;
 
   void open() {
     if (_isOpen) return;
 
-    _context = _props.key.currentContext!;
+    _context = props.key.currentContext!;
     _parentRect = _getParentWidgetRect();
     _screenSize = window.physicalSize / window.devicePixelRatio;
 
@@ -75,7 +73,7 @@ class COverflowMenu {
     Overlay.of(_context)!.insert(_entry);
     _isOpen = true;
 
-    _props.onOpen?.call();
+    props.onOpen?.call();
   }
 
   void close() {
@@ -84,11 +82,11 @@ class COverflowMenu {
     _entry.remove();
     _isOpen = false;
 
-    _props.onClose?.call();
+    props.onClose?.call();
   }
 
   Rect _getParentWidgetRect() {
-    final renderBox = _props.key.currentContext!.findRenderObject() as RenderBox;
+    final renderBox = props.key.currentContext!.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
 
     return Rect.fromLTWH(
@@ -117,51 +115,55 @@ class COverflowMenu {
     }
 
     if (_direction == COverflowMenuDirection.bottom) {
-      dx += _props.menuOffset.dx;
-      dy += _props.menuOffset.dy;
+      dx += props.menuOffset.dx;
+      dy += props.menuOffset.dy;
     } else {
-      dx -= _props.menuOffset.dx;
-      dy -= _props.menuOffset.dy;
+      dx -= props.menuOffset.dx;
+      dy -= props.menuOffset.dy;
     }
 
     return Offset(dx, dy);
   }
 
   Widget _buildOverflowMenu() {
-    return Material(
-      color: Colors.transparent,
-      child: Provider.value(
-        value: _props,
-        child: GestureDetector(
-          onVerticalDragStart: (_) => close(),
-          onHorizontalDragStart: (_) => close(),
-          child: Stack(
-            children: [
-              Positioned(
-                left: _offset.dx,
-                top: _offset.dy,
-                child: Container(
-                  width: _menuWidth,
-                  height: _menuHeight,
-                  decoration: BoxDecoration(
-                    color: _menuColors['$_cwidget-background-color'],
-                    boxShadow: [
-                      BoxShadow(
-                        offset: Offset(0, 6),
-                        color: CColors.black100.withOpacity(0.2),
-                        blurRadius: 6,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: _props.items,
-                  ),
+    return Provider.value(
+      value: props,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onVerticalDragStart: (_) => close(),
+              onHorizontalDragStart: (_) => close(),
+              onTap: () => close(),
+            ),
+          ),
+          Positioned(
+            left: _offset.dx,
+            top: _offset.dy,
+            child: Material(
+              color: CColors.transparent,
+              child: Container(
+                width: _menuWidth,
+                height: _menuHeight,
+                decoration: BoxDecoration(
+                  color: _colors['$_cwidget-background-color'],
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, _isBottom ? 6 : -6),
+                      color: CColors.black100.withOpacity(0.3),
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: props.items,
                 ),
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

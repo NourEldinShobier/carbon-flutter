@@ -2,15 +2,15 @@ import 'package:carbon/shared/index.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class COverflowMenuItemStyle {
-  static const Map<String, dynamic> layouts = {
+  static Map<String, dynamic> layouts = {
     'overflowmenu-item-animation-duration': Duration(milliseconds: 100),
     'overflowmenu-item-animation-curve': Curves.linear,
     'overflowmenu-item-regular-dimensions': Size(160, 48),
     'overflowmenu-item-md-dimensions': Size(160, 40),
     'overflowmenu-item-sm-dimensions': Size(160, 32),
-    'overflowmenu-item-regular-padding': 16.0,
-    'overflowmenu-item-md-padding': 16.0,
-    'overflowmenu-item-sm-padding': 13.0,
+    'overflowmenu-item-regular-padding': [0.0, 16.0].padding,
+    'overflowmenu-item-md-padding': [0.0, 16.0].padding,
+    'overflowmenu-item-sm-padding': [0.0, 13.0].padding,
   };
 
   static const Map<String, Color> colors = {
