@@ -15,7 +15,7 @@ extension CDoubleListExtension on List<double> {
     } else if (this.length == 2) {
       return EdgeInsets.symmetric(vertical: this[0], horizontal: this[1]);
     } else if (this.length == 4) {
-      return EdgeInsets.only(left: this[0], top: this[1], right: this[2], bottom: this[3]);
+      return EdgeInsets.only(top: this[0], right: this[1], bottom: this[2], left: this[3]);
     }
 
     throw Exception('[CDoubleListExtension] : list length should be 1, 2 or 4');
