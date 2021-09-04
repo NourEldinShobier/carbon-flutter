@@ -5,6 +5,8 @@ import 'overflow_menu_item.style.dart';
 
 abstract class COverflowMenuStyle {
   static Map<String, dynamic> layouts = {
+    'overflowmenu-animation-duration': Duration(milliseconds: 100),
+    'overflowmenu-animation-curve': Curves.linear,
     'overflowmenu-item-regular-dimensions': COverflowMenuItemStyle.layouts['overflowmenu-item-regular-dimensions'],
     'overflowmenu-item-md-dimensions': COverflowMenuItemStyle.layouts['overflowmenu-item-md-dimensions'],
     'overflowmenu-item-sm-dimensions': COverflowMenuItemStyle.layouts['overflowmenu-item-sm-dimensions'],
