@@ -30,7 +30,7 @@ class CBreadcrumb extends StatelessWidget {
   final _colors = CBreadcrumbStyle.colors;
   final _menuKey = GlobalKey();
 
-  late final COverflowMenu _menu;
+  final _menu = COverflowMenuController();
 
   List<Widget> _displayAllBreadcrumbs() {
     final items = [
@@ -58,14 +58,17 @@ class CBreadcrumb extends StatelessWidget {
     final secondLastItem = children.removeLast();
     final remainingItems = children;
 
-    _buildMenuItems(remainingItems);
-
-    final overflowItem = CBreadcrumbItem(
-      key: _menuKey,
-      child: CText(data: '...'),
-      onTap: () {
-        _menu.open();
-      },
+    final overflowItem = COverflowMenu(
+      controller: _menu,
+      size: COverflowMenuSize.sm,
+      items: _buildMenuItems(remainingItems),
+      child: CBreadcrumbItem(
+        key: _menuKey,
+        child: CText(data: '...'),
+        onTap: () {
+          _menu.open();
+        },
+      ),
     );
 
     final divider = CText(
@@ -84,22 +87,18 @@ class CBreadcrumb extends StatelessWidget {
     return items;
   }
 
-  void _buildMenuItems(List<CBreadcrumbItem> items) {
-    _menu = COverflowMenu(
-      key: _menuKey,
-      size: COverflowMenuSize.sm,
-      items: items.map(
-        (item) {
-          return COverflowMenuItem(
-            child: item.child,
-            onTap: () {
-              item.onTap();
-              _menu.close();
-            },
-          );
-        },
-      ).toList(),
-    );
+  List<COverflowMenuItem> _buildMenuItems(List<CBreadcrumbItem> items) {
+    return items.map(
+      (item) {
+        return COverflowMenuItem(
+          child: item.child,
+          onTap: () {
+            item.onTap();
+            _menu.close();
+          },
+        );
+      },
+    ).toList();
   }
 
   @override
