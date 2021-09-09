@@ -17,13 +17,13 @@ class CButtonBaseProps {
   });
 }
 
-class CButtonDefaultProps extends CButtonBaseProps {
+class CButtonRegularProps extends CButtonBaseProps {
   final Widget? icon;
   final bool expand;
   final String label;
   final double labelSize;
 
-  CButtonDefaultProps({
+  CButtonRegularProps({
     required this.icon,
     required this.expand,
     required this.label,

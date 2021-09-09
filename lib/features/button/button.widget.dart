@@ -22,7 +22,7 @@ class CButton extends StatefulWidget {
     CButtonSize size = CButtonSize.regular,
     Widget? icon,
   })  : type = CButtonType.regular,
-        props = CButtonDefaultProps(
+        props = CButtonRegularProps(
           icon: icon,
           expand: expand,
           label: label,
@@ -39,21 +39,21 @@ class CButton extends StatefulWidget {
     bool enable = true,
     required Widget icon,
     required VoidCallback onTap,
-    required String iconDescription,
+    required String iconDescription, // TODO:
     CButtonKind kind = CButtonKind.primary,
     CButtonSize size = CButtonSize.regular,
     CTooltipAlignment? cTooltipAlignment, // TODO:
     CTooltipPosition? tooltipPosition, // TODO:
   })  : type = CButtonType.icon,
         props = CButtonIconOnlyProps(
-          icon: icon,
-          cTooltipAlignment: cTooltipAlignment,
-          tooltipPosition: tooltipPosition,
-          iconDescription: iconDescription,
           enable: enable,
+          icon: icon,
+          onTap: onTap,
+          iconDescription: iconDescription,
           kind: kind,
           size: size,
-          onTap: onTap,
+          cTooltipAlignment: cTooltipAlignment,
+          tooltipPosition: tooltipPosition,
         ),
         super(key: key);
 
@@ -71,7 +71,7 @@ class _CButtonState extends State<CButton> {
       return _CButtonIconOnly(props: widget.props as CButtonIconOnlyProps);
     }
 
-    return _CButtonDefault(props: widget.props as CButtonDefaultProps);
+    return _CButtonRegular(props: widget.props as CButtonRegularProps);
   }
 }
 
@@ -83,16 +83,16 @@ abstract class _CButtonBase extends StatefulWidget {
 
 //
 
-class _CButtonDefault extends _CButtonBase {
-  _CButtonDefault({required this.props});
+class _CButtonRegular extends _CButtonBase {
+  _CButtonRegular({required this.props});
 
-  final CButtonDefaultProps props;
+  final CButtonRegularProps props;
 
   @override
-  _CButtonDefaultState createState() => _CButtonDefaultState();
+  _CButtonRegularState createState() => _CButtonRegularState();
 }
 
-class _CButtonDefaultState extends State<_CButtonDefault> with _CButtonStateBase {
+class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase {
   List<Widget> _buildTrailing() {
     final result = <Widget>[];
 
