@@ -21,7 +21,8 @@ class COverflowMenu extends StatefulWidget {
     bool barrierDismissible = true,
     Offset menuOffset = Offset.zero,
     COverflowMenuSize size = COverflowMenuSize.md,
-  })  : props = COverflowMenuProps(
+  })  : assert(items.isNotEmpty),
+        props = COverflowMenuProps(
           controller: controller,
           barrierDismissible: barrierDismissible,
           items: items,
@@ -92,7 +93,6 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
   @override
   void dispose() {
-    widget.props.controller.dispose();
     _animationController.dispose();
     super.dispose();
   }
@@ -124,7 +124,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
     Future.delayed(_layouts['$_cwidget-animation-duration'], () {
       _animationController.removeListener(_refreshOverlayState);
-      _overlayEntry!.remove();
+      _overlayEntry?.remove();
       _overlayEntry = null;
       _overlayState = null;
 

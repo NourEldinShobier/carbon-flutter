@@ -3,9 +3,9 @@ import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/enable/index.dart';
 
 import 'overflow_menu.enum.dart';
+import 'overflow_menu.props.dart';
 import 'overflow_menu.util.dart';
 import 'overflow_menu.widget.dart';
-import 'overflow_menu_button.props.dart';
 import 'overflow_menu_button.style.dart';
 import 'overflow_menu_item.widget.dart';
 
@@ -21,7 +21,8 @@ class COverflowMenuButton extends StatefulWidget {
     VoidCallback? onOpen,
     Offset menuOffset = Offset.zero,
     COverflowMenuSize size = COverflowMenuSize.md,
-  })  : props = COverflowMenuButtonProps(
+  })  : assert(items.isNotEmpty),
+        props = COverflowMenuButtonProps(
           iconDescription: iconDescription,
           icon: icon,
           enable: enable,
@@ -31,8 +32,6 @@ class COverflowMenuButton extends StatefulWidget {
           onOpen: onOpen,
           size: size,
           barrierDismissible: barrierDismissible,
-          child: icon,
-          controller: COverflowMenuController(),
         ),
         super(key: key);
 
@@ -46,6 +45,8 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
   final _colors = COverflowMenuButtonStyle.colors;
   final _layouts = COverflowMenuButtonStyle.layouts;
 
+  final _controller = COverflowMenuController();
+
   /// styles helpers
   String _cwidget = 'overflowmenu-button';
   String _state = enumToString(CWidgetState.enabled);
@@ -53,19 +54,19 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
 
   bool _focused = false;
 
-  bool get _isOpen => widget.props.controller.isOpen;
+  bool get _isOpen => _controller.isOpen;
 
-  void _openMenu() => widget.props.controller.open();
-  void _closeMenu() => widget.props.controller.close();
+  void _openMenu() => _controller.open();
+  void _closeMenu() => _controller.close();
 
   bool _isEnabled() {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    widget.props.controller.addListener(() {
+  void initState() {
+    super.initState();
+    _controller.addListener(() {
       setState(() {
         _focused = _isOpen ? true : false;
       });
@@ -74,7 +75,7 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
 
   @override
   void dispose() {
-    widget.props.controller.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -111,7 +112,7 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
         onTapDown: (_) => setState(() => _focused = true),
         onTapCancel: () => setState(() => _focused = false),
         child: COverflowMenu(
-          controller: widget.props.controller,
+          controller: _controller,
           barrierDismissible: widget.props.barrierDismissible,
           size: widget.props.size,
           onOpen: widget.props.onOpen,
