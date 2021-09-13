@@ -19,24 +19,16 @@ The full documentation of the project can be found [here](https://nour-eldin-sho
 
 ## Screenshots
 
-### Textfield
+![toggle](md-assets/toggle.png)
 
-![screenshot](md-assets/textfield.png)
+![textfield](md-assets/textfield.png)
 
-### Form
+![breadcrumb](md-assets/breadcrumb.png)
 
-![screenshot](md-assets/forms.png)
+![notification](md-assets/notification.png)
 
-### Button
+![forms](md-assets/forms.png)
 
-![screenshot](md-assets/buttons.png)
-
-### Toggle
-
-![screenshot](md-assets/toggle.png)
-
-### Notification
-
-![screenshot](md-assets/notification.png)
+![buttons](md-assets/buttons.png)
 
 <h3 align='center'>Made with :heart:</h3>
