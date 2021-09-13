@@ -5,27 +5,27 @@ import 'package:carbon/features/text/index.dart';
 import 'breadcrumb.style.dart';
 import 'breadcrumb_item.widget.dart';
 
+/// The breadcrumb is a secondary navigation pattern that
+/// helps a user understand the hierarchy among levels and
+/// navigate back through them.
 class CBreadcrumb extends StatelessWidget {
   CBreadcrumb({
     Key? key,
     required this.children,
     this.noTrailingSlash = true,
     this.breadcrumbsLimit = 3,
-    this.dividerSize = 14,
   })  : assert(breadcrumbsLimit >= 3),
         super(key: key);
 
-  /// Pass in the BreadcrumbItem's for your Breadcrumb
+  /// A list of [CBreadcrumbItem] to display in a row.
   final List<CBreadcrumbItem> children;
 
-  /// Optional prop to omit the trailing slash for the breadcrumbs
+  /// Whether to omit the trailing slash for the breadcrumbs or not.
   final bool noTrailingSlash;
 
-  /// Truncate the breadcrumbs when [children] length exceeds [breadcrumbsLimit]
+  /// To truncate the breadcrumbs when [children] length
+  /// exceeds [breadcrumbsLimit].
   final int breadcrumbsLimit;
-
-  /// Divider font size
-  final double dividerSize;
 
   final _colors = CBreadcrumbStyle.colors;
   final _menu = COverflowMenuController();
@@ -36,7 +36,7 @@ class CBreadcrumb extends StatelessWidget {
       data: '/',
       style: TextStyle(
         color: _colors['breadcrumb-slash-color'],
-        fontSize: dividerSize,
+        fontSize: 14,
       ),
     );
 
@@ -79,7 +79,7 @@ class CBreadcrumb extends StatelessWidget {
       data: '/',
       style: TextStyle(
         color: _colors['breadcrumb-slash-color'],
-        fontSize: dividerSize,
+        fontSize: 14,
       ),
     );
 

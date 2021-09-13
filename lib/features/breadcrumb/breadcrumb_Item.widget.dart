@@ -3,6 +3,8 @@ import 'package:carbon/shared/index.dart';
 
 import 'breadcrumb_item.style.dart';
 
+/// A ghost button with a short and clear text that reflects a
+/// location or an entity it links to.
 class CBreadcrumbItem extends StatefulWidget {
   CBreadcrumbItem({
     Key? key,
@@ -13,10 +15,10 @@ class CBreadcrumbItem extends StatefulWidget {
 
   final Widget child;
 
-  /// Provide if this breadcrumb item represents the current page
+  /// Whether this breadcrumb item represents the current page or not.
   final bool isCurrentPage;
 
-  /// Is invoded when [CBreadcrumbItem] is pressed
+  /// Called when the item is tapped.
   final VoidCallback onTap;
 
   @override
