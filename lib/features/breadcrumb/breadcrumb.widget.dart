@@ -112,6 +112,7 @@ class CBreadcrumb extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: children.length > breadcrumbsLimit ? _displayOverflowedBreadcrumbs() : _displayAllBreadcrumbs(),
     );
   }
