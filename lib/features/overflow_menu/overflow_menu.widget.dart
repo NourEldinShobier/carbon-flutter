@@ -10,6 +10,8 @@ import 'overflow_menu.style.dart';
 import 'overflow_menu.util.dart';
 import 'overflow_menu_item.widget.dart';
 
+/// Overflow menu is used when additional options are available
+/// to the user and there is a space constraint.
 class COverflowMenu extends StatefulWidget {
   COverflowMenu({
     Key? key,

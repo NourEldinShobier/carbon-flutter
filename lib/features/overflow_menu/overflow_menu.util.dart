@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 
+/// Controls the overflow menu state.
 class COverflowMenuController extends ChangeNotifier {
   bool _isOpen = false;
 

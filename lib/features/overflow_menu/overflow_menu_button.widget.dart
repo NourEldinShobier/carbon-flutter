@@ -9,6 +9,7 @@ import 'overflow_menu.widget.dart';
 import 'overflow_menu_button.style.dart';
 import 'overflow_menu_item.widget.dart';
 
+/// A ghost button to display/hide an overflow menu when pressed.
 class COverflowMenuButton extends StatefulWidget {
   COverflowMenuButton({
     Key? key,

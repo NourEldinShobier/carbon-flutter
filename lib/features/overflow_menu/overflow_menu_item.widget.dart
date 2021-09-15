@@ -6,6 +6,7 @@ import 'package:pmvvm/pmvvm.dart';
 import 'overflow_menu.props.dart';
 import 'overflow_menu_item.style.dart';
 
+/// An item in an overflow menu.
 class COverflowMenuItem extends StatefulWidget {
   const COverflowMenuItem({
     Key? key,
@@ -16,11 +17,19 @@ class COverflowMenuItem extends StatefulWidget {
     this.isDelete = false,
   }) : super(key: key);
 
+  /// The content of the item.
   final Widget child;
+
+  /// Called when the item is tapped.
   final VoidCallback? onTap;
 
+  /// Whether the item is enabled.
   final bool enable;
+
+  /// Whether this item has a divider.
   final bool hasDivider;
+
+  /// To make this menu item a danger ghost button.
   final bool isDelete;
 
   @override
