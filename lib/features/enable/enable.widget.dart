@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'enable.extension.dart';
 
+/// A widget used to enable/disable a group of widgets below this
+/// widget in the tree based on an inherited value.
 class CEnable extends StatelessWidget {
   const CEnable({
     Key? key,
@@ -10,8 +12,14 @@ class CEnable extends StatelessWidget {
     required this.child,
   }) : super(key: key);
 
+  /// Whether to enable/disable widgets below this widget.
   final bool value;
+
+  /// Whether the current widget should inherit the enable value
+  /// or only use the local [value].
   final bool inheritFromParent;
+
+  /// The widget below this widget in the tree.
   final Widget child;
 
   static bool? of(BuildContext context) {
