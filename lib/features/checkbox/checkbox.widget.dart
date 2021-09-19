@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/text/index.dart';
@@ -104,7 +105,7 @@ class _CCheckboxState extends State<CCheckbox> {
                   width: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: _value ? _colors['$_cwidget-$_state-fill-color'] : Colors.transparent,
+                    color: _value ? _colors['$_cwidget-$_state-fill-color'] : CColors.transparent,
                   ),
                 ),
                 AnimatedContainer(
@@ -115,7 +116,7 @@ class _CCheckboxState extends State<CCheckbox> {
                   curve: _layouts['$_cwidget-fill-color-animation-curve'],
                   child: CSVGIcon.asset(
                     'assets/svg/checkmark.svg',
-                    color: _value ? _colors['$_cwidget-$_state-checkmark-color'] : Colors.transparent,
+                    color: _value ? _colors['$_cwidget-$_state-checkmark-color'] : CColors.transparent,
                     height: 8,
                     package: 'carbon',
                   ),

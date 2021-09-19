@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CButtonStyle {
@@ -19,13 +19,13 @@ abstract class CButtonStyle {
     /// primary ///
 
     // borders
-    'button-primary-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-primary-enabled-first-border': Border.all(color: CColors.transparent, width: 0),
     'button-primary-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-    'button-primary-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-primary-disabled-first-border': Border.all(color: CColors.transparent, width: 0),
 
-    'button-primary-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-    'button-primary-focus-second-border': Border.all(color: Colors.white, width: 2),
-    'button-primary-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+    'button-primary-enabled-second-border': Border.all(color: CColors.transparent, width: 0),
+    'button-primary-focus-second-border': Border.all(color: CColors.white0, width: 2),
+    'button-primary-disabled-second-border': Border.all(color: CColors.transparent, width: 0),
 
     'button-primary-first-border-animation-duration': Duration(milliseconds: 0),
     'button-primary-first-border-animation-curve': Curves.easeInOut,
@@ -36,13 +36,13 @@ abstract class CButtonStyle {
     /// secondary ///
 
     // borders
-    'button-secondary-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-secondary-enabled-first-border': Border.all(color: CColors.transparent, width: 0),
     'button-secondary-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-    'button-secondary-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-secondary-disabled-first-border': Border.all(color: CColors.transparent, width: 0),
 
-    'button-secondary-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-    'button-secondary-focus-second-border': Border.all(color: Colors.white, width: 2),
-    'button-secondary-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+    'button-secondary-enabled-second-border': Border.all(color: CColors.transparent, width: 0),
+    'button-secondary-focus-second-border': Border.all(color: CColors.white0, width: 2),
+    'button-secondary-disabled-second-border': Border.all(color: CColors.transparent, width: 0),
 
     'button-secondary-first-border-animation-duration': Duration(milliseconds: 0),
     'button-secondary-first-border-animation-curve': Curves.easeInOut,
@@ -53,13 +53,13 @@ abstract class CButtonStyle {
     /// danger ///
 
     // borders
-    'button-danger-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-danger-enabled-first-border': Border.all(color: CColors.transparent, width: 0),
     'button-danger-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-    'button-danger-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-danger-disabled-first-border': Border.all(color: CColors.transparent, width: 0),
 
-    'button-danger-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-    'button-danger-focus-second-border': Border.all(color: Colors.white, width: 2),
-    'button-danger-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+    'button-danger-enabled-second-border': Border.all(color: CColors.transparent, width: 0),
+    'button-danger-focus-second-border': Border.all(color: CColors.white0, width: 2),
+    'button-danger-disabled-second-border': Border.all(color: CColors.transparent, width: 0),
 
     'button-danger-first-border-animation-duration': Duration(milliseconds: 0),
     'button-danger-first-border-animation-curve': Curves.easeInOut,
@@ -70,12 +70,12 @@ abstract class CButtonStyle {
     /// tertiary ///
 
     // borders
-    'button-tertiary-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-tertiary-enabled-first-border': Border.all(color: CColors.transparent, width: 0),
     'button-tertiary-focus-first-border': Border.all(color: CColors.gray100, width: 4),
-    'button-tertiary-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-tertiary-disabled-first-border': Border.all(color: CColors.transparent, width: 0),
 
-    'button-tertiary-enabled-second-border': Border.all(color: Colors.white, width: 1),
-    'button-tertiary-focus-second-border': Border.all(color: Colors.white, width: 2),
+    'button-tertiary-enabled-second-border': Border.all(color: CColors.white0, width: 1),
+    'button-tertiary-focus-second-border': Border.all(color: CColors.white0, width: 2),
     'button-tertiary-disabled-second-border': Border.all(color: CColors.gray70, width: 1),
 
     'button-tertiary-first-border-animation-duration': Duration(milliseconds: 80),
@@ -87,13 +87,13 @@ abstract class CButtonStyle {
     /// ghost ///
 
     // borders
-    'button-ghost-enabled-first-border': Border.all(color: Colors.transparent, width: 0),
-    'button-ghost-focus-first-border': Border.all(color: Colors.transparent, width: 0),
-    'button-ghost-disabled-first-border': Border.all(color: Colors.transparent, width: 0),
+    'button-ghost-enabled-first-border': Border.all(color: CColors.transparent, width: 0),
+    'button-ghost-focus-first-border': Border.all(color: CColors.transparent, width: 0),
+    'button-ghost-disabled-first-border': Border.all(color: CColors.transparent, width: 0),
 
-    'button-ghost-enabled-second-border': Border.all(color: Colors.transparent, width: 0),
-    'button-ghost-focus-second-border': Border.all(color: Colors.transparent, width: 0),
-    'button-ghost-disabled-second-border': Border.all(color: Colors.transparent, width: 0),
+    'button-ghost-enabled-second-border': Border.all(color: CColors.transparent, width: 0),
+    'button-ghost-focus-second-border': Border.all(color: CColors.transparent, width: 0),
+    'button-ghost-disabled-second-border': Border.all(color: CColors.transparent, width: 0),
 
     'button-ghost-first-border-animation-duration': Duration(milliseconds: 80),
     'button-ghost-first-border-animation-curve': Curves.easeInOut,
@@ -106,8 +106,8 @@ abstract class CButtonStyle {
     /// primary ///
 
     // content-color
-    'button-primary-enabled-content-color': Colors.white,
-    'button-primary-focus-content-color': Colors.white,
+    'button-primary-enabled-content-color': CColors.white0,
+    'button-primary-focus-content-color': CColors.white0,
     'button-primary-disabled-content-color': CColors.gray60,
 
     // background-color
@@ -118,8 +118,8 @@ abstract class CButtonStyle {
     /// secondary ///
 
     // content-color
-    'button-secondary-enabled-content-color': Colors.white,
-    'button-secondary-focus-content-color': Colors.white,
+    'button-secondary-enabled-content-color': CColors.white0,
+    'button-secondary-focus-content-color': CColors.white0,
     'button-secondary-disabled-content-color': CColors.gray60,
 
     // background-color
@@ -130,8 +130,8 @@ abstract class CButtonStyle {
     /// danger ///
 
     // content-color
-    'button-danger-enabled-content-color': Colors.white,
-    'button-danger-focus-content-color': Colors.white,
+    'button-danger-enabled-content-color': CColors.white0,
+    'button-danger-focus-content-color': CColors.white0,
     'button-danger-disabled-content-color': CColors.gray60,
 
     // background-color
@@ -142,7 +142,7 @@ abstract class CButtonStyle {
     /// tertiary ///
 
     // content-color
-    'button-tertiary-enabled-content-color': Colors.white,
+    'button-tertiary-enabled-content-color': CColors.white0,
     'button-tertiary-focus-content-color': CColors.gray100,
     'button-tertiary-disabled-content-color': CColors.gray70,
 

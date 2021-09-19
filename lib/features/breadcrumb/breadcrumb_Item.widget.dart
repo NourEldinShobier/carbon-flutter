@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'breadcrumb_item.style.dart';

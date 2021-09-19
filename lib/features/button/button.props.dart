@@ -37,13 +37,13 @@ class CButtonRegularProps extends CButtonBaseProps {
 
 class CButtonIconOnlyProps extends CButtonBaseProps {
   final Widget icon;
-  final CTooltipAlignment? cTooltipAlignment;
+  final CTooltipAlignment? tooltipAlignment;
   final CTooltipPosition? tooltipPosition;
   final String iconDescription;
 
   CButtonIconOnlyProps({
     required this.icon,
-    required this.cTooltipAlignment,
+    required this.tooltipAlignment,
     required this.tooltipPosition,
     required this.iconDescription,
     required bool enable,

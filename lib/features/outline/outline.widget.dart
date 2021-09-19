@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'package:vector_math/vector_math_64.dart' as VectorMath;

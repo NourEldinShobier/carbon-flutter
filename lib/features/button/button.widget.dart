@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/text/index.dart';
@@ -42,7 +42,7 @@ class CButton extends StatefulWidget {
     required String iconDescription, // TODO:
     CButtonKind kind = CButtonKind.primary,
     CButtonSize size = CButtonSize.regular,
-    CTooltipAlignment? cTooltipAlignment, // TODO:
+    CTooltipAlignment? tooltipAlignment, // TODO:
     CTooltipPosition? tooltipPosition, // TODO:
   })  : type = CButtonType.icon,
         props = CButtonIconOnlyProps(
@@ -52,7 +52,7 @@ class CButton extends StatefulWidget {
           iconDescription: iconDescription,
           kind: kind,
           size: size,
-          cTooltipAlignment: cTooltipAlignment,
+          tooltipAlignment: tooltipAlignment,
           tooltipPosition: tooltipPosition,
         ),
         super(key: key);

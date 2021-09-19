@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import 'package:carbon/shared/index.dart';
 
 abstract class CToggleStyle {
