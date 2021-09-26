@@ -8,9 +8,9 @@ abstract class COverflowMenuItemStyle {
     'overflowmenu-item-regular-dimensions': Size(160, 48),
     'overflowmenu-item-md-dimensions': Size(160, 40),
     'overflowmenu-item-sm-dimensions': Size(160, 32),
-    'overflowmenu-item-regular-padding': [0.0, 16.0].padding,
-    'overflowmenu-item-md-padding': [0.0, 16.0].padding,
-    'overflowmenu-item-sm-padding': [0.0, 13.0].padding,
+    'overflowmenu-item-regular-padding': const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+    'overflowmenu-item-md-padding': const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+    'overflowmenu-item-sm-padding': const EdgeInsets.symmetric(vertical: 0, horizontal: 13),
   };
 
   static const Map<String, Color> colors = {

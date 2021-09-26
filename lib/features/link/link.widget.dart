@@ -3,23 +3,27 @@ import 'package:carbon/features/text/index.dart';
 import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/enable/index.dart';
 
+import 'link.props.dart';
 import 'link.style.dart';
 
 class CLink extends StatefulWidget {
-  const CLink({
+  CLink({
     Key? key,
-    this.enable = true,
-    required this.url,
-    required this.onTap,
-    this.fontSize = 14,
-    this.caption,
-  }) : super(key: key);
+    bool enable = true,
+    required String url,
+    required void Function(String url) onTap,
+    double fontSize = 14,
+    String? caption,
+  })  : props = CLinkProps(
+          caption: caption,
+          url: url,
+          fontSize: fontSize,
+          enable: enable,
+          onTap: onTap,
+        ),
+        super(key: key);
 
-  final String? caption;
-  final String url;
-  final double fontSize;
-  final bool enable;
-  final void Function(String url) onTap;
+  final CLinkProps props;
 
   @override
   _CLinkState createState() => _CLinkState();
@@ -43,7 +47,7 @@ class _CLinkState extends State<CLink> {
   }
 
   bool _isEnabled() {
-    return context.inheritedEnable ? widget.enable : false;
+    return context.inheritedEnable ? widget.props.enable : false;
   }
 
   @override
@@ -53,12 +57,12 @@ class _CLinkState extends State<CLink> {
     return IgnorePointer(
       ignoring: !_isEnabled(),
       child: GestureDetector(
-        onTap: () => widget.onTap(widget.url),
+        onTap: () => widget.props.onTap(widget.props.url),
         child: CText(
-          data: widget.caption ?? widget.url,
+          data: widget.props.caption ?? widget.props.url,
           style: TextStyle(
             color: _colors['$_cwidget-$_state-text-color'],
-            fontSize: widget.fontSize,
+            fontSize: widget.props.fontSize,
           ),
         ),
       ),

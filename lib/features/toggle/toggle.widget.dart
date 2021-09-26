@@ -8,6 +8,7 @@ import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'toggle.enum.dart';
+import 'toggle.props.dart';
 import 'toggle.style.dart';
 
 /// A toggle is used to quickly switch between two possible states.
@@ -16,34 +17,23 @@ import 'toggle.style.dart';
 class CToggle extends StatefulWidget {
   CToggle({
     Key? key,
-    required this.onToggle,
-    this.enable = true,
-    this.value = true,
-    this.showStatusLabel = true,
-    this.labelText,
-    this.size = CToggleSize.md,
-  }) : super(key: key);
+    required void Function(bool value) onToggle,
+    bool enable = true,
+    bool value = true,
+    bool showStatusLabel = true,
+    String? labelText,
+    CToggleSize size = CToggleSize.md,
+  })  : props = CToggleProps(
+          onToggle: onToggle,
+          enable: enable,
+          value: value,
+          labelText: labelText,
+          size: size,
+          showStatusLabel: showStatusLabel,
+        ),
+        super(key: key);
 
-  /// Whether the toggle is enabled or not
-  final bool enable;
-
-  /// Whether the initial value of the toggle is checked or not.
-  final bool value;
-
-  /// The `labelText` of this toggle
-  final String? labelText;
-
-  /// The size of this toggle. It can be `md` or `sm`
-  final CToggleSize size;
-
-  /// Called when the value of the toggle change.
-  ///
-  /// This callback passes a new value, but doesn't update its state
-  /// internally.
-  final void Function(bool value) onToggle;
-
-  /// Whether the toggle should display its status (`On` | `Off`) or not
-  final bool showStatusLabel;
+  final CToggleProps props;
 
   @override
   _CToggleState createState() => _CToggleState();
@@ -65,23 +55,23 @@ class _CToggleState extends State<CToggle> {
 
   @override
   void initState() {
-    _value = widget.value;
+    _value = widget.props.value;
 
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    final widgetSize = enumToString(widget.size);
+    final widgetSize = enumToString(widget.props.size);
 
-    _value = widget.value;
+    _value = widget.props.value;
     _size = _layouts['toggle-$widgetSize-size'];
 
     super.didChangeDependencies();
   }
 
   bool _isEnabled() {
-    return context.inheritedEnable ? widget.enable : false;
+    return context.inheritedEnable ? widget.props.enable : false;
   }
 
   void _evaluateStateVariables() {
@@ -105,9 +95,9 @@ class _CToggleState extends State<CToggle> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.labelText != null) ...[
+        if (widget.props.labelText != null) ...[
           CText(
-            data: widget.labelText!,
+            data: widget.props.labelText!,
             style: TextStyle(
               fontSize: 12,
               fontFamily: CFonts.primaryRegular,
@@ -133,9 +123,9 @@ class _CToggleState extends State<CToggle> {
                     () => setState(() => _outlined = !_outlined),
                   );
 
-                  widget.onToggle(_value);
+                  widget.props.onToggle(_value);
                 }),
-                child: COutlineWidget(
+                child: COutline(
                   animationDuration: 400,
                   borderRadius: BorderRadius.circular(1000),
                   outlineWidth: 2,
@@ -161,7 +151,7 @@ class _CToggleState extends State<CToggle> {
                         color: _colors['$_cwidget-$_state-indicator-color'],
                         borderRadius: BorderRadius.circular(1000),
                       ),
-                      child: widget.size == CToggleSize.sm
+                      child: widget.props.size == CToggleSize.sm
                           ? CSVGIcon.asset(
                               'assets/svg/toggle-checkmark.svg',
                               color: _colors['$_cwidget-$_state-$_status-checkmark-color'],
@@ -174,7 +164,7 @@ class _CToggleState extends State<CToggle> {
                 ),
               ),
             ),
-            if (widget.showStatusLabel) ...[
+            if (widget.props.showStatusLabel) ...[
               const SizedBox(width: 8),
               CText(
                 data: _value ? 'On' : 'Off',

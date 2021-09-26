@@ -1,3 +1,4 @@
+import 'package:carbon/features/tile/tile.props.dart';
 import 'package:flutter/widgets.dart';
 import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/features/text/index.dart';
@@ -5,34 +6,35 @@ import 'package:carbon/features/text/index.dart';
 import 'tile.style.dart';
 
 class CTile extends StatelessWidget {
-  const CTile({
+  CTile({
     Key? key,
-    this.enable = true,
-    this.title,
-    this.description,
-    this.label,
-    this.labelSize = 12,
-    this.titleSize = 20,
-    this.descriptionSize = 14,
-    this.content,
-  }) : super(key: key);
+    bool enable = true,
+    String? title,
+    String? description,
+    String? label,
+    double labelSize = 12,
+    double titleSize = 20,
+    double descriptionSize = 14,
+    Widget? content,
+  })  : props = CTileProps(
+          enable: enable,
+          label: label,
+          title: title,
+          description: description,
+          labelSize: labelSize,
+          titleSize: titleSize,
+          descriptionSize: descriptionSize,
+          content: content,
+        ),
+        super(key: key);
 
-  final bool enable;
-
-  final String? label;
-  final String? title;
-  final String? description;
-  final double labelSize;
-  final double titleSize;
-  final double descriptionSize;
-
-  final Widget? content;
+  final CTileProps props;
 
   final _colors = CTileStyle.colors;
   final _layouts = CTileStyle.layouts;
 
   bool _isEnabled(BuildContext context) {
-    return context.inheritedEnable ? enable : false;
+    return context.inheritedEnable ? props.enable : false;
   }
 
   @override
@@ -51,38 +53,38 @@ class CTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (label != null) ...[
+            if (props.label != null) ...[
               CText(
-                data: label,
+                data: props.label!,
                 style: TextStyle(
-                  fontSize: labelSize,
+                  fontSize: props.labelSize,
                   color: _colors['$cwidget-$state-label-color'],
                 ),
               ),
               const SizedBox(height: 4),
             ],
-            if (title != null) ...[
-              if (label == null) const SizedBox(height: 8),
+            if (props.label != null) ...[
+              if (props.label == null) const SizedBox(height: 8),
               CText(
-                data: title,
+                data: props.label!,
                 style: TextStyle(
-                  fontSize: titleSize,
+                  fontSize: props.titleSize,
                   color: _colors['$cwidget-$state-title-color'],
                 ),
               ),
-              if (description != null) const SizedBox(height: 11) else const SizedBox(height: 16),
+              if (props.description != null) const SizedBox(height: 11) else const SizedBox(height: 16),
             ],
-            if (description != null) ...[
+            if (props.description != null) ...[
               CText(
-                data: description,
+                data: props.description!,
                 style: TextStyle(
-                  fontSize: descriptionSize,
+                  fontSize: props.descriptionSize,
                   color: _colors['$cwidget-$state-description-color'],
                 ),
               ),
               const SizedBox(height: 20),
             ],
-            if (content != null) content!,
+            if (props.content != null) props.content!,
           ],
         ),
       ),

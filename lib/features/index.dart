@@ -10,7 +10,7 @@ export 'toggle/index.dart';
 export 'outline/index.dart';
 export 'notification/index.dart';
 export 'enable/index.dart';
-export 'app/index.dart';
+export 'carbon_app/index.dart';
 export 'overflow_menu/index.dart';
 
 export 'icon/index.dart';

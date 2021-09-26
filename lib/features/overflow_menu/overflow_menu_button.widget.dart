@@ -122,12 +122,12 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
           items: widget.props.items.map((item) {
             return COverflowMenuItem(
               key: item.key,
-              child: item.child,
-              enable: item.enable,
-              hasDivider: item.hasDivider,
-              isDelete: item.isDelete,
+              child: item.props.child,
+              enable: item.props.enable,
+              hasDivider: item.props.hasDivider,
+              isDelete: item.props.isDelete,
               onTap: () {
-                item.onTap?.call();
+                item.props.onTap?.call();
                 _closeMenu();
               },
             );

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/features/overflow_menu/index.dart';
 import 'package:carbon/features/text/index.dart';
 
+import 'breadcrumb.props.dart';
 import 'breadcrumb.style.dart';
 import 'breadcrumb_item.widget.dart';
 
@@ -12,21 +13,18 @@ import 'breadcrumb_item.widget.dart';
 class CBreadcrumb extends StatelessWidget {
   CBreadcrumb({
     Key? key,
-    required this.children,
-    this.noTrailingSlash = true,
-    this.breadcrumbsLimit = 3,
+    required List<CBreadcrumbItem> children,
+    bool noTrailingSlash = true,
+    int breadcrumbsLimit = 3,
   })  : assert(breadcrumbsLimit >= 3),
+        props = CBreadcrumbProps(
+          children: children,
+          noTrailingSlash: noTrailingSlash,
+          breadcrumbsLimit: breadcrumbsLimit,
+        ),
         super(key: key);
 
-  /// A list of [CBreadcrumbItem] to display in a row.
-  final List<CBreadcrumbItem> children;
-
-  /// Whether to omit the trailing slash for the breadcrumbs or not.
-  final bool noTrailingSlash;
-
-  /// To truncate the breadcrumbs when [children] length
-  /// exceeds [breadcrumbsLimit].
-  final int breadcrumbsLimit;
+  final CBreadcrumbProps props;
 
   final _colors = CBreadcrumbStyle.colors;
   final _menu = COverflowMenuController();
@@ -42,10 +40,10 @@ class CBreadcrumb extends StatelessWidget {
     );
 
     final items = [
-      for (final item in children) ...[item, divider]
+      for (final item in props.children) ...[item, divider]
     ];
 
-    if (noTrailingSlash) items.removeLast();
+    if (props.noTrailingSlash) items.removeLast();
 
     return items;
   }
@@ -55,13 +53,13 @@ class CBreadcrumb extends StatelessWidget {
     var hiddenItems = <CBreadcrumbItem>[];
     var trailingItems = <CBreadcrumbItem>[];
 
-    leadingItems.add(children.removeAt(0));
-    trailingItems.add(children.removeLast());
-    trailingItems.add(children.removeLast());
+    leadingItems.add(props.children.removeAt(0));
+    trailingItems.add(props.children.removeLast());
+    trailingItems.add(props.children.removeLast());
 
     trailingItems = List.from(trailingItems.reversed);
 
-    hiddenItems.addAll(children);
+    hiddenItems.addAll(props.children);
 
     final overflowItem = COverflowMenu(
       controller: _menu,
@@ -91,7 +89,7 @@ class CBreadcrumb extends StatelessWidget {
       for (final item in trailingItems) ...[item, divider],
     ];
 
-    if (noTrailingSlash) items.removeLast();
+    if (props.noTrailingSlash) items.removeLast();
 
     return items;
   }
@@ -100,9 +98,9 @@ class CBreadcrumb extends StatelessWidget {
     return items.map(
       (item) {
         return COverflowMenuItem(
-          child: item.child,
+          child: item.props.child,
           onTap: () {
-            item.onTap();
+            item.props.onTap();
             _menu.close();
           },
         );
@@ -114,7 +112,7 @@ class CBreadcrumb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
-      children: children.length > breadcrumbsLimit ? _displayOverflowedBreadcrumbs() : _displayAllBreadcrumbs(),
+      children: props.children.length > props.breadcrumbsLimit ? _displayOverflowedBreadcrumbs() : _displayAllBreadcrumbs(),
     );
   }
 }

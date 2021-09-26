@@ -3,8 +3,8 @@ import 'package:carbon/shared/index.dart';
 
 import 'package:vector_math/vector_math_64.dart' as VectorMath;
 
-class COutlineWidget extends StatefulWidget {
-  const COutlineWidget({
+class COutline extends StatefulWidget {
+  const COutline({
     Key? key,
     required this.child,
     this.color = CColors.white0,
@@ -34,7 +34,7 @@ class COutlineWidget extends StatefulWidget {
   _COutlineWidgetState createState() => _COutlineWidgetState();
 }
 
-class _COutlineWidgetState extends State<COutlineWidget> with TickerProviderStateMixin {
+class _COutlineWidgetState extends State<COutline> with TickerProviderStateMixin {
   var _itemKey = GlobalKey();
 
   Size? _size;
@@ -85,7 +85,6 @@ class _COutlineWidgetState extends State<COutlineWidget> with TickerProviderStat
   }
 
   ///
-
   VectorMath.Vector3 _calculateScaleVector(double outlineWidth) {
     var value = VectorMath.Vector3(
       2 * outlineWidth / _size!.width,

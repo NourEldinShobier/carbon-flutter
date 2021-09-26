@@ -198,7 +198,7 @@ class _CTextFieldState extends State<CTextField> {
         children: <Widget>[
           if (widget.label != null) ...[
             CText(
-              data: widget.label,
+              data: widget.label!,
               isRequired: widget.isRequired,
               style: TextStyle(
                 fontSize: layouts['textfield-label-font-size'],
@@ -301,7 +301,7 @@ class _CTextFieldState extends State<CTextField> {
           if (widget.description != null) ...[
             const SizedBox(height: 8),
             CText(
-              data: _validationResult == null ? widget.description : _validationResult!.message,
+              data: _validationResult == null ? widget.description! : _validationResult!.message,
               style: TextStyle(
                 fontSize: layouts['textfield-description-font-size'],
                 fontFamily: layouts['textfield-description-font-family'],

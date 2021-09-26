@@ -111,3 +111,38 @@ class COverflowMenuButtonProps extends COverflowMenuBaseProps {
           barrierDismissible: barrierDismissible,
         );
 }
+
+class COverflowMenuItemProps {
+  /// The content of the item.
+  ///
+  /// @required
+  final Widget child;
+
+  /// Called when the item is tapped.
+  ///
+  /// @optional
+  final VoidCallback? onTap;
+
+  /// Whether the item is enabled.
+  ///
+  /// @default: `true`
+  final bool enable;
+
+  /// Whether this item has a divider.
+  ///
+  /// @default: `false`
+  final bool hasDivider;
+
+  /// To make this menu item a danger ghost button.
+  ///
+  /// @default: `false`
+  final bool isDelete;
+
+  COverflowMenuItemProps({
+    required this.child,
+    required this.onTap,
+    required this.enable,
+    required this.hasDivider,
+    required this.isDelete,
+  });
+}

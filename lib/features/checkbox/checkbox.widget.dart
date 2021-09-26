@@ -5,23 +5,27 @@ import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/text/index.dart';
 import 'package:carbon/features/enable/index.dart';
 
+import 'checkbox.props.dart';
 import 'checkbox.style.dart';
 
 class CCheckbox extends StatefulWidget {
   CCheckbox({
     Key? key,
-    this.enable = true,
-    required this.onChange,
-    this.value = false,
-    this.label,
-    this.labelSize = 14,
-  }) : super(key: key);
+    bool enable = true,
+    required void Function(bool value) onChange,
+    bool value = false,
+    String? label,
+    double labelSize = 14,
+  })  : props = CCheckboxProps(
+          enable: enable,
+          value: value,
+          label: label,
+          labelSize: labelSize,
+          onChange: onChange,
+        ),
+        super(key: key);
 
-  final bool enable;
-  final bool value;
-  final String? label;
-  final double labelSize;
-  final void Function(bool value) onChange;
+  final CCheckboxProps props;
 
   @override
   _CCheckboxState createState() => _CCheckboxState();
@@ -40,18 +44,18 @@ class _CCheckboxState extends State<CCheckbox> {
 
   @override
   void initState() {
-    _value = widget.value;
+    _value = widget.props.value;
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    _value = widget.value;
+    _value = widget.props.value;
     super.didChangeDependencies();
   }
 
   bool _isEnabled() {
-    return context.inheritedEnable ? widget.enable : false;
+    return context.inheritedEnable ? widget.props.enable : false;
   }
 
   void _evaluateStateVariables() {
@@ -77,7 +81,7 @@ class _CCheckboxState extends State<CCheckbox> {
         onTapUp: (_) => setState(() {
           _focused = false;
           _value = !_value;
-          widget.onChange(_value);
+          widget.props.onChange(_value);
         }),
         onTapCancel: () => setState(() => _focused = false),
         child: Row(
@@ -123,12 +127,12 @@ class _CCheckboxState extends State<CCheckbox> {
                 ),
               ],
             ),
-            if (widget.label != null) ...[
+            if (widget.props.label != null) ...[
               const SizedBox(width: 10),
               CText(
-                data: widget.label,
+                data: widget.props.label!,
                 style: TextStyle(
-                  fontSize: widget.labelSize,
+                  fontSize: widget.props.labelSize,
                   color: _colors['$_cwidget-$_state-label-color'],
                 ),
               ),

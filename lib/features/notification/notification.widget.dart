@@ -4,80 +4,69 @@ import 'package:pmvvm/pmvvm.dart';
 
 import 'action_button.widget.dart';
 import 'notification.enum.dart';
+import 'notification.props.dart';
 
 /// Notifications are messages that communicate information to the user.
 ///
 /// The two main variants of notifications are toast notifications and
 /// inline notifications.
 class CNotification extends StatelessWidget {
-  const CNotification.toast({
+  CNotification.toast({
     Key? key,
-    required this.title,
-    required this.subtitle,
-    this.caption,
-    this.hideCloseButton = false,
-    this.kind = CNotificationKind.info,
-    this.lowContrast = true,
-    this.onCloseButtonTap,
-    this.onClose,
-    this.timeout,
+    required Widget title,
+    required Widget subtitle,
+    Widget? caption,
+    bool hideCloseButton = false,
+    CNotificationKind kind = CNotificationKind.info,
+    bool lowContrast = true,
+    VoidCallback? onCloseButtonTap,
+    VoidCallback? onClose,
+    int? timeout,
   })  : assert((timeout == null && onClose == null) || (timeout != null && onClose != null)),
         assert((hideCloseButton && onCloseButtonTap == null) || (!hideCloseButton && onCloseButtonTap != null)),
+        props = CNotificationToastProps(
+          caption: caption,
+          title: title,
+          subtitle: subtitle,
+          hideCloseButton: hideCloseButton,
+          kind: kind,
+          lowContrast: lowContrast,
+          onCloseButtonTap: onCloseButtonTap,
+          onClose: onClose,
+          timeout: timeout,
+        ),
         _type = CNotificationType.toast,
-        actions = null,
         super(key: key);
 
-  const CNotification.inline({
+  CNotification.inline({
     Key? key,
-    required this.title,
-    required this.subtitle,
-    this.hideCloseButton = false,
-    this.kind = CNotificationKind.info,
-    this.lowContrast = true,
-    this.onCloseButtonTap,
-    this.onClose,
-    this.timeout,
-    this.actions,
+    required Widget title,
+    required Widget subtitle,
+    Widget? caption,
+    bool hideCloseButton = false,
+    CNotificationKind kind = CNotificationKind.info,
+    bool lowContrast = true,
+    VoidCallback? onCloseButtonTap,
+    VoidCallback? onClose,
+    int? timeout,
+    List<CNotificationActionButton>? actions,
   })  : assert((timeout == null && onClose == null) || (timeout != null && onClose != null)),
         assert((hideCloseButton && onCloseButtonTap == null) || (!hideCloseButton && onCloseButtonTap != null)),
+        props = CNotificationInlineProps(
+          actions: actions,
+          title: title,
+          subtitle: subtitle,
+          hideCloseButton: hideCloseButton,
+          kind: kind,
+          lowContrast: lowContrast,
+          onCloseButtonTap: onCloseButtonTap,
+          onClose: onClose,
+          timeout: timeout,
+        ),
         _type = CNotificationType.inline,
-        caption = null,
         super(key: key);
 
-  /// The title to display.
-  final Widget title;
-
-  /// The subtitle to display.
-  final Widget subtitle;
-
-  /// An optional caption to display.
-  final Widget? caption;
-
-  /// Whether the close button should be disabled, or not.
-  final bool hideCloseButton;
-
-  /// The state that the [CNotification] represents. It can be `error`,
-  /// `info`, `success`, or `warning`.
-  final CNotificationKind kind;
-
-  /// Whether you are using the low contrast variant of the [CNotification].
-  final bool lowContrast;
-
-  /// Called when the close button is tapped.
-  final VoidCallback? onCloseButtonTap;
-
-  /// Called after the given [timeout] duration has passed.
-  final VoidCallback? onClose;
-
-  /// An optional duration (milliseconds) to determine the amount of time
-  /// the [CNotification] should be displayed.
-  ///
-  /// When the duration is finished, [onClose] is called.
-  final int? timeout;
-
-  /// A list of [CNotificationActionButton] to display in a row when
-  /// the [CNotification] is `inline`.
-  final List<CNotificationActionButton>? actions;
+  final CNotificationBaseProps props;
 
   /// Whether [CNotification] is `toast` or `inline`.
   final CNotificationType _type;
@@ -87,18 +76,18 @@ class CNotification extends StatelessWidget {
   final _assets = CNotificationStyle.assets;
 
   void _startTimer() {
-    Future.delayed(Duration(milliseconds: timeout!), () {
-      onClose!();
+    Future.delayed(Duration(milliseconds: props.timeout!), () {
+      props.onClose!();
     });
   }
 
   /// The method is used when the [_type] is [CNotificationType.inline]
   /// and it's called by [_buildInlineNotification]
 
-  List<Widget> _buildActions() {
+  List<Widget> _buildActions(CNotificationInlineProps props) {
     final result = <Widget>[];
 
-    actions!.forEach(
+    props.actions!.forEach(
       (action) => result.addAll([action, const SizedBox(width: 8)]),
     );
 
@@ -107,13 +96,13 @@ class CNotification extends StatelessWidget {
     return result;
   }
 
-  Widget _buildInlineNotification() {
+  Widget _buildInlineNotification(CNotificationInlineProps props) {
     /// styles helpers
     String cwidget = 'notification';
-    String notificationKind = enumToString(kind);
-    String contrast = lowContrast ? 'lowcontrast' : 'highcontrast';
+    String notificationKind = enumToString(props.kind);
+    String contrast = props.lowContrast ? 'lowcontrast' : 'highcontrast';
 
-    if (timeout != null) _startTimer();
+    if (props.timeout != null) _startTimer();
 
     return Provider.value(
       value: contrast,
@@ -121,19 +110,19 @@ class CNotification extends StatelessWidget {
         decoration: BoxDecoration(
           color: _colors['$cwidget-$contrast-background-color'],
           border: Border(
-            top: lowContrast
+            top: props.lowContrast
                 ? BorderSide(
                     width: _layouts['$cwidget-inline-$contrast-border-width'][0],
                     color: _colors['$cwidget-$notificationKind-border-color']!,
                   )
                 : BorderSide.none,
-            right: lowContrast
+            right: props.lowContrast
                 ? BorderSide(
                     width: _layouts['$cwidget-inline-$contrast-border-width'][1],
                     color: _colors['$cwidget-$notificationKind-border-color']!,
                   )
                 : BorderSide.none,
-            bottom: lowContrast
+            bottom: props.lowContrast
                 ? BorderSide(
                     width: _layouts['$cwidget-inline-$contrast-border-width'][2],
                     color: _colors['$cwidget-$notificationKind-border-color']!,
@@ -171,7 +160,7 @@ class CNotification extends StatelessWidget {
                         fontFamily: CFonts.primarySemibold,
                         package: 'carbon',
                       ),
-                      child: title,
+                      child: props.title,
                     ),
                     const SizedBox(width: 4),
                     DefaultTextStyle(
@@ -180,13 +169,13 @@ class CNotification extends StatelessWidget {
                         fontFamily: CFonts.primaryRegular,
                         package: 'carbon',
                       ),
-                      child: subtitle,
+                      child: props.subtitle,
                     ),
                   ],
                 ),
               ),
             ),
-            if (actions != null) ...[
+            if (props.actions != null) ...[
               const SizedBox(width: 14),
               SizedBox(
                 height: 48,
@@ -197,16 +186,16 @@ class CNotification extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: _buildActions(),
+                      children: _buildActions(props),
                     ),
                   ),
                 ),
               ),
               const SizedBox(width: 14),
             ],
-            if (!hideCloseButton)
+            if (!props.hideCloseButton)
               CNotificationActionButton(
-                onTap: onCloseButtonTap!,
+                onTap: props.onCloseButtonTap!,
                 width: 48,
                 height: 48,
                 child: CSVGIcon.asset(
@@ -221,13 +210,13 @@ class CNotification extends StatelessWidget {
     );
   }
 
-  Widget _buildToastNotification() {
+  Widget _buildToastNotification(CNotificationToastProps props) {
     /// styles helpers
     String cwidget = 'notification';
-    String notificationKind = enumToString(kind);
-    String contrast = lowContrast ? 'lowcontrast' : 'highcontrast';
+    String notificationKind = enumToString(props.kind);
+    String contrast = props.lowContrast ? 'lowcontrast' : 'highcontrast';
 
-    if (timeout != null) _startTimer();
+    if (props.timeout != null) _startTimer();
 
     return Provider.value(
       value: contrast,
@@ -272,7 +261,7 @@ class CNotification extends StatelessWidget {
                           fontFamily: CFonts.primarySemibold,
                           package: 'carbon',
                         ),
-                        child: title,
+                        child: props.title,
                       ),
                     ),
                     Flexible(
@@ -282,10 +271,10 @@ class CNotification extends StatelessWidget {
                           fontFamily: CFonts.primaryRegular,
                           package: 'carbon',
                         ),
-                        child: subtitle,
+                        child: props.subtitle,
                       ),
                     ),
-                    if (caption != null) ...[
+                    if (props.caption != null) ...[
                       const SizedBox(height: 24),
                       DefaultTextStyle(
                         style: TextStyle(
@@ -293,7 +282,7 @@ class CNotification extends StatelessWidget {
                           fontFamily: CFonts.primaryRegular,
                           package: 'carbon',
                         ),
-                        child: caption!,
+                        child: props.caption!,
                       ),
                     ]
                   ],
@@ -301,9 +290,9 @@ class CNotification extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 14),
-            if (!hideCloseButton)
+            if (!props.hideCloseButton)
               CNotificationActionButton(
-                onTap: onCloseButtonTap!,
+                onTap: props.onCloseButtonTap!,
                 width: 48,
                 height: 48,
                 child: CSVGIcon.asset(
@@ -321,8 +310,8 @@ class CNotification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (_type == CNotificationType.inline)
-      return _buildInlineNotification();
+      return _buildInlineNotification(props as CNotificationInlineProps);
     else
-      return _buildToastNotification();
+      return _buildToastNotification(props as CNotificationToastProps);
   }
 }

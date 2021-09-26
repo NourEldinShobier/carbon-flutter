@@ -24,7 +24,7 @@ class CText extends StatelessWidget {
     this.textHeightBehavior,
   }) : super(key: key);
 
-  final String? data;
+  final String data;
   final bool isRequired;
   final bool enable;
   final InlineSpan? textSpan;
@@ -52,7 +52,7 @@ class CText extends StatelessWidget {
 
   Widget _buildText(BuildContext context) {
     return Text(
-      data!,
+      data,
       style: _textStyle(context)?.merge(
         TextStyle(
           fontFamilyFallback: [

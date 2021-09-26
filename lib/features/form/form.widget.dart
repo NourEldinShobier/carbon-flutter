@@ -3,21 +3,25 @@ import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'form.enum.dart';
+import 'form.props.dart';
 import 'form.style.dart';
 
 class CForm extends StatefulWidget {
   CForm({
     Key? key,
-    required this.children,
-    this.enable = true,
-    this.actions,
-    this.type = CFormType.blank,
-  }) : super(key: key);
+    required List<Widget> children,
+    bool enable = true,
+    Widget? actions,
+    CFormType type = CFormType.blank,
+  })  : props = CFormProps(
+          enable: enable,
+          children: children,
+          type: type,
+          actions: actions,
+        ),
+        super(key: key);
 
-  final bool enable;
-  final List<Widget> children;
-  final CFormType type;
-  final Widget? actions;
+  final CFormProps props;
 
   @override
   CFormState createState() => CFormState();
@@ -36,10 +40,10 @@ class CFormState extends State<CForm> {
   String _state = enumToString(CWidgetState.enabled);
   String _type = '';
 
-  CFormType get type => widget.type;
+  CFormType get type => widget.props.type;
 
   bool _isEnabled() {
-    return context.inheritedEnable ? widget.enable : false;
+    return context.inheritedEnable ? widget.props.enable : false;
   }
 
   void _evaluateStateVariables() {
@@ -76,10 +80,10 @@ class CFormState extends State<CForm> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: widget.children,
+                  children: widget.props.children,
                 ),
               ),
-              if (widget.actions != null) widget.actions!,
+              if (widget.props.actions != null) widget.props.actions!,
             ],
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
+import 'breadcrumb.props.dart';
 import 'breadcrumb_item.style.dart';
 
 /// A ghost button with a short and clear text that reflects a
@@ -8,18 +9,17 @@ import 'breadcrumb_item.style.dart';
 class CBreadcrumbItem extends StatefulWidget {
   CBreadcrumbItem({
     Key? key,
-    required this.child,
-    required this.onTap,
-    this.isCurrentPage = false,
-  }) : super(key: key);
+    required Widget child,
+    required VoidCallback onTap,
+    bool isCurrentPage = false,
+  })  : props = CBreadcrumbItemProps(
+          child: child,
+          isCurrentPage: isCurrentPage,
+          onTap: onTap,
+        ),
+        super(key: key);
 
-  final Widget child;
-
-  /// Whether this breadcrumb item represents the current page or not.
-  final bool isCurrentPage;
-
-  /// Called when the item is tapped.
-  final VoidCallback onTap;
+  final CBreadcrumbItemProps props;
 
   @override
   _CBreadcrumbItemState createState() => _CBreadcrumbItemState();
@@ -50,7 +50,7 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
     _evaluateStateVariables();
 
     return GestureDetector(
-      onTap: widget.onTap,
+      onTap: widget.props.onTap,
       onTapDown: (_) => setState(() => _focused = true),
       onTapUp: (_) => setState(() => _focused = false),
       onTapCancel: () => setState(() => _focused = false),
@@ -72,9 +72,9 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
         curve: _layouts['$_cwidget-animation-curve'],
         child: DefaultTextStyle(
           style: TextStyle(
-            color: widget.isCurrentPage ? _colors['$_cwidget-current-color'] : _colors['$_cwidget-color'],
+            color: widget.props.isCurrentPage ? _colors['$_cwidget-current-color'] : _colors['$_cwidget-color'],
           ),
-          child: widget.child,
+          child: widget.props.child,
         ),
       ),
     );
