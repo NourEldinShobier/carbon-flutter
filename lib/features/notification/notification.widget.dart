@@ -71,6 +71,20 @@ class CNotification extends StatelessWidget {
   /// Whether [CNotification] is `toast` or `inline`.
   final CNotificationType _type;
 
+  @override
+  Widget build(BuildContext context) {
+    if (_type == CNotificationType.inline)
+      return _CNotificationInline(props: props as CNotificationInlineProps);
+    else
+      return _CNotificationToast(props: props as CNotificationToastProps);
+  }
+}
+
+class _CNotificationInline extends StatelessWidget {
+  _CNotificationInline({Key? key, required this.props}) : super(key: key);
+
+  final CNotificationInlineProps props;
+
   final _colors = CNotificationStyle.colors;
   final _layouts = CNotificationStyle.layouts;
   final _assets = CNotificationStyle.assets;
@@ -81,10 +95,7 @@ class CNotification extends StatelessWidget {
     });
   }
 
-  /// The method is used when the [_type] is [CNotificationType.inline]
-  /// and it's called by [_buildInlineNotification]
-
-  List<Widget> _buildActions(CNotificationInlineProps props) {
+  List<Widget> _buildActions() {
     final result = <Widget>[];
 
     props.actions!.forEach(
@@ -96,7 +107,8 @@ class CNotification extends StatelessWidget {
     return result;
   }
 
-  Widget _buildInlineNotification(CNotificationInlineProps props) {
+  @override
+  Widget build(BuildContext context) {
     /// styles helpers
     String cwidget = 'notification';
     String notificationKind = enumToString(props.kind);
@@ -186,7 +198,7 @@ class CNotification extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: _buildActions(props),
+                      children: _buildActions(),
                     ),
                   ),
                 ),
@@ -209,8 +221,25 @@ class CNotification extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildToastNotification(CNotificationToastProps props) {
+class _CNotificationToast extends StatelessWidget {
+  const _CNotificationToast({Key? key, required this.props}) : super(key: key);
+
+  final CNotificationToastProps props;
+
+  final _colors = CNotificationStyle.colors;
+  final _layouts = CNotificationStyle.layouts;
+  final _assets = CNotificationStyle.assets;
+
+  void _startTimer() {
+    Future.delayed(Duration(milliseconds: props.timeout!), () {
+      props.onClose!();
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     /// styles helpers
     String cwidget = 'notification';
     String notificationKind = enumToString(props.kind);
@@ -305,13 +334,5 @@ class CNotification extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (_type == CNotificationType.inline)
-      return _buildInlineNotification(props as CNotificationInlineProps);
-    else
-      return _buildToastNotification(props as CNotificationToastProps);
   }
 }
