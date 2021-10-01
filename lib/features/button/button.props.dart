@@ -4,9 +4,25 @@ import 'package:flutter/widgets.dart';
 import 'button.enum.dart';
 
 class CButtonBaseProps {
+  /// Whether the toggle is enabled or not.
+  ///
+  /// @default: `true`
   final bool enable;
+
+  /// The kind that the button represents. It can be `primary,
+  /// secondary, danger, tertiary, ghost`.
+  ///
+  /// @default: `CButtonKind.primary`
   final CButtonKind kind;
+
+  /// The size of this button. It can be `regular, sm, md`.
+  ///
+  /// @default: `CToggleSize.regular`
   final CButtonSize size;
+
+  /// Called when the action button is tapped.
+  ///
+  /// @required
   final VoidCallback onTap;
 
   CButtonBaseProps({
@@ -18,9 +34,21 @@ class CButtonBaseProps {
 }
 
 class CButtonRegularProps extends CButtonBaseProps {
-  final Widget? icon;
-  final bool expand;
   final String label;
+
+  /// An optional icon to display in the button.
+  ///
+  /// @optional
+  final Widget? icon;
+
+  /// Whether the button should fill the available width.
+  ///
+  /// @default: `false`
+  final bool expand;
+
+  /// The size (in logical pixels) to use when painting the label.
+  ///
+  /// @default: `14.0`
   final double labelSize;
 
   CButtonRegularProps({
@@ -36,10 +64,26 @@ class CButtonRegularProps extends CButtonBaseProps {
 }
 
 class CButtonIconOnlyProps extends CButtonBaseProps {
+  /// An icon to display in the button.
+  ///
+  /// @required
   final Widget icon;
-  final CTooltipAlignment? tooltipAlignment;
-  final CTooltipPosition? tooltipPosition;
+
+  /// A text to display in a tooltip when the button is
+  /// long pressed.
+  ///
+  /// @required
   final String iconDescription;
+
+  /// The tooltip alignment, it can be `start, center, end`.
+  ///
+  /// @optional
+  final CTooltipAlignment? tooltipAlignment;
+
+  /// The tooltip position, it can be `top, right, bottom, left`.
+  ///
+  /// @optional
+  final CTooltipPosition? tooltipPosition;
 
   CButtonIconOnlyProps({
     required this.icon,

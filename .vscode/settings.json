@@ -4,6 +4,7 @@
         "enable",
         "csvgicon",
         "button",
-        "notification"
+        "notification",
+        "breadcrumb, button"
     ]
 }
