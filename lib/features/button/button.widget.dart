@@ -10,6 +10,10 @@ import 'button.style.dart';
 
 part 'button.mixin.dart';
 
+/// Buttons are clickable elements that are used to trigger actions.
+/// They communicate calls to action to the user and allow users to interact
+/// with pages in a variety of ways. Button labels express what action will
+/// occur when the user interacts with it.
 class CButton extends StatefulWidget {
   CButton({
     Key? key,

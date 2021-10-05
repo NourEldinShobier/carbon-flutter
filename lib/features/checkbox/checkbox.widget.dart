@@ -8,19 +8,19 @@ import 'package:carbon/features/enable/index.dart';
 import 'checkbox.props.dart';
 import 'checkbox.style.dart';
 
+/// Checkboxes are used when there are multiple items to select
+/// in a list. Users can select zero, one, or any number of items.
 class CCheckbox extends StatefulWidget {
   CCheckbox({
     Key? key,
-    bool enable = true,
     required void Function(bool value) onChange,
+    bool enable = true,
     bool value = false,
     String? label,
-    double labelSize = 14,
   })  : props = CCheckboxProps(
           enable: enable,
           value: value,
           label: label,
-          labelSize: labelSize,
           onChange: onChange,
         ),
         super(key: key);
@@ -132,7 +132,7 @@ class _CCheckboxState extends State<CCheckbox> {
               CText(
                 data: widget.props.label!,
                 style: TextStyle(
-                  fontSize: widget.props.labelSize,
+                  fontSize: 14,
                   color: _colors['$_cwidget-$_state-label-color'],
                 ),
               ),

@@ -3,15 +3,30 @@ import 'package:flutter/widgets.dart';
 import 'form.enum.dart';
 
 class CFormProps {
-  final bool enable;
+  /// The content of the form.
+  ///
+  /// @required
   final List<Widget> children;
+
+  /// Whether the form is enabled or not.
+  ///
+  /// @default: `true`
+  final bool enable;
+
+  /// The type of the form. It can be `group, blank`.
+  ///
+  /// @default: `CFormType.blank`
   final CFormType type;
-  final Widget? actions;
+
+  /// An action widget to display at the end of the form.
+  ///
+  /// @optional
+  final Widget? action;
 
   CFormProps({
     required this.enable,
     required this.children,
     required this.type,
-    required this.actions,
+    required this.action,
   });
 }

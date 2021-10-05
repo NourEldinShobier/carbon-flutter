@@ -6,18 +6,20 @@ import 'form.enum.dart';
 import 'form.props.dart';
 import 'form.style.dart';
 
+/// A form is a group of related input controls that allows
+/// users to provide data or configure options.
 class CForm extends StatefulWidget {
   CForm({
     Key? key,
     required List<Widget> children,
     bool enable = true,
-    Widget? actions,
+    Widget? action,
     CFormType type = CFormType.blank,
   })  : props = CFormProps(
           enable: enable,
           children: children,
           type: type,
-          actions: actions,
+          action: action,
         ),
         super(key: key);
 
@@ -83,7 +85,7 @@ class CFormState extends State<CForm> {
                   children: widget.props.children,
                 ),
               ),
-              if (widget.props.actions != null) widget.props.actions!,
+              if (widget.props.action != null) widget.props.action!,
             ],
           ),
         ),
