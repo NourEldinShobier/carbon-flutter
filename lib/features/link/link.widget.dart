@@ -6,6 +6,8 @@ import 'package:carbon/features/enable/index.dart';
 import 'link.props.dart';
 import 'link.style.dart';
 
+/// Links are used as navigational elements. They may appear on their own,
+/// within a sentence or paragraph, or directly following the content.
 class CLink extends StatefulWidget {
   CLink({
     Key? key,

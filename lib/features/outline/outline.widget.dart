@@ -3,6 +3,7 @@ import 'package:carbon/shared/index.dart';
 
 import 'package:vector_math/vector_math_64.dart' as VectorMath;
 
+/// A widget for imitating the focus behavior.
 class COutline extends StatefulWidget {
   const COutline({
     Key? key,
@@ -15,19 +16,26 @@ class COutline extends StatefulWidget {
     this.animationCurve = Curves.easeInOut,
   }) : super(key: key);
 
+  /// The widget that is wrapped with the outline widget.
   final Widget child;
 
+  /// The focus color of the outline widget.
   final Color color;
 
+  /// The width of the outline widget.
   final double outlineWidth;
 
-  /// [ture] if you want to outline the child widget
+  /// Whether the [child] is outlined/focused.
   final bool outlined;
 
+  /// If non-null, the corners of the outline widget are
+  /// rounded by this [BorderRadius].
   final BorderRadius? borderRadius;
 
+  /// The length of time this animation should last.
   final int animationDuration;
 
+  /// The curve to use in the forward direction.
   final Curve animationCurve;
 
   @override
