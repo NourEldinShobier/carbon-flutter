@@ -19,14 +19,12 @@ abstract class CNotificationStyle {
     'notification-lowcontrast-warning-icon': 'assets/svg/notification/warning-lowcontrast.svg',
   };
 
-  static const Map<String, dynamic> layouts = {
+  static const Map<String, dynamic> styles = {
     'notification-inline-lowcontrast-border-width': <double>[1, 1, 1, 3],
     'notification-inline-highcontrast-border-width': <double>[0, 0, 0, 3],
     'notification-toast-border-width': <double>[0, 0, 0, 3],
     'notification-padding': <double>[14.5, 0, 14, 14],
-  };
-
-  static const Map<String, Color> colors = {
+    //
     'notification-highcontrast-background-color': CColors.gray10,
     'notification-lowcontrast-background-color': CColors.gray90,
     'notification-highcontrast-text-color': CColors.gray100,

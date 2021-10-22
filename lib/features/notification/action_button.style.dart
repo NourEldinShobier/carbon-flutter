@@ -2,12 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CNotificationActionButtonStyle {
-  static const Map<String, dynamic> layouts = {
+  static const Map<String, dynamic> styles = {
     'action-button-background-color-animation-duration': Duration(milliseconds: 150),
     'action-button-background-color-animation-curve': Curves.easeInOut,
-  };
 
-  static const Map<String, Color> colors = {
     'action-button-lowcontrast-text-color': CColors.blue40,
     'action-button-highcontrast-text-color': CColors.blue60,
 

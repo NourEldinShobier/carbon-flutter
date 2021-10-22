@@ -2,14 +2,12 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CCheckboxStyle {
-  static const Map<String, dynamic> layouts = {
+  static const Map<String, dynamic> styles = {
     'checkbox-border-color-animation-duration': Duration(milliseconds: 65),
     'checkbox-border-color-animation-curve': Curves.linear,
     'checkbox-fill-color-animation-duration': Duration(milliseconds: 100),
     'checkbox-fill-color-animation-curve': Curves.linear,
-  };
 
-  static const Map<String, Color> colors = {
     // border-color
     'checkbox-enabled-border-color': CColors.white0,
     'checkbox-focus-border-color': CColors.white0,

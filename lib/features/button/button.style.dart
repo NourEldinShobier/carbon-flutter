@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CButtonStyle {
-  static final Map<String, dynamic> layouts = {
+  static final Map<String, dynamic> styles = {
     'button-regular-dimensions': Size(48, 48),
     'button-md-dimensions': Size(40, 40),
     'button-sm-dimensions': Size(32, 32),
@@ -100,9 +100,7 @@ abstract class CButtonStyle {
 
     'button-ghost-second-border-animation-duration': Duration(milliseconds: 0),
     'button-ghost-second-border-animation-curve': Curves.easeInOut,
-  };
 
-  static const Map<String, Color> colors = {
     /// primary ///
 
     // content-color

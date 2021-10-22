@@ -1,11 +1,9 @@
 part of 'button.widget.dart';
 
 mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
-  final colors = CButtonStyle.colors;
-  final layouts = CButtonStyle.layouts;
+  final styles = CButtonStyle.styles;
 
   /// styles helpers
-  String cwidget = 'button';
   String state = enumToString(CWidgetState.enabled);
   String kind = '';
   String size = '';

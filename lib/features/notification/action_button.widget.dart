@@ -29,11 +29,9 @@ class CNotificationActionButton extends StatefulWidget {
 }
 
 class _CNotificationActionButtonState extends State<CNotificationActionButton> {
-  final _colors = CNotificationActionButtonStyle.colors;
-  final _layouts = CNotificationActionButtonStyle.layouts;
+  final _styles = CNotificationActionButtonStyle.styles;
 
   /// styles helpers
-  String _cwidget = 'action-button';
   String _state = enumToString(CWidgetState.enabled);
   String _contrast = '';
 
@@ -52,19 +50,19 @@ class _CNotificationActionButtonState extends State<CNotificationActionButton> {
       onTapCancel: () => setState(() => _state = enumToString(CWidgetState.enabled)),
       child: DefaultTextStyle(
         style: TextStyle(
-          color: _colors['$_cwidget-$_contrast-text-color'],
+          color: _styles['action-button-$_contrast-text-color'],
           fontFamily: CFonts.primaryRegular,
           package: 'carbon',
         ),
         child: AnimatedContainer(
-          duration: _layouts['$_cwidget-background-color-animation-duration'],
-          curve: _layouts['$_cwidget-background-color-animation-curve'],
+          duration: _styles['action-button-background-color-animation-duration'],
+          curve: _styles['action-button-background-color-animation-curve'],
           height: widget.props.height,
           width: widget.props.width,
           alignment: Alignment.center,
           padding: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            color: _colors['$_cwidget-$_state-$_contrast-background-color'],
+            color: _styles['action-button-$_state-$_contrast-background-color'],
           ),
           child: widget.props.child,
         ),

@@ -30,8 +30,7 @@ class CTile extends StatelessWidget {
 
   final CTileProps props;
 
-  final _colors = CTileStyle.colors;
-  final _layouts = CTileStyle.layouts;
+  final _styles = CTileStyle.styles;
 
   bool _isEnabled(BuildContext context) {
     return context.inheritedEnable ? props.enable : false;
@@ -40,14 +39,13 @@ class CTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// styles helpers
-    String cwidget = 'tile';
     String state = _isEnabled(context) ? 'enabled' : 'disabled';
 
     return IgnorePointer(
       ignoring: !_isEnabled(context),
       child: Container(
-        color: _colors['$cwidget-$state-background-color'],
-        padding: _layouts['$cwidget-padding'],
+        color: _styles['tile-$state-background-color'],
+        padding: _styles['tile-padding'],
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -58,7 +56,7 @@ class CTile extends StatelessWidget {
                 data: props.label!,
                 style: TextStyle(
                   fontSize: props.labelSize,
-                  color: _colors['$cwidget-$state-label-color'],
+                  color: _styles['tile-$state-label-color'],
                 ),
               ),
               const SizedBox(height: 4),
@@ -69,7 +67,7 @@ class CTile extends StatelessWidget {
                 data: props.label!,
                 style: TextStyle(
                   fontSize: props.titleSize,
-                  color: _colors['$cwidget-$state-title-color'],
+                  color: _styles['tile-$state-title-color'],
                 ),
               ),
               if (props.description != null) const SizedBox(height: 11) else const SizedBox(height: 16),
@@ -79,7 +77,7 @@ class CTile extends StatelessWidget {
                 data: props.description!,
                 style: TextStyle(
                   fontSize: props.descriptionSize,
-                  color: _colors['$cwidget-$state-description-color'],
+                  color: _styles['tile-$state-description-color'],
                 ),
               ),
               const SizedBox(height: 20),

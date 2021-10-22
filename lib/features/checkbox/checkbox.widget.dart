@@ -32,11 +32,9 @@ class CCheckbox extends StatefulWidget {
 }
 
 class _CCheckboxState extends State<CCheckbox> {
-  final _colors = CCheckboxStyle.colors;
-  final _layouts = CCheckboxStyle.layouts;
+  final _styles = CCheckboxStyle.styles;
 
   /// styles helpers
-  String _cwidget = 'checkbox';
   String _state = enumToString(CWidgetState.enabled);
 
   bool _value = false;
@@ -94,12 +92,12 @@ class _CCheckboxState extends State<CCheckbox> {
                 AnimatedContainer(
                   height: 20,
                   width: 20,
-                  duration: _layouts['$_cwidget-border-color-animation-duration'],
-                  curve: _layouts['$_cwidget-border-color-animation-curve'],
+                  duration: _styles['checkbox-border-color-animation-duration'],
+                  curve: _styles['checkbox-border-color-animation-curve'],
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(
-                      color: _colors['$_cwidget-$_state-border-color']!,
+                      color: _styles['checkbox-$_state-border-color']!,
                       width: _focused ? 2 : 1,
                     ),
                   ),
@@ -109,18 +107,18 @@ class _CCheckboxState extends State<CCheckbox> {
                   width: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: _value ? _colors['$_cwidget-$_state-fill-color'] : CColors.transparent,
+                    color: _value ? _styles['checkbox-$_state-fill-color'] : CColors.transparent,
                   ),
                 ),
                 AnimatedContainer(
                   height: 20,
                   width: 20,
                   alignment: Alignment.center,
-                  duration: _layouts['$_cwidget-fill-color-animation-duration'],
-                  curve: _layouts['$_cwidget-fill-color-animation-curve'],
+                  duration: _styles['checkbox-fill-color-animation-duration'],
+                  curve: _styles['checkbox-fill-color-animation-curve'],
                   child: CSVGIcon.asset(
                     'assets/svg/checkmark.svg',
-                    color: _value ? _colors['$_cwidget-$_state-checkmark-color'] : CColors.transparent,
+                    color: _value ? _styles['checkbox-$_state-checkmark-color'] : CColors.transparent,
                     height: 8,
                     package: 'carbon',
                   ),
@@ -133,7 +131,7 @@ class _CCheckboxState extends State<CCheckbox> {
                 data: widget.props.label!,
                 style: TextStyle(
                   fontSize: 14,
-                  color: _colors['$_cwidget-$_state-label-color'],
+                  color: _styles['checkbox-$_state-label-color'],
                 ),
               ),
             ],

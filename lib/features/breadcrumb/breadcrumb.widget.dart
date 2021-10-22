@@ -26,7 +26,7 @@ class CBreadcrumb extends StatelessWidget {
 
   final CBreadcrumbProps props;
 
-  final _colors = CBreadcrumbStyle.colors;
+  final _styles = CBreadcrumbStyle.styles;
   final _menu = COverflowMenuController();
   final _menuKey = GlobalKey();
 
@@ -34,7 +34,7 @@ class CBreadcrumb extends StatelessWidget {
     final divider = CText(
       data: '/',
       style: TextStyle(
-        color: _colors['breadcrumb-slash-color'],
+        color: _styles['breadcrumb-slash-color'],
         fontSize: 14,
       ),
     );
@@ -77,7 +77,7 @@ class CBreadcrumb extends StatelessWidget {
     final divider = CText(
       data: '/',
       style: TextStyle(
-        color: _colors['breadcrumb-slash-color'],
+        color: _styles['breadcrumb-slash-color'],
         fontSize: 14,
       ),
     );

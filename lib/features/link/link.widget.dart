@@ -32,10 +32,9 @@ class CLink extends StatefulWidget {
 }
 
 class _CLinkState extends State<CLink> {
-  final _colors = CLinkStyle.colors;
+  final _styles = CLinkStyle.styles;
 
   /// styles helpers
-  String _cwidget = 'link';
   String _state = enumToString(CWidgetState.enabled);
 
   void _evaluateStateVariables() {
@@ -63,7 +62,7 @@ class _CLinkState extends State<CLink> {
         child: CText(
           data: widget.props.caption ?? widget.props.url,
           style: TextStyle(
-            color: _colors['$_cwidget-$_state-text-color'],
+            color: _styles['link-$_state-text-color'],
             fontSize: widget.props.fontSize,
           ),
         ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CTextfieldStyle {
-  static final Map<String, dynamic> layouts = {
+  static final Map<String, dynamic> styles = {
     'textfield-label-font-size': 14.0,
     'textfield-label-font-family': CFonts.primaryRegular,
     'textfield-text-font-size': 15.0,
@@ -75,9 +75,7 @@ abstract class CTextfieldStyle {
       borderRadius: BorderRadius.circular(0),
       borderSide: const BorderSide(color: Colors.transparent, width: 0),
     ),
-  };
 
-  static const Map<String, Color> colors = {
     'textfield-disabled-icon-color': CColors.gray70,
 
     // background-color

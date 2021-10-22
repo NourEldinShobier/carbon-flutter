@@ -34,11 +34,9 @@ class CForm extends StatefulWidget {
 }
 
 class CFormState extends State<CForm> {
-  final _layouts = CFormStyle.layouts;
-  final _colors = CFormStyle.colors;
+  final _styles = CFormStyle.styles;
 
   /// styles helpers
-  String _cwidget = 'form';
   String _state = enumToString(CWidgetState.enabled);
   String _type = '';
 
@@ -76,8 +74,8 @@ class CFormState extends State<CForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                color: _colors['$_cwidget-$_type-$_state-background-color'],
-                padding: _layouts['$_cwidget-$_type-padding'],
+                color: _styles['form-$_type-$_state-background-color'],
+                padding: _styles['form-$_type-padding'],
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.start,

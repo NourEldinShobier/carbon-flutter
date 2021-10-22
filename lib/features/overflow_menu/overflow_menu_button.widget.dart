@@ -43,13 +43,11 @@ class COverflowMenuButton extends StatefulWidget {
 }
 
 class _COverflowMenuButtonState extends State<COverflowMenuButton> {
-  final _colors = COverflowMenuButtonStyle.colors;
-  final _layouts = COverflowMenuButtonStyle.layouts;
+  final _styles = COverflowMenuButtonStyle.styles;
 
   final _controller = COverflowMenuController();
 
   /// styles helpers
-  String _cwidget = 'overflowmenu-button';
   String _state = enumToString(CWidgetState.enabled);
   String _size = '';
 
@@ -102,7 +100,7 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
   Widget build(BuildContext context) {
     _evaluateStateVariables();
 
-    final Size dimensions = _layouts['$_cwidget-$_size-dimensions'];
+    final Size dimensions = _styles['overflowmenu-button-$_size-dimensions'];
 
     return IgnorePointer(
       ignoring: !_isEnabled(),
@@ -136,10 +134,10 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
             height: dimensions.height,
             width: dimensions.width,
             alignment: Alignment.center,
-            duration: _layouts['$_cwidget-background-color-animation-duration'],
-            curve: _layouts['$_cwidget-background-color-animation-curve'],
+            duration: _styles['overflowmenu-button-background-color-animation-duration'],
+            curve: _styles['overflowmenu-button-background-color-animation-curve'],
             decoration: BoxDecoration(
-              color: _colors['$_cwidget-$_state-background-color'],
+              color: _styles['overflowmenu-button-$_state-background-color'],
               boxShadow: [
                 if (_isOpen)
                   BoxShadow(

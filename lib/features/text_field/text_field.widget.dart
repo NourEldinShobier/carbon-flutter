@@ -82,8 +82,7 @@ class CTextField extends StatefulWidget {
 }
 
 class _CTextFieldState extends State<CTextField> {
-  final layouts = CTextfieldStyle.layouts;
-  final colors = CTextfieldStyle.colors;
+  final _styles = CTextfieldStyle.styles;
 
   /// styles helpers
   late String type, state, selector, cformType;
@@ -201,9 +200,9 @@ class _CTextFieldState extends State<CTextField> {
               data: widget.label!,
               isRequired: widget.isRequired,
               style: TextStyle(
-                fontSize: layouts['textfield-label-font-size'],
-                fontFamily: layouts['textfield-label-font-family'],
-                color: colors['$selector-label-color'],
+                fontSize: _styles['textfield-label-font-size'],
+                fontFamily: _styles['textfield-label-font-family'],
+                color: _styles['$selector-label-color'],
               ),
             ),
             const SizedBox(height: 8)
@@ -233,16 +232,16 @@ class _CTextFieldState extends State<CTextField> {
               onEditingComplete: widget.onEditingComplete,
               onSubmitted: widget.onSubmitted,
               inputFormatters: widget.inputFormatters,
-              cursorColor: colors['textfield-cursor-color'],
+              cursorColor: _styles['textfield-cursor-color'],
               keyboardAppearance: widget.keyboardAppearance,
               onTap: widget.onTap,
               scrollController: widget.scrollController,
               scrollPhysics: widget.scrollPhysics,
               autofillHints: widget.autofillHints,
               style: TextStyle(
-                fontSize: layouts['textfield-text-font-size'],
-                fontFamily: layouts['textfield-text-font-family'],
-                color: colors['$selector-text-color'],
+                fontSize: _styles['textfield-text-font-size'],
+                fontFamily: _styles['textfield-text-font-family'],
+                color: _styles['$selector-text-color'],
               ),
               decoration: InputDecoration(
                 filled: true,
@@ -255,12 +254,12 @@ class _CTextFieldState extends State<CTextField> {
                           : 15
                       : 15,
                 ),
-                fillColor: colors['textfield-$cformType$state-background-color'],
+                fillColor: _styles['textfield-$cformType$state-background-color'],
                 hintText: widget.hint,
                 hintStyle: TextStyle(
-                  fontSize: layouts['textfield-hint-font-size'],
-                  fontFamily: layouts['textfield-hint-font-family'],
-                  color: colors['$selector-hint-color'],
+                  fontSize: _styles['textfield-hint-font-size'],
+                  fontFamily: _styles['textfield-hint-font-family'],
+                  color: _styles['$selector-hint-color'],
                 ),
                 prefixIconConstraints: BoxConstraints(
                   minWidth: 46,
@@ -274,7 +273,7 @@ class _CTextFieldState extends State<CTextField> {
                     ? widget.prefixIcon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
-                          colors['textfield-disabled-icon-color']!,
+                          _styles['textfield-disabled-icon-color']!,
                           BlendMode.color,
                         ),
                         child: widget.prefixIcon,
@@ -287,14 +286,14 @@ class _CTextFieldState extends State<CTextField> {
                             : _validationResult!.icon
                     : ColorFiltered(
                         colorFilter: ColorFilter.mode(
-                          colors['textfield-disabled-icon-color']!,
+                          _styles['textfield-disabled-icon-color']!,
                           BlendMode.color,
                         ),
                         child: widget.suffixIcon,
                       ),
-                border: layouts['$selector-border'],
-                enabledBorder: layouts['$selector-border'],
-                focusedBorder: layouts['$selector-border'],
+                border: _styles['$selector-border'],
+                enabledBorder: _styles['$selector-border'],
+                focusedBorder: _styles['$selector-border'],
               ),
             ),
           ),
@@ -303,9 +302,9 @@ class _CTextFieldState extends State<CTextField> {
             CText(
               data: _validationResult == null ? widget.description! : _validationResult!.message,
               style: TextStyle(
-                fontSize: layouts['textfield-description-font-size'],
-                fontFamily: layouts['textfield-description-font-family'],
-                color: colors['$selector-description-color'],
+                fontSize: _styles['textfield-description-font-size'],
+                fontFamily: _styles['textfield-description-font-family'],
+                color: _styles['$selector-description-color'],
               ),
             ),
           ],

@@ -40,11 +40,9 @@ class CToggle extends StatefulWidget {
 }
 
 class _CToggleState extends State<CToggle> {
-  final _colors = CToggleStyle.colors;
-  final _layouts = CToggleStyle.layouts;
+  final _styles = CToggleStyle.styles;
 
   /// styles helpers
-  String _cwidget = 'toggle';
   String _state = enumToString(CWidgetState.enabled);
   String _status = '';
 
@@ -65,7 +63,7 @@ class _CToggleState extends State<CToggle> {
     final widgetSize = enumToString(widget.props.size);
 
     _value = widget.props.value;
-    _size = _layouts['toggle-$widgetSize-size'];
+    _size = _styles['toggle-$widgetSize-size'];
 
     super.didChangeDependencies();
   }
@@ -101,7 +99,7 @@ class _CToggleState extends State<CToggle> {
             style: TextStyle(
               fontSize: 12,
               fontFamily: CFonts.primaryRegular,
-              color: _colors['$_cwidget-$_state-label-color'],
+              color: _styles['toggle-$_state-label-color'],
             ),
           ),
           const SizedBox(height: 16),
@@ -135,26 +133,26 @@ class _CToggleState extends State<CToggle> {
                     height: _size.height,
                     alignment: _value ? Alignment.centerRight : Alignment.centerLeft,
                     padding: const EdgeInsets.all(3),
-                    duration: _layouts['$_cwidget-animation-duration'],
-                    curve: _layouts['$_cwidget-animation-curve'],
+                    duration: _styles['toggle-animation-duration'],
+                    curve: _styles['toggle-animation-curve'],
                     decoration: BoxDecoration(
-                      color: _colors['$_cwidget-$_state-$_status-fill-color'],
+                      color: _styles['toggle-$_state-$_status-fill-color'],
                       borderRadius: BorderRadius.circular(1000),
                     ),
                     child: AnimatedContainer(
                       height: _size.height - 6,
                       width: _size.height - 6,
                       alignment: Alignment.center,
-                      duration: _layouts['$_cwidget-animation-duration'],
-                      curve: _layouts['$_cwidget-animation-curve'],
+                      duration: _styles['toggle-animation-duration'],
+                      curve: _styles['toggle-animation-curve'],
                       decoration: BoxDecoration(
-                        color: _colors['$_cwidget-$_state-indicator-color'],
+                        color: _styles['toggle-$_state-indicator-color'],
                         borderRadius: BorderRadius.circular(1000),
                       ),
                       child: widget.props.size == CToggleSize.sm
                           ? CSVGIcon.asset(
                               'assets/svg/toggle-checkmark.svg',
-                              color: _colors['$_cwidget-$_state-$_status-checkmark-color'],
+                              color: _styles['toggle-$_state-$_status-checkmark-color'],
                               package: 'carbon',
                               width: 6,
                             )
@@ -171,7 +169,7 @@ class _CToggleState extends State<CToggle> {
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: CFonts.primaryRegular,
-                  color: _colors['$_cwidget-$_state-label-color'],
+                  color: _styles['toggle-$_state-label-color'],
                 ),
               ),
             ]

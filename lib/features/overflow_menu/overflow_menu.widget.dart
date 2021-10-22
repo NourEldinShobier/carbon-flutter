@@ -43,8 +43,7 @@ class COverflowMenu extends StatefulWidget {
 }
 
 class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateMixin {
-  final _colors = COverflowMenuStyle.colors;
-  final _layouts = COverflowMenuStyle.layouts;
+  final _styles = COverflowMenuStyle.styles;
 
   final _menuKey = GlobalKey();
 
@@ -61,11 +60,9 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
   bool _isOpen = false;
 
   /// styles helpers
-
-  String _cwidget = 'overflowmenu';
   String _size = '';
 
-  Size get _menuItemDimension => _layouts['$_cwidget-item-$_size-dimensions'];
+  Size get _menuItemDimension => _styles['overflowmenu-item-$_size-dimensions'];
 
   double get _menuWidth => _menuItemDimension.width;
   double get _menuHeight => _menuItemDimension.height * widget.props.items.length;
@@ -75,8 +72,8 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: _layouts['$_cwidget-animation-duration']);
-    _animation = CurvedAnimation(parent: _animationController, curve: _layouts['$_cwidget-animation-curve']);
+    _animationController = AnimationController(vsync: this, duration: _styles['overflowmenu-animation-duration']);
+    _animation = CurvedAnimation(parent: _animationController, curve: _styles['overflowmenu-animation-curve']);
 
     widget.props.controller.addListener(() {
       if (_isOpen != widget.props.controller.isOpen) {
@@ -114,7 +111,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
       _animationController.forward();
 
       _overlayState!.insert(_overlayEntry!);
-      await Future.delayed(_layouts['$_cwidget-animation-duration']);
+      await Future.delayed(_styles['overflowmenu-animation-duration']);
       widget.props.onOpen?.call();
     });
   }
@@ -124,7 +121,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
     _animationController.reverse();
 
-    Future.delayed(_layouts['$_cwidget-animation-duration'], () {
+    Future.delayed(_styles['overflowmenu-animation-duration'], () {
       _animationController.removeListener(_refreshOverlayState);
       _overlayEntry?.remove();
       _overlayEntry = null;
@@ -163,7 +160,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
                   width: _menuWidth,
                   height: _menuHeight,
                   decoration: BoxDecoration(
-                    color: _colors['$_cwidget-background-color'],
+                    color: _styles['overflowmenu-background-color'],
                     boxShadow: [
                       BoxShadow(
                         offset: Offset(0, _isBottom ? 6 : -6),

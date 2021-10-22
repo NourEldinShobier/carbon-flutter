@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CTileStyle {
-  static const Map<String, dynamic> layouts = {
+  static const Map<String, dynamic> styles = {
     'tile-padding': const EdgeInsets.all(16),
-  };
 
-  static const Map<String, Color> colors = {
     'tile-enabled-background-color': CColors.gray90,
     'tile-enabled-label-color': CColors.gray30,
     'tile-enabled-title-color': CColors.gray10,

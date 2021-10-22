@@ -85,8 +85,7 @@ class _CNotificationInline extends StatelessWidget {
 
   final CNotificationInlineProps props;
 
-  final _colors = CNotificationStyle.colors;
-  final _layouts = CNotificationStyle.layouts;
+  final _styles = CNotificationStyle.styles;
   final _assets = CNotificationStyle.assets;
 
   void _startTimer() {
@@ -110,7 +109,6 @@ class _CNotificationInline extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// styles helpers
-    String cwidget = 'notification';
     String notificationKind = enumToString(props.kind);
     String contrast = props.lowContrast ? 'lowcontrast' : 'highcontrast';
 
@@ -120,29 +118,29 @@ class _CNotificationInline extends StatelessWidget {
       value: contrast,
       child: Container(
         decoration: BoxDecoration(
-          color: _colors['$cwidget-$contrast-background-color'],
+          color: _styles['notification-$contrast-background-color'],
           border: Border(
             top: props.lowContrast
                 ? BorderSide(
-                    width: _layouts['$cwidget-inline-$contrast-border-width'][0],
-                    color: _colors['$cwidget-$notificationKind-border-color']!,
+                    width: _styles['notification-inline-$contrast-border-width'][0],
+                    color: _styles['notification-$notificationKind-border-color']!,
                   )
                 : BorderSide.none,
             right: props.lowContrast
                 ? BorderSide(
-                    width: _layouts['$cwidget-inline-$contrast-border-width'][1],
-                    color: _colors['$cwidget-$notificationKind-border-color']!,
+                    width: _styles['notification-inline-$contrast-border-width'][1],
+                    color: _styles['notification-$notificationKind-border-color']!,
                   )
                 : BorderSide.none,
             bottom: props.lowContrast
                 ? BorderSide(
-                    width: _layouts['$cwidget-inline-$contrast-border-width'][2],
-                    color: _colors['$cwidget-$notificationKind-border-color']!,
+                    width: _styles['notification-inline-$contrast-border-width'][2],
+                    color: _styles['notification-$notificationKind-border-color']!,
                   )
                 : BorderSide.none,
             left: BorderSide(
-              width: _layouts['$cwidget-inline-$contrast-border-width'][3],
-              color: _colors['$cwidget-$notificationKind-border-color']!,
+              width: _styles['notification-inline-$contrast-border-width'][3],
+              color: _styles['notification-$notificationKind-border-color']!,
             ),
           ),
         ),
@@ -154,21 +152,21 @@ class _CNotificationInline extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(14),
               child: CSVGIcon.asset(
-                _assets['$cwidget-$contrast-$notificationKind-icon']!,
+                _assets['notification-$contrast-$notificationKind-icon']!,
                 package: 'carbon',
               ),
             ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(
-                  top: _layouts['$cwidget-padding'][0],
-                  bottom: _layouts['$cwidget-padding'][2],
+                  top: _styles['notification-padding'][0],
+                  bottom: _styles['notification-padding'][2],
                 ),
                 child: Wrap(
                   children: [
                     DefaultTextStyle(
                       style: TextStyle(
-                        color: _colors['$cwidget-$contrast-text-color'],
+                        color: _styles['notification-$contrast-text-color'],
                         fontFamily: CFonts.primarySemibold,
                         package: 'carbon',
                       ),
@@ -177,7 +175,7 @@ class _CNotificationInline extends StatelessWidget {
                     const SizedBox(width: 4),
                     DefaultTextStyle(
                       style: TextStyle(
-                        color: _colors['$cwidget-$contrast-text-color'],
+                        color: _styles['notification-$contrast-text-color'],
                         fontFamily: CFonts.primaryRegular,
                         package: 'carbon',
                       ),
@@ -211,7 +209,7 @@ class _CNotificationInline extends StatelessWidget {
                 width: 48,
                 height: 48,
                 child: CSVGIcon.asset(
-                  _assets['$cwidget-$contrast-close-icon']!,
+                  _assets['notification-$contrast-close-icon']!,
                   package: 'carbon',
                   height: 20,
                 ),
@@ -228,8 +226,7 @@ class _CNotificationToast extends StatelessWidget {
 
   final CNotificationToastProps props;
 
-  final _colors = CNotificationStyle.colors;
-  final _layouts = CNotificationStyle.layouts;
+  final _styles = CNotificationStyle.styles;
   final _assets = CNotificationStyle.assets;
 
   void _startTimer() {
@@ -252,11 +249,11 @@ class _CNotificationToast extends StatelessWidget {
       child: Container(
         width: 288,
         decoration: BoxDecoration(
-          color: _colors['$cwidget-$contrast-background-color'],
+          color: _styles['notification-$contrast-background-color'],
           border: Border(
             left: BorderSide(
-              width: _layouts['$cwidget-toast-border-width'][3],
-              color: _colors['$cwidget-$notificationKind-border-color']!,
+              width: _styles['notification-toast-border-width'][3],
+              color: _styles['notification-$notificationKind-border-color']!,
             ),
           ),
         ),
@@ -268,15 +265,15 @@ class _CNotificationToast extends StatelessWidget {
             Padding(
               padding: EdgeInsets.all(14),
               child: CSVGIcon.asset(
-                _assets['$cwidget-$contrast-$notificationKind-icon']!,
+                _assets['notification-$contrast-$notificationKind-icon']!,
                 package: 'carbon',
               ),
             ),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(
-                  top: _layouts['$cwidget-padding'][0],
-                  bottom: _layouts['$cwidget-padding'][2],
+                  top: _styles['notification-padding'][0],
+                  bottom: _styles['notification-padding'][2],
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -286,7 +283,7 @@ class _CNotificationToast extends StatelessWidget {
                     Flexible(
                       child: DefaultTextStyle(
                         style: TextStyle(
-                          color: _colors['$cwidget-$contrast-text-color'],
+                          color: _styles['notification-$contrast-text-color'],
                           fontFamily: CFonts.primarySemibold,
                           package: 'carbon',
                         ),
@@ -296,7 +293,7 @@ class _CNotificationToast extends StatelessWidget {
                     Flexible(
                       child: DefaultTextStyle(
                         style: TextStyle(
-                          color: _colors['$cwidget-$contrast-text-color'],
+                          color: _styles['notification-$contrast-text-color'],
                           fontFamily: CFonts.primaryRegular,
                           package: 'carbon',
                         ),
@@ -307,7 +304,7 @@ class _CNotificationToast extends StatelessWidget {
                       const SizedBox(height: 24),
                       DefaultTextStyle(
                         style: TextStyle(
-                          color: _colors['$cwidget-$contrast-text-color'],
+                          color: _styles['notification-$contrast-text-color'],
                           fontFamily: CFonts.primaryRegular,
                           package: 'carbon',
                         ),
@@ -325,7 +322,7 @@ class _CNotificationToast extends StatelessWidget {
                 width: 48,
                 height: 48,
                 child: CSVGIcon.asset(
-                  _assets['$cwidget-$contrast-close-icon']!,
+                  _assets['notification-$contrast-close-icon']!,
                   package: 'carbon',
                   height: 20,
                 ),

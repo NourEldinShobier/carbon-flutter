@@ -2,12 +2,10 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CFormStyle {
-  static const Map<String, dynamic> layouts = {
+  static const Map<String, dynamic> styles = {
     'form-blank-padding': const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 24),
     'form-group-padding': const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 24),
-  };
 
-  static const Map<String, Color> colors = {
     // background-color
     'form-blank-enabled-background-color': CColors.gray90,
     'form-group-enabled-background-color': CColors.gray100,

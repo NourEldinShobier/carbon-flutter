@@ -1,10 +1,7 @@
-import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CBreadcrumbStyle {
-  static const Map<String, dynamic> layouts = {};
-
-  static const Map<String, Color> colors = {
+  static const Map<String, dynamic> styles = {
     'breadcrumb-slash-color': CColors.gray10,
   };
 }

@@ -3,16 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CToggleStyle {
-  static const Map<String, dynamic> layouts = {
+  static const Map<String, dynamic> styles = {
     'toggle-animation-duration': Duration(milliseconds: 200),
     'toggle-animation-curve': Curves.linear,
     'toggle-sm-size': const Size(32, 16),
     'toggle-md-size': const Size(48, 24),
     'toggle-lg-size': const Size(48, 24),
     'toggle-xl-size': const Size(48, 24),
-  };
 
-  static const Map<String, Color> colors = {
     'toggle-outline-color': CColors.white0,
 
     // fill-color

@@ -26,11 +26,9 @@ class CBreadcrumbItem extends StatefulWidget {
 }
 
 class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
-  final _colors = CBreadcrumbItemStyle.colors;
-  final _layouts = CBreadcrumbItemStyle.layouts;
+  final _styles = CBreadcrumbItemStyle.styles;
 
   /// styles helpers
-  String _cwidget = 'breadcrumb-item';
   String _state = enumToString(CWidgetState.enabled);
 
   bool _focused = false;
@@ -56,23 +54,23 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
       onTapCancel: () => setState(() => _focused = false),
       child: AnimatedContainer(
         decoration: BoxDecoration(
-          color: _colors['$_cwidget-$_state-background-color'],
+          color: _styles['breadcrumb-item-$_state-background-color'],
           borderRadius: BorderRadius.circular(
-            _layouts['$_cwidget-border-radius'],
+            _styles['breadcrumb-item-border-radius'],
           ),
         ),
         margin: EdgeInsets.symmetric(
-          horizontal: _layouts['$_cwidget-spacing'],
+          horizontal: _styles['breadcrumb-item-spacing'],
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: _layouts['$_cwidget-spacing'],
-          vertical: _layouts['$_cwidget-spacing'],
+          horizontal: _styles['breadcrumb-item-spacing'],
+          vertical: _styles['breadcrumb-item-spacing'],
         ),
-        duration: _layouts['$_cwidget-animation-duration'],
-        curve: _layouts['$_cwidget-animation-curve'],
+        duration: _styles['breadcrumb-item-animation-duration'],
+        curve: _styles['breadcrumb-item-animation-curve'],
         child: DefaultTextStyle(
           style: TextStyle(
-            color: widget.props.isCurrentPage ? _colors['$_cwidget-current-color'] : _colors['$_cwidget-color'],
+            color: widget.props.isCurrentPage ? _styles['breadcrumb-item-current-color'] : _styles['breadcrumb-item-color'],
           ),
           child: widget.props.child,
         ),

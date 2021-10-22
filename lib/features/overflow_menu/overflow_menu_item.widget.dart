@@ -32,14 +32,11 @@ class COverflowMenuItem extends StatefulWidget {
 }
 
 class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMixin {
-  final _layouts = COverflowMenuItemStyle.layouts;
-  final _colors = COverflowMenuItemStyle.colors;
+  final _styles = COverflowMenuItemStyle.styles;
 
   late COverflowMenuProps _menuProps;
 
   /// Styles helpers
-
-  String _cwidget = 'overflowmenu-item';
   String _state = enumToString(CWidgetState.enabled);
   String _kind = '';
   String _size = '';
@@ -70,7 +67,7 @@ class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMix
   Widget build(BuildContext context) {
     _evaluateStateVariables();
 
-    final Size dimensions = _layouts['$_cwidget-$_size-dimensions'];
+    final Size dimensions = _styles['overflowmenu-item-$_size-dimensions'];
 
     return CEnable(
       value: widget.props.enable,
@@ -83,16 +80,16 @@ class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMix
           onTapUp: (_) => setState(() => _focused = false),
           onTapCancel: () => setState(() => _focused = false),
           child: AnimatedContainer(
-            curve: _layouts['$_cwidget-animation-curve'],
-            duration: _layouts['$_cwidget-animation-duration'],
+            curve: _styles['overflowmenu-item-animation-curve'],
+            duration: _styles['overflowmenu-item-animation-duration'],
             height: dimensions.height,
             width: dimensions.width,
             alignment: Alignment.centerLeft,
-            padding: _layouts['$_cwidget-$_size-padding'],
+            padding: _styles['overflowmenu-item-$_size-padding'],
             decoration: BoxDecoration(
-              color: _colors['$_cwidget-$_kind-$_state-background-color'],
+              color: _styles['overflowmenu-item-$_kind-$_state-background-color'],
               border: Border(
-                bottom: widget.props.hasDivider ? BorderSide(color: _colors['$_cwidget-divider-color']!) : BorderSide.none,
+                bottom: widget.props.hasDivider ? BorderSide(color: _styles['overflowmenu-item-divider-color']!) : BorderSide.none,
               ),
             ),
             child: widget.props.child,
