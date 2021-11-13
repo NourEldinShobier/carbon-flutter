@@ -4,6 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'button.enum.dart';
 
 class CButtonBaseProps {
+  /// Called when the button is tapped.
+  ///
+  /// @required
+  final VoidCallback onTap;
+
   /// Whether the toggle is enabled or not.
   ///
   /// @default: `true`
@@ -20,11 +25,6 @@ class CButtonBaseProps {
   /// @default: `CToggleSize.regular`
   final CButtonSize size;
 
-  /// Called when the action button is tapped.
-  ///
-  /// @required
-  final VoidCallback onTap;
-
   CButtonBaseProps({
     required this.enable,
     required this.kind,
@@ -34,6 +34,9 @@ class CButtonBaseProps {
 }
 
 class CButtonRegularProps extends CButtonBaseProps {
+  /// A text to display in the button.
+  ///
+  /// @required
   final String label;
 
   /// An optional icon to display in the button.
