@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:carbon/features/enable/index.dart';
+import 'package:carbon/features/inherited_styles/index.dart';
 
 import 'icon.enum.dart';
 import 'models/index.dart';
@@ -15,6 +16,7 @@ class CSVGIcon extends StatelessWidget {
     Key? key,
     String? package,
     this.enable = true,
+    this.inheritStyles = true,
     this.width,
     this.height,
     this.color,
@@ -38,6 +40,7 @@ class CSVGIcon extends StatelessWidget {
     Key? key,
     Map<String, String>? headers,
     this.enable = true,
+    this.inheritStyles = true,
     this.width,
     this.height,
     this.color,
@@ -60,6 +63,7 @@ class CSVGIcon extends StatelessWidget {
     File file, {
     Key? key,
     this.enable = true,
+    this.inheritStyles = true,
     this.width,
     this.height,
     this.color,
@@ -82,6 +86,7 @@ class CSVGIcon extends StatelessWidget {
     Uint8List bytes, {
     Key? key,
     this.enable = true,
+    this.inheritStyles = true,
     this.width,
     this.height,
     this.color,
@@ -104,6 +109,7 @@ class CSVGIcon extends StatelessWidget {
     String bytes, {
     Key? key,
     this.enable = true,
+    this.inheritStyles = true,
     this.width,
     this.height,
     this.color,
@@ -124,6 +130,13 @@ class CSVGIcon extends StatelessWidget {
 
   /// Whether the icon is enabled or not.
   final bool enable;
+
+  /// Whether if the icon should inherit its styles from a [CInheritedStyles]
+  /// widget or not.
+  ///
+  /// Such attribute comes handy if the icon styles are manipulated
+  /// by a parent widget that maintans a [CInheritedStyles] within.
+  final bool inheritStyles;
 
   /// If specified, the width to use for the SVG.  If unspecified, the SVG
   /// will take the width of its parent.
@@ -218,6 +231,20 @@ class CSVGIcon extends StatelessWidget {
     return context.inheritedEnable ? enable : false;
   }
 
+  Color? _color(BuildContext context) {
+    final isEnabled = _isEnabled(context);
+
+    if (inheritStyles) {
+      if (isEnabled) {
+        return context.styles['icon-enabled-color'] ?? color;
+      }
+
+      return context.styles['icon-disabled-color'] ?? disableColor;
+    }
+
+    return isEnabled ? color : disableColor;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_type == CSvgIconType.asset) {
@@ -226,7 +253,7 @@ class CSVGIcon extends StatelessWidget {
       return SvgPicture.asset(
         source.src,
         key: key,
-        color: _isEnabled(context) ? color : disableColor,
+        color: _color(context),
         width: width,
         height: height,
         package: source.package,
@@ -247,7 +274,7 @@ class CSVGIcon extends StatelessWidget {
       return SvgPicture.network(
         source.src,
         key: key,
-        color: _isEnabled(context) ? color : disableColor,
+        color: _color(context),
         width: width,
         height: height,
         headers: source.headers,
@@ -268,7 +295,7 @@ class CSVGIcon extends StatelessWidget {
       return SvgPicture.file(
         source.file,
         key: key,
-        color: _isEnabled(context) ? color : disableColor,
+        color: _color(context),
         width: width,
         height: height,
         matchTextDirection: matchTextDirection,
@@ -288,7 +315,7 @@ class CSVGIcon extends StatelessWidget {
       return SvgPicture.memory(
         source.bytes,
         key: key,
-        color: _isEnabled(context) ? color : disableColor,
+        color: _color(context),
         width: width,
         height: height,
         matchTextDirection: matchTextDirection,
@@ -308,7 +335,7 @@ class CSVGIcon extends StatelessWidget {
       return SvgPicture.string(
         source.bytes,
         key: key,
-        color: _isEnabled(context) ? color : disableColor,
+        color: _color(context),
         width: width,
         height: height,
         matchTextDirection: matchTextDirection,

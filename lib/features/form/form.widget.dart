@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:carbon/features/enable/index.dart';
+import 'package:carbon/features/inherited_styles/index.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'form.enum.dart';
@@ -62,29 +63,32 @@ class CFormState extends State<CForm> {
   Widget build(BuildContext context) {
     _evaluateStateVariables();
 
-    return CEnable(
-      value: _isEnabled(),
-      child: IgnorePointer(
-        ignoring: !_isEnabled(),
-        child: _InteritedCForm(
-          state: this,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                color: _styles['form-$_type-$_state-background-color'],
-                padding: _styles['form-$_type-padding'],
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: widget.props.children,
+    return CInheritedStyles(
+      styles: CFormStyle.inheritedStyles,
+      child: CEnable(
+        value: _isEnabled(),
+        child: IgnorePointer(
+          ignoring: !_isEnabled(),
+          child: _InteritedCForm(
+            state: this,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  color: _styles['form-$_type-$_state-background-color'],
+                  padding: _styles['form-$_type-padding'],
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: widget.props.children,
+                  ),
                 ),
-              ),
-              if (widget.props.action != null) widget.props.action!,
-            ],
+                if (widget.props.action != null) widget.props.action!,
+              ],
+            ),
           ),
         ),
       ),
