@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CNotificationStyle {

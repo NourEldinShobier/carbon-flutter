@@ -238,7 +238,6 @@ class _CNotificationToast extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// styles helpers
-    String cwidget = 'notification';
     String notificationKind = enumToString(props.kind);
     String contrast = props.lowContrast ? 'lowcontrast' : 'highcontrast';
 
