@@ -36,8 +36,8 @@ abstract class CFormStyle {
   };
 
   static const Map<String, dynamic> inheritedStyles = {
-    'textfield-enabled-background-color': CColors.gray80,
-    'textfield-focus-background-color': CColors.gray80,
-    'textfield-disabled-background-color': CColors.gray80,
+    '\$textfield-enabled-background-color': CColors.gray80,
+    '\$textfield-focus-background-color': CColors.gray80,
+    '\$textfield-disabled-background-color': CColors.gray80,
   };
 }

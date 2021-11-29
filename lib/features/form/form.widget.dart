@@ -64,7 +64,7 @@ class CFormState extends State<CForm> {
     _evaluateStateVariables();
 
     return CInheritedStyles(
-      styles: CFormStyle.inheritedStyles,
+      styles: $(CFormStyle.inheritedStyles),
       child: CEnable(
         value: _isEnabled(),
         child: IgnorePointer(

@@ -5,6 +5,7 @@
         "csvgicon",
         "button",
         "notification",
-        "breadcrumb, button"
+        "breadcrumb, button",
+        "inherited_styles"
     ]
 }
