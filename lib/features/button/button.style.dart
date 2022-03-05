@@ -103,22 +103,12 @@ abstract class CButtonStyle {
 
     /// primary ///
 
-    // content-color
-    'button-primary-enabled-content-color': CColors.white0,
-    'button-primary-focus-content-color': CColors.white0,
-    'button-primary-disabled-content-color': CColors.gray60,
-
     // background-color
     'button-primary-enabled-background-color': CColors.blue60,
     'button-primary-focus-background-color': CColors.blue70,
     'button-primary-disabled-background-color': CColors.gray70,
 
     /// secondary ///
-
-    // content-color
-    'button-secondary-enabled-content-color': CColors.white0,
-    'button-secondary-focus-content-color': CColors.white0,
-    'button-secondary-disabled-content-color': CColors.gray60,
 
     // background-color
     'button-secondary-enabled-background-color': CColors.gray60,
@@ -127,22 +117,12 @@ abstract class CButtonStyle {
 
     /// danger ///
 
-    // content-color
-    'button-danger-enabled-content-color': CColors.white0,
-    'button-danger-focus-content-color': CColors.white0,
-    'button-danger-disabled-content-color': CColors.gray60,
-
     // background-color
     'button-danger-enabled-background-color': CColors.red60,
     'button-danger-focus-background-color': CColors.red70,
     'button-danger-disabled-background-color': CColors.gray70,
 
     /// tertiary ///
-
-    // content-color
-    'button-tertiary-enabled-content-color': CColors.white0,
-    'button-tertiary-focus-content-color': CColors.gray100,
-    'button-tertiary-disabled-content-color': CColors.gray70,
 
     // background-color
     'button-tertiary-enabled-background-color': CColors.gray100,
@@ -151,14 +131,31 @@ abstract class CButtonStyle {
 
     /// ghost ///
 
-    // content-color
-    'button-ghost-enabled-content-color': CColors.blue40,
-    'button-ghost-focus-content-color': CColors.blue40,
-    'button-ghost-disabled-content-color': CColors.gray70,
-
     // background-color
     'button-ghost-enabled-background-color': CColors.transparent,
     'button-ghost-focus-background-color': CColors.gray80,
     'button-ghost-disabled-background-color': CColors.gray100,
+  };
+
+  static const Map<String, dynamic> inheritedStyles = {
+    'button-primary-enabled-content-color': CColors.white0,
+    'button-primary-focus-content-color': CColors.white0,
+    'button-primary-disabled-content-color': CColors.gray60,
+    //
+    'button-secondary-enabled-content-color': CColors.white0,
+    'button-secondary-focus-content-color': CColors.white0,
+    'button-secondary-disabled-content-color': CColors.gray60,
+    //
+    'button-danger-enabled-content-color': CColors.white0,
+    'button-danger-focus-content-color': CColors.white0,
+    'button-danger-disabled-content-color': CColors.gray60,
+    //
+    'button-tertiary-enabled-content-color': CColors.white0,
+    'button-tertiary-focus-content-color': CColors.gray100,
+    'button-tertiary-disabled-content-color': CColors.gray70,
+    //
+    'button-ghost-enabled-content-color': CColors.blue40,
+    'button-ghost-focus-content-color': CColors.blue40,
+    'button-ghost-disabled-content-color': CColors.gray70,
   };
 }

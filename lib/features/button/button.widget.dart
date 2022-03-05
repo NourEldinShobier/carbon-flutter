@@ -1,3 +1,4 @@
+import 'package:carbon/features/inherited_styles/index.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:carbon/shared/index.dart';
@@ -129,63 +130,69 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
 
     final Size dimensions = styles['button-$size-dimensions'];
 
-    return CEnable(
-      value: isEnabled(),
-      child: IgnorePointer(
-        ignoring: !isEnabled(),
-        child: GestureDetector(
-          onTap: widget.props.onTap,
-          onTapDown: (_) => setState(() => focused = true),
-          onTapUp: (_) => setState(() => focused = false),
-          onTapCancel: () => setState(() => focused = false),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: AnimatedContainer(
-                  height: dimensions.height,
-                  duration: styles['button-background-color-animation-duration'],
-                  curve: styles['button-background-color-animation-curve'],
-                  decoration: BoxDecoration(color: styles['button-$kind-$state-background-color']),
-                ),
-              ),
-              Positioned.fill(
-                child: AnimatedContainer(
-                  height: dimensions.height,
-                  duration: styles['button-$kind-first-border-animation-duration'],
-                  curve: styles['button-$kind-first-border-animation-curve'],
-                  decoration: BoxDecoration(border: styles['button-$kind-$state-first-border']),
-                ),
-              ),
-              Positioned.fill(
-                child: AnimatedContainer(
-                  height: dimensions.height,
-                  duration: styles['button-$kind-second-border-animation-duration'],
-                  curve: styles['button-$kind-second-border-animation-curve'],
-                  decoration: BoxDecoration(border: styles['button-$kind-$state-second-border']),
-                ),
-              ),
-              SizedBox(
-                height: dimensions.height,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: styles['button-$size-padding']),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      CText(
-                        data: widget.props.label,
-                        style: TextStyle(
-                          fontSize: widget.props.labelSize,
-                          color: styles['button-$kind-$state-content-color'],
-                        ),
-                      ),
-                      ..._buildTrailing()
-                    ],
+    return CInheritedStyles(
+      styles: {
+        'icon-enabled-color': inheritedStyles['button-$kind-$state-content-color'],
+        'icon-disabled-color': inheritedStyles['button-$kind-$state-content-color'],
+      },
+      child: CEnable(
+        value: isEnabled(),
+        child: IgnorePointer(
+          ignoring: !isEnabled(),
+          child: GestureDetector(
+            onTap: widget.props.onTap,
+            onTapDown: (_) => setState(() => focused = true),
+            onTapUp: (_) => setState(() => focused = false),
+            onTapCancel: () => setState(() => focused = false),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: AnimatedContainer(
+                    height: dimensions.height,
+                    duration: styles['button-background-color-animation-duration'],
+                    curve: styles['button-background-color-animation-curve'],
+                    decoration: BoxDecoration(color: styles['button-$kind-$state-background-color']),
                   ),
                 ),
-              ),
-            ],
+                Positioned.fill(
+                  child: AnimatedContainer(
+                    height: dimensions.height,
+                    duration: styles['button-$kind-first-border-animation-duration'],
+                    curve: styles['button-$kind-first-border-animation-curve'],
+                    decoration: BoxDecoration(border: styles['button-$kind-$state-first-border']),
+                  ),
+                ),
+                Positioned.fill(
+                  child: AnimatedContainer(
+                    height: dimensions.height,
+                    duration: styles['button-$kind-second-border-animation-duration'],
+                    curve: styles['button-$kind-second-border-animation-curve'],
+                    decoration: BoxDecoration(border: styles['button-$kind-$state-second-border']),
+                  ),
+                ),
+                SizedBox(
+                  height: dimensions.height,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: styles['button-$size-padding']),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        CText(
+                          data: widget.props.label,
+                          style: TextStyle(
+                            fontSize: widget.props.labelSize,
+                            color: inheritedStyles['button-$kind-$state-content-color'],
+                          ),
+                        ),
+                        ..._buildTrailing()
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -211,47 +218,54 @@ class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBa
 
     final Size dimensions = styles['button-$size-dimensions'];
 
-    return CEnable(
-      value: isEnabled(),
-      child: IgnorePointer(
-        ignoring: !isEnabled(),
-        child: GestureDetector(
-          onTap: widget.props.onTap,
-          onTapDown: (_) => setState(() => focused = true),
-          onTapUp: (_) => setState(() => focused = false),
-          onTapCancel: () => setState(() => focused = false),
-          child: Stack(
-            children: [
-              AnimatedContainer(
-                width: dimensions.width,
-                height: dimensions.height,
-                duration: styles['button-background-color-animation-duration'],
-                curve: styles['button-background-color-animation-curve'],
-                decoration: BoxDecoration(color: styles['button-$kind-$state-background-color']),
-              ),
-              AnimatedContainer(
-                width: dimensions.width,
-                height: dimensions.height,
-                duration: styles['button-$kind-first-border-animation-duration'],
-                curve: styles['button-$kind-first-border-animation-curve'],
-                decoration: BoxDecoration(border: styles['button-$kind-$state-first-border']),
-              ),
-              AnimatedContainer(
-                width: dimensions.width,
-                height: dimensions.height,
-                duration: styles['button-$kind-second-border-animation-duration'],
-                curve: styles['button-$kind-second-border-animation-curve'],
-                decoration: BoxDecoration(border: styles['button-$kind-$state-second-border']),
-              ),
-              SizedBox(
-                width: dimensions.width,
-                height: dimensions.height,
-                child: Align(
-                  alignment: Alignment.center,
-                  child: widget.props.icon,
+    return CInheritedStyles(
+      styles: {
+        'icon-enabled-color': inheritedStyles['button-$kind-$state-content-color'],
+        'icon-disabled-color': inheritedStyles['button-$kind-$state-content-color'],
+        'button-content-color': inheritedStyles['button-$kind-$state-content-color'],
+      },
+      child: CEnable(
+        value: isEnabled(),
+        child: IgnorePointer(
+          ignoring: !isEnabled(),
+          child: GestureDetector(
+            onTap: widget.props.onTap,
+            onTapDown: (_) => setState(() => focused = true),
+            onTapUp: (_) => setState(() => focused = false),
+            onTapCancel: () => setState(() => focused = false),
+            child: Stack(
+              children: [
+                AnimatedContainer(
+                  width: dimensions.width,
+                  height: dimensions.height,
+                  duration: styles['button-background-color-animation-duration'],
+                  curve: styles['button-background-color-animation-curve'],
+                  decoration: BoxDecoration(color: styles['button-$kind-$state-background-color']),
                 ),
-              ),
-            ],
+                AnimatedContainer(
+                  width: dimensions.width,
+                  height: dimensions.height,
+                  duration: styles['button-$kind-first-border-animation-duration'],
+                  curve: styles['button-$kind-first-border-animation-curve'],
+                  decoration: BoxDecoration(border: styles['button-$kind-$state-first-border']),
+                ),
+                AnimatedContainer(
+                  width: dimensions.width,
+                  height: dimensions.height,
+                  duration: styles['button-$kind-second-border-animation-duration'],
+                  curve: styles['button-$kind-second-border-animation-curve'],
+                  decoration: BoxDecoration(border: styles['button-$kind-$state-second-border']),
+                ),
+                SizedBox(
+                  width: dimensions.width,
+                  height: dimensions.height,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: widget.props.icon,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

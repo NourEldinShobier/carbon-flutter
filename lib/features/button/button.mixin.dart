@@ -2,6 +2,7 @@ part of 'button.widget.dart';
 
 mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
   final styles = CButtonStyle.styles;
+  final inheritedStyles = CButtonStyle.inheritedStyles;
 
   /// styles helpers
   String state = enumToString(CWidgetState.enabled);
