@@ -5,11 +5,15 @@ import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/text/index.dart';
 import 'package:carbon/features/enable/index.dart';
 
-import 'button.enum.dart';
 import 'button.props.dart';
 import 'button.styles.dart';
 
 part 'button.mixin.dart';
+
+enum CButtonKind { primary, secondary, danger, tertiary, ghost }
+enum CButtonSize { regular, sm, md }
+
+enum _CButtonType { regular, icon }
 
 /// Buttons are clickable elements that are used to trigger actions.
 /// They communicate calls to action to the user and allow users to interact
@@ -26,7 +30,7 @@ class CButton extends StatefulWidget {
     CButtonKind kind = CButtonKind.primary,
     CButtonSize size = CButtonSize.regular,
     Widget? icon,
-  })  : type = CButtonType.regular,
+  })  : type = _CButtonType.regular,
         props = CButtonRegularProps(
           icon: icon,
           expand: expand,
@@ -49,7 +53,7 @@ class CButton extends StatefulWidget {
     required String iconDescription, // TODO:
     CTooltipAlignment? tooltipAlignment, // TODO:
     CTooltipPosition? tooltipPosition, // TODO:
-  })  : type = CButtonType.icon,
+  })  : type = _CButtonType.icon,
         props = CButtonIconOnlyProps(
           enable: enable,
           icon: icon,
@@ -63,7 +67,7 @@ class CButton extends StatefulWidget {
         super(key: key);
 
   final CButtonBaseProps props;
-  final CButtonType type;
+  final _CButtonType type;
 
   @override
   _CButtonState createState() => _CButtonState();
@@ -72,7 +76,7 @@ class CButton extends StatefulWidget {
 class _CButtonState extends State<CButton> {
   @override
   Widget build(BuildContext context) {
-    if (widget.type == CButtonType.icon) {
+    if (widget.type == _CButtonType.icon) {
       return _CButtonIconOnly(props: widget.props as CButtonIconOnlyProps);
     }
 

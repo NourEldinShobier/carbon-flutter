@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
-import 'button.enum.dart';
+import 'button.widget.dart';
 
 abstract class CButtonStyles {
   static const Map<CButtonKind, Map<CWidgetState, Color>> contentColor = {
