@@ -7,7 +7,7 @@ import 'package:carbon/features/enable/index.dart';
 
 import 'button.enum.dart';
 import 'button.props.dart';
-import 'button.style.dart';
+import 'button.styles.dart';
 
 part 'button.mixin.dart';
 
@@ -44,9 +44,9 @@ class CButton extends StatefulWidget {
     bool enable = true,
     required Widget icon,
     required VoidCallback onTap,
-    required String iconDescription, // TODO:
     CButtonKind kind = CButtonKind.primary,
     CButtonSize size = CButtonSize.regular,
+    required String iconDescription, // TODO:
     CTooltipAlignment? tooltipAlignment, // TODO:
     CTooltipPosition? tooltipPosition, // TODO:
   })  : type = CButtonType.icon,
@@ -128,13 +128,8 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
   Widget build(BuildContext context) {
     evaluateStateVariables();
 
-    final Size dimensions = styles['button-$size-dimensions'];
-
     return CInheritedStyles(
-      styles: {
-        'icon-enabled-color': inheritedStyles['button-$kind-$state-content-color'],
-        'icon-disabled-color': inheritedStyles['button-$kind-$state-content-color'],
-      },
+      styles: {'contentColor': contentColor},
       child: CEnable(
         value: isEnabled(),
         child: IgnorePointer(
@@ -148,32 +143,32 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
               children: [
                 Positioned.fill(
                   child: AnimatedContainer(
-                    height: dimensions.height,
-                    duration: styles['button-background-color-animation-duration'],
-                    curve: styles['button-background-color-animation-curve'],
-                    decoration: BoxDecoration(color: styles['button-$kind-$state-background-color']),
+                    height: size.height,
+                    duration: CButtonStyles.backgroundColorAnimation['duration'],
+                    curve: CButtonStyles.backgroundColorAnimation['curve'],
+                    decoration: BoxDecoration(color: backgroundColor),
                   ),
                 ),
                 Positioned.fill(
                   child: AnimatedContainer(
-                    height: dimensions.height,
-                    duration: styles['button-$kind-first-border-animation-duration'],
-                    curve: styles['button-$kind-first-border-animation-curve'],
-                    decoration: BoxDecoration(border: styles['button-$kind-$state-first-border']),
+                    height: size.height,
+                    duration: CButtonStyles.firstBorderAnimation[kind]!['duration'],
+                    curve: CButtonStyles.firstBorderAnimation[kind]!['curve'],
+                    decoration: BoxDecoration(border: firstBorder),
                   ),
                 ),
                 Positioned.fill(
                   child: AnimatedContainer(
-                    height: dimensions.height,
-                    duration: styles['button-$kind-second-border-animation-duration'],
-                    curve: styles['button-$kind-second-border-animation-curve'],
-                    decoration: BoxDecoration(border: styles['button-$kind-$state-second-border']),
+                    height: size.height,
+                    duration: CButtonStyles.secondBorderAnimation[kind]!['duration'],
+                    curve: CButtonStyles.secondBorderAnimation[kind]!['curve'],
+                    decoration: BoxDecoration(border: secondBorder),
                   ),
                 ),
                 SizedBox(
-                  height: dimensions.height,
+                  height: size.height,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: styles['button-$size-padding']),
+                    padding: EdgeInsets.symmetric(horizontal: CButtonStyles.padding[size]!),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +178,7 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
                           data: widget.props.label,
                           style: TextStyle(
                             fontSize: widget.props.labelSize,
-                            color: inheritedStyles['button-$kind-$state-content-color'],
+                            color: contentColor,
                           ),
                         ),
                         ..._buildTrailing()
@@ -216,14 +211,8 @@ class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBa
   Widget build(BuildContext context) {
     evaluateStateVariables();
 
-    final Size dimensions = styles['button-$size-dimensions'];
-
     return CInheritedStyles(
-      styles: {
-        'icon-enabled-color': inheritedStyles['button-$kind-$state-content-color'],
-        'icon-disabled-color': inheritedStyles['button-$kind-$state-content-color'],
-        'button-content-color': inheritedStyles['button-$kind-$state-content-color'],
-      },
+      styles: {'contentColor': contentColor},
       child: CEnable(
         value: isEnabled(),
         child: IgnorePointer(
@@ -236,33 +225,30 @@ class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBa
             child: Stack(
               children: [
                 AnimatedContainer(
-                  width: dimensions.width,
-                  height: dimensions.height,
-                  duration: styles['button-background-color-animation-duration'],
-                  curve: styles['button-background-color-animation-curve'],
-                  decoration: BoxDecoration(color: styles['button-$kind-$state-background-color']),
+                  width: size.width,
+                  height: size.height,
+                  duration: CButtonStyles.backgroundColorAnimation['duration'],
+                  curve: CButtonStyles.backgroundColorAnimation['curve'],
+                  decoration: BoxDecoration(color: backgroundColor),
                 ),
                 AnimatedContainer(
-                  width: dimensions.width,
-                  height: dimensions.height,
-                  duration: styles['button-$kind-first-border-animation-duration'],
-                  curve: styles['button-$kind-first-border-animation-curve'],
-                  decoration: BoxDecoration(border: styles['button-$kind-$state-first-border']),
+                  width: size.width,
+                  height: size.height,
+                  duration: CButtonStyles.firstBorderAnimation[kind]!['duration'],
+                  curve: CButtonStyles.firstBorderAnimation[kind]!['curve'],
+                  decoration: BoxDecoration(border: firstBorder),
                 ),
                 AnimatedContainer(
-                  width: dimensions.width,
-                  height: dimensions.height,
-                  duration: styles['button-$kind-second-border-animation-duration'],
-                  curve: styles['button-$kind-second-border-animation-curve'],
-                  decoration: BoxDecoration(border: styles['button-$kind-$state-second-border']),
+                  width: size.width,
+                  height: size.height,
+                  duration: CButtonStyles.secondBorderAnimation[kind]!['duration'],
+                  curve: CButtonStyles.secondBorderAnimation[kind]!['curve'],
+                  decoration: BoxDecoration(border: secondBorder),
                 ),
                 SizedBox(
-                  width: dimensions.width,
-                  height: dimensions.height,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: widget.props.icon,
-                  ),
+                  width: size.width,
+                  height: size.height,
+                  child: Align(alignment: Alignment.center, child: widget.props.icon),
                 ),
               ],
             ),

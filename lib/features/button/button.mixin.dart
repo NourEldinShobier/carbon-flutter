@@ -1,13 +1,14 @@
 part of 'button.widget.dart';
 
 mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
-  final styles = CButtonStyle.styles;
-  final inheritedStyles = CButtonStyle.inheritedStyles;
+  late Color contentColor;
+  late Color backgroundColor;
+  late CButtonKind kind;
+  late Size size;
+  late Border firstBorder;
+  late Border secondBorder;
 
-  /// styles helpers
   String state = enumToString(CWidgetState.enabled);
-  String kind = '';
-  String size = '';
 
   bool focused = false;
 
@@ -16,8 +17,6 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
   }
 
   void evaluateStateVariables() {
-    /// determine the [_state] of the widget.
-
     if (!isEnabled()) {
       state = enumToString(CWidgetState.disabled);
     } else if (isEnabled() && focused) {
@@ -26,7 +25,12 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
       state = enumToString(CWidgetState.enabled);
     }
 
-    kind = enumToString(widget.props.kind);
-    size = enumToString(widget.props.size);
+    kind = widget.props.kind;
+    size = CButtonStyles.size[widget.props.size]!;
+    contentColor = CButtonStyles.contentColor[kind]![state]!;
+    backgroundColor = CButtonStyles.backgroundColor[widget.props.kind]![state]!;
+
+    firstBorder = CButtonStyles.firstBorder[kind]![state]!;
+    secondBorder = CButtonStyles.secondBorder[kind]![state]!;
   }
 }
