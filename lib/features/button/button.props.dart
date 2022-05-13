@@ -59,11 +59,11 @@ class CButtonRegularProps extends CButtonBaseProps {
     required this.expand,
     required this.label,
     required this.labelSize,
-    required bool enable,
-    required CButtonKind kind,
-    required CButtonSize size,
-    required VoidCallback onTap,
-  }) : super(enable: enable, kind: kind, size: size, onTap: onTap);
+    required super.enable,
+    required super.kind,
+    required super.size,
+    required super.onTap,
+  });
 }
 
 class CButtonIconOnlyProps extends CButtonBaseProps {
@@ -93,9 +93,9 @@ class CButtonIconOnlyProps extends CButtonBaseProps {
     required this.tooltipAlignment,
     required this.tooltipPosition,
     required this.iconDescription,
-    required bool enable,
-    required CButtonKind kind,
-    required CButtonSize size,
-    required VoidCallback onTap,
-  }) : super(enable: enable, kind: kind, size: size, onTap: onTap);
+    required super.enable,
+    required super.kind,
+    required super.size,
+    required super.onTap,
+  });
 }

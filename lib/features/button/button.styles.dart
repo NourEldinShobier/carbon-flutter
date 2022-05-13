@@ -144,27 +144,9 @@ abstract class CButtonStyles {
     },
   };
 
-  static final Map<CButtonKind, Map<String, dynamic>> secondBorderAnimation = {
-    CButtonKind.primary: {
-      'duration': Duration(milliseconds: 0),
-      'curve': Curves.easeInOut,
-    },
-    CButtonKind.secondary: {
-      'duration': Duration(milliseconds: 0),
-      'curve': Curves.easeInOut,
-    },
-    CButtonKind.danger: {
-      'duration': Duration(milliseconds: 0),
-      'curve': Curves.easeInOut,
-    },
-    CButtonKind.tertiary: {
-      'duration': Duration(milliseconds: 0),
-      'curve': Curves.easeInOut,
-    },
-    CButtonKind.ghost: {
-      'duration': Duration(milliseconds: 0),
-      'curve': Curves.easeInOut,
-    },
+  static final Map<String, dynamic> secondBorderAnimation = {
+    'duration': Duration(milliseconds: 0),
+    'curve': Curves.easeInOut,
   };
 
   static final Map<CButtonSize, Size> size = {

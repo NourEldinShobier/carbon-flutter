@@ -1,12 +1,8 @@
 part of 'button.widget.dart';
 
 mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
-  late Color contentColor;
-  late Color backgroundColor;
   late CButtonKind kind;
   late Size size;
-  late Border firstBorder;
-  late Border secondBorder;
 
   String state = enumToString(CWidgetState.enabled);
 
@@ -27,10 +23,5 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
 
     kind = widget.props.kind;
     size = CButtonStyles.size[widget.props.size]!;
-    contentColor = CButtonStyles.contentColor[kind]![state]!;
-    backgroundColor = CButtonStyles.backgroundColor[widget.props.kind]![state]!;
-
-    firstBorder = CButtonStyles.firstBorder[kind]![state]!;
-    secondBorder = CButtonStyles.secondBorder[kind]![state]!;
   }
 }
