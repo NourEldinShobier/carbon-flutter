@@ -4,7 +4,7 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
   late CButtonKind kind;
   late Size size;
 
-  String state = enumToString(CWidgetState.enabled);
+  CWidgetState state = CWidgetState.enabled;
 
   bool focused = false;
 
@@ -14,11 +14,11 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
 
   void evaluateStateVariables() {
     if (!isEnabled()) {
-      state = enumToString(CWidgetState.disabled);
+      state = CWidgetState.disabled;
     } else if (isEnabled() && focused) {
-      state = enumToString(CWidgetState.focus);
+      state = CWidgetState.focus;
     } else {
-      state = enumToString(CWidgetState.enabled);
+      state = CWidgetState.enabled;
     }
 
     kind = widget.props.kind;
