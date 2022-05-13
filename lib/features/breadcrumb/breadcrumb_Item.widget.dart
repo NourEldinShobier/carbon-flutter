@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 import 'breadcrumb.props.dart';
-import 'breadcrumb_item.style.dart';
+import 'breadcrumb_item.styles.dart';
 
 /// A ghost button with a short and clear text that reflects a
 /// location or an entity it links to.
@@ -26,20 +26,16 @@ class CBreadcrumbItem extends StatefulWidget {
 }
 
 class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
-  final _styles = CBreadcrumbItemStyle.styles;
-
   /// styles helpers
-  String _state = enumToString(CWidgetState.enabled);
+  CWidgetState _state = CWidgetState.enabled;
 
   bool _focused = false;
 
   void _evaluateStateVariables() {
-    /// determine the [_state] of the widget.
-
     if (_focused) {
-      _state = enumToString(CWidgetState.focus);
+      _state = CWidgetState.focus;
     } else {
-      _state = enumToString(CWidgetState.enabled);
+      _state = CWidgetState.enabled;
     }
   }
 
@@ -54,23 +50,19 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
       onTapCancel: () => setState(() => _focused = false),
       child: AnimatedContainer(
         decoration: BoxDecoration(
-          color: _styles['breadcrumb-item-$_state-background-color'],
-          borderRadius: BorderRadius.circular(
-            _styles['breadcrumb-item-border-radius'],
-          ),
+          color: CBreadcrumbItemStyles.backgroundColor[_state],
+          borderRadius: BorderRadius.circular(CBreadcrumbItemStyles.borderRadius),
         ),
-        margin: EdgeInsets.symmetric(
-          horizontal: _styles['breadcrumb-item-spacing'],
-        ),
+        margin: EdgeInsets.symmetric(horizontal: CBreadcrumbItemStyles.itemSpacing),
         padding: EdgeInsets.symmetric(
-          horizontal: _styles['breadcrumb-item-spacing'],
-          vertical: _styles['breadcrumb-item-spacing'],
+          horizontal: CBreadcrumbItemStyles.itemSpacing,
+          vertical: CBreadcrumbItemStyles.itemSpacing,
         ),
-        duration: _styles['breadcrumb-item-animation-duration'],
-        curve: _styles['breadcrumb-item-animation-curve'],
+        duration: CBreadcrumbItemStyles.animation['duration'],
+        curve: CBreadcrumbItemStyles.animation['curve'],
         child: DefaultTextStyle(
           style: TextStyle(
-            color: widget.props.isCurrentPage ? _styles['breadcrumb-item-current-color'] : _styles['breadcrumb-item-color'],
+            color: CBreadcrumbItemStyles.textColor[widget.props.isCurrentPage],
           ),
           child: widget.props.child,
         ),

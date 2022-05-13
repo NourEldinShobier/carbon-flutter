@@ -4,7 +4,7 @@ import 'package:carbon/features/overflow_menu/index.dart';
 import 'package:carbon/features/text/index.dart';
 
 import 'breadcrumb.props.dart';
-import 'breadcrumb.style.dart';
+import 'breadcrumb.styles.dart';
 import 'breadcrumb_item.widget.dart';
 
 /// The breadcrumb is a secondary navigation pattern that
@@ -26,7 +26,6 @@ class CBreadcrumb extends StatelessWidget {
 
   final CBreadcrumbProps props;
 
-  final _styles = CBreadcrumbStyle.styles;
   final _menu = COverflowMenuController();
   final _menuKey = GlobalKey();
 
@@ -34,7 +33,7 @@ class CBreadcrumb extends StatelessWidget {
     final divider = CText(
       data: '/',
       style: TextStyle(
-        color: _styles['breadcrumb-slash-color'],
+        color: CBreadcrumbStyles.slashColor,
         fontSize: 14,
       ),
     );
@@ -77,7 +76,7 @@ class CBreadcrumb extends StatelessWidget {
     final divider = CText(
       data: '/',
       style: TextStyle(
-        color: _styles['breadcrumb-slash-color'],
+        color: CBreadcrumbStyles.slashColor,
         fontSize: 14,
       ),
     );
@@ -112,7 +111,8 @@ class CBreadcrumb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
-      children: props.children.length > props.breadcrumbsLimit ? _displayOverflowedBreadcrumbs() : _displayAllBreadcrumbs(),
+      children:
+          props.children.length > props.breadcrumbsLimit ? _displayOverflowedBreadcrumbs() : _displayAllBreadcrumbs(),
     );
   }
 }
