@@ -16,7 +16,7 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
     if (!isEnabled()) {
       state = CWidgetState.disabled;
     } else if (isEnabled() && focused) {
-      state = CWidgetState.focus;
+      state = CWidgetState.focused;
     } else {
       state = CWidgetState.enabled;
     }

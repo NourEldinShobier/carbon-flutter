@@ -11,6 +11,7 @@ import 'button.styles.dart';
 part 'button.mixin.dart';
 
 enum CButtonKind { primary, secondary, danger, tertiary, ghost }
+
 enum CButtonSize { regular, sm, md }
 
 enum _CButtonType { regular, icon }
@@ -133,7 +134,7 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
     evaluateStateVariables();
 
     return CInheritedStyles(
-      styles: {'contentColor': CButtonStyles.contentColor[kind]![state]!},
+      styles: {'button-content-color': CButtonStyles.contentColor[kind]![state]!},
       child: CEnable(
         value: isEnabled(),
         child: IgnorePointer(
@@ -216,7 +217,7 @@ class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBa
     evaluateStateVariables();
 
     return CInheritedStyles(
-      styles: {'contentColor': CButtonStyles.contentColor[kind]![state]!},
+      styles: {'button-content-color': CButtonStyles.contentColor[kind]![state]!},
       child: CEnable(
         value: isEnabled(),
         child: IgnorePointer(

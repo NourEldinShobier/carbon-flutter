@@ -33,7 +33,7 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
 
   void _evaluateStateVariables() {
     if (_focused) {
-      _state = CWidgetState.focus;
+      _state = CWidgetState.focused;
     } else {
       _state = CWidgetState.enabled;
     }
