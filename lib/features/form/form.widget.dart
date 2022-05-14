@@ -3,9 +3,10 @@ import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/features/inherited_styles/index.dart';
 import 'package:carbon/shared/index.dart';
 
-import 'form.enum.dart';
 import 'form.props.dart';
-import 'form.style.dart';
+import 'form.styles.dart';
+
+enum CFormType { group, blank }
 
 /// A form is a group of related input controls that allows
 /// users to provide data or configure options.
@@ -35,11 +36,8 @@ class CForm extends StatefulWidget {
 }
 
 class CFormState extends State<CForm> {
-  final _styles = CFormStyle.styles;
-
-  /// styles helpers
-  String _state = enumToString(CWidgetState.enabled);
-  String _type = '';
+  CWidgetState _state = CWidgetState.enabled;
+  CFormType _type = CFormType.blank;
 
   CFormType get type => widget.props.type;
 
@@ -48,15 +46,13 @@ class CFormState extends State<CForm> {
   }
 
   void _evaluateStateVariables() {
-    /// determine the [_state] of the widget.
-
     if (!_isEnabled()) {
-      _state = enumToString(CWidgetState.disabled);
+      _state = CWidgetState.disabled;
     } else {
-      _state = enumToString(CWidgetState.enabled);
+      _state = CWidgetState.enabled;
     }
 
-    _type = enumToString(type);
+    _type = type;
   }
 
   @override
@@ -64,7 +60,9 @@ class CFormState extends State<CForm> {
     _evaluateStateVariables();
 
     return CInheritedStyles(
-      styles: $(CFormStyle.inheritedStyles),
+      styles: {
+        'textfield-background-color': CFormStyles.textfieldBackgroundColor[_type],
+      },
       child: CEnable(
         value: _isEnabled(),
         child: IgnorePointer(
@@ -77,8 +75,8 @@ class CFormState extends State<CForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  color: _styles['form-$_type-$_state-background-color'],
-                  padding: _styles['form-$_type-padding'],
+                  color: CFormStyles.backgroundColor[_type]![_state],
+                  padding: CFormStyles.padding[_type],
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,

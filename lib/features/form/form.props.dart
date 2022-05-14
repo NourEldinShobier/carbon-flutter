@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 
-import 'form.enum.dart';
+import 'form.widget.dart';
 
 class CFormProps {
   /// The content of the form.

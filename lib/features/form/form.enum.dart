@@ -1,1 +1,0 @@
-enum CFormType { group, blank }
