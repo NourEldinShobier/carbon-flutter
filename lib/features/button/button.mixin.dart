@@ -8,14 +8,14 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
 
   bool focused = false;
 
-  bool isEnabled() {
+  bool get isEnabled {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
   void evaluateStateVariables() {
-    if (!isEnabled()) {
+    if (!isEnabled) {
       state = CWidgetState.disabled;
-    } else if (isEnabled() && focused) {
+    } else if (isEnabled && focused) {
       state = CWidgetState.focused;
     } else {
       state = CWidgetState.enabled;
