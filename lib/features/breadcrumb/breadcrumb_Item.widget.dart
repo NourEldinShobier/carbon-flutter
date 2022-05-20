@@ -1,8 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
-import 'breadcrumb.props.dart';
+import 'breadcrumb_item.props.dart';
 import 'breadcrumb_item.styles.dart';
+
+typedef _Styles = CBreadcrumbItemStyles;
 
 /// A ghost button with a short and clear text that reflects a
 /// location or an entity it links to.
@@ -50,19 +52,19 @@ class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
       onTapCancel: () => setState(() => _focused = false),
       child: AnimatedContainer(
         decoration: BoxDecoration(
-          color: CBreadcrumbItemStyles.backgroundColor[_state],
-          borderRadius: BorderRadius.circular(CBreadcrumbItemStyles.borderRadius),
+          color: _Styles.backgroundColor[_state],
+          borderRadius: BorderRadius.circular(_Styles.borderRadius),
         ),
-        margin: EdgeInsets.symmetric(horizontal: CBreadcrumbItemStyles.itemSpacing),
+        margin: EdgeInsets.symmetric(horizontal: _Styles.itemSpacing),
         padding: EdgeInsets.symmetric(
-          horizontal: CBreadcrumbItemStyles.itemSpacing,
-          vertical: CBreadcrumbItemStyles.itemSpacing,
+          horizontal: _Styles.itemSpacing,
+          vertical: _Styles.itemSpacing,
         ),
-        duration: CBreadcrumbItemStyles.animation['duration'],
-        curve: CBreadcrumbItemStyles.animation['curve'],
+        duration: _Styles.animation['duration'],
+        curve: _Styles.animation['curve'],
         child: DefaultTextStyle(
           style: TextStyle(
-            color: CBreadcrumbItemStyles.textColor[widget.props.isCurrentPage],
+            color: _Styles.textColor[widget.props.isCurrentPage],
           ),
           child: widget.props.child,
         ),

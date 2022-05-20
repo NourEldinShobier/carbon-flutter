@@ -2,11 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
 abstract class CBreadcrumbItemStyles {
-  static const Map<String, dynamic> styles = {
-    'breadcrumb-item-spacing': 4.0,
-    'breadcrumb-item-border-radius': 4.0,
-  };
-
   static const double itemSpacing = 4.0;
 
   static const double borderRadius = 4.0;

@@ -7,6 +7,8 @@ import 'breadcrumb.props.dart';
 import 'breadcrumb.styles.dart';
 import 'breadcrumb_item.widget.dart';
 
+typedef _Styles = CBreadcrumbStyles;
+
 /// The breadcrumb is a secondary navigation pattern that
 /// helps a user understand the hierarchy among levels and
 /// navigate back through them.
@@ -33,7 +35,7 @@ class CBreadcrumb extends StatelessWidget {
     final divider = CText(
       data: '/',
       style: TextStyle(
-        color: CBreadcrumbStyles.slashColor,
+        color: _Styles.slashColor,
         fontSize: 14,
       ),
     );
@@ -76,7 +78,7 @@ class CBreadcrumb extends StatelessWidget {
     final divider = CText(
       data: '/',
       style: TextStyle(
-        color: CBreadcrumbStyles.slashColor,
+        color: _Styles.slashColor,
         fontSize: 14,
       ),
     );
