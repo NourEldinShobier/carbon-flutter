@@ -1,12 +1,14 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:carbon/shared/index.dart';
-import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/text/index.dart';
 import 'package:carbon/features/enable/index.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'checkbox.props.dart';
-import 'checkbox.style.dart';
+import 'checkbox.styles.dart';
+
+typedef _Styles = CCheckboxStyles;
 
 /// Checkboxes are used when there are multiple items to select
 /// in a list. Users can select zero, one, or any number of items.
@@ -32,10 +34,7 @@ class CCheckbox extends StatefulWidget {
 }
 
 class _CCheckboxState extends State<CCheckbox> {
-  final _styles = CCheckboxStyle.styles;
-
-  /// styles helpers
-  String _state = enumToString(CWidgetState.enabled);
+  CWidgetState _state = CWidgetState.enabled;
 
   bool _value = false;
   bool _focused = false;
@@ -52,19 +51,17 @@ class _CCheckboxState extends State<CCheckbox> {
     super.didChangeDependencies();
   }
 
-  bool _isEnabled() {
+  bool get _isEnabled {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
   void _evaluateStateVariables() {
-    /// determine the [_state] of the widget.
-
-    if (!_isEnabled()) {
-      _state = enumToString(CWidgetState.disabled);
-    } else if (_isEnabled() && _focused) {
-      _state = enumToString(CWidgetState.focus);
+    if (!_isEnabled) {
+      _state = CWidgetState.disabled;
+    } else if (_isEnabled && _focused) {
+      _state = CWidgetState.focused;
     } else {
-      _state = enumToString(CWidgetState.enabled);
+      _state = CWidgetState.enabled;
     }
   }
 
@@ -73,7 +70,7 @@ class _CCheckboxState extends State<CCheckbox> {
     _evaluateStateVariables();
 
     return IgnorePointer(
-      ignoring: !_isEnabled(),
+      ignoring: !_isEnabled,
       child: GestureDetector(
         onTapDown: (_) => setState(() => _focused = true),
         onTapUp: (_) => setState(() {
@@ -92,12 +89,12 @@ class _CCheckboxState extends State<CCheckbox> {
                 AnimatedContainer(
                   height: 20,
                   width: 20,
-                  duration: _styles['checkbox-border-color-animation-duration'],
-                  curve: _styles['checkbox-border-color-animation-curve'],
+                  duration: _Styles.borderAnimation['duration'],
+                  curve: _Styles.borderAnimation['curve'],
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
                     border: Border.all(
-                      color: _styles['checkbox-$_state-border-color']!,
+                      color: _Styles.borderColor[_state]!,
                       width: _focused ? 2 : 1,
                     ),
                   ),
@@ -107,18 +104,18 @@ class _CCheckboxState extends State<CCheckbox> {
                   width: 20,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(2),
-                    color: _value ? _styles['checkbox-$_state-fill-color'] : CColors.transparent,
+                    color: _value ? _Styles.backgroundColor[_state] : CColors.transparent,
                   ),
                 ),
                 AnimatedContainer(
                   height: 20,
                   width: 20,
                   alignment: Alignment.center,
-                  duration: _styles['checkbox-fill-color-animation-duration'],
-                  curve: _styles['checkbox-fill-color-animation-curve'],
-                  child: CSVGIcon.asset(
+                  duration: _Styles.backgroundAnimation['duration'],
+                  curve: _Styles.backgroundAnimation['curve'],
+                  child: SvgPicture.asset(
                     'assets/svg/checkmark.svg',
-                    color: _value ? _styles['checkbox-$_state-checkmark-color'] : CColors.transparent,
+                    color: _value ? _Styles.checkmarkColor[_state] : CColors.transparent,
                     height: 8,
                     package: 'carbon',
                   ),
@@ -129,10 +126,7 @@ class _CCheckboxState extends State<CCheckbox> {
               const SizedBox(width: 10),
               CText(
                 data: widget.props.label!,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: _styles['checkbox-$_state-label-color'],
-                ),
+                style: TextStyle(fontSize: 14, color: _Styles.labelColor[_state]),
               ),
             ],
           ],
