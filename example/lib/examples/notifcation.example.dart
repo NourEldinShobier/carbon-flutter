@@ -66,7 +66,7 @@ class CNotificationExample extends StatelessWidget {
                     children: [
                       CNotification.toast(
                         onCloseButtonTap: () {},
-                        lowContrast: false,
+                        contrast: CNotificationContrast.high,
                         title: CText(data: 'Notification title'),
                         subtitle: CText(data: 'Subtitle text goes here.'),
                         caption: CText(data: 'Time stamp [00:00:00]'),
@@ -74,7 +74,7 @@ class CNotificationExample extends StatelessWidget {
                       const SizedBox(height: 8),
                       CNotification.toast(
                         onCloseButtonTap: () {},
-                        lowContrast: false,
+                        contrast: CNotificationContrast.high,
                         kind: CNotificationKind.error,
                         title: CText(data: 'Notification title'),
                         subtitle: CText(data: 'Subtitle text goes here.'),
@@ -83,7 +83,7 @@ class CNotificationExample extends StatelessWidget {
                       const SizedBox(height: 8),
                       CNotification.toast(
                         onCloseButtonTap: () {},
-                        lowContrast: false,
+                        contrast: CNotificationContrast.high,
                         kind: CNotificationKind.warning,
                         title: CText(data: 'Notification title'),
                         subtitle: CText(data: 'Subtitle text goes here.'),
@@ -92,7 +92,7 @@ class CNotificationExample extends StatelessWidget {
                       const SizedBox(height: 8),
                       CNotification.toast(
                         onCloseButtonTap: () {},
-                        lowContrast: false,
+                        contrast: CNotificationContrast.high,
                         kind: CNotificationKind.success,
                         title: CText(data: 'Notification title'),
                         subtitle: CText(data: 'Subtitle text goes here.'),
@@ -128,7 +128,9 @@ class CNotificationExample extends StatelessWidget {
                     CNotification.inline(
                       onCloseButtonTap: () {},
                       title: CText(data: 'Notification title'),
-                      subtitle: CText(data: 'Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text.'),
+                      subtitle: CText(
+                          data:
+                              'Long text. Long text. Long text. Long text. Long text. Long text. Long text. Long text.'),
                       actions: [
                         CNotificationActionButton(child: CText(data: 'Action'), onTap: () {}),
                       ],
@@ -167,7 +169,7 @@ class CNotificationExample extends StatelessWidget {
                     //
                     CNotification.inline(
                       onCloseButtonTap: () {},
-                      lowContrast: false,
+                      contrast: CNotificationContrast.high,
                       title: CText(data: 'Notification title'),
                       subtitle: CText(data: 'Subtitle text goes here.'),
                       actions: [
@@ -178,7 +180,7 @@ class CNotificationExample extends StatelessWidget {
                     CNotification.inline(
                       onCloseButtonTap: () {},
                       kind: CNotificationKind.error,
-                      lowContrast: false,
+                      contrast: CNotificationContrast.high,
                       title: CText(data: 'Notification title'),
                       subtitle: CText(data: 'Subtitle text goes here.'),
                       actions: [
@@ -189,7 +191,7 @@ class CNotificationExample extends StatelessWidget {
                     CNotification.inline(
                       onCloseButtonTap: () {},
                       kind: CNotificationKind.warning,
-                      lowContrast: false,
+                      contrast: CNotificationContrast.high,
                       title: CText(data: 'Notification title'),
                       subtitle: CText(data: 'Subtitle text goes here.'),
                       actions: [
@@ -200,7 +202,7 @@ class CNotificationExample extends StatelessWidget {
                     CNotification.inline(
                       onCloseButtonTap: () {},
                       kind: CNotificationKind.success,
-                      lowContrast: false,
+                      contrast: CNotificationContrast.high,
                       title: CText(data: 'Notification title'),
                       subtitle: CText(data: 'Subtitle text goes here.'),
                       actions: [

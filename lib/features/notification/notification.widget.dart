@@ -1,10 +1,20 @@
+import 'package:carbon/shared/index.dart';
 import 'package:flutter/widgets.dart';
-import 'package:carbon/carbon.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pmvvm/pmvvm.dart';
 
 import 'action_button.widget.dart';
-import 'notification.enum.dart';
 import 'notification.props.dart';
+import 'notification.styles.dart';
+
+enum CNotificationKind { error, info, success, warning }
+
+enum CNotificationType { inline, toast }
+
+enum CNotificationContrast { high, low }
+
+typedef _Styles = CNotificationStyles;
+typedef _Assets = CNotificationAssets;
 
 /// Notifications are messages that communicate information to the user.
 ///
@@ -18,7 +28,7 @@ class CNotification extends StatelessWidget {
     Widget? caption,
     bool hideCloseButton = false,
     CNotificationKind kind = CNotificationKind.info,
-    bool lowContrast = true,
+    CNotificationContrast contrast = CNotificationContrast.low,
     VoidCallback? onCloseButtonTap,
     VoidCallback? onClose,
     int? timeout,
@@ -30,7 +40,7 @@ class CNotification extends StatelessWidget {
           subtitle: subtitle,
           hideCloseButton: hideCloseButton,
           kind: kind,
-          lowContrast: lowContrast,
+          contrast: contrast,
           onCloseButtonTap: onCloseButtonTap,
           onClose: onClose,
           timeout: timeout,
@@ -45,7 +55,7 @@ class CNotification extends StatelessWidget {
     Widget? caption,
     bool hideCloseButton = false,
     CNotificationKind kind = CNotificationKind.info,
-    bool lowContrast = true,
+    CNotificationContrast contrast = CNotificationContrast.low,
     VoidCallback? onCloseButtonTap,
     VoidCallback? onClose,
     int? timeout,
@@ -58,7 +68,7 @@ class CNotification extends StatelessWidget {
           subtitle: subtitle,
           hideCloseButton: hideCloseButton,
           kind: kind,
-          lowContrast: lowContrast,
+          contrast: contrast,
           onCloseButtonTap: onCloseButtonTap,
           onClose: onClose,
           timeout: timeout,
@@ -85,9 +95,6 @@ class _CNotificationInline extends StatelessWidget {
 
   final CNotificationInlineProps props;
 
-  final _styles = CNotificationStyle.styles;
-  final _assets = CNotificationStyle.assets;
-
   void _startTimer() {
     Future.delayed(Duration(milliseconds: props.timeout!), () {
       props.onClose!();
@@ -108,9 +115,8 @@ class _CNotificationInline extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// styles helpers
-    String notificationKind = enumToString(props.kind);
-    String contrast = props.lowContrast ? 'lowcontrast' : 'highcontrast';
+    final CNotificationKind kind = props.kind;
+    final CNotificationContrast contrast = props.contrast;
 
     if (props.timeout != null) _startTimer();
 
@@ -118,31 +124,8 @@ class _CNotificationInline extends StatelessWidget {
       value: contrast,
       child: Container(
         decoration: BoxDecoration(
-          color: _styles['notification-$contrast-background-color'],
-          border: Border(
-            top: props.lowContrast
-                ? BorderSide(
-                    width: _styles['notification-inline-$contrast-border-width'][0],
-                    color: _styles['notification-$notificationKind-border-color']!,
-                  )
-                : BorderSide.none,
-            right: props.lowContrast
-                ? BorderSide(
-                    width: _styles['notification-inline-$contrast-border-width'][1],
-                    color: _styles['notification-$notificationKind-border-color']!,
-                  )
-                : BorderSide.none,
-            bottom: props.lowContrast
-                ? BorderSide(
-                    width: _styles['notification-inline-$contrast-border-width'][2],
-                    color: _styles['notification-$notificationKind-border-color']!,
-                  )
-                : BorderSide.none,
-            left: BorderSide(
-              width: _styles['notification-inline-$contrast-border-width'][3],
-              color: _styles['notification-$notificationKind-border-color']!,
-            ),
-          ),
+          color: _Styles.backgroundColor[contrast],
+          border: _Styles.inlineNotificationBorder[contrast]![kind]!,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -151,22 +134,16 @@ class _CNotificationInline extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(14),
-              child: CSVGIcon.asset(
-                _assets['notification-$contrast-$notificationKind-icon']!,
-                package: 'carbon',
-              ),
+              child: SvgPicture.asset(_Assets.kindIcon[contrast]![kind]!, package: 'carbon'),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(
-                  top: _styles['notification-padding'][0],
-                  bottom: _styles['notification-padding'][2],
-                ),
+                padding: _Styles.contentPadding,
                 child: Wrap(
                   children: [
                     DefaultTextStyle(
                       style: TextStyle(
-                        color: _styles['notification-$contrast-text-color'],
+                        color: _Styles.textColor[contrast],
                         fontFamily: CFonts.primarySemibold,
                         package: 'carbon',
                       ),
@@ -175,7 +152,7 @@ class _CNotificationInline extends StatelessWidget {
                     const SizedBox(width: 4),
                     DefaultTextStyle(
                       style: TextStyle(
-                        color: _styles['notification-$contrast-text-color'],
+                        color: _Styles.textColor[contrast],
                         fontFamily: CFonts.primaryRegular,
                         package: 'carbon',
                       ),
@@ -208,11 +185,7 @@ class _CNotificationInline extends StatelessWidget {
                 onTap: props.onCloseButtonTap!,
                 width: 48,
                 height: 48,
-                child: CSVGIcon.asset(
-                  _assets['notification-$contrast-close-icon']!,
-                  package: 'carbon',
-                  height: 20,
-                ),
+                child: SvgPicture.asset(_Assets.closeIcon[contrast]!, package: 'carbon', height: 20),
               ),
           ],
         ),
@@ -226,9 +199,6 @@ class _CNotificationToast extends StatelessWidget {
 
   final CNotificationToastProps props;
 
-  final _styles = CNotificationStyle.styles;
-  final _assets = CNotificationStyle.assets;
-
   void _startTimer() {
     Future.delayed(Duration(milliseconds: props.timeout!), () {
       props.onClose!();
@@ -237,9 +207,8 @@ class _CNotificationToast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// styles helpers
-    String notificationKind = enumToString(props.kind);
-    String contrast = props.lowContrast ? 'lowcontrast' : 'highcontrast';
+    final CNotificationKind kind = props.kind;
+    final CNotificationContrast contrast = props.contrast;
 
     if (props.timeout != null) _startTimer();
 
@@ -248,13 +217,8 @@ class _CNotificationToast extends StatelessWidget {
       child: Container(
         width: 288,
         decoration: BoxDecoration(
-          color: _styles['notification-$contrast-background-color'],
-          border: Border(
-            left: BorderSide(
-              width: _styles['notification-toast-border-width'][3],
-              color: _styles['notification-$notificationKind-border-color']!,
-            ),
-          ),
+          color: _Styles.backgroundColor[contrast],
+          border: _Styles.toastNotificationBorder[kind]!,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -263,17 +227,11 @@ class _CNotificationToast extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.all(14),
-              child: CSVGIcon.asset(
-                _assets['notification-$contrast-$notificationKind-icon']!,
-                package: 'carbon',
-              ),
+              child: SvgPicture.asset(_Assets.kindIcon[contrast]![kind]!, package: 'carbon'),
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(
-                  top: _styles['notification-padding'][0],
-                  bottom: _styles['notification-padding'][2],
-                ),
+                padding: _Styles.contentPadding,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -282,7 +240,7 @@ class _CNotificationToast extends StatelessWidget {
                     Flexible(
                       child: DefaultTextStyle(
                         style: TextStyle(
-                          color: _styles['notification-$contrast-text-color'],
+                          color: _Styles.textColor[contrast],
                           fontFamily: CFonts.primarySemibold,
                           package: 'carbon',
                         ),
@@ -292,7 +250,7 @@ class _CNotificationToast extends StatelessWidget {
                     Flexible(
                       child: DefaultTextStyle(
                         style: TextStyle(
-                          color: _styles['notification-$contrast-text-color'],
+                          color: _Styles.textColor[contrast],
                           fontFamily: CFonts.primaryRegular,
                           package: 'carbon',
                         ),
@@ -303,7 +261,7 @@ class _CNotificationToast extends StatelessWidget {
                       const SizedBox(height: 24),
                       DefaultTextStyle(
                         style: TextStyle(
-                          color: _styles['notification-$contrast-text-color'],
+                          color: _Styles.textColor[contrast],
                           fontFamily: CFonts.primaryRegular,
                           package: 'carbon',
                         ),
@@ -320,11 +278,7 @@ class _CNotificationToast extends StatelessWidget {
                 onTap: props.onCloseButtonTap!,
                 width: 48,
                 height: 48,
-                child: CSVGIcon.asset(
-                  _assets['notification-$contrast-close-icon']!,
-                  package: 'carbon',
-                  height: 20,
-                ),
+                child: SvgPicture.asset(_Assets.closeIcon[contrast]!, package: 'carbon', height: 20),
               ),
           ],
         ),

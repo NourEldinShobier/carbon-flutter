@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'action_button.widget.dart';
-import 'notification.enum.dart';
+import 'notification.widget.dart';
 
 class CNotificationBaseProps {
   /// The title to display.
@@ -18,7 +18,7 @@ class CNotificationBaseProps {
   final CNotificationKind kind;
 
   /// Whether you are using the low contrast variant of the [CNotification].
-  final bool lowContrast;
+  final CNotificationContrast contrast;
 
   /// Called when the close button is tapped.
   final VoidCallback? onCloseButtonTap;
@@ -37,7 +37,7 @@ class CNotificationBaseProps {
     required this.subtitle,
     required this.hideCloseButton,
     required this.kind,
-    required this.lowContrast,
+    required this.contrast,
     required this.onCloseButtonTap,
     required this.onClose,
     required this.timeout,
@@ -50,24 +50,15 @@ class CNotificationToastProps extends CNotificationBaseProps {
 
   CNotificationToastProps({
     required this.caption,
-    required Widget title,
-    required Widget subtitle,
-    required bool hideCloseButton,
-    required CNotificationKind kind,
-    required bool lowContrast,
-    required VoidCallback? onCloseButtonTap,
-    required VoidCallback? onClose,
-    required int? timeout,
-  }) : super(
-          title: title,
-          subtitle: subtitle,
-          hideCloseButton: hideCloseButton,
-          kind: kind,
-          lowContrast: lowContrast,
-          onCloseButtonTap: onCloseButtonTap,
-          onClose: onClose,
-          timeout: timeout,
-        );
+    required super.title,
+    required super.subtitle,
+    required super.hideCloseButton,
+    required super.kind,
+    required super.contrast,
+    required super.onCloseButtonTap,
+    required super.onClose,
+    required super.timeout,
+  });
 }
 
 class CNotificationInlineProps extends CNotificationBaseProps {
@@ -77,45 +68,13 @@ class CNotificationInlineProps extends CNotificationBaseProps {
 
   CNotificationInlineProps({
     required this.actions,
-    required Widget title,
-    required Widget subtitle,
-    required bool hideCloseButton,
-    required CNotificationKind kind,
-    required bool lowContrast,
-    required VoidCallback? onCloseButtonTap,
-    required VoidCallback? onClose,
-    required int? timeout,
-  }) : super(
-          title: title,
-          subtitle: subtitle,
-          hideCloseButton: hideCloseButton,
-          kind: kind,
-          lowContrast: lowContrast,
-          onCloseButtonTap: onCloseButtonTap,
-          onClose: onClose,
-          timeout: timeout,
-        );
-}
-
-class CNotificationActionButtonProps {
-  /// The content of the action button.
-  final Widget child;
-
-  /// Called when the action button is tapped.
-  final VoidCallback onTap;
-
-  /// The width of the action button. If it's null, the action button will
-  /// size itself to the [child].
-  final double? width;
-
-  /// The height of the action button. If it's null, the action button will
-  /// size itself to the [child].
-  final double? height;
-
-  CNotificationActionButtonProps({
-    required this.child,
-    required this.onTap,
-    required this.width,
-    required this.height,
+    required super.title,
+    required super.subtitle,
+    required super.hideCloseButton,
+    required super.kind,
+    required super.contrast,
+    required super.onCloseButtonTap,
+    required super.onClose,
+    required super.timeout,
   });
 }
