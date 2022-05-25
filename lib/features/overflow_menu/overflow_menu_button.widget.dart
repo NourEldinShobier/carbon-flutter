@@ -2,12 +2,13 @@ import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/enable/index.dart';
 
-import 'overflow_menu.enum.dart';
 import 'overflow_menu.props.dart';
 import 'overflow_menu.util.dart';
 import 'overflow_menu.widget.dart';
-import 'overflow_menu_button.style.dart';
+import 'overflow_menu_button.styles.dart';
 import 'overflow_menu_item.widget.dart';
+
+typedef _Styles = COverflowMenuButtonStyles;
 
 /// A ghost button to display/hide an overflow menu when pressed.
 class COverflowMenuButton extends StatefulWidget {
@@ -43,13 +44,11 @@ class COverflowMenuButton extends StatefulWidget {
 }
 
 class _COverflowMenuButtonState extends State<COverflowMenuButton> {
-  final _styles = COverflowMenuButtonStyle.styles;
+  late COverflowMenuSize _size;
 
   final _controller = COverflowMenuController();
 
-  /// styles helpers
-  String _state = enumToString(CWidgetState.enabled);
-  String _size = '';
+  CWidgetState _state = CWidgetState.enabled;
 
   bool _focused = false;
 
@@ -58,7 +57,7 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
   void _openMenu() => _controller.open();
   void _closeMenu() => _controller.close();
 
-  bool _isEnabled() {
+  bool get _isEnabled {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
@@ -66,9 +65,7 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
   void initState() {
     super.initState();
     _controller.addListener(() {
-      setState(() {
-        _focused = _isOpen ? true : false;
-      });
+      setState(() => _focused = _isOpen ? true : false);
     });
   }
 
@@ -79,31 +76,27 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
   }
 
   void _evaluateStateVariables() {
-    /// determine the [_state] of the widget.
-
-    if (!_isEnabled()) {
-      _state = enumToString(CWidgetState.disabled);
+    if (!_isEnabled) {
+      _state = CWidgetState.disabled;
 
       if (_isOpen) {
         _closeMenu();
       }
-    } else if (_isEnabled() && _focused) {
-      _state = enumToString(CWidgetState.focus);
+    } else if (_isEnabled && _focused) {
+      _state = CWidgetState.focused;
     } else {
-      _state = enumToString(CWidgetState.enabled);
+      _state = CWidgetState.enabled;
     }
 
-    _size = enumToString(widget.props.size);
+    _size = widget.props.size;
   }
 
   @override
   Widget build(BuildContext context) {
     _evaluateStateVariables();
 
-    final Size dimensions = _styles['overflowmenu-button-$_size-dimensions'];
-
     return IgnorePointer(
-      ignoring: !_isEnabled(),
+      ignoring: !_isEnabled,
       child: GestureDetector(
         onTap: () {
           _isOpen ? _closeMenu() : _openMenu();
@@ -131,19 +124,15 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
             );
           }).toList(),
           child: AnimatedContainer(
-            height: dimensions.height,
-            width: dimensions.width,
+            height: _Styles.dimensions[_size]!.height,
+            width: _Styles.dimensions[_size]!.width,
             alignment: Alignment.center,
-            duration: _styles['overflowmenu-button-background-color-animation-duration'],
-            curve: _styles['overflowmenu-button-background-color-animation-curve'],
+            duration: _Styles.animation['duration'],
+            curve: _Styles.animation['curve'],
             decoration: BoxDecoration(
-              color: _styles['overflowmenu-button-$_state-background-color'],
+              color: _Styles.backgroundColor[_state],
               boxShadow: [
-                if (_isOpen)
-                  BoxShadow(
-                    color: CColors.black100.withOpacity(0.3),
-                    blurRadius: 6,
-                  ),
+                if (_isOpen) BoxShadow(color: CColors.black100.withOpacity(0.3), blurRadius: 6),
               ],
             ),
             child: widget.props.icon,

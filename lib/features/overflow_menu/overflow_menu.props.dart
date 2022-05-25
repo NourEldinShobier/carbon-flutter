@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-import 'overflow_menu.enum.dart';
 import 'overflow_menu.util.dart';
+import 'overflow_menu.widget.dart';
 import 'overflow_menu_item.widget.dart';
 
 class COverflowMenuBaseProps {

@@ -4,11 +4,16 @@ import 'package:pmvvm/pmvvm.dart';
 import 'package:carbon/shared/index.dart';
 import 'package:flutter/material.dart';
 
-import 'overflow_menu.enum.dart';
 import 'overflow_menu.props.dart';
-import 'overflow_menu.style.dart';
+import 'overflow_menu.styles.dart';
 import 'overflow_menu.util.dart';
 import 'overflow_menu_item.widget.dart';
+
+enum COverflowMenuDirection { top, bottom }
+
+enum COverflowMenuSize { regular, sm, md }
+
+typedef _Styles = COverflowMenuStyles;
 
 /// Overflow menu is used when additional options are available
 /// to the user and there is a space constraint.
@@ -43,8 +48,6 @@ class COverflowMenu extends StatefulWidget {
 }
 
 class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateMixin {
-  final _styles = COverflowMenuStyle.styles;
-
   final _menuKey = GlobalKey();
 
   late AnimationController _animationController;
@@ -52,6 +55,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
   late COverflowMenuDirection _direction;
   late Size _screenSize;
   late Offset _menuOffset;
+  late COverflowMenuSize _size;
 
   BuildContext? _childContext;
   OverlayEntry? _overlayEntry;
@@ -59,10 +63,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
   bool _isOpen = false;
 
-  /// styles helpers
-  String _size = '';
-
-  Size get _menuItemDimension => _styles['overflowmenu-item-$_size-dimensions'];
+  Size get _menuItemDimension => _Styles.dimensions[_size]!;
 
   double get _menuWidth => _menuItemDimension.width;
   double get _menuHeight => _menuItemDimension.height * widget.props.items.length;
@@ -72,8 +73,8 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
   @override
   void initState() {
-    _animationController = AnimationController(vsync: this, duration: _styles['overflowmenu-animation-duration']);
-    _animation = CurvedAnimation(parent: _animationController, curve: _styles['overflowmenu-animation-curve']);
+    _animationController = AnimationController(vsync: this, duration: _Styles.animation['duration']);
+    _animation = CurvedAnimation(parent: _animationController, curve: _Styles.animation['curve']);
 
     widget.props.controller.addListener(() {
       if (_isOpen != widget.props.controller.isOpen) {
@@ -81,7 +82,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
       }
     });
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_menuKey.currentContext != _childContext) {
         setState(() => _childContext = _menuKey.currentContext);
       }
@@ -98,8 +99,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
   void _showOverlay() {
     Future.delayed(Duration.zero, () async {
-      // Init menu variables.
-      _size = enumToString(widget.props.size);
+      _size = widget.props.size;
       _screenSize = window.physicalSize / window.devicePixelRatio;
       _menuOffset = _calculateMenuOffset();
 
@@ -111,7 +111,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
       _animationController.forward();
 
       _overlayState!.insert(_overlayEntry!);
-      await Future.delayed(_styles['overflowmenu-animation-duration']);
+      await Future.delayed(_Styles.animation['duration']);
       widget.props.onOpen?.call();
     });
   }
@@ -121,7 +121,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
 
     _animationController.reverse();
 
-    Future.delayed(_styles['overflowmenu-animation-duration'], () {
+    Future.delayed(_Styles.animation['duration'], () {
       _animationController.removeListener(_refreshOverlayState);
       _overlayEntry?.remove();
       _overlayEntry = null;
@@ -160,7 +160,7 @@ class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateM
                   width: _menuWidth,
                   height: _menuHeight,
                   decoration: BoxDecoration(
-                    color: _styles['overflowmenu-background-color'],
+                    color: _Styles.backgroundColor,
                     boxShadow: [
                       BoxShadow(
                         offset: Offset(0, _isBottom ? 6 : -6),

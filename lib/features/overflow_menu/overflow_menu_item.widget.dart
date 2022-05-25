@@ -1,11 +1,15 @@
+import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/shared/index.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:carbon/features/enable/index.dart';
-
 import 'package:pmvvm/pmvvm.dart';
 import 'overflow_menu.props.dart';
-import 'overflow_menu_item.style.dart';
+import 'overflow_menu.widget.dart';
+import 'overflow_menu_item.styles.dart';
+
+enum COverflowMenuItemKind { primary, delete }
+
+typedef _Styles = COverflowMenuItemStyles;
 
 /// An item in an overflow menu.
 class COverflowMenuItem extends StatefulWidget {
@@ -32,14 +36,11 @@ class COverflowMenuItem extends StatefulWidget {
 }
 
 class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMixin {
-  final _styles = COverflowMenuItemStyle.styles;
-
   late COverflowMenuProps _menuProps;
+  late COverflowMenuSize _size;
 
-  /// Styles helpers
-  String _state = enumToString(CWidgetState.enabled);
-  String _kind = '';
-  String _size = '';
+  CWidgetState _state = CWidgetState.enabled;
+  COverflowMenuItemKind _kind = COverflowMenuItemKind.primary;
 
   bool _focused = false;
 
@@ -49,25 +50,26 @@ class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMix
   }
 
   void _evaluateStateVariables() {
-    /// determine the [_state] of the widget.
-
     if (!widget.props.enable) {
-      _state = enumToString(CWidgetState.disabled);
+      _state = CWidgetState.disabled;
     } else if (widget.props.enable && _focused) {
-      _state = enumToString(CWidgetState.focus);
+      _state = CWidgetState.focused;
     } else {
-      _state = enumToString(CWidgetState.enabled);
+      _state = CWidgetState.enabled;
     }
 
-    _kind = widget.props.isDelete ? 'delete' : 'primary';
-    _size = enumToString(_menuProps.size);
+    if (widget.props.isDelete) {
+      _kind = COverflowMenuItemKind.delete;
+    } else {
+      _kind = COverflowMenuItemKind.primary;
+    }
+
+    _size = _menuProps.size;
   }
 
   @override
   Widget build(BuildContext context) {
     _evaluateStateVariables();
-
-    final Size dimensions = _styles['overflowmenu-item-$_size-dimensions'];
 
     return CEnable(
       value: widget.props.enable,
@@ -80,16 +82,16 @@ class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMix
           onTapUp: (_) => setState(() => _focused = false),
           onTapCancel: () => setState(() => _focused = false),
           child: AnimatedContainer(
-            curve: _styles['overflowmenu-item-animation-curve'],
-            duration: _styles['overflowmenu-item-animation-duration'],
-            height: dimensions.height,
-            width: dimensions.width,
+            curve: _Styles.animation['curve'],
+            duration: _Styles.animation['duration'],
+            height: _Styles.dimensions[_size]!.height,
+            width: _Styles.dimensions[_size]!.width,
             alignment: Alignment.centerLeft,
-            padding: _styles['overflowmenu-item-$_size-padding'],
+            padding: _Styles.padding[_size],
             decoration: BoxDecoration(
-              color: _styles['overflowmenu-item-$_kind-$_state-background-color'],
+              color: _Styles.backgroundColor[_kind]![_state],
               border: Border(
-                bottom: widget.props.hasDivider ? BorderSide(color: _styles['overflowmenu-item-divider-color']!) : BorderSide.none,
+                bottom: widget.props.hasDivider ? BorderSide(color: _Styles.dividerColor) : BorderSide.none,
               ),
             ),
             child: widget.props.child,
