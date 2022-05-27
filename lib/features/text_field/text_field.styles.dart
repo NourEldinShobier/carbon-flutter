@@ -76,17 +76,10 @@ abstract class CTextfieldStyle {
       borderSide: const BorderSide(color: Colors.transparent, width: 0),
     ),
 
-    'textfield-disabled-icon-color': CColors.gray70,
-
     // background-color
     'textfield-enabled-background-color': CColors.gray90,
     'textfield-focus-background-color': CColors.gray90,
     'textfield-disabled-background-color': CColors.gray90,
-
-    // blankform-background-color
-    'textfield-blankform-enabled-background-color': CColors.gray80,
-    'textfield-blankform-focus-background-color': CColors.gray80,
-    'textfield-blankform-disabled-background-color': CColors.gray80,
 
     /// primary ///
 
@@ -175,5 +168,11 @@ abstract class CTextfieldStyle {
     'textfield-error-enabled-description-color': CColors.gray30,
     'textfield-error-focus-description-color': CColors.red40,
     'textfield-error-disabled-description-color': CColors.gray70,
+  };
+
+  static const Map<String, dynamic> inheritedStyles = {
+    'textfield-enabled-icon-color': CColors.gray10,
+    'textfield-focus-icon-color': CColors.gray10,
+    'textfield-disabled-icon-color': CColors.gray70,
   };
 }

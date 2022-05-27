@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:carbon/shared/index.dart';
-import 'package:carbon/features/form/index.dart';
 import 'package:carbon/features/text/index.dart';
 import 'package:carbon/features/enable/index.dart';
+import 'package:carbon/features/inherited_styles/index.dart';
 
 import 'text_field.styles.dart';
 
@@ -83,17 +83,16 @@ class CTextField extends StatefulWidget {
 
 class _CTextFieldState extends State<CTextField> {
   final _styles = CTextfieldStyle.styles;
+  final _inheritedStyles = CTextfieldStyle.inheritedStyles;
 
   /// styles helpers
-  late String type, state, selector, cformType;
+  CWidgetState _state = CWidgetState.enabled;
+  String _status = 'primary';
 
-  var _state = CWidgetState.enabled;
-
-  var _focused = false;
-
+  bool _focused = false;
   late FocusNode _focusNode;
+
   CValidationResult? _validationResult;
-  CValidationResultType? _status;
   String? _value;
 
   void _focusNodeListener() {
@@ -125,190 +124,178 @@ class _CTextFieldState extends State<CTextField> {
     super.dispose();
   }
 
-  bool _isEnabled() {
+  bool get _isEnabled {
     return context.inheritedEnable ? widget.enable : false;
   }
 
   /// validator is responsible for determining the [_status] of the widget.
 
-  void _validator(String? text) {
-    CValidationResultType? st;
+  void _validateInput(String? text) {
     _validationResult = widget.validator!(text);
 
-    if (_validationResult == null) {
-      st = null;
-    } else {
-      if (_validationResult!.type == CValidationResultType.success) {
-        st = CValidationResultType.success;
-      } else if (_validationResult!.type == CValidationResultType.warning) {
-        st = CValidationResultType.warning;
-      } else if (_validationResult!.type == CValidationResultType.error) {
-        st = CValidationResultType.error;
-      }
-    }
-
-    if (_status != st) setState(() => _status = st);
+    setState(() {
+      _status = _validationResult == null ? 'primary' : enumToString(_validationResult);
+    });
   }
 
-  void _evaluateStateVariables() {
-    final cform = context.cform;
-
+  void _setStateVariables() {
     /// NOTE: this line doesn't make the widget build twice when [onChange] is
     /// called, because the [validator] calls [setState] when [st != _state].
 
-    if (widget.validator != null && _value != null) _validator(_value);
-
-    /// determine the [_state] of the widget.
+    if (widget.validator != null && _value != null) _validateInput(_value);
 
     if (!widget.enable) {
       _focusNode.unfocus();
-      _state = CWidgetState.disabled;
       _validationResult = null;
+      _state = CWidgetState.disabled;
     } else if (widget.enable && _focused) {
-      _state = CWidgetState.focus;
+      _state = CWidgetState.focused;
     } else if (widget.enable && _validationResult != null) {
-      _state = CWidgetState.focus;
+      _state = CWidgetState.focused;
     } else {
       _state = CWidgetState.enabled;
-    }
-
-    type = enumToString(_status ?? 'primary');
-    state = enumToString(_state);
-
-    selector = 'textfield-$type-$state';
-
-    if (cform != null) {
-      cformType = cform.type == CFormType.blank ? 'blankform-' : '';
-    } else {
-      cformType = '';
     }
   }
 
   Widget build(BuildContext context) {
-    final isEnabled = _isEnabled();
+    final isEnabled = _isEnabled;
 
-    _evaluateStateVariables();
+    ///TODO: handle textfield inherited background of form
 
-    return IgnorePointer(
-      ignoring: !isEnabled || widget.readOnly,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          if (widget.label != null) ...[
-            CText(
-              data: widget.label!,
-              isRequired: widget.isRequired,
-              style: TextStyle(
-                fontSize: _styles['textfield-label-font-size'],
-                fontFamily: _styles['textfield-label-font-family'],
-                color: _styles['$selector-label-color'],
-              ),
-            ),
-            const SizedBox(height: 8)
-          ],
-          SizedBox(
-            height: 40,
-            child: TextField(
-              controller: widget.controller,
-              focusNode: _focusNode,
-              keyboardType: widget.keyboardType,
-              textCapitalization: widget.textCapitalization,
-              textAlignVertical: TextAlignVertical.center,
-              textDirection: widget.textDirection,
-              readOnly: widget.readOnly,
-              toolbarOptions: widget.toolbarOptions,
-              showCursor: widget.showCursor,
-              autofocus: widget.autofocus,
-              obscuringCharacter: widget.obscuringCharacter,
-              obscureText: widget.obscureText,
-              autocorrect: widget.autocorrect,
-              enableSuggestions: widget.enableSuggestions,
-              onChanged: (String value) {
-                _value = value;
-                if (widget.validator != null) _validator(value);
-                widget.onChanged?.call(value);
-              },
-              onEditingComplete: widget.onEditingComplete,
-              onSubmitted: widget.onSubmitted,
-              inputFormatters: widget.inputFormatters,
-              cursorColor: _styles['textfield-cursor-color'],
-              keyboardAppearance: widget.keyboardAppearance,
-              onTap: widget.onTap,
-              scrollController: widget.scrollController,
-              scrollPhysics: widget.scrollPhysics,
-              autofillHints: widget.autofillHints,
-              style: TextStyle(
-                fontSize: _styles['textfield-text-font-size'],
-                fontFamily: _styles['textfield-text-font-family'],
-                color: _styles['$selector-text-color'],
-              ),
-              decoration: InputDecoration(
-                filled: true,
-                contentPadding: EdgeInsets.only(
-                  left: 14,
-                  top: isEnabled && _focusNode.hasFocus ? 8 : 8,
-                  bottom: isEnabled
-                      ? _focusNode.hasFocus
-                          ? 12.5
-                          : 15
-                      : 15,
+    _setStateVariables();
+
+    return CInheritedStyles(
+      styles: {
+        'icon-enabled-color': _inheritedStyles['textfield-$_state-icon-color'],
+        'icon-disabled-color': _inheritedStyles['textfield-$_state-icon-color'],
+      },
+      child: IgnorePointer(
+        ignoring: !isEnabled || widget.readOnly,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            if (widget.label != null) ...[
+              CText(
+                data: widget.label!,
+                isRequired: widget.isRequired,
+                style: TextStyle(
+                  fontSize: _styles['textfield-label-font-size'],
+                  fontFamily: _styles['textfield-label-font-family'],
+                  color: _styles['textfield-$_status-$_state-label-color'],
                 ),
-                fillColor: _styles['textfield-$cformType$state-background-color'],
-                hintText: widget.hint,
-                hintStyle: TextStyle(
-                  fontSize: _styles['textfield-hint-font-size'],
-                  fontFamily: _styles['textfield-hint-font-family'],
-                  color: _styles['$selector-hint-color'],
+              ),
+              const SizedBox(height: 8)
+            ],
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 40,
+                  child: TextField(
+                    controller: widget.controller,
+                    focusNode: _focusNode,
+                    keyboardType: widget.keyboardType,
+                    textCapitalization: widget.textCapitalization,
+                    textAlignVertical: TextAlignVertical.center,
+                    textDirection: widget.textDirection,
+                    readOnly: widget.readOnly,
+                    toolbarOptions: widget.toolbarOptions,
+                    showCursor: widget.showCursor,
+                    autofocus: widget.autofocus,
+                    obscuringCharacter: widget.obscuringCharacter,
+                    obscureText: widget.obscureText,
+                    autocorrect: widget.autocorrect,
+                    enableSuggestions: widget.enableSuggestions,
+                    onChanged: (String value) {
+                      _value = value;
+                      if (widget.validator != null) _validateInput(value);
+                      widget.onChanged?.call(value);
+                    },
+                    onEditingComplete: widget.onEditingComplete,
+                    onSubmitted: widget.onSubmitted,
+                    inputFormatters: widget.inputFormatters,
+                    cursorColor: _styles['textfield-cursor-color'],
+                    keyboardAppearance: widget.keyboardAppearance,
+                    onTap: widget.onTap,
+                    scrollController: widget.scrollController,
+                    scrollPhysics: widget.scrollPhysics,
+                    autofillHints: widget.autofillHints,
+                    style: TextStyle(
+                      fontSize: _styles['textfield-text-font-size'],
+                      fontFamily: _styles['textfield-text-font-family'],
+                      color: _styles['textfield-$_status-$_state-text-color'],
+                    ),
+                    decoration: InputDecoration(
+                      filled: true,
+                      contentPadding: EdgeInsets.only(left: 12, bottom: 14),
+                      fillColor: Colors.red,
+                      /* fillColor: context.styles['textfield-$_state-background-color'] ??
+                          _styles['textfield-$_state-background-color'], */
+                      hintText: widget.hint,
+                      hintStyle: TextStyle(
+                        fontSize: _styles['textfield-hint-font-size'],
+                        fontFamily: _styles['textfield-hint-font-family'],
+                        color: _styles['textfield-$_status-$_state-hint-color'],
+                      ),
+                      // prefixIconConstraints: BoxConstraints(minWidth: 46, maxWidth: 46), // 44 + 2 (width of border)
+                      // suffixIconConstraints: BoxConstraints(minWidth: 46, maxWidth: 46), // 44 + 2 (width of border)
+                      /* prefixIcon: widget.prefixIcon,
+                      suffixIcon: (() {
+                        final icons = <Widget>[];
+                        // TODO: add 8px space, if array is not empty, and if empty return null
+                        if (_validationResult == null) return widget.suffixIcon;
+
+                        // if (icons.isEmpty) return null;
+                        // icons.add(const SizedBox(width: 4));
+                        return _validationResult!.icon ?? widget.suffixIcon;
+                      })(), */
+                      /* border: _styles['textfield-$_status-$_state-border'],
+                      enabledBorder: _styles['textfield-$_status-$_state-border'],
+                      focusedBorder: _styles['textfield-$_status-$_state-border'], */
+                      border: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
+                    ),
+                  ),
                 ),
-                prefixIconConstraints: BoxConstraints(
-                  minWidth: 46,
-                  maxWidth: 46,
-                ), // 44 + 2 (width of border)
-                suffixIconConstraints: BoxConstraints(
-                  minWidth: 46,
-                  maxWidth: 46,
-                ), // 44 + 2 (width of border)
-                prefixIcon: isEnabled
-                    ? widget.prefixIcon
-                    : ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          _styles['textfield-disabled-icon-color']!,
-                          BlendMode.color,
-                        ),
-                        child: widget.prefixIcon,
-                      ),
-                suffixIcon: isEnabled
-                    ? _validationResult == null
-                        ? widget.suffixIcon
-                        : _validationResult!.icon == null
-                            ? widget.suffixIcon
-                            : _validationResult!.icon
-                    : ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                          _styles['textfield-disabled-icon-color']!,
-                          BlendMode.color,
-                        ),
-                        child: widget.suffixIcon,
-                      ),
-                border: _styles['$selector-border'],
-                enabledBorder: _styles['$selector-border'],
-                focusedBorder: _styles['$selector-border'],
-              ),
+              ],
             ),
-          ),
-          if (widget.description != null) ...[
-            const SizedBox(height: 8),
-            CText(
-              data: _validationResult == null ? widget.description! : _validationResult!.message,
-              style: TextStyle(
-                fontSize: _styles['textfield-description-font-size'],
-                fontFamily: _styles['textfield-description-font-family'],
-                color: _styles['$selector-description-color'],
+
+            /// NOTE: STEPS:
+            /// - widget API needs to be similar to React as possible
+            /// - add figma ui features (size, password, popups)
+            /// - add icon-size: to inheritedStyles and make icons consume it
+            ///   >> the icon size of the textfield will depend on the size of it
+
+            /// REVIEW:
+            /// - how about making the suffixIcon as row of icons,
+            ///   and if validation result has icon display it,
+            ///   this is the same behavior in figma UI
+            /// TODO: if added a row of icons
+            /// - assert(suffixIcon != null && obsecureText == True)
+            /// - refactor flutter textfield
+
+            /// TEST: test the results of this condition
+
+            if (widget.description != null || _validationResult != null) ...[
+              const SizedBox(height: 8),
+              CText(
+                data: _validationResult == null ? widget.description! : _validationResult!.message,
+                style: TextStyle(
+                  fontSize: _styles['textfield-description-font-size'],
+                  fontFamily: _styles['textfield-description-font-family'],
+                  color: _styles['textfield-$_status-$_state-description-color'],
+                ),
               ),
-            ),
+            ],
           ],
-        ],
+        ),
       ),
     );
   }
