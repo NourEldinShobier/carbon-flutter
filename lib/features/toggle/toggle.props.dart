@@ -1,4 +1,4 @@
-import 'toggle.enum.dart';
+import 'toggle.widget.dart';
 
 class CToggleProps {
   /// Called when the value of the toggle change.

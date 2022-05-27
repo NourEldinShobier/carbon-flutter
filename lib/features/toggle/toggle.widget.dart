@@ -1,15 +1,20 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:carbon/features/text/index.dart';
-import 'package:carbon/features/icon/index.dart';
 import 'package:carbon/features/outline/index.dart';
 import 'package:carbon/features/enable/index.dart';
 
 import 'package:carbon/shared/index.dart';
+import 'package:flutter_svg/svg.dart';
 
-import 'toggle.enum.dart';
 import 'toggle.props.dart';
-import 'toggle.style.dart';
+import 'toggle.styles.dart';
+
+enum CToggleSize { sm, md }
+
+enum CToggleCheckStatus { checked, unchecked }
+
+typedef _Styles = CToggleStyles;
 
 /// A toggle is used to quickly switch between two possible states.
 ///
@@ -40,16 +45,12 @@ class CToggle extends StatefulWidget {
 }
 
 class _CToggleState extends State<CToggle> {
-  final _styles = CToggleStyle.styles;
-
-  /// styles helpers
-  String _state = enumToString(CWidgetState.enabled);
-  String _status = '';
-
   bool _outlined = false;
   bool _value = false;
 
-  late Size _size;
+  late Size _dimensions;
+  CWidgetState _state = CWidgetState.enabled;
+  CToggleCheckStatus _checkStatus = CToggleCheckStatus.unchecked;
 
   @override
   void initState() {
@@ -60,28 +61,24 @@ class _CToggleState extends State<CToggle> {
 
   @override
   void didChangeDependencies() {
-    final widgetSize = enumToString(widget.props.size);
-
     _value = widget.props.value;
-    _size = _styles['toggle-$widgetSize-size'];
+    _dimensions = _Styles.dimensions[widget.props.size]!;
 
     super.didChangeDependencies();
   }
 
-  bool _isEnabled() {
+  bool get _isEnabled {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
   void _evaluateStateVariables() {
-    /// determine the [_state] of the widget.
-
-    if (!_isEnabled()) {
-      _state = enumToString(CWidgetState.disabled);
+    if (!_isEnabled) {
+      _state = CWidgetState.disabled;
     } else {
-      _state = enumToString(CWidgetState.enabled);
+      _state = CWidgetState.enabled;
     }
 
-    _status = _value ? 'checked' : 'unchecked';
+    _checkStatus = _value ? CToggleCheckStatus.checked : CToggleCheckStatus.unchecked;
   }
 
   @override
@@ -99,7 +96,7 @@ class _CToggleState extends State<CToggle> {
             style: TextStyle(
               fontSize: 12,
               fontFamily: CFonts.primaryRegular,
-              color: _styles['toggle-$_state-label-color'],
+              color: _Styles.labelColor[_state],
             ),
           ),
           const SizedBox(height: 16),
@@ -110,7 +107,7 @@ class _CToggleState extends State<CToggle> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IgnorePointer(
-              ignoring: !_isEnabled(),
+              ignoring: !_isEnabled,
               child: GestureDetector(
                 onTapUp: (_) => setState(() {
                   _value = !_value;
@@ -129,30 +126,30 @@ class _CToggleState extends State<CToggle> {
                   outlineWidth: 2,
                   outlined: _outlined,
                   child: AnimatedContainer(
-                    width: _size.width,
-                    height: _size.height,
+                    width: _dimensions.width,
+                    height: _dimensions.height,
                     alignment: _value ? Alignment.centerRight : Alignment.centerLeft,
                     padding: const EdgeInsets.all(3),
-                    duration: _styles['toggle-animation-duration'],
-                    curve: _styles['toggle-animation-curve'],
+                    duration: _Styles.animation['duration'],
+                    curve: _Styles.animation['curve'],
                     decoration: BoxDecoration(
-                      color: _styles['toggle-$_state-$_status-fill-color'],
+                      color: _Styles.fillColor[_state]![_checkStatus],
                       borderRadius: BorderRadius.circular(1000),
                     ),
                     child: AnimatedContainer(
-                      height: _size.height - 6,
-                      width: _size.height - 6,
+                      height: _dimensions.height - 6,
+                      width: _dimensions.height - 6,
                       alignment: Alignment.center,
-                      duration: _styles['toggle-animation-duration'],
-                      curve: _styles['toggle-animation-curve'],
+                      duration: _Styles.animation['duration'],
+                      curve: _Styles.animation['curve'],
                       decoration: BoxDecoration(
-                        color: _styles['toggle-$_state-indicator-color'],
+                        color: _Styles.indicatorColor[_state],
                         borderRadius: BorderRadius.circular(1000),
                       ),
                       child: widget.props.size == CToggleSize.sm
-                          ? CSVGIcon.asset(
+                          ? SvgPicture.asset(
                               'assets/svg/toggle-checkmark.svg',
-                              color: _styles['toggle-$_state-$_status-checkmark-color'],
+                              color: _Styles.checkmarkColor[_state]![_checkStatus],
                               package: 'carbon',
                               width: 6,
                             )
@@ -169,7 +166,7 @@ class _CToggleState extends State<CToggle> {
                 style: TextStyle(
                   fontSize: 14,
                   fontFamily: CFonts.primaryRegular,
-                  color: _styles['toggle-$_state-label-color'],
+                  color: _Styles.labelColor[_state],
                 ),
               ),
             ]

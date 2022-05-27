@@ -1,1 +1,0 @@
-enum CToggleSize { sm, md }
