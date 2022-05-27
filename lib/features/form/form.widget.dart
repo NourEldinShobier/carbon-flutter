@@ -8,6 +8,8 @@ import 'form.styles.dart';
 
 enum CFormType { group, blank }
 
+typedef _Styles = CFormStyles;
+
 /// A form is a group of related input controls that allows
 /// users to provide data or configure options.
 class CForm extends StatefulWidget {
@@ -41,12 +43,12 @@ class CFormState extends State<CForm> {
 
   CFormType get type => widget.props.type;
 
-  bool _isEnabled() {
+  bool get _isEnabled {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
   void _evaluateStateVariables() {
-    if (!_isEnabled()) {
+    if (!_isEnabled) {
       _state = CWidgetState.disabled;
     } else {
       _state = CWidgetState.enabled;
@@ -61,12 +63,12 @@ class CFormState extends State<CForm> {
 
     return CInheritedStyles(
       styles: {
-        'textfield-background-color': CFormStyles.textfieldBackgroundColor[_type],
+        'textfield-background-color': _Styles.textfieldBackgroundColor[_type],
       },
       child: CEnable(
-        value: _isEnabled(),
+        value: _isEnabled,
         child: IgnorePointer(
-          ignoring: !_isEnabled(),
+          ignoring: !_isEnabled,
           child: _InteritedCForm(
             state: this,
             child: Column(
@@ -75,8 +77,8 @@ class CFormState extends State<CForm> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  color: CFormStyles.backgroundColor[_type]![_state],
-                  padding: CFormStyles.padding[_type],
+                  color: _Styles.backgroundColor[_type]![_state],
+                  padding: _Styles.padding[_type],
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.start,
