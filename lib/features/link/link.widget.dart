@@ -4,7 +4,9 @@ import 'package:carbon/shared/index.dart';
 import 'package:carbon/features/enable/index.dart';
 
 import 'link.props.dart';
-import 'link.style.dart';
+import 'link.styles.dart';
+
+typedef _Styles = CLinkStyles;
 
 /// Links are used as navigational elements. They may appear on their own,
 /// within a sentence or paragraph, or directly following the content.
@@ -32,22 +34,17 @@ class CLink extends StatefulWidget {
 }
 
 class _CLinkState extends State<CLink> {
-  final _styles = CLinkStyle.styles;
-
-  /// styles helpers
-  String _state = enumToString(CWidgetState.enabled);
+  CWidgetState _state = CWidgetState.enabled;
 
   void _evaluateStateVariables() {
-    // determine the [_state] of the widget.
-
-    if (!_isEnabled()) {
-      _state = enumToString(CWidgetState.disabled);
+    if (!_isEnabled) {
+      _state = CWidgetState.disabled;
     } else {
-      _state = enumToString(CWidgetState.enabled);
+      _state = CWidgetState.enabled;
     }
   }
 
-  bool _isEnabled() {
+  bool get _isEnabled {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
@@ -56,13 +53,13 @@ class _CLinkState extends State<CLink> {
     _evaluateStateVariables();
 
     return IgnorePointer(
-      ignoring: !_isEnabled(),
+      ignoring: !_isEnabled,
       child: GestureDetector(
         onTap: () => widget.props.onTap(widget.props.url),
         child: CText(
           data: widget.props.caption ?? widget.props.url,
           style: TextStyle(
-            color: _styles['link-$_state-text-color'],
+            color: _Styles.textColor[_state],
             fontSize: widget.props.fontSize,
           ),
         ),
