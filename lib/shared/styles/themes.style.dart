@@ -11,7 +11,6 @@ class CThemes {
 
   static final _gray100 = ThemeData(
     primaryColor: CColors.blue60,
-    accentColor: CColors.gray70,
     canvasColor: CColors.gray100,
     scaffoldBackgroundColor: CColors.gray100,
     highlightColor: CColors.blue70,
@@ -30,5 +29,6 @@ class CThemes {
       displayColor: CColors.gray10,
       bodyColor: CColors.gray10,
     ),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: CColors.gray70),
   );
 }

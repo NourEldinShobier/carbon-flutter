@@ -1,10 +1,8 @@
-/// Widget
-
 enum CTooltipAlignment { start, center, end }
 
 enum CTooltipPosition { top, right, bottom, left }
 
-enum CWidgetState { enabled, focus, disabled }
+enum CWidgetState { enabled, focused, disabled }
 
 enum CValidationResultType { success, warning, error }
 
