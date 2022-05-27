@@ -104,7 +104,7 @@ class _COutlineWidgetState extends State<COutline> with TickerProviderStateMixin
   }
 
   void _calculateSize() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_itemKey.currentContext?.size != _size) {
         setState(() {});
       }
