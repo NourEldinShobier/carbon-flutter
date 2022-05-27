@@ -6,6 +6,10 @@
         "button",
         "notification",
         "breadcrumb, button",
-        "inherited_styles"
+        "inherited_styles",
+        "form",
+        "icon",
+        "breadcrumb",
+        "checkbox"
     ]
 }
