@@ -17,6 +17,7 @@ class CTextfieldExample extends StatelessWidget {
               CTextField(
                 label: 'Label',
                 description: 'Description',
+                prefixIcon: Icon(CIcons.portfolio, size: 17),
               ),
               const SizedBox(height: 16),
               CTextField(

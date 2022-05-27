@@ -31,13 +31,17 @@ class CButtonExample extends StatelessWidget {
                 children: [
                   CButton(
                     label: 'Carbon Button',
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
                     iconDescription: 'Icon description',
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                 ],
@@ -51,14 +55,18 @@ class CButtonExample extends StatelessWidget {
                   CButton(
                     label: 'Carbon Button',
                     kind: CButtonKind.danger,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
                     iconDescription: 'Icon description',
                     kind: CButtonKind.danger,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                 ],
@@ -72,14 +80,18 @@ class CButtonExample extends StatelessWidget {
                   CButton(
                     label: 'Carbon Button',
                     kind: CButtonKind.secondary,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
                     iconDescription: 'Icon description',
                     kind: CButtonKind.secondary,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                 ],
@@ -93,14 +105,18 @@ class CButtonExample extends StatelessWidget {
                   CButton(
                     label: 'Carbon Button',
                     kind: CButtonKind.tertiary,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
                     iconDescription: 'Icon description',
                     kind: CButtonKind.tertiary,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                 ],
@@ -114,14 +130,18 @@ class CButtonExample extends StatelessWidget {
                   CButton(
                     label: 'Carbon Button',
                     kind: CButtonKind.ghost,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
                     iconDescription: 'Icon description',
                     kind: CButtonKind.ghost,
-                    icon: CIcon(CIcons.add, size: 16),
+                    icon: Builder(
+                      builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
+                    ),
                     onTap: () {},
                   ),
                 ],
