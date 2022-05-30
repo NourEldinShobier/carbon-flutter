@@ -3,7 +3,7 @@ import 'package:carbon/shared/index.dart';
 
 abstract class CTileStyle {
   static const Map<String, dynamic> styles = {
-    'tile-padding': const EdgeInsets.all(16),
+    'tile-padding': EdgeInsets.all(16),
 
     'tile-enabled-background-color': CColors.gray90,
     'tile-enabled-label-color': CColors.gray30,

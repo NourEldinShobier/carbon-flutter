@@ -32,10 +32,10 @@ class COverflowMenuItem extends StatefulWidget {
   final COverflowMenuItemProps props;
 
   @override
-  _COverflowMenuItemState createState() => _COverflowMenuItemState();
+  COverflowMenuItemState createState() => COverflowMenuItemState();
 }
 
-class _COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMixin {
+class COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMixin {
   late COverflowMenuProps _menuProps;
   late COverflowMenuSize _size;
 

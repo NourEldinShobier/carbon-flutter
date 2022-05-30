@@ -13,7 +13,7 @@ class CToggleExamplePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: const [
             CText(
               data: 'Large Toggles',
               style: TextStyle(
@@ -21,9 +21,9 @@ class CToggleExamplePage extends StatelessWidget {
                 fontSize: 32,
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             _LargeToggles(),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             CText(
               data: 'Small Toggles',
               style: TextStyle(
@@ -31,9 +31,9 @@ class CToggleExamplePage extends StatelessWidget {
                 fontSize: 32,
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             _SmallToggles(),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             CText(
               data: 'Labelled Toggles',
               style: TextStyle(
@@ -41,7 +41,7 @@ class CToggleExamplePage extends StatelessWidget {
                 fontSize: 32,
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             _LabelledToggles(),
           ],
         ),

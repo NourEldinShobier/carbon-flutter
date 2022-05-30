@@ -28,10 +28,10 @@ class CNotificationActionButton extends StatefulWidget {
   final CNotificationActionButtonProps props;
 
   @override
-  _CNotificationActionButtonState createState() => _CNotificationActionButtonState();
+  CNotificationActionButtonState createState() => CNotificationActionButtonState();
 }
 
-class _CNotificationActionButtonState extends State<CNotificationActionButton> {
+class CNotificationActionButtonState extends State<CNotificationActionButton> {
   CWidgetState _state = CWidgetState.enabled;
 
   late CNotificationContrast _contrast;

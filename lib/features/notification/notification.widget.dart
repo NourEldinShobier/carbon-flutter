@@ -83,15 +83,16 @@ class CNotification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (_type == CNotificationType.inline)
+    if (_type == CNotificationType.inline) {
       return _CNotificationInline(props: props as CNotificationInlineProps);
-    else
+    } else {
       return _CNotificationToast(props: props as CNotificationToastProps);
+    }
   }
 }
 
 class _CNotificationInline extends StatelessWidget {
-  _CNotificationInline({Key? key, required this.props}) : super(key: key);
+  const _CNotificationInline({Key? key, required this.props}) : super(key: key);
 
   final CNotificationInlineProps props;
 
@@ -104,9 +105,9 @@ class _CNotificationInline extends StatelessWidget {
   List<Widget> _buildActions() {
     final result = <Widget>[];
 
-    props.actions!.forEach(
-      (action) => result.addAll([action, const SizedBox(width: 8)]),
-    );
+    for (var action in props.actions!) {
+      result.addAll([action, const SizedBox(width: 8)]);
+    }
 
     result.removeLast();
 

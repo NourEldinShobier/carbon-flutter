@@ -41,10 +41,10 @@ class CToggle extends StatefulWidget {
   final CToggleProps props;
 
   @override
-  _CToggleState createState() => _CToggleState();
+  CToggleState createState() => CToggleState();
 }
 
-class _CToggleState extends State<CToggle> {
+class CToggleState extends State<CToggle> {
   bool _outlined = false;
   bool _value = false;
 

@@ -24,10 +24,10 @@ class CBreadcrumbItem extends StatefulWidget {
   final CBreadcrumbItemProps props;
 
   @override
-  _CBreadcrumbItemState createState() => _CBreadcrumbItemState();
+  CBreadcrumbItemState createState() => CBreadcrumbItemState();
 }
 
-class _CBreadcrumbItemState extends State<CBreadcrumbItem> {
+class CBreadcrumbItemState extends State<CBreadcrumbItem> {
   /// styles helpers
   CWidgetState _state = CWidgetState.enabled;
 

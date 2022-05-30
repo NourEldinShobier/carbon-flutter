@@ -44,10 +44,10 @@ class COverflowMenu extends StatefulWidget {
   final COverflowMenuProps props;
 
   @override
-  _COverflowMenuState createState() => _COverflowMenuState();
+  COverflowMenuState createState() => COverflowMenuState();
 }
 
-class _COverflowMenuState extends State<COverflowMenu> with TickerProviderStateMixin {
+class COverflowMenuState extends State<COverflowMenu> with TickerProviderStateMixin {
   final _menuKey = GlobalKey();
 
   late AnimationController _animationController;

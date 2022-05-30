@@ -14,5 +14,5 @@ class CInheritedStyles extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(CInheritedStyles old) => styles != old.styles;
+  bool updateShouldNotify(CInheritedStyles oldWidget) => styles != oldWidget.styles;
 }

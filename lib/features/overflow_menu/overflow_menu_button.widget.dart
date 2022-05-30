@@ -40,10 +40,10 @@ class COverflowMenuButton extends StatefulWidget {
   final COverflowMenuButtonProps props;
 
   @override
-  _COverflowMenuButtonState createState() => _COverflowMenuButtonState();
+  COverflowMenuButtonState createState() => COverflowMenuButtonState();
 }
 
-class _COverflowMenuButtonState extends State<COverflowMenuButton> {
+class COverflowMenuButtonState extends State<COverflowMenuButton> {
   late COverflowMenuSize _size;
 
   final _controller = COverflowMenuController();
@@ -113,7 +113,6 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
           items: widget.props.items.map((item) {
             return COverflowMenuItem(
               key: item.key,
-              child: item.props.child,
               enable: item.props.enable,
               hasDivider: item.props.hasDivider,
               isDelete: item.props.isDelete,
@@ -121,6 +120,7 @@ class _COverflowMenuButtonState extends State<COverflowMenuButton> {
                 item.props.onTap?.call();
                 _closeMenu();
               },
+              child: item.props.child,
             );
           }).toList(),
           child: AnimatedContainer(

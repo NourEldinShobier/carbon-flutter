@@ -5,8 +5,8 @@ import 'form.widget.dart';
 
 abstract class CFormStyles {
   static const Map<CFormType, EdgeInsets> padding = {
-    CFormType.blank: const EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 24),
-    CFormType.group: const EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 24),
+    CFormType.blank: EdgeInsets.only(top: 16, left: 16, right: 16, bottom: 24),
+    CFormType.group: EdgeInsets.only(top: 0, left: 0, right: 0, bottom: 24),
   };
 
   static const Map<CFormType, Map<CWidgetState, Color>> backgroundColor = {

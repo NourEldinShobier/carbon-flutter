@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:carbon/shared/index.dart';
 
-import 'package:vector_math/vector_math_64.dart' as VectorMath;
+import 'package:vector_math/vector_math_64.dart' as vectormath;
 
 /// A widget for imitating the focus behavior.
 class COutline extends StatefulWidget {
@@ -39,11 +39,11 @@ class COutline extends StatefulWidget {
   final Curve animationCurve;
 
   @override
-  _COutlineWidgetState createState() => _COutlineWidgetState();
+  COutlineWidgetState createState() => COutlineWidgetState();
 }
 
-class _COutlineWidgetState extends State<COutline> with TickerProviderStateMixin {
-  var _itemKey = GlobalKey();
+class COutlineWidgetState extends State<COutline> with TickerProviderStateMixin {
+  final _itemKey = GlobalKey();
 
   Size? _size;
 
@@ -93,14 +93,14 @@ class _COutlineWidgetState extends State<COutline> with TickerProviderStateMixin
   }
 
   ///
-  VectorMath.Vector3 _calculateScaleVector(double outlineWidth) {
-    var value = VectorMath.Vector3(
+  vectormath.Vector3 _calculateScaleVector(double outlineWidth) {
+    var value = vectormath.Vector3(
       2 * outlineWidth / _size!.width,
       2 * outlineWidth / _size!.height,
       0.0,
     );
 
-    return (value + VectorMath.Vector3.all(1.0)) * _animation.value;
+    return (value + vectormath.Vector3.all(1.0)) * _animation.value;
   }
 
   void _calculateSize() {
@@ -129,8 +129,8 @@ class _COutlineWidgetState extends State<COutline> with TickerProviderStateMixin
                     opacity: 1,
                     child: Transform(
                       transform: Matrix4.compose(
-                        VectorMath.Vector3.zero(),
-                        VectorMath.Quaternion.identity(),
+                        vectormath.Vector3.zero(),
+                        vectormath.Quaternion.identity(),
                         scaleFactor,
                       ),
                       origin: Offset(_size!.width / 2.0, _size!.height / 2.0),

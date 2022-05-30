@@ -11,8 +11,8 @@ abstract class CToggleStyles {
   };
 
   static const Map<CToggleSize, Size> dimensions = {
-    CToggleSize.sm: const Size(32, 16),
-    CToggleSize.md: const Size(48, 24),
+    CToggleSize.sm: Size(32, 16),
+    CToggleSize.md: Size(48, 24),
   };
 
   static const Color outlineColor = CColors.white0;

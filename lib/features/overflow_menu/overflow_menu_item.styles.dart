@@ -17,9 +17,9 @@ abstract class COverflowMenuItemStyles {
   };
 
   static const Map<COverflowMenuSize, EdgeInsets> padding = {
-    COverflowMenuSize.regular: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-    COverflowMenuSize.md: const EdgeInsets.symmetric(vertical: 0, horizontal: 16),
-    COverflowMenuSize.sm: const EdgeInsets.symmetric(vertical: 0, horizontal: 13),
+    COverflowMenuSize.regular: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+    COverflowMenuSize.md: EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+    COverflowMenuSize.sm: EdgeInsets.symmetric(vertical: 0, horizontal: 13),
   };
 
   static const Color dividerColor = CColors.gray80;

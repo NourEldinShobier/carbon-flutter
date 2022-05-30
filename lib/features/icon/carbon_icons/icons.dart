@@ -2,10 +2,10 @@ import 'package:flutter/widgets.dart';
 
 @immutable
 class CIcons {
-  CIcons._();
+  const CIcons._();
 
   static const _family = 'CIcons';
-  static const String? _package = 'carbon';
+  static const String _package = 'carbon';
 
   static const IconData $3DCursorAlt = IconData(0xe000, fontFamily: _family, fontPackage: _package);
   static const IconData $3DCursor = IconData(0xe001, fontFamily: _family, fontPackage: _package);

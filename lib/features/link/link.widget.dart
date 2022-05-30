@@ -30,10 +30,10 @@ class CLink extends StatefulWidget {
   final CLinkProps props;
 
   @override
-  _CLinkState createState() => _CLinkState();
+  CLinkState createState() => CLinkState();
 }
 
-class _CLinkState extends State<CLink> {
+class CLinkState extends State<CLink> {
   CWidgetState _state = CWidgetState.enabled;
 
   void _evaluateStateVariables() {

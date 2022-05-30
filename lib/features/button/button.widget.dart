@@ -14,7 +14,7 @@ enum CButtonKind { primary, secondary, danger, tertiary, ghost }
 
 enum CButtonSize { regular, sm, md }
 
-enum _CButtonType { regular, icon }
+enum CButtonType { regular, icon }
 
 typedef _Styles = CButtonStyles;
 
@@ -33,7 +33,7 @@ class CButton extends StatefulWidget {
     CButtonKind kind = CButtonKind.primary,
     CButtonSize size = CButtonSize.regular,
     Widget? icon,
-  })  : type = _CButtonType.regular,
+  })  : type = CButtonType.regular,
         props = CButtonRegularProps(
           icon: icon,
           expand: expand,
@@ -56,7 +56,7 @@ class CButton extends StatefulWidget {
     required String iconDescription, // TODO:
     CTooltipAlignment? tooltipAlignment, // TODO:
     CTooltipPosition? tooltipPosition, // TODO:
-  })  : type = _CButtonType.icon,
+  })  : type = CButtonType.icon,
         props = CButtonIconOnlyProps(
           enable: enable,
           icon: icon,
@@ -70,16 +70,16 @@ class CButton extends StatefulWidget {
         super(key: key);
 
   final CButtonBaseProps props;
-  final _CButtonType type;
+  final CButtonType type;
 
   @override
-  _CButtonState createState() => _CButtonState();
+  CButtonState createState() => CButtonState();
 }
 
-class _CButtonState extends State<CButton> {
+class CButtonState extends State<CButton> {
   @override
   Widget build(BuildContext context) {
-    if (widget.type == _CButtonType.icon) {
+    if (widget.type == CButtonType.icon) {
       return _CButtonIconOnly(props: widget.props as CButtonIconOnlyProps);
     }
 
@@ -98,6 +98,7 @@ abstract class _CButtonBase extends StatefulWidget {
 class _CButtonRegular extends _CButtonBase {
   _CButtonRegular({required this.props});
 
+  @override
   final CButtonRegularProps props;
 
   @override
@@ -111,7 +112,7 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
     /// determine the [Sizedbox] width
 
     if (widget.props.expand) {
-      result.add(const Expanded(child: const SizedBox()));
+      result.add(const Expanded(child: SizedBox()));
     } else if (widget.props.kind == CButtonKind.ghost) {
       if (widget.props.icon != null) {
         result.add(const SizedBox(width: 8));
@@ -207,6 +208,7 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
 class _CButtonIconOnly extends _CButtonBase {
   _CButtonIconOnly({required this.props});
 
+  @override
   final CButtonIconOnlyProps props;
 
   @override

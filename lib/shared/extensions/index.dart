@@ -4,6 +4,6 @@ import 'package:pmvvm/pmvvm.dart';
 
 extension CThemeContextExtension on BuildContext {
   get cTheme {
-    return this.fetch<CTheme>();
+    return fetch<CTheme>();
   }
 }

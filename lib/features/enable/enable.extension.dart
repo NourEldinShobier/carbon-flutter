@@ -5,6 +5,6 @@ extension CEnableContextExtension on BuildContext {
   bool get inheritedEnable {
     final temp = CEnable.of(this);
 
-    return temp == null ? true : temp;
+    return temp ?? true;
   }
 }

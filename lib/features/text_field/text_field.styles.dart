@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 
-abstract class CTextfieldStyle {
+abstract class CTextfieldStyles {
   static final Map<String, dynamic> styles = {
     'textfield-label-font-size': 14.0,
     'textfield-label-font-family': CFonts.primaryRegular,

@@ -38,9 +38,9 @@ class CBreadcrumbExample extends StatelessWidget {
                 CBreadcrumbItem(child: CText(data: 'Item'), onTap: () {}),
                 CBreadcrumbItem(child: CText(data: 'Item'), onTap: () {}),
                 CBreadcrumbItem(
-                  child: CText(data: 'Item'),
                   onTap: () {},
                   isCurrentPage: true,
+                  child: CText(data: 'Item'),
                 ),
               ],
             ),

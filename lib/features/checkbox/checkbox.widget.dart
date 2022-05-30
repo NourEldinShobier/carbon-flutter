@@ -30,10 +30,10 @@ class CCheckbox extends StatefulWidget {
   final CCheckboxProps props;
 
   @override
-  _CCheckboxState createState() => _CCheckboxState();
+  CCheckboxState createState() => CCheckboxState();
 }
 
-class _CCheckboxState extends State<CCheckbox> {
+class CCheckboxState extends State<CCheckbox> {
   CWidgetState _state = CWidgetState.enabled;
 
   bool _value = false;

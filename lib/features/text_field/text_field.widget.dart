@@ -78,12 +78,12 @@ class CTextField extends StatefulWidget {
   final CValidationResult? Function(String? value)? validator;
 
   @override
-  _CTextFieldState createState() => _CTextFieldState();
+  CTextFieldState createState() => CTextFieldState();
 }
 
-class _CTextFieldState extends State<CTextField> {
-  final _styles = CTextfieldStyle.styles;
-  final _inheritedStyles = CTextfieldStyle.inheritedStyles;
+class CTextFieldState extends State<CTextField> {
+  final _styles = CTextfieldStyles.styles;
+  final _inheritedStyles = CTextfieldStyles.inheritedStyles;
 
   /// styles helpers
   CWidgetState _state = CWidgetState.enabled;
@@ -97,18 +97,18 @@ class _CTextFieldState extends State<CTextField> {
 
   void _focusNodeListener() {
     if (_focused != _focusNode.hasFocus) {
-      setState(() => _focused = this._focusNode.hasFocus);
+      setState(() => _focused = _focusNode.hasFocus);
     }
   }
 
   @override
   void initState() {
     if (widget.focusNode != null) {
-      this._focusNode = widget.focusNode!;
+      _focusNode = widget.focusNode!;
     } else {
-      this._focusNode = FocusNode();
+      _focusNode = FocusNode();
     }
-    this._focusNode.addListener(_focusNodeListener);
+    _focusNode.addListener(_focusNodeListener);
     super.initState();
   }
 
@@ -120,7 +120,7 @@ class _CTextFieldState extends State<CTextField> {
 
   @override
   void dispose() {
-    this._focusNode.addListener(_focusNodeListener);
+    _focusNode.addListener(_focusNodeListener);
     super.dispose();
   }
 
@@ -157,6 +157,7 @@ class _CTextFieldState extends State<CTextField> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     final isEnabled = _isEnabled;
 
