@@ -33,4 +33,4 @@ The full documentation of the project can be found [here](https://nour-eldin-sho
 
 ![buttons](md-assets/buttons.png)
 
-<h3 align='center'>Made with :heart:</h3>
+<h3 align='center'>Made with :heart: in Egypt</h3>
