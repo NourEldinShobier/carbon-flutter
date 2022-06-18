@@ -7,7 +7,7 @@ class CNotificationExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CColors.green100,
+      backgroundColor: CColors.gray100,
       body: SingleChildScrollView(
         child: Center(
           child: Column(

@@ -17,7 +17,12 @@ class _CFormExampleState extends State<CFormExample> {
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.4,
           child: CForm(
-            type: CFormType.group,
+            type: CFormType.blank,
+            action: CButton(
+              label: 'Action Button',
+              onTap: () {},
+              icon: Icon(CIcons.add, size: 16),
+            ),
             children: [
               CTextField(label: 'Label', description: 'Description'),
               const SizedBox(height: 16),
