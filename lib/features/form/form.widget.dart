@@ -1,3 +1,4 @@
+import 'package:carbon/features/text_field/index.dart';
 import 'package:flutter/widgets.dart';
 import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/features/inherited_styles/index.dart';
@@ -38,16 +39,28 @@ class CForm extends StatefulWidget {
 }
 
 class CFormState extends State<CForm> {
+  final Set<CTextFieldState> formFields = {};
+
   CWidgetState _state = CWidgetState.enabled;
   CFormType _type = CFormType.blank;
 
   CFormType get type => widget.props.type;
 
+  bool validate() {
+    for (final field in formFields) {
+      if (!field.validate()) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   bool get _isEnabled {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     if (!_isEnabled) {
       _state = CWidgetState.disabled;
     } else {
@@ -59,7 +72,7 @@ class CFormState extends State<CForm> {
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return CInheritedStyles(
       styles: {

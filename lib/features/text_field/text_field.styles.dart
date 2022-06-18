@@ -1,178 +1,132 @@
 import 'package:flutter/material.dart';
 import 'package:carbon/shared/index.dart';
 
+import 'text_field.widget.dart';
+
 abstract class CTextfieldStyles {
-  static final Map<String, dynamic> styles = {
-    'textfield-label-font-size': 14.0,
-    'textfield-label-font-family': CFonts.primaryRegular,
-    'textfield-text-font-size': 15.0,
-    'textfield-text-font-family': CFonts.primaryRegular,
-    'textfield-hint-font-size': 15.0,
-    'textfield-hint-font-family': CFonts.primaryRegular,
-    'textfield-description-font-size': 14.0,
-    'textfield-description-font-family': CFonts.primaryRegular,
+  static const double labelFontSize = 14.0;
+  static const String labelFontFamily = CFonts.primaryRegular;
 
-    /// primary ///
+  static const double textFontSize = 15.0;
+  static const String textFontFamily = CFonts.primaryRegular;
 
-    // border
-    'textfield-primary-enabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.gray60, width: 1),
-    ),
-    'textfield-primary-focus-border': OutlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.white0, width: 2),
-    ),
-    'textfield-primary-disabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: const BorderSide(color: Colors.transparent, width: 0),
-    ),
+  static const double hintFontSize = 15.0;
+  static const String hintFontFamily = CFonts.primaryRegular;
 
-    /// success ///
+  static const double descriptionFontSize = 14.0;
+  static const String descriptionFontFamily = CFonts.primaryRegular;
 
-    // border
-    'textfield-success-enabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.gray60, width: 1),
-    ),
-    'textfield-success-focus-border': OutlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.green40, width: 2),
-    ),
-    'textfield-success-disabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: const BorderSide(color: Colors.transparent, width: 0),
-    ),
+  static const Color cursorColor = CColors.gray10;
 
-    /// warning ///
-
-    // border
-    'textfield-warning-enabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.gray60, width: 1),
-    ),
-    'textfield-warning-focus-border': OutlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.yellow20, width: 2),
-    ),
-    'textfield-warning-disabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: const BorderSide(color: Colors.transparent, width: 0),
-    ),
-
-    /// error ///
-
-    // border
-    'textfield-error-enabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.gray60, width: 1),
-    ),
-    'textfield-error-focus-border': OutlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: BorderSide(color: CColors.red50, width: 2),
-    ),
-    'textfield-error-disabled-border': UnderlineInputBorder(
-      borderRadius: BorderRadius.circular(0),
-      borderSide: const BorderSide(color: Colors.transparent, width: 0),
-    ),
-
-    // background-color
-    'textfield-enabled-background-color': CColors.gray90,
-    'textfield-focus-background-color': CColors.gray90,
-    'textfield-disabled-background-color': CColors.gray90,
-
-    /// primary ///
-
-    // label
-    'textfield-primary-enabled-label-color': CColors.gray20,
-    'textfield-primary-focus-label-color': CColors.gray20,
-    'textfield-primary-disabled-label-color': CColors.gray70,
-
-    // hint
-    'textfield-primary-enabled-hint-color': CColors.gray60,
-    'textfield-primary-focus-hint-color': CColors.gray60,
-    'textfield-primary-disabled-hint-color': CColors.gray70,
-
-    // text
-    'textfield-primary-enabled-text-color': CColors.gray10,
-    'textfield-primary-focus-text-color': CColors.gray10,
-    'textfield-primary-disabled-text-color': CColors.gray70,
-
-    // description
-    'textfield-primary-enabled-description-color': CColors.gray30,
-    'textfield-primary-focus-description-color': CColors.gray30,
-    'textfield-primary-disabled-description-color': CColors.gray70,
-
-    /// success ///
-
-    // label
-    'textfield-success-enabled-label-color': CColors.gray30,
-    'textfield-success-focus-label-color': CColors.gray30,
-    'textfield-success-disabled-label-color': CColors.gray70,
-
-    // hint
-    'textfield-success-enabled-hint-color': CColors.gray60,
-    'textfield-success-focus-hint-color': CColors.gray60,
-    'textfield-success-disabled-hint-color': CColors.gray70,
-
-    // text
-    'textfield-success-enabled-text-color': CColors.gray10,
-    'textfield-success-focus-text-color': CColors.gray10,
-    'textfield-success-disabled-text-color': CColors.gray70,
-
-    // description
-    'textfield-success-enabled-description-color': CColors.gray30,
-    'textfield-success-focus-description-color': CColors.green30,
-    'textfield-success-disabled-description-color': CColors.gray70,
-
-    /// warning ///
-
-    // label
-    'textfield-warning-enabled-label-color': CColors.gray30,
-    'textfield-warning-focus-label-color': CColors.gray30,
-    'textfield-warning-disabled-label-color': CColors.gray70,
-
-    // hint
-    'textfield-warning-enabled-hint-color': CColors.gray60,
-    'textfield-warning-focus-hint-color': CColors.gray60,
-    'textfield-warning-disabled-hint-color': CColors.gray70,
-
-    // text
-    'textfield-warning-enabled-text-color': CColors.gray10,
-    'textfield-warning-focus-text-color': CColors.gray10,
-    'textfield-warning-disabled-text-color': CColors.gray70,
-
-    // description
-    'textfield-warning-enabled-description-color': CColors.gray30,
-    'textfield-warning-focus-description-color': CColors.yellow30,
-    'textfield-warning-disabled-description-color': CColors.gray70,
-
-    /// error ///
-
-    // label
-    'textfield-error-enabled-label-color': CColors.gray30,
-    'textfield-error-focus-label-color': CColors.gray30,
-    'textfield-error-disabled-label-color': CColors.gray70,
-
-    // hint
-    'textfield-error-enabled-hint-color': CColors.gray60,
-    'textfield-error-focus-hint-color': CColors.gray60,
-    'textfield-error-disabled-hint-color': CColors.gray70,
-
-    // text
-    'textfield-error-enabled-text-color': CColors.gray10,
-    'textfield-error-focus-text-color': CColors.gray10,
-    'textfield-error-disabled-text-color': CColors.gray70,
-
-    // description
-    'textfield-error-enabled-description-color': CColors.gray30,
-    'textfield-error-focus-description-color': CColors.red40,
-    'textfield-error-disabled-description-color': CColors.gray70,
+  static final Map<CTextfieldKind, Map<CWidgetState, InputBorder>> border = {
+    CTextfieldKind.primary: {
+      CWidgetState.enabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.gray60, width: 1),
+      ),
+      CWidgetState.focused: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.white0, width: 2),
+      ),
+      CWidgetState.disabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide.none,
+      ),
+    },
+    CTextfieldKind.success: {
+      CWidgetState.enabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.gray60, width: 1),
+      ),
+      CWidgetState.focused: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.green40, width: 2),
+      ),
+      CWidgetState.disabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide.none,
+      ),
+    },
+    CTextfieldKind.warning: {
+      CWidgetState.enabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.gray60, width: 1),
+      ),
+      CWidgetState.focused: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.yellow20, width: 2),
+      ),
+      CWidgetState.disabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide.none,
+      ),
+    },
+    CTextfieldKind.error: {
+      CWidgetState.enabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.gray60, width: 1),
+      ),
+      CWidgetState.focused: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide(color: CColors.red50, width: 2),
+      ),
+      CWidgetState.disabled: UnderlineInputBorder(
+        borderRadius: BorderRadius.circular(0),
+        borderSide: BorderSide.none,
+      ),
+    },
   };
 
-  static const Map<String, dynamic> inheritedStyles = {
-    'textfield-enabled-icon-color': CColors.gray10,
-    'textfield-focus-icon-color': CColors.gray10,
-    'textfield-disabled-icon-color': CColors.gray70,
+  static final Map<CTextfieldKind, Map<CWidgetState, Color>> descriptionColor = {
+    CTextfieldKind.primary: {
+      CWidgetState.enabled: CColors.gray30,
+      CWidgetState.focused: CColors.gray30,
+      CWidgetState.disabled: CColors.gray70,
+    },
+    CTextfieldKind.success: {
+      CWidgetState.enabled: CColors.gray30,
+      CWidgetState.focused: CColors.green30,
+      CWidgetState.disabled: CColors.gray70,
+    },
+    CTextfieldKind.warning: {
+      CWidgetState.enabled: CColors.gray30,
+      CWidgetState.focused: CColors.yellow30,
+      CWidgetState.disabled: CColors.gray70,
+    },
+    CTextfieldKind.error: {
+      CWidgetState.enabled: CColors.gray30,
+      CWidgetState.focused: CColors.red40,
+      CWidgetState.disabled: CColors.gray70,
+    },
+  };
+
+  static final Map<CWidgetState, Color> textColor = {
+    CWidgetState.enabled: CColors.gray10,
+    CWidgetState.focused: CColors.gray10,
+    CWidgetState.disabled: CColors.gray70,
+  };
+
+  static final Map<CWidgetState, Color> labelColor = {
+    CWidgetState.enabled: CColors.gray30,
+    CWidgetState.focused: CColors.gray30,
+    CWidgetState.disabled: CColors.gray70,
+  };
+
+  static final Map<CWidgetState, Color> hintColor = {
+    CWidgetState.enabled: CColors.gray60,
+    CWidgetState.focused: CColors.gray60,
+    CWidgetState.disabled: CColors.gray70,
+  };
+
+  static final Map<CWidgetState, Color> backgroundColor = {
+    CWidgetState.enabled: CColors.gray90,
+    CWidgetState.focused: CColors.gray90,
+    CWidgetState.disabled: CColors.gray90,
+  };
+
+  static final Map<CWidgetState, Color> iconColor = {
+    CWidgetState.enabled: CColors.gray10,
+    CWidgetState.focused: CColors.gray10,
+    CWidgetState.disabled: CColors.gray70,
   };
 }

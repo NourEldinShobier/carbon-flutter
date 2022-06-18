@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:carbon/carbon.dart';
 
-class CFormExample extends StatelessWidget {
+class CFormExample extends StatefulWidget {
   const CFormExample({Key? key}) : super(key: key);
 
+  @override
+  State<CFormExample> createState() => _CFormExampleState();
+}
+
+class _CFormExampleState extends State<CFormExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,17 +19,14 @@ class CFormExample extends StatelessWidget {
           child: CForm(
             type: CFormType.group,
             children: [
-              CTextField(
-                label: 'Label',
-                description: 'Description',
-              ),
+              CTextField(label: 'Label', description: 'Description'),
               const SizedBox(height: 16),
               CTextField(
                 label: 'Label',
                 description: 'Description',
                 validator: (value) {
                   return CValidationResult(
-                    type: CValidationResultType.error,
+                    kind: CValidationKind.error,
                     message: 'Your input is incorrect',
                   );
                 },
@@ -35,7 +37,7 @@ class CFormExample extends StatelessWidget {
                 description: 'Description',
                 validator: (value) {
                   return CValidationResult(
-                    type: CValidationResultType.success,
+                    kind: CValidationKind.success,
                     message: 'Your input is correct.',
                   );
                 },
@@ -46,7 +48,7 @@ class CFormExample extends StatelessWidget {
                 description: 'Description',
                 validator: (value) {
                   return CValidationResult(
-                    type: CValidationResultType.warning,
+                    kind: CValidationKind.warning,
                     message: 'Your input is missing something.',
                   );
                 },

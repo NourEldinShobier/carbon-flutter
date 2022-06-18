@@ -18,6 +18,7 @@ class CTextfieldExample extends StatelessWidget {
                 label: 'Label',
                 description: 'Description',
                 prefixIcon: Icon(CIcons.portfolio, size: 17),
+                suffixIcon: Icon(CIcons.user, size: 17),
               ),
               const SizedBox(height: 16),
               CTextField(
@@ -25,7 +26,7 @@ class CTextfieldExample extends StatelessWidget {
                 description: 'Description',
                 validator: (value) {
                   return CValidationResult(
-                    type: CValidationResultType.error,
+                    kind: CValidationKind.error,
                     message: 'Your input is incorrect',
                   );
                 },
@@ -36,7 +37,7 @@ class CTextfieldExample extends StatelessWidget {
                 description: 'Description',
                 validator: (value) {
                   return CValidationResult(
-                    type: CValidationResultType.success,
+                    kind: CValidationKind.success,
                     message: 'Your input is correct.',
                   );
                 },
@@ -47,7 +48,7 @@ class CTextfieldExample extends StatelessWidget {
                 description: 'Description',
                 validator: (value) {
                   return CValidationResult(
-                    type: CValidationResultType.warning,
+                    kind: CValidationKind.warning,
                     message: 'Your input is missing something.',
                   );
                 },

@@ -1,3 +1,4 @@
+import 'package:carbon/features/form/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,7 +7,15 @@ import 'package:carbon/features/text/index.dart';
 import 'package:carbon/features/enable/index.dart';
 import 'package:carbon/features/inherited_styles/index.dart';
 
+import 'text_field.models.dart';
 import 'text_field.styles.dart';
+import 'text_field.extensions.dart';
+
+typedef _Styles = CTextfieldStyles;
+
+enum CValidationKind { success, warning, error }
+
+enum CTextfieldKind { success, warning, error, primary }
 
 class CTextField extends StatefulWidget {
   const CTextField({
@@ -82,22 +91,21 @@ class CTextField extends StatefulWidget {
 }
 
 class CTextFieldState extends State<CTextField> {
-  final _styles = CTextfieldStyles.styles;
-  final _inheritedStyles = CTextfieldStyles.inheritedStyles;
-
-  /// styles helpers
-  CWidgetState _state = CWidgetState.enabled;
-  String _status = 'primary';
-
-  bool _focused = false;
   late FocusNode _focusNode;
 
+  CWidgetState _state = CWidgetState.enabled;
+
+  bool _isFocused = false;
+
+  CFormState? _cform;
   CValidationResult? _validationResult;
+
+  CTextfieldKind _kind = CTextfieldKind.primary;
   String? _value;
 
   void _focusNodeListener() {
-    if (_focused != _focusNode.hasFocus) {
-      setState(() => _focused = _focusNode.hasFocus);
+    if (_isFocused != _focusNode.hasFocus) {
+      setState(() => _isFocused = _focusNode.hasFocus);
     }
   }
 
@@ -108,8 +116,16 @@ class CTextFieldState extends State<CTextField> {
     } else {
       _focusNode = FocusNode();
     }
+
     _focusNode.addListener(_focusNodeListener);
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    _cform = context.cform;
+    _cform?.formFields.add(this);
+    super.didChangeDependencies();
   }
 
   @override
@@ -120,6 +136,7 @@ class CTextFieldState extends State<CTextField> {
 
   @override
   void dispose() {
+    _cform?.formFields.remove(this);
     _focusNode.addListener(_focusNodeListener);
     super.dispose();
   }
@@ -128,29 +145,35 @@ class CTextFieldState extends State<CTextField> {
     return context.inheritedEnable ? widget.enable : false;
   }
 
-  /// validator is responsible for determining the [_status] of the widget.
+  Color? get inheritedBackgroundColor {
+    return context.styles['textfield-background-color'][_state];
+  }
 
-  void _validateInput(String? text) {
+  void _validate(String? text) {
     _validationResult = widget.validator!(text);
 
-    setState(() {
-      _status = _validationResult == null ? 'primary' : enumToString(_validationResult);
-    });
+    if (_validationResult != null) {
+      _kind = _validationResult!.kind.toTextFieldKind;
+    }
+  }
+
+  bool validate() {
+    if (_value == null) {
+      return widget.isRequired ? false : true;
+    }
+
+    if (_validationResult == null || _validationResult?.kind == CValidationKind.success) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   void _setStateVariables() {
-    /// NOTE: this line doesn't make the widget build twice when [onChange] is
-    /// called, because the [validator] calls [setState] when [st != _state].
-
-    if (widget.validator != null && _value != null) _validateInput(_value);
-
-    if (!widget.enable) {
+    if (!_isEnabled) {
       _focusNode.unfocus();
-      _validationResult = null;
       _state = CWidgetState.disabled;
-    } else if (widget.enable && _focused) {
-      _state = CWidgetState.focused;
-    } else if (widget.enable && _validationResult != null) {
+    } else if (_isEnabled && (_isFocused || _validationResult != null)) {
       _state = CWidgetState.focused;
     } else {
       _state = CWidgetState.enabled;
@@ -161,142 +184,117 @@ class CTextFieldState extends State<CTextField> {
   Widget build(BuildContext context) {
     final isEnabled = _isEnabled;
 
-    ///TODO: handle textfield inherited background of form
-
     _setStateVariables();
 
-    return CInheritedStyles(
-      styles: {
-        'icon-enabled-color': _inheritedStyles['textfield-$_state-icon-color'],
-        'icon-disabled-color': _inheritedStyles['textfield-$_state-icon-color'],
-      },
-      child: IgnorePointer(
-        ignoring: !isEnabled || widget.readOnly,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            if (widget.label != null) ...[
-              CText(
-                data: widget.label!,
-                isRequired: widget.isRequired,
-                style: TextStyle(
-                  fontSize: _styles['textfield-label-font-size'],
-                  fontFamily: _styles['textfield-label-font-family'],
-                  color: _styles['textfield-$_status-$_state-label-color'],
-                ),
+    return IgnorePointer(
+      ignoring: !isEnabled || widget.readOnly,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (widget.label != null) ...[
+            CText(
+              data: widget.label!,
+              isRequired: widget.isRequired,
+              style: TextStyle(
+                fontSize: _Styles.labelFontSize,
+                fontFamily: _Styles.labelFontFamily,
+                color: _Styles.labelColor[_state],
               ),
-              const SizedBox(height: 8)
-            ],
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 40,
-                  child: TextField(
-                    controller: widget.controller,
-                    focusNode: _focusNode,
-                    keyboardType: widget.keyboardType,
-                    textCapitalization: widget.textCapitalization,
-                    textAlignVertical: TextAlignVertical.center,
-                    textDirection: widget.textDirection,
-                    readOnly: widget.readOnly,
-                    toolbarOptions: widget.toolbarOptions,
-                    showCursor: widget.showCursor,
-                    autofocus: widget.autofocus,
-                    obscuringCharacter: widget.obscuringCharacter,
-                    obscureText: widget.obscureText,
-                    autocorrect: widget.autocorrect,
-                    enableSuggestions: widget.enableSuggestions,
-                    onChanged: (String value) {
-                      _value = value;
-                      if (widget.validator != null) _validateInput(value);
-                      widget.onChanged?.call(value);
-                    },
-                    onEditingComplete: widget.onEditingComplete,
-                    onSubmitted: widget.onSubmitted,
-                    inputFormatters: widget.inputFormatters,
-                    cursorColor: _styles['textfield-cursor-color'],
-                    keyboardAppearance: widget.keyboardAppearance,
-                    onTap: widget.onTap,
-                    scrollController: widget.scrollController,
-                    scrollPhysics: widget.scrollPhysics,
-                    autofillHints: widget.autofillHints,
-                    style: TextStyle(
-                      fontSize: _styles['textfield-text-font-size'],
-                      fontFamily: _styles['textfield-text-font-family'],
-                      color: _styles['textfield-$_status-$_state-text-color'],
-                    ),
-                    decoration: InputDecoration(
-                      filled: true,
-                      contentPadding: EdgeInsets.only(left: 12, bottom: 14),
-                      fillColor: Colors.red,
-                      /* fillColor: context.styles['textfield-$_state-background-color'] ??
-                          _styles['textfield-$_state-background-color'], */
-                      hintText: widget.hint,
-                      hintStyle: TextStyle(
-                        fontSize: _styles['textfield-hint-font-size'],
-                        fontFamily: _styles['textfield-hint-font-family'],
-                        color: _styles['textfield-$_status-$_state-hint-color'],
-                      ),
-                      // prefixIconConstraints: BoxConstraints(minWidth: 46, maxWidth: 46), // 44 + 2 (width of border)
-                      // suffixIconConstraints: BoxConstraints(minWidth: 46, maxWidth: 46), // 44 + 2 (width of border)
-                      /* prefixIcon: widget.prefixIcon,
-                      suffixIcon: (() {
-                        final icons = <Widget>[];
-                        // TODO: add 8px space, if array is not empty, and if empty return null
-                        if (_validationResult == null) return widget.suffixIcon;
-
-                        // if (icons.isEmpty) return null;
-                        // icons.add(const SizedBox(width: 4));
-                        return _validationResult!.icon ?? widget.suffixIcon;
-                      })(), */
-                      /* border: _styles['textfield-$_status-$_state-border'],
-                      enabledBorder: _styles['textfield-$_status-$_state-border'],
-                      focusedBorder: _styles['textfield-$_status-$_state-border'], */
-                      border: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      disabledBorder: InputBorder.none,
-                    ),
-                  ),
-                ),
-              ],
             ),
-
-            /// NOTE: STEPS:
-            /// - widget API needs to be similar to React as possible
-            /// - add figma ui features (size, password, popups)
-            /// - add icon-size: to inheritedStyles and make icons consume it
-            ///   >> the icon size of the textfield will depend on the size of it
-
-            /// REVIEW:
-            /// - how about making the suffixIcon as row of icons,
-            ///   and if validation result has icon display it,
-            ///   this is the same behavior in figma UI
-            /// TODO: if added a row of icons
-            /// - assert(suffixIcon != null && obsecureText == True)
-            /// - refactor flutter textfield
-
-            /// TEST: test the results of this condition
-
-            if (widget.description != null || _validationResult != null) ...[
-              const SizedBox(height: 8),
-              CText(
-                data: _validationResult == null ? widget.description! : _validationResult!.message,
-                style: TextStyle(
-                  fontSize: _styles['textfield-description-font-size'],
-                  fontFamily: _styles['textfield-description-font-family'],
-                  color: _styles['textfield-$_status-$_state-description-color'],
-                ),
-              ),
-            ],
+            const SizedBox(height: 8)
           ],
-        ),
+          SizedBox(
+            height: 40,
+            child: TextField(
+              controller: widget.controller,
+              focusNode: _focusNode,
+              keyboardType: widget.keyboardType,
+              textCapitalization: widget.textCapitalization,
+              textAlignVertical: TextAlignVertical.center,
+              textDirection: widget.textDirection,
+              readOnly: widget.readOnly,
+              toolbarOptions: widget.toolbarOptions,
+              showCursor: widget.showCursor,
+              autofocus: widget.autofocus,
+              obscuringCharacter: widget.obscuringCharacter,
+              obscureText: widget.obscureText,
+              autocorrect: widget.autocorrect,
+              enableSuggestions: widget.enableSuggestions,
+              onChanged: (value) {
+                setState(() {
+                  _value = value;
+
+                  if (widget.validator != null) _validate(value);
+                });
+
+                widget.onChanged?.call(value);
+              },
+              onEditingComplete: widget.onEditingComplete,
+              onSubmitted: widget.onSubmitted,
+              inputFormatters: widget.inputFormatters,
+              cursorColor: _Styles.cursorColor,
+              keyboardAppearance: widget.keyboardAppearance,
+              onTap: widget.onTap,
+              scrollController: widget.scrollController,
+              scrollPhysics: widget.scrollPhysics,
+              autofillHints: widget.autofillHints,
+              style: TextStyle(
+                fontSize: _Styles.textFontSize,
+                fontFamily: _Styles.textFontFamily,
+                color: _Styles.textColor[_state],
+              ),
+              decoration: InputDecoration(
+                filled: true,
+                contentPadding: EdgeInsets.only(
+                  left: 14,
+                  top: isEnabled && _isFocused ? 8 : 8,
+                  bottom: isEnabled && _isFocused ? 12.5 : 15,
+                ),
+                fillColor: inheritedBackgroundColor ?? _Styles.backgroundColor[_state],
+                hintText: widget.hint,
+                hintStyle: TextStyle(
+                  fontSize: _Styles.hintFontSize,
+                  fontFamily: _Styles.hintFontFamily,
+                  color: _Styles.hintColor[_state],
+                ),
+                prefixIconConstraints: BoxConstraints(minWidth: 46, maxWidth: 46), // 44 + 2 (width of border)
+                suffixIconConstraints: BoxConstraints(minWidth: 46, maxWidth: 46), // 44 + 2 (width of border)
+                prefixIcon: (() {
+                  if (widget.prefixIcon == null) return null;
+
+                  return IconTheme(
+                    data: IconThemeData(color: _Styles.iconColor[_state]!),
+                    child: widget.prefixIcon!,
+                  );
+                })(),
+                suffixIcon: (() {
+                  if (widget.prefixIcon == null && _validationResult?.icon == null) return null;
+
+                  return IconTheme(
+                    data: IconThemeData(color: _Styles.iconColor[_state]!),
+                    child: _validationResult?.icon ?? widget.suffixIcon!,
+                  );
+                })(),
+                border: _Styles.border[_kind]![_state],
+                enabledBorder: _Styles.border[_kind]![_state],
+                focusedBorder: _Styles.border[_kind]![_state],
+                disabledBorder: _Styles.border[_kind]![_state],
+              ),
+            ),
+          ),
+          if (widget.description != null) ...[
+            const SizedBox(height: 8),
+            CText(
+              data: _validationResult == null ? widget.description! : _validationResult!.message,
+              style: TextStyle(
+                fontSize: _Styles.descriptionFontSize,
+                fontFamily: _Styles.descriptionFontFamily,
+                color: _Styles.descriptionColor[_kind]![_state],
+              ),
+            ),
+          ],
+        ],
       ),
     );
   }
