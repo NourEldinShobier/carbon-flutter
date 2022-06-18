@@ -36,13 +36,13 @@ class CNotificationActionButtonState extends State<CNotificationActionButton> {
 
   late CNotificationContrast _contrast;
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     _contrast = context.fetch<CNotificationContrast>();
   }
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return GestureDetector(
       onTap: widget.props.onTap,

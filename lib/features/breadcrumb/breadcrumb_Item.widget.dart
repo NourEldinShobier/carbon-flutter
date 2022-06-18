@@ -28,12 +28,11 @@ class CBreadcrumbItem extends StatefulWidget {
 }
 
 class CBreadcrumbItemState extends State<CBreadcrumbItem> {
-  /// styles helpers
   CWidgetState _state = CWidgetState.enabled;
 
   bool _focused = false;
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     if (_focused) {
       _state = CWidgetState.focused;
     } else {
@@ -43,7 +42,7 @@ class CBreadcrumbItemState extends State<CBreadcrumbItem> {
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return GestureDetector(
       onTap: widget.props.onTap,

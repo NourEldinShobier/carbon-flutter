@@ -36,7 +36,7 @@ class CLink extends StatefulWidget {
 class CLinkState extends State<CLink> {
   CWidgetState _state = CWidgetState.enabled;
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     if (!_isEnabled) {
       _state = CWidgetState.disabled;
     } else {
@@ -50,7 +50,7 @@ class CLinkState extends State<CLink> {
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return IgnorePointer(
       ignoring: !_isEnabled,

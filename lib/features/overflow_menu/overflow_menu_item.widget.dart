@@ -49,7 +49,7 @@ class COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMixi
     _menuProps = context.fetch<COverflowMenuProps>();
   }
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     if (!widget.props.enable) {
       _state = CWidgetState.disabled;
     } else if (widget.props.enable && _focused) {
@@ -69,7 +69,7 @@ class COverflowMenuItemState extends State<COverflowMenuItem> with AfterInitMixi
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return CEnable(
       value: widget.props.enable,

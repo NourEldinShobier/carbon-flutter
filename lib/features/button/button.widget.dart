@@ -134,7 +134,7 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
 
   @override
   Widget build(BuildContext context) {
-    evaluateStateVariables();
+    _setStateVariables();
 
     return CInheritedStyles(
       styles: {'button-content-color': _Styles.contentColor[kind]![state]!},
@@ -218,7 +218,7 @@ class _CButtonIconOnly extends _CButtonBase {
 class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBase {
   @override
   Widget build(BuildContext context) {
-    evaluateStateVariables();
+    _setStateVariables();
 
     return CInheritedStyles(
       styles: {'button-content-color': _Styles.contentColor[kind]![state]!},

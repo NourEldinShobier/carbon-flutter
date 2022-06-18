@@ -71,7 +71,7 @@ class CToggleState extends State<CToggle> {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     if (!_isEnabled) {
       _state = CWidgetState.disabled;
     } else {
@@ -83,7 +83,7 @@ class CToggleState extends State<CToggle> {
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return Column(
       mainAxisSize: MainAxisSize.min,

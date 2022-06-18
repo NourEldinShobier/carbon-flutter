@@ -38,7 +38,6 @@ class CTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// styles helpers
     String state = _isEnabled(context) ? 'enabled' : 'disabled';
 
     return IgnorePointer(

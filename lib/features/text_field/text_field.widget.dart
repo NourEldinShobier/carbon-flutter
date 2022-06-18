@@ -146,7 +146,7 @@ class CTextFieldState extends State<CTextField> {
   }
 
   Color? get inheritedBackgroundColor {
-    return context.styles['textfield-background-color'][_state];
+    return context.styles['textfield-background-color']?[_state];
   }
 
   void _validate(String? text) {

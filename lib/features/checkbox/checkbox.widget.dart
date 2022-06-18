@@ -55,7 +55,7 @@ class CCheckboxState extends State<CCheckbox> {
     return context.inheritedEnable ? widget.props.enable : false;
   }
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     if (!_isEnabled) {
       _state = CWidgetState.disabled;
     } else if (_isEnabled && _focused) {
@@ -67,7 +67,7 @@ class CCheckboxState extends State<CCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return IgnorePointer(
       ignoring: !_isEnabled,

@@ -75,7 +75,7 @@ class COverflowMenuButtonState extends State<COverflowMenuButton> {
     super.dispose();
   }
 
-  void _evaluateStateVariables() {
+  void _setStateVariables() {
     if (!_isEnabled) {
       _state = CWidgetState.disabled;
 
@@ -93,7 +93,7 @@ class COverflowMenuButtonState extends State<COverflowMenuButton> {
 
   @override
   Widget build(BuildContext context) {
-    _evaluateStateVariables();
+    _setStateVariables();
 
     return IgnorePointer(
       ignoring: !_isEnabled,
