@@ -149,7 +149,7 @@ abstract class CButtonStyles {
     'curve': Curves.easeInOut,
   };
 
-  static final Map<CButtonSize, Size> size = {
+  static final Map<CButtonSize, Size> dimensions = {
     CButtonSize.regular: Size(48, 48),
     CButtonSize.md: Size(40, 40),
     CButtonSize.sm: Size(32, 32),

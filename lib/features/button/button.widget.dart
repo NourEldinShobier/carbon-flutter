@@ -16,8 +16,6 @@ enum CButtonSize { regular, sm, md }
 
 enum CButtonType { regular, icon }
 
-typedef _Styles = CButtonStyles;
-
 /// Buttons are clickable elements that are used to trigger actions.
 /// They communicate calls to action to the user and allow users to interact
 /// with pages in a variety of ways. Button labels express what action will
@@ -151,7 +149,7 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
               children: [
                 Positioned.fill(
                   child: AnimatedContainer(
-                    height: size.height,
+                    height: dimensions.height,
                     duration: _Styles.backgroundColorAnimation['duration'],
                     curve: _Styles.backgroundColorAnimation['curve'],
                     decoration: BoxDecoration(color: _Styles.backgroundColor[widget.props.kind]![state]!),
@@ -159,7 +157,7 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
                 ),
                 Positioned.fill(
                   child: AnimatedContainer(
-                    height: size.height,
+                    height: dimensions.height,
                     duration: _Styles.firstBorderAnimation[kind]!['duration'],
                     curve: _Styles.firstBorderAnimation[kind]!['curve'],
                     decoration: BoxDecoration(border: _Styles.firstBorder[kind]![state]!),
@@ -167,16 +165,16 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
                 ),
                 Positioned.fill(
                   child: AnimatedContainer(
-                    height: size.height,
+                    height: dimensions.height,
                     duration: _Styles.secondBorderAnimation['duration'],
                     curve: _Styles.secondBorderAnimation['curve'],
                     decoration: BoxDecoration(border: _Styles.secondBorder[kind]![state]!),
                   ),
                 ),
                 SizedBox(
-                  height: size.height,
+                  height: dimensions.height,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: _Styles.padding[size]!),
+                    padding: EdgeInsets.symmetric(horizontal: _Styles.padding[widget.props.size]!),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -234,29 +232,29 @@ class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBa
             child: Stack(
               children: [
                 AnimatedContainer(
-                  width: size.width,
-                  height: size.height,
+                  width: dimensions.width,
+                  height: dimensions.height,
                   duration: _Styles.backgroundColorAnimation['duration'],
                   curve: _Styles.backgroundColorAnimation['curve'],
                   decoration: BoxDecoration(color: _Styles.backgroundColor[widget.props.kind]![state]!),
                 ),
                 AnimatedContainer(
-                  width: size.width,
-                  height: size.height,
+                  width: dimensions.width,
+                  height: dimensions.height,
                   duration: _Styles.firstBorderAnimation[kind]!['duration'],
                   curve: _Styles.firstBorderAnimation[kind]!['curve'],
                   decoration: BoxDecoration(border: _Styles.firstBorder[kind]![state]!),
                 ),
                 AnimatedContainer(
-                  width: size.width,
-                  height: size.height,
+                  width: dimensions.width,
+                  height: dimensions.height,
                   duration: _Styles.secondBorderAnimation['duration'],
                   curve: _Styles.secondBorderAnimation['curve'],
                   decoration: BoxDecoration(border: _Styles.secondBorder[kind]![state]!),
                 ),
                 SizedBox(
-                  width: size.width,
-                  height: size.height,
+                  width: dimensions.width,
+                  height: dimensions.height,
                   child: Align(alignment: Alignment.center, child: widget.props.icon),
                 ),
               ],

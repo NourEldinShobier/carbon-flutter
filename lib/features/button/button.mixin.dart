@@ -1,8 +1,10 @@
 part of 'button.widget.dart';
 
+typedef _Styles = CButtonStyles;
+
 mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
   late CButtonKind kind;
-  late Size size;
+  late Size dimensions;
 
   CWidgetState state = CWidgetState.enabled;
 
@@ -22,6 +24,6 @@ mixin _CButtonStateBase<T extends _CButtonBase> on State<T> {
     }
 
     kind = widget.props.kind;
-    size = CButtonStyles.size[widget.props.size]!;
+    dimensions = _Styles.dimensions[widget.props.size]!;
   }
 }
