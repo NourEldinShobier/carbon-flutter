@@ -38,7 +38,6 @@ class CButtonExample extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
-                    iconDescription: 'Icon description',
                     icon: Builder(
                       builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
                     ),
@@ -62,7 +61,6 @@ class CButtonExample extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
-                    iconDescription: 'Icon description',
                     kind: CButtonKind.danger,
                     icon: Builder(
                       builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
@@ -87,7 +85,6 @@ class CButtonExample extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
-                    iconDescription: 'Icon description',
                     kind: CButtonKind.secondary,
                     icon: Builder(
                       builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
@@ -112,7 +109,6 @@ class CButtonExample extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
-                    iconDescription: 'Icon description',
                     kind: CButtonKind.tertiary,
                     icon: Builder(
                       builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),
@@ -137,7 +133,6 @@ class CButtonExample extends StatelessWidget {
                   ),
                   const SizedBox(width: 16),
                   CButton.icon(
-                    iconDescription: 'Icon description',
                     kind: CButtonKind.ghost,
                     icon: Builder(
                       builder: (ctx) => Icon(CIcons.add, size: 16, color: ctx.styles['button-content-color']),

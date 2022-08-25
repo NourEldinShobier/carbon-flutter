@@ -25,7 +25,6 @@ class COverflowMenuButton extends StatefulWidget {
     COverflowMenuSize size = COverflowMenuSize.md,
   })  : assert(items.isNotEmpty),
         props = COverflowMenuButtonProps(
-          iconDescription: iconDescription,
           icon: icon,
           enable: enable,
           items: items,

@@ -51,19 +51,13 @@ class CButton extends StatefulWidget {
     required VoidCallback onTap,
     CButtonKind kind = CButtonKind.primary,
     CButtonSize size = CButtonSize.regular,
-    required String iconDescription, // TODO:
-    CTooltipAlignment? tooltipAlignment, // TODO:
-    CTooltipPosition? tooltipPosition, // TODO:
   })  : type = CButtonType.icon,
         props = CButtonIconOnlyProps(
           enable: enable,
           icon: icon,
           onTap: onTap,
-          iconDescription: iconDescription,
           kind: kind,
           size: size,
-          tooltipAlignment: tooltipAlignment,
-          tooltipPosition: tooltipPosition,
         ),
         super(key: key);
 

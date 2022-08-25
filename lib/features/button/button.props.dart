@@ -1,4 +1,3 @@
-import 'package:carbon/shared/index.dart';
 import 'package:flutter/widgets.dart';
 
 import 'button.widget.dart';
@@ -72,27 +71,8 @@ class CButtonIconOnlyProps extends CButtonBaseProps {
   /// @required
   final Widget icon;
 
-  /// A text to display in a tooltip when the button is
-  /// long pressed.
-  ///
-  /// @required
-  final String iconDescription;
-
-  /// The tooltip alignment, it can be `start, center, end`.
-  ///
-  /// @optional
-  final CTooltipAlignment? tooltipAlignment;
-
-  /// The tooltip position, it can be `top, right, bottom, left`.
-  ///
-  /// @optional
-  final CTooltipPosition? tooltipPosition;
-
   CButtonIconOnlyProps({
     required this.icon,
-    required this.tooltipAlignment,
-    required this.tooltipPosition,
-    required this.iconDescription,
     required super.enable,
     required super.kind,
     required super.size,

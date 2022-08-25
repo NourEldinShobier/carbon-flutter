@@ -82,11 +82,6 @@ class COverflowMenuButtonProps extends COverflowMenuBaseProps {
   /// @required
   final Widget icon;
 
-  /// A text to display in a tooltip.
-  ///
-  /// @optional
-  final String? iconDescription; //TODO:
-
   /// Whether the button is enabled.
   ///
   /// @default: `true`
@@ -94,7 +89,6 @@ class COverflowMenuButtonProps extends COverflowMenuBaseProps {
 
   COverflowMenuButtonProps({
     required this.enable,
-    required this.iconDescription,
     required this.icon,
     required List<COverflowMenuItem> items,
     required Offset menuOffset,
