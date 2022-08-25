@@ -7,7 +7,7 @@ abstract class CTextfieldStyles {
   static const double labelFontSize = 14.0;
   static const String labelFontFamily = CFonts.primaryRegular;
 
-  static const double textFontSize = 15.0;
+  static const double textFontSize = 14.0;
   static const String textFontFamily = CFonts.primaryRegular;
 
   static const double hintFontSize = 15.0;

@@ -17,7 +17,7 @@ class CCheckboxProps {
   /// @default: `true`
   final bool value;
 
-  /// A text to display besides the checkbox.
+  /// A text to display beside the checkbox.
   ///
   /// @optional
   final String? label;
