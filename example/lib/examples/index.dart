@@ -5,3 +5,4 @@ export './form.example.dart';
 export './button.example.dart';
 export './breadcrumb.example.dart';
 export './checkbox.example.dart';
+export './link.example.dart';
