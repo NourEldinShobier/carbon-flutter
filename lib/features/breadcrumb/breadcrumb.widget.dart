@@ -5,7 +5,7 @@ import 'package:carbon_flutter/features/text/index.dart';
 
 import 'breadcrumb.props.dart';
 import 'breadcrumb.styles.dart';
-import 'breadcrumb_item.widget.dart';
+import 'breadcrumbitem.widget.dart';
 
 typedef _Styles = CBreadcrumbStyles;
 

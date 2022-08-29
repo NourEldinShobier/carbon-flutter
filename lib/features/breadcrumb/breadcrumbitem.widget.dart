@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
 import 'package:carbon_flutter/shared/index.dart';
 
-import 'breadcrumb_item.props.dart';
-import 'breadcrumb_item.styles.dart';
+import 'breadcrumbitem.props.dart';
+import 'breadcrumbitem.styles.dart';
 
 typedef _Styles = CBreadcrumbItemStyles;
 

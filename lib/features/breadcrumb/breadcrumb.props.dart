@@ -1,4 +1,4 @@
-import 'breadcrumb_item.widget.dart';
+import 'breadcrumbitem.widget.dart';
 
 class CBreadcrumbProps {
   /// A list of [CBreadcrumbItem] to display in a row.
