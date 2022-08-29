@@ -113,8 +113,9 @@ class CBreadcrumb extends StatelessWidget {
   Widget build(BuildContext context) {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
-      children:
-          props.children.length > props.breadcrumbsLimit ? _displayOverflowedBreadcrumbs() : _displayAllBreadcrumbs(),
+      children: props.children.length > props.breadcrumbsLimit
+          ? _displayOverflowedBreadcrumbs()
+          : _displayAllBreadcrumbs(),
     );
   }
 }

@@ -97,7 +97,8 @@ class _CButtonRegular extends _CButtonBase {
   _CButtonRegularState createState() => _CButtonRegularState();
 }
 
-class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase {
+class _CButtonRegularState extends State<_CButtonRegular>
+    with _CButtonStateBase {
   List<Widget> _buildTrailing() {
     final result = <Widget>[];
 
@@ -146,7 +147,9 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
                     height: dimensions.height,
                     duration: _Styles.backgroundColorAnimation['duration'],
                     curve: _Styles.backgroundColorAnimation['curve'],
-                    decoration: BoxDecoration(color: _Styles.backgroundColor[widget.props.kind]![state]!),
+                    decoration: BoxDecoration(
+                        color: _Styles
+                            .backgroundColor[widget.props.kind]![state]!),
                   ),
                 ),
                 Positioned.fill(
@@ -154,7 +157,8 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
                     height: dimensions.height,
                     duration: _Styles.firstBorderAnimation[kind]!['duration'],
                     curve: _Styles.firstBorderAnimation[kind]!['curve'],
-                    decoration: BoxDecoration(border: _Styles.firstBorder[kind]![state]!),
+                    decoration: BoxDecoration(
+                        border: _Styles.firstBorder[kind]![state]!),
                   ),
                 ),
                 Positioned.fill(
@@ -162,13 +166,15 @@ class _CButtonRegularState extends State<_CButtonRegular> with _CButtonStateBase
                     height: dimensions.height,
                     duration: _Styles.secondBorderAnimation['duration'],
                     curve: _Styles.secondBorderAnimation['curve'],
-                    decoration: BoxDecoration(border: _Styles.secondBorder[kind]![state]!),
+                    decoration: BoxDecoration(
+                        border: _Styles.secondBorder[kind]![state]!),
                   ),
                 ),
                 SizedBox(
                   height: dimensions.height,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: _Styles.padding[widget.props.size]!),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: _Styles.padding[widget.props.size]!),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -207,7 +213,8 @@ class _CButtonIconOnly extends _CButtonBase {
   _CButtonIconOnlyState createState() => _CButtonIconOnlyState();
 }
 
-class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBase {
+class _CButtonIconOnlyState extends State<_CButtonIconOnly>
+    with _CButtonStateBase {
   @override
   Widget build(BuildContext context) {
     _setStateVariables();
@@ -230,26 +237,31 @@ class _CButtonIconOnlyState extends State<_CButtonIconOnly> with _CButtonStateBa
                   height: dimensions.height,
                   duration: _Styles.backgroundColorAnimation['duration'],
                   curve: _Styles.backgroundColorAnimation['curve'],
-                  decoration: BoxDecoration(color: _Styles.backgroundColor[widget.props.kind]![state]!),
+                  decoration: BoxDecoration(
+                      color:
+                          _Styles.backgroundColor[widget.props.kind]![state]!),
                 ),
                 AnimatedContainer(
                   width: dimensions.width,
                   height: dimensions.height,
                   duration: _Styles.firstBorderAnimation[kind]!['duration'],
                   curve: _Styles.firstBorderAnimation[kind]!['curve'],
-                  decoration: BoxDecoration(border: _Styles.firstBorder[kind]![state]!),
+                  decoration:
+                      BoxDecoration(border: _Styles.firstBorder[kind]![state]!),
                 ),
                 AnimatedContainer(
                   width: dimensions.width,
                   height: dimensions.height,
                   duration: _Styles.secondBorderAnimation['duration'],
                   curve: _Styles.secondBorderAnimation['curve'],
-                  decoration: BoxDecoration(border: _Styles.secondBorder[kind]![state]!),
+                  decoration: BoxDecoration(
+                      border: _Styles.secondBorder[kind]![state]!),
                 ),
                 SizedBox(
                   width: dimensions.width,
                   height: dimensions.height,
-                  child: Align(alignment: Alignment.center, child: widget.props.icon),
+                  child: Align(
+                      alignment: Alignment.center, child: widget.props.icon),
                 ),
               ],
             ),
