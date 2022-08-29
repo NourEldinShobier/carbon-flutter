@@ -27,3 +27,7 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
+
+lib/features/breadcrumb/breadcrumb_Item.widget.dart
+lib/features/breadcrumb/breadcrumb_item.props.dart
+lib/features/breadcrumb/breadcrumb_item.styles.dart
