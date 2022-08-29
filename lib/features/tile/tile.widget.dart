@@ -1,7 +1,7 @@
-import 'package:carbon/features/tile/tile.props.dart';
+import 'package:carbon_flutter/features/tile/tile.props.dart';
 import 'package:flutter/widgets.dart';
-import 'package:carbon/features/enable/index.dart';
-import 'package:carbon/features/text/index.dart';
+import 'package:carbon_flutter/features/enable/index.dart';
+import 'package:carbon_flutter/features/text/index.dart';
 
 import 'tile.style.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carbon/carbon.dart';
+import 'package:carbon_flutter/carbon.dart';
 
 class CFormExample extends StatefulWidget {
   const CFormExample({Key? key}) : super(key: key);

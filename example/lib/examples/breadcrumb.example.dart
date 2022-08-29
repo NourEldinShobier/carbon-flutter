@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carbon/carbon.dart';
+import 'package:carbon_flutter/carbon.dart';
 
 class CBreadcrumbExample extends StatelessWidget {
   const CBreadcrumbExample({Key? key}) : super(key: key);

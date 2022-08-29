@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carbon/carbon.dart';
+import 'package:carbon_flutter/carbon.dart';
 
 class CButtonExample extends StatelessWidget {
   const CButtonExample({Key? key}) : super(key: key);

@@ -1,4 +1,4 @@
-import 'package:carbon/carbon.dart';
+import 'package:carbon_flutter/carbon.dart';
 import 'package:example/examples/index.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +14,6 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return CarbonApp(title: 'Carbon Examples', home: CLinkExamplePage());
+    return CarbonApp(title: 'Carbon Examples', home: CButtonExample());
   }
 }

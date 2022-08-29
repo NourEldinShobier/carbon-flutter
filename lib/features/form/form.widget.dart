@@ -1,8 +1,8 @@
-import 'package:carbon/features/text_field/index.dart';
+import 'package:carbon_flutter/features/text_field/index.dart';
 import 'package:flutter/widgets.dart';
-import 'package:carbon/features/enable/index.dart';
-import 'package:carbon/features/inherited_styles/index.dart';
-import 'package:carbon/shared/index.dart';
+import 'package:carbon_flutter/features/enable/index.dart';
+import 'package:carbon_flutter/features/inherited_styles/index.dart';
+import 'package:carbon_flutter/shared/index.dart';
 
 import 'form.props.dart';
 import 'form.styles.dart';

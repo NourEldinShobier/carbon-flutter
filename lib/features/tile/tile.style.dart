@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carbon/shared/index.dart';
+import 'package:carbon_flutter/shared/index.dart';
 
 abstract class CTileStyle {
   static const Map<String, dynamic> styles = {

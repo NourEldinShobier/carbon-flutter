@@ -1,4 +1,4 @@
-import 'package:carbon/carbon.dart';
+import 'package:carbon_flutter/carbon.dart';
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +18,7 @@ class CThemes {
     indicatorColor: CColors.blue70,
     hintColor: CColors.gray10,
     errorColor: CColors.red40,
-    fontFamily: 'packages/carbon/${CFonts.primaryRegular}',
+    fontFamily: 'packages/carbon_flutter/${CFonts.primaryRegular}',
     iconTheme: IconThemeData(color: CColors.gray10),
     textSelectionTheme: TextSelectionThemeData(
       cursorColor: CColors.gray10,

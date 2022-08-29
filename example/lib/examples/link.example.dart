@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carbon/carbon.dart';
+import 'package:carbon_flutter/carbon.dart';
 
 class CLinkExamplePage extends StatefulWidget {
   const CLinkExamplePage({Key? key}) : super(key: key);

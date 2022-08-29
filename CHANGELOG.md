@@ -1,3 +1,3 @@
-## 0.0.1
+## 0.11.0
 
-* TODO: Describe initial release.
+* - publish the first batch of widgets

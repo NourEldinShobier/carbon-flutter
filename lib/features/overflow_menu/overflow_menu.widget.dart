@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'dart:core';
 import 'package:pmvvm/pmvvm.dart';
-import 'package:carbon/shared/index.dart';
+import 'package:carbon_flutter/shared/index.dart';
 import 'package:flutter/material.dart';
 
 import 'overflow_menu.props.dart';

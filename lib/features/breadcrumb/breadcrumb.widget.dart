@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-import 'package:carbon/features/overflow_menu/index.dart';
-import 'package:carbon/features/text/index.dart';
+import 'package:carbon_flutter/features/overflow_menu/index.dart';
+import 'package:carbon_flutter/features/text/index.dart';
 
 import 'breadcrumb.props.dart';
 import 'breadcrumb.styles.dart';

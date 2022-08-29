@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carbon/carbon.dart';
+import 'package:carbon_flutter/carbon.dart';
 
 class CNotificationExample extends StatelessWidget {
   const CNotificationExample({Key? key}) : super(key: key);

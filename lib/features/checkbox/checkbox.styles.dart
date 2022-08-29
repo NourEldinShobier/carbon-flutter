@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:carbon/shared/index.dart';
+import 'package:carbon_flutter/shared/index.dart';
 
 abstract class CCheckboxStyles {
   static const Map<String, dynamic> borderAnimation = {

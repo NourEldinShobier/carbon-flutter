@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:carbon/shared/index.dart';
-import 'package:carbon/features/enable/index.dart';
+import 'package:carbon_flutter/shared/index.dart';
+import 'package:carbon_flutter/features/enable/index.dart';
 
 class CText extends StatelessWidget {
   const CText({
@@ -100,7 +100,7 @@ class CText extends StatelessWidget {
         TextStyle(
           fontFamilyFallback: [
             if (style!.fontFamilyFallback != null) ...style!.fontFamilyFallback!,
-            'packages/carbon/${style!.fontFamily ?? CFonts.primaryRegular}',
+            'packages/carbon_flutter/${style!.fontFamily ?? CFonts.primaryRegular}',
           ],
         ),
       ),

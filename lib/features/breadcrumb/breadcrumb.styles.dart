@@ -1,4 +1,4 @@
-import 'package:carbon/shared/index.dart';
+import 'package:carbon_flutter/shared/index.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class CBreadcrumbStyles {

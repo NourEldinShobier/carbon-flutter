@@ -11,8 +11,6 @@ The goals of the design system include improving UI consistency and quality, mak
 
 **Flutter Carbon** is an unofficial implementation of Carbon Design System using Flutter framework. It provides Flutter developers a collection of widgets to build apps and user interfaces. Adopting the package enables developers to use consistent styles and behavior in prototype and production work.
 
-> ⚠️ **WARNING:** The project is still under development and not ready for production.
-
 # Documentation
 
 The full documentation of the project can be found [here](https://nour-eldin-shobier.gitbook.io/carbon-flutter/)
