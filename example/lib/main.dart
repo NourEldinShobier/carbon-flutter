@@ -14,6 +14,9 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return CarbonApp(title: 'Carbon Examples', home: CButtonExample());
+    return CarbonApp(
+      title: 'Carbon Examples',
+      home: const CTagExample(),
+    );
   }
 }
