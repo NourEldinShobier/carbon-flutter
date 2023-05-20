@@ -17,4 +17,20 @@ void main() {
     final textFinder = find.text(label);
     expect(textFinder, findsOneWidget);
   });
+
+  testWidgets(
+    'CTag should show a button with cross icon when filter is true',
+    (WidgetTester tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Material(
+            child: CTag.filter(label: 'Test Label'),
+          ),
+        ),
+      );
+
+      final iconFinder = find.byIcon(CIcons.close);
+      expect(iconFinder, findsOneWidget);
+    },
+  );
 }
