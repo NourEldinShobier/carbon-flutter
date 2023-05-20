@@ -28,16 +28,17 @@ class CTagProps {
   final CTagSize size;
 
   /// {@macro tag_colors}
-  final CTagColors color;
+  final CTagColors _color;
+  CTagColors get color => disabled ? CTagColors.disabled : _color;
 
   /// Creates a [CTagProps].
   const CTagProps({
     required this.disabled,
     required this.label,
     required this.filter,
-    required this.color,
+    required CTagColors color,
     required this.size,
-  });
+  }) : _color = color;
 }
 
 /// {@template tag_size}
@@ -50,17 +51,18 @@ enum CTagSize { sm, md }
 /// The color of the tag.
 /// {@endtemplate}
 enum CTagColors {
-  red(CColors.red80, CColors.red40, CColors.red40),
-  magenta(CColors.magenta80, CColors.magenta40, CColors.magenta40),
-  purple(CColors.purple80, CColors.purple40, CColors.purple40),
-  blue(CColors.blue80, CColors.blue40, CColors.blue40),
-  cyan(CColors.cyan80, CColors.cyan40, CColors.cyan40),
-  teal(CColors.teal80, CColors.teal40, CColors.teal40),
-  green(CColors.green80, CColors.green40, CColors.green40),
-  gray(CColors.gray80, CColors.gray40, CColors.gray40),
-  coolGray(CColors.coolGray80, CColors.coolGray40, CColors.coolGray40),
-  warmGray(CColors.warmGray80, CColors.warmGray40, CColors.warmGray40),
-  highContrast(CColors.white0, CColors.black100, CColors.black100);
+  red(CColors.red80, CColors.red40, CColors.red60),
+  magenta(CColors.magenta80, CColors.magenta40, CColors.magenta60),
+  purple(CColors.purple80, CColors.purple40, CColors.purple60),
+  blue(CColors.blue80, CColors.blue40, CColors.blue60),
+  cyan(CColors.cyan80, CColors.cyan40, CColors.cyan60),
+  teal(CColors.teal80, CColors.teal40, CColors.teal60),
+  green(CColors.green80, CColors.green40, CColors.green60),
+  gray(CColors.gray80, CColors.gray40, CColors.gray60),
+  coolGray(CColors.coolGray80, CColors.coolGray40, CColors.coolGray60),
+  warmGray(CColors.warmGray80, CColors.warmGray40, CColors.warmGray60),
+  highContrast(CColors.white0, CColors.black100, CColors.gray60),
+  disabled(CColors.gray60, CColors.gray10, CColors.gray60);
 
   final Color textColor;
   final Color backgroundColor;
